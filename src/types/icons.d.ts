@@ -28,6 +28,9 @@ interface IIcons {
   check: any;
   arrowDown: any;
   arrowUp: any;
+  close: any;
+  checkGreen: any;
+  datePicker: any;
 }
 
 type IconNameType = keyof IIcons;

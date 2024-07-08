@@ -14,6 +14,7 @@ import {
   View,
   Text,
   TextStyle,
+  ViewStyle,
 } from 'react-native';
 import {images} from '../assets';
 import SvgIcon from '../common/components/SvgIcon';
@@ -23,10 +24,16 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 interface Props {
   title?: string;
   background?: string;
+  contentStyle?: ViewStyle;
   children: React.ReactNode;
 }
 
-const PrimaryLayoutDetailItem = ({title, background, children}: Props) => {
+const PrimaryLayoutDetailItem = ({
+  title,
+  background,
+  contentStyle,
+  children,
+}: Props) => {
   const theme = useThemeContext();
 
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
@@ -38,7 +45,7 @@ const PrimaryLayoutDetailItem = ({title, background, children}: Props) => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, contentStyle]}>
       <StatusBar
         translucent={true}
         barStyle="dark-content"

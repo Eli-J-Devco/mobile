@@ -11,7 +11,10 @@ import PortfolioFilter from '../../../modules/portfolio/components/PortfolioFilt
 
 const PortfolioFilterSreen = () => {
   return (
-    <PrimaryLayoutDetailItem>
+    <PrimaryLayoutDetailItem
+      contentStyle={{
+        position: 'relative',
+      }}>
       <PortfolioFilter />
     </PrimaryLayoutDetailItem>
   );

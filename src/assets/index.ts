@@ -32,4 +32,7 @@ export const icons: Partial<IIcons> = {
   check: require('./icons/check.svg'),
   arrowDown: require('./icons/arrow-down.svg'),
   arrowUp: require('./icons/arrow-up.svg'),
+  close: require('./icons/close.svg'),
+  checkGreen: require('./icons/check-green.svg'),
+  datePicker: require('./icons/date-picker.svg'),
 };

@@ -9,6 +9,8 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import React from 'react';
 import {
   ImageBackground,
+  KeyboardAvoidingView,
+  Platform,
   SafeAreaView,
   StatusBar,
   StyleSheet,
@@ -21,6 +23,7 @@ import {icons, images} from '../../assets';
 import MyTextInput from '../../common/base/MyTextInput';
 import Dashboard from '../../modules/dashboard';
 import useThemeContext from '../../hooks/useThemeContext';
+import {dashboardRouteNames} from '../../navigations/router-name';
 
 const DATA = [
   {
@@ -56,55 +59,65 @@ const Home = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar
-        translucent={true}
-        barStyle="dark-content"
-        backgroundColor={'transparent'}
-      />
-      <ImageBackground
-        resizeMode="cover"
-        source={images.bgLogin}
-        style={styles.image}>
-        <View style={styles.header}>
-          <View style={styles.headerContent}>
-            <MyTextInput
-              style={[styles.searchInput, {color: theme.palette.text.primary}]}
-              placeholder="Search"
-            />
-            <View style={styles.headerBtnContainer}>
-              <TouchableOpacity activeOpacity={0.5} style={styles.headerBtn}>
-                <WithLocalSvg asset={icons.bellWhite} />
-              </TouchableOpacity>
-              <TouchableOpacity activeOpacity={0.5} style={styles.headerBtn}>
-                <WithLocalSvg asset={icons.user} />
-              </TouchableOpacity>
+      <KeyboardAvoidingView
+        style={styles.container}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+        <StatusBar
+          translucent={true}
+          barStyle="dark-content"
+          backgroundColor={'transparent'}
+        />
+        <ImageBackground
+          resizeMode="cover"
+          source={images.bgLogin}
+          style={styles.image}>
+          <View style={styles.header}>
+            <View style={styles.headerContent}>
+              <MyTextInput
+                style={[
+                  styles.searchInput,
+                  {color: theme.palette.text.primary},
+                ]}
+                placeholder="Search"
+                onFocus={() => {
+                  navigation.navigate(dashboardRouteNames.SearchAndFilter);
+                }}
+              />
+              <View style={styles.headerBtnContainer}>
+                <TouchableOpacity activeOpacity={0.5} style={styles.headerBtn}>
+                  <WithLocalSvg asset={icons.bellWhite} />
+                </TouchableOpacity>
+                <TouchableOpacity activeOpacity={0.5} style={styles.headerBtn}>
+                  <WithLocalSvg asset={icons.user} />
+                </TouchableOpacity>
+              </View>
+            </View>
+            <View style={styles.action}>
+              <View style={styles.actionContent}>
+                {DATA.map((item, index) => {
+                  return (
+                    <TouchableOpacity
+                      activeOpacity={0.5}
+                      key={item.name}
+                      style={styles.actionItem}
+                      onPress={() => {
+                        navigation.navigate(item.sreen);
+                      }}>
+                      <View style={styles.actionIcon}>
+                        <WithLocalSvg asset={item.icon} />
+                      </View>
+                      <Text style={styles.actionLable}>{item.name}</Text>
+                    </TouchableOpacity>
+                  );
+                })}
+              </View>
             </View>
           </View>
-          <View style={styles.action}>
-            <View style={styles.actionContent}>
-              {DATA.map((item, index) => {
-                return (
-                  <TouchableOpacity
-                    activeOpacity={0.5}
-                    key={item.name}
-                    style={styles.actionItem}
-                    onPress={() => {
-                      navigation.navigate(item.sreen);
-                    }}>
-                    <View style={styles.actionIcon}>
-                      <WithLocalSvg asset={item.icon} />
-                    </View>
-                    <Text style={styles.actionLable}>{item.name}</Text>
-                  </TouchableOpacity>
-                );
-              })}
-            </View>
+          <View style={styles.content}>
+            <Dashboard />
           </View>
-        </View>
-        <View style={styles.content}>
-          <Dashboard />
-        </View>
-      </ImageBackground>
+        </ImageBackground>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };
@@ -195,6 +208,7 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     flex: 4,
     height: 37,
+    paddingLeft: 8,
   },
   headerBtnContainer: {
     flex: 1,

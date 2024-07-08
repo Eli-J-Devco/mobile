@@ -2384,6 +2384,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-native-community/datetimepicker@npm:^8.1.1":
+  version: 8.1.1
+  resolution: "@react-native-community/datetimepicker@npm:8.1.1"
+  dependencies:
+    invariant: ^2.2.4
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+    react-native-windows: "*"
+  peerDependenciesMeta:
+    react-native-windows:
+      optional: true
+  checksum: ef821df963fe59ba9e7d9b7fff569531ef624b2e14e2dcf0216fc07cd1505d246d5bb4cc5fac6e45f335f10449f236937efdc5af7348c6f563f60eb89f16d2a5
+  languageName: node
+  linkType: hard
+
 "@react-native/assets-registry@npm:0.74.83":
   version: 0.74.83
   resolution: "@react-native/assets-registry@npm:0.74.83"
@@ -3317,6 +3333,7 @@ __metadata:
     "@fortawesome/free-solid-svg-icons": ^6.5.2
     "@fortawesome/react-native-fontawesome": ^0.3.2
     "@hookform/resolvers": ^3.6.0
+    "@react-native-community/datetimepicker": ^8.1.1
     "@react-native/babel-preset": 0.74.83
     "@react-native/eslint-config": 0.74.83
     "@react-native/metro-config": 0.74.83

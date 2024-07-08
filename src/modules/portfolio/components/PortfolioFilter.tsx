@@ -6,7 +6,7 @@
 
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import React, {useCallback} from 'react';
+import React from 'react';
 import {
   ScrollView,
   StyleSheet,
@@ -17,14 +17,64 @@ import {
 } from 'react-native';
 import MySelect from '../../../common/base/MySelect';
 import MyTextInput from '../../../common/base/MyTextInput';
-import useThemeContext from '../../../hooks/useThemeContext';
 import ButonText from '../../../common/components/button/ButonText';
-import {GestureHandlerRootView} from 'react-native-gesture-handler';
-import BottomSheet from '../../../common/components/BottomSheet';
+import useThemeContext from '../../../hooks/useThemeContext';
+
+const options: ISelectOption[] = [
+  {
+    label: 'Column 1',
+    value: '1',
+  },
+  {
+    label: 'Column 2',
+    value: '2',
+  },
+  {
+    label: 'Column 3',
+    value: '3',
+  },
+  {
+    label: 'Column 4',
+    value: '4',
+  },
+  {
+    label: 'Column 5',
+    value: '5',
+  },
+  {
+    label: 'Column 6',
+    value: '6',
+  },
+  {
+    label: 'Column 7',
+    value: '7',
+  },
+  {
+    label: 'Column 8',
+    value: '8',
+  },
+  {
+    label: 'Column 9',
+    value: '9',
+  },
+  {
+    label: 'Column 10',
+    value: '10',
+  },
+  {
+    label: 'Column 11',
+    value: '11',
+  },
+  {
+    label: 'Column 12',
+    value: '12',
+  },
+];
 
 const PortfolioFilter = () => {
   const theme = useThemeContext();
 
+  // const bottomSheetRef = React.useRef<any>(null);
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
 
   const titleStyle: TextStyle = {
@@ -39,22 +89,17 @@ const PortfolioFilter = () => {
     fontWeight: '400',
   };
 
-  const bottomSheetRef = React.useRef<any>(null);
-
-  const openBottomSheet = useCallback(() => {
-    const isActive = bottomSheetRef.current?.isActive();
-    if (isActive) {
-      bottomSheetRef.current?.scrollTo(0);
-    } else {
-      bottomSheetRef.current?.scrollTo(-200);
-    }
-  }, []);
+  // const openBottomSheet = useCallback(() => {
+  //   const isActive = bottomSheetRef.current?.isActive();
+  //   if (isActive) {
+  //     bottomSheetRef.current?.scrollTo(0);
+  //   } else {
+  //     bottomSheetRef.current?.scrollTo(-200);
+  //   }
+  // }, []);
 
   return (
-    <GestureHandlerRootView>
-      <BottomSheet ref={bottomSheetRef}>
-        <View></View>
-      </BottomSheet>
+    <>
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{
@@ -63,7 +108,12 @@ const PortfolioFilter = () => {
         <View style={[styles.container]}>
           <View style={styles.wraped}>
             <Text style={titleStyle}>Column</Text>
-            <MySelect />
+            <MySelect
+              options={options}
+              onChange={vl => {
+                console.log('--onChange--: ', vl);
+              }}
+            />
             <MyTextInput style={styles.input} />
           </View>
           <View style={styles.wraped}>
@@ -123,14 +173,11 @@ const PortfolioFilter = () => {
         <TouchableOpacity style={styles.btnReset} activeOpacity={0.5}>
           <Text style={btnTextStyle}>Clear</Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          onPress={openBottomSheet}
-          style={styles.btnApply}
-          activeOpacity={0.5}>
+        <TouchableOpacity style={styles.btnApply} activeOpacity={0.5}>
           <Text style={btnTextStyle}>Apply</Text>
         </TouchableOpacity>
       </View>
-    </GestureHandlerRootView>
+    </>
   );
 };
 

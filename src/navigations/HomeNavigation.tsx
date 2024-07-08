@@ -6,10 +6,11 @@
 
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
-import AlertSreen from '../screens/alerts';
+import SearchAndFilter from '../modules/dashboard/components/searchAndFilter';
 import Home from '../screens/home';
-import PortfolioNavigation from './PortfolioNavigation';
 import AlertsNavigation from './AlertsNavigation';
+import PortfolioNavigation from './PortfolioNavigation';
+import SearchAndFilterSreen from '../screens/home/search-and-filter';
 
 const Stack = createNativeStackNavigator();
 
@@ -32,6 +33,11 @@ const HomeNavigation = () => {
       <Stack.Screen
         name="PortfolioNavigation"
         component={PortfolioNavigation}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="SearchAndFilter"
+        component={SearchAndFilterSreen}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

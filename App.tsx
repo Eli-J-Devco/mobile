@@ -7,8 +7,8 @@
 
 import React from 'react';
 
-import Root from './src/navigations/Root';
 import AppThemeProvider from './src/context/AppThemeProvider';
+import Root from './src/navigations/Root';
 
 function App(): React.JSX.Element {
   // const isDarkMode = useColorScheme() === 'dark';

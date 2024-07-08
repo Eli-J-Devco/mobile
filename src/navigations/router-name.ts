@@ -27,3 +27,10 @@ export const alertRouteNames = {
   Alerts: 'Alerts',
   AlertFilter: 'AlertFilter',
 };
+
+export const dashboardRouteNames = {
+  Dashboard: 'Dashboard',
+  AlertsNavigation: alertRouteNames,
+  PortfolioNavigation: portfolioRouteName,
+  SearchAndFilter: 'SearchAndFilter',
+};

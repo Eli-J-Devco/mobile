@@ -4,9 +4,13 @@
  *
  *********************************************************/
 
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import React from 'react';
 import {
   ImageBackground,
+  KeyboardAvoidingView,
+  Platform,
   SafeAreaView,
   StatusBar,
   StyleSheet,
@@ -16,8 +20,6 @@ import {
 import {images} from '../assets';
 import MyTextInput from '../common/base/MyTextInput';
 import SvgIcon from '../common/components/SvgIcon';
-import {useNavigation} from '@react-navigation/native';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import useThemeContext from '../hooks/useThemeContext';
 
 interface Props {
@@ -31,36 +33,40 @@ const PrimaryLayoutDetail = ({filter = true, children}: Props) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar
-        translucent={true}
-        barStyle="dark-content"
-        backgroundColor={'transparent'}
-      />
-      <ImageBackground
-        resizeMode="cover"
-        source={images.bgHeader}
-        style={[styles.image, styles.header]}>
-        <View style={styles.headerContent}>
-          <TouchableOpacity
-            activeOpacity={0.5}
-            onPress={() => navigation.goBack()}>
-            <SvgIcon iconName="arrowLeftWhite" />
-          </TouchableOpacity>
-          <MyTextInput
-            style={[styles.searchInput, {color: theme.palette.text.primary}]}
-            placeholder="Search"
-          />
-          <View style={styles.headerBtnContainer}>
-            <TouchableOpacity activeOpacity={0.5} style={styles.headerBtn}>
-              <SvgIcon iconName="bellWhite" />
+      <KeyboardAvoidingView
+        style={styles.container}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+        <StatusBar
+          translucent={true}
+          barStyle="dark-content"
+          backgroundColor={'transparent'}
+        />
+        <ImageBackground
+          resizeMode="cover"
+          source={images.bgHeader}
+          style={[styles.image, styles.header]}>
+          <View style={styles.headerContent}>
+            <TouchableOpacity
+              activeOpacity={0.5}
+              onPress={() => navigation.goBack()}>
+              <SvgIcon iconName="arrowLeftWhite" />
             </TouchableOpacity>
-            <TouchableOpacity activeOpacity={0.5} style={styles.headerBtn}>
-              <SvgIcon iconName="user" />
-            </TouchableOpacity>
+            <MyTextInput
+              style={[styles.searchInput, {color: theme.palette.text.primary}]}
+              placeholder="Search"
+            />
+            <View style={styles.headerBtnContainer}>
+              <TouchableOpacity activeOpacity={0.5} style={styles.headerBtn}>
+                <SvgIcon iconName="bellWhite" />
+              </TouchableOpacity>
+              <TouchableOpacity activeOpacity={0.5} style={styles.headerBtn}>
+                <SvgIcon iconName="user" />
+              </TouchableOpacity>
+            </View>
           </View>
-        </View>
-      </ImageBackground>
-      <View style={styles.content}>{children}</View>
+        </ImageBackground>
+        <View style={styles.content}>{children}</View>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };
@@ -109,6 +115,7 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     flex: 4,
     height: 37,
+    paddingLeft: 8,
   },
   headerBtnContainer: {
     flex: 1,
