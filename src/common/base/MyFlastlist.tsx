@@ -1,3 +1,9 @@
+/********************************************************
+ * Copyright 2024 NEXT WAVE ENERGY MONITORING INC.
+ * All rights reserved.
+ *
+ *********************************************************/
+
 import {View, Text, FlatList, FlatListProps} from 'react-native';
 import React from 'react';
 

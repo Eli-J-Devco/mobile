@@ -1,25 +1,6 @@
-/********************************************************
- * Copyright 2024 NEXT WAVE ENERGY MONITORING INC.
- * All rights reserved.
- *
- *********************************************************/
-
-import React from 'react';
 import {StyleSheet} from 'react-native';
-import MainLayout from '../../layouts/MainLayout';
-import Dashboard from '../../modules/dashboard';
 
-const Home = () => {
-  return (
-    <MainLayout>
-      <Dashboard />
-    </MainLayout>
-  );
-};
-
-export default Home;
-
-const styles = StyleSheet.create({
+export const mainLayoutStyles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
@@ -32,7 +13,6 @@ const styles = StyleSheet.create({
     display: 'flex',
     width: '100%',
     height: '100%',
-    backgroundColor: '#F5F5F5',
     flex: 6,
     paddingTop: 50,
   },
@@ -45,28 +25,57 @@ const styles = StyleSheet.create({
   action: {
     position: 'absolute',
     width: '100%',
-    height: 80,
+    height: 90,
     display: 'flex',
     paddingHorizontal: 24,
-    bottom: -40,
+    bottom: -30,
     zIndex: 1,
+    // backgroundColor: 'blue',
   },
   actionContent: {
-    backgroundColor: '#fff',
-    width: '100%',
-    height: '100%',
-    borderRadius: 8,
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
     paddingHorizontal: 8,
-    // boxShadow: '0px 4px 8px -2px rgba(16, 24, 40, 0.1)',
     shadowColor: '#333',
     shadowOffset: {width: -2, height: 4},
     shadowOpacity: 0.5,
     shadowRadius: 3,
     elevation: 20,
+    width: '100%',
+    borderRadius: 8,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    // backgroundColor: 'blue',
+    flex: 1,
+  },
+  actionContainer: {
+    display: 'flex',
+    width: '100%',
+    height: '100%',
+    // backgroundColor: 'blue',
+  },
+  silderContainer: {
+    width: '100%',
+    flex: 10,
+    paddingBottom: 4,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  silder: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: 'auto',
+    backgroundColor: '#D9D9D9',
+    borderRadius: 10,
+    height: 5,
+  },
+  silderItem: {
+    width: 20,
+    height: '100%',
+    backgroundColor: '#373433',
+    borderRadius: 10,
   },
   actionItem: {
     display: 'flex',

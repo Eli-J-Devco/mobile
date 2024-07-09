@@ -111,6 +111,7 @@ export const buttonLight = {
 export const backgroundColor: Partial<ColorType> = {
   primary: '#FFFFFF',
   secondary: '#F1F1F1',
+  tertiary: '#F2F1F6',
   dark: '#373433',
   yellow: '#FEDA00',
 };
@@ -121,7 +122,7 @@ const themeDefaults = {
     button: buttonLight,
     background: backgroundColor,
     borderColor: {
-      base: '#C7C9D9',
+      base: '#C5C5C5',
       secondary: 'rgba(164, 164, 164, 0.2)',
       tertiary: '#fff',
     },

@@ -6,7 +6,7 @@
 
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import React from 'react';
-import {View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {WithLocalSvg} from 'react-native-svg';
 import {icons} from '../assets';
 import useHideTabBottom from '../hooks/useHideTabBottom';
@@ -14,6 +14,7 @@ import Account from '../screens/account';
 import SettingSreen from '../screens/setting';
 import HomeNavigation from './HomeNavigation';
 import {routeName} from './router-name';
+import SettingNavigation from './SettingNavigation';
 
 const Tab = createBottomTabNavigator();
 
@@ -85,12 +86,8 @@ const BottomNavigation = (): JSX.Element => {
         component={HomeNavigation}
         options={{
           tabBarLabel: routeName.Home,
-          tabBarActiveTintColor: '#F0DB2B',
-          tabBarLabelStyle: {
-            fontWeight: '600',
-            marginBottom: 8,
-            fontSize: 16,
-          },
+          // tabBarActiveTintColor: '#F0DB2B',
+          tabBarLabelStyle: styles.tabBarLabelStyle,
         }}
       />
       <Tab.Screen
@@ -98,25 +95,17 @@ const BottomNavigation = (): JSX.Element => {
         component={Account}
         options={{
           tabBarLabel: routeName.Menu,
-          tabBarActiveTintColor: '#F0DB2B',
-          tabBarLabelStyle: {
-            fontWeight: '600',
-            marginBottom: 8,
-            fontSize: 16,
-          },
+          // tabBarActiveTintColor: '#F0DB2B',
+          tabBarLabelStyle: styles.tabBarLabelStyle,
         }}
       />
       <Tab.Screen
         name={routeName.Setup}
-        component={SettingSreen}
+        component={SettingNavigation}
         options={{
           tabBarLabel: routeName.Setup,
-          tabBarActiveTintColor: '#F0DB2B',
-          tabBarLabelStyle: {
-            fontWeight: '600',
-            marginBottom: 8,
-            fontSize: 16,
-          },
+          // tabBarActiveTintColor: '#F0DB2B',
+          tabBarLabelStyle: styles.tabBarLabelStyle,
         }}
       />
     </Tab.Navigator>
@@ -124,3 +113,12 @@ const BottomNavigation = (): JSX.Element => {
 };
 
 export default BottomNavigation;
+
+const styles = StyleSheet.create({
+  tabBarLabelStyle: {
+    fontWeight: '600',
+    marginBottom: 8,
+    fontSize: 16,
+    color: '#000',
+  },
+});

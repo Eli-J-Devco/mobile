@@ -4,14 +4,15 @@
  *
  *********************************************************/
 
-import {View, Text} from 'react-native';
 import React from 'react';
+import Settings from '../../modules/settings';
+import MainLayout from '../../layouts/MainLayout';
 
 const SettingSreen = () => {
   return (
-    <View>
-      <Text>SettingSreen</Text>
-    </View>
+    <MainLayout>
+      <Settings />
+    </MainLayout>
   );
 };
 

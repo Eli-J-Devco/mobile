@@ -10,6 +10,7 @@ import React from 'react';
 import useThemeContext from '../../../hooks/useThemeContext';
 import ButonText from '../../../common/components/button/ButonText';
 import MyTree from '../../../common/base/MyTree';
+import PrimaryFooter from '../../../common/components/footer/PrimaryFooter';
 
 const treeData: any = [
   {
@@ -291,14 +292,7 @@ const AlertFilter = () => {
           </View>
         </View>
       </ScrollView>
-      <View style={styles.actionWraped}>
-        <TouchableOpacity style={styles.btnReset} activeOpacity={0.5}>
-          <Text style={btnTextStyle}>Clear</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.btnApply} activeOpacity={0.5}>
-          <Text style={btnTextStyle}>Apply</Text>
-        </TouchableOpacity>
-      </View>
+      <PrimaryFooter />
     </>
   );
 };
@@ -357,33 +351,5 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     height: 37,
     width: '100%',
-  },
-  actionWraped: {
-    display: 'flex',
-    flexDirection: 'row',
-    gap: 16,
-    alignItems: 'center',
-    padding: 16,
-    backgroundColor: '#DCDCDC',
-    // position: 'absolute',
-    // bottom: 0,
-  },
-  btnReset: {
-    flex: 5,
-    paddingVertical: 8,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#B8B8B8',
-    borderRadius: 8,
-  },
-  btnApply: {
-    flex: 5,
-    paddingVertical: 8,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#FEDA00',
-    borderRadius: 8,
   },
 });

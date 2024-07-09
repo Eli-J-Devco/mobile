@@ -1,3 +1,9 @@
+/********************************************************
+ * Copyright 2024 NEXT WAVE ENERGY MONITORING INC.
+ * All rights reserved.
+ *
+ *********************************************************/
+
 import DateTimePicker from '@react-native-community/datetimepicker';
 import React, {useEffect, useState} from 'react';
 import {
@@ -24,7 +30,7 @@ const MyDatePicker = ({
   containerStyle,
 }: MyDatePickerProps) => {
   const theme = useThemeContext();
-  const [date, setDate] = useState<any>(null);
+  const [date, setDate] = useState<any>(new Date());
   const [show, setShow] = useState(false);
 
   const onChangeValue = (event: any, selectedDate: any) => {
@@ -35,7 +41,7 @@ const MyDatePicker = ({
   };
 
   useEffect(() => {
-    if (value) {
+    if (!!value) {
       setDate(value);
     }
   }, [value]);
@@ -43,6 +49,7 @@ const MyDatePicker = ({
   return (
     <>
       <TouchableOpacity
+        activeOpacity={0.5}
         style={[styles.container, containerStyle]}
         onPress={() => setShow(true)}>
         <View style={styles.contentWraped}>
@@ -52,7 +59,7 @@ const MyDatePicker = ({
               fontSize: theme.font.size.s,
               fontWeight: '400',
             }}>
-            {!!date ? date.toLocaleString() : placeholder}
+            {!!date ? date.toLocaleDateString() : placeholder}
           </Text>
         </View>
         <View style={styles.icon}>

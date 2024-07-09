@@ -4,6 +4,7 @@ type ColorType = {
   disable: string;
   dark: string;
   yellow: string;
+  tertiary: string;
 };
 
 type TextLight = Partial<ColorType> & {

@@ -11,13 +11,14 @@ import ButonText from '../../../../common/components/button/ButonText';
 import MySelect from '../../../../common/base/MySelect';
 import MyDatePicker from '../../../../common/base/MyDatePicker';
 import MyTextInput from '../../../../common/base/MyTextInput';
+import PrimaryInput from '../../../../common/components/input/PrimaryInput';
 
 const SearchAndFilter = () => {
   const theme = useThemeContext();
 
   const label: TextStyle = {
     color: theme.palette.text.primary,
-    fontSize: theme.font.size.mini,
+    fontSize: theme.font.size.s,
     fontWeight: '400',
     flex: 3,
   };
@@ -41,32 +42,64 @@ const SearchAndFilter = () => {
           <ButonText
             text="Site Name"
             touchableOpacityStyles={styles.butonText}
+            textStyles={{
+              fontSize: theme.font.size.s,
+            }}
           />
-          <ButonText text="Street" touchableOpacityStyles={styles.butonText} />
-          <ButonText text="City" touchableOpacityStyles={styles.butonText} />
-          <ButonText text="State" touchableOpacityStyles={styles.butonText} />
-          <ButonText text="State" touchableOpacityStyles={styles.butonText} />
+          <ButonText
+            text="Street"
+            touchableOpacityStyles={styles.butonText}
+            textStyles={{
+              fontSize: theme.font.size.s,
+            }}
+          />
+          <ButonText
+            text="City"
+            touchableOpacityStyles={styles.butonText}
+            textStyles={{
+              fontSize: theme.font.size.s,
+            }}
+          />
+          <ButonText
+            text="State"
+            touchableOpacityStyles={styles.butonText}
+            textStyles={{
+              fontSize: theme.font.size.s,
+            }}
+          />
+          <ButonText
+            text="State"
+            touchableOpacityStyles={styles.butonText}
+            textStyles={{
+              fontSize: theme.font.size.s,
+            }}
+          />
           <ButonText
             text="Zip Code"
             touchableOpacityStyles={styles.butonText}
+            textStyles={{
+              fontSize: theme.font.size.s,
+            }}
           />
-          <ButonText text="Site ID" touchableOpacityStyles={styles.butonText} />
           <ButonText
             text="Device Name"
             touchableOpacityStyles={styles.butonText}
+            textStyles={{
+              fontSize: theme.font.size.s,
+            }}
           />
           <ButonText
             text="Serial Number"
             touchableOpacityStyles={styles.butonText}
             textStyles={{
-              fontSize: theme.font.size.mini,
+              fontSize: theme.font.size.s,
             }}
           />
           <ButonText
             text="Hardware ID"
             touchableOpacityStyles={styles.butonText}
             textStyles={{
-              fontSize: theme.font.size.mini,
+              fontSize: theme.font.size.s,
             }}
           />
         </View>
@@ -109,27 +142,27 @@ const SearchAndFilter = () => {
             <Text style={label}>DC Capacity (kW)</Text>
             <View style={styles.filterContent}>
               <MySelect placeholder="- - -" containerStyle={styles.col4} />
-              <MyDatePicker placeholder="- - -" containerStyle={styles.col6} />
+              <PrimaryInput containerStyle={styles.col6} />
             </View>
           </View>
           <View style={styles.filterItem}>
             <Text style={label}>AC Capacity (kW)</Text>
             <View style={styles.filterContent}>
               <MySelect placeholder="- - -" containerStyle={styles.col4} />
-              <MyDatePicker placeholder="- - -" containerStyle={styles.col6} />
+              <PrimaryInput containerStyle={styles.col6} />
             </View>
           </View>
           <View style={styles.filterItem}>
             <Text style={label}>Device AC Rating</Text>
             <View style={styles.filterContent}>
               <MySelect placeholder="- - -" containerStyle={styles.col4} />
-              <MyDatePicker placeholder="- - -" containerStyle={styles.col6} />
+              <PrimaryInput containerStyle={styles.col6} />
             </View>
           </View>
           <View style={styles.filterItem}>
             <Text style={label}>Data Send Time</Text>
             <View style={styles.filterContent}>
-              <MyTextInput style={styles.input} placeholder="- - -" />
+              <PrimaryInput />
             </View>
           </View>
           <View style={styles.filterItem}>
@@ -144,6 +177,30 @@ const SearchAndFilter = () => {
               <MySelect placeholder="- - -" />
             </View>
           </View>
+        </View>
+        <View style={styles.action}>
+          <ButonText
+            text="Apply"
+            touchableOpacityStyles={{
+              ...styles.btn,
+              backgroundColor: theme.palette.background.dark,
+            }}
+            textStyles={{
+              fontSize: theme.font.size.s,
+              color: theme.palette.text.white,
+            }}
+          />
+          <ButonText
+            text="Clear"
+            touchableOpacityStyles={{
+              ...styles.btn,
+              ...styles.btnClear,
+              backgroundColor: theme.palette.background.primary,
+            }}
+            textStyles={{
+              fontSize: theme.font.size.s,
+            }}
+          />
         </View>
       </View>
     </ScrollView>
@@ -197,18 +254,21 @@ const styles = StyleSheet.create({
   col6: {
     flex: 6,
   },
-  input: {
-    height: 37,
-    width: '100%',
-    borderRadius: 8,
+  btn: {
+    borderRadius: 20,
+    paddingHorizontal: 24,
+  },
+  btnClear: {
+    backgroundColor: 'none',
     borderWidth: 1,
-    backgroundColor: '#fff',
-    borderColor: '#C5C5C5',
-    paddingLeft: 8,
-    paddingVertical: 3,
+  },
+  action: {
     display: 'flex',
-    alignItems: 'center',
     flexDirection: 'row',
-    paddingRight: 4,
+    justifyContent: 'flex-end',
+    gap: 8,
+    width: `100%`,
+    paddingBottom: 16,
+    paddingTop: 24,
   },
 });

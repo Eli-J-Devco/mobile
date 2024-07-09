@@ -1,3 +1,9 @@
+/********************************************************
+ * Copyright 2024 NEXT WAVE ENERGY MONITORING INC.
+ * All rights reserved.
+ *
+ *********************************************************/
+
 import React from 'react';
 import {StyleSheet, TextInput, TextInputProps} from 'react-native';
 import useThemeContext from '../../hooks/useThemeContext';

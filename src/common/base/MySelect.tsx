@@ -7,7 +7,6 @@
 import React, {useEffect} from 'react';
 import {
   FlatList,
-  InteractionManager,
   Modal,
   SafeAreaView,
   StatusBar,
@@ -17,11 +16,10 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
-import SvgIcon from '../components/SvgIcon';
 import useThemeContext from '../../hooks/useThemeContext';
-import {Svg} from 'react-native-svg';
+import SvgIcon from '../components/SvgIcon';
 
-interface MySelectProps {
+export interface MySelectProps {
   value?: string | number;
   placeholder?: string;
   options?: ISelectOption[];

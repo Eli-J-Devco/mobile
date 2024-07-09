@@ -34,3 +34,9 @@ export const dashboardRouteNames = {
   PortfolioNavigation: portfolioRouteName,
   SearchAndFilter: 'SearchAndFilter',
 };
+
+export const settingRouteNames = {
+  Setup: routeName.Setup,
+  AlertConfig: 'AlertConfig',
+  SiteSetting: 'SiteSetting',
+};
