@@ -1,6 +1,8 @@
 export const images = {
   bgLogin: require('./image/bg-image.jpg'),
   bgHeader: require('./image/bg-header.png'),
+  drawerHearBg: require('./image/drawer-hear-bg.png'),
+  logo: require('./image/logo.png'),
 };
 
 export const icons: Partial<IIcons> = {

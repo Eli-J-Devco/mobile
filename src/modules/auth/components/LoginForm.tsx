@@ -14,6 +14,7 @@ import {useNavigation} from '@react-navigation/native';
 import {StackActions} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import useThemeContext from '../../../hooks/useThemeContext';
+import {rootRouteName} from '../../../navigations/router-name';
 
 type LoginValuesFrom = {
   username: string;
@@ -49,7 +50,7 @@ const LoginForm = () => {
 
   const onSubmit = async (data: any) => {
     console.log('---onSubmit---: ', data);
-    navigation.replace('BottomNavigation', {});
+    navigation.replace(rootRouteName.DrawerNavigation, {});
   };
 
   return (

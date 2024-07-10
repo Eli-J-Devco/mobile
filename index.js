@@ -8,6 +8,7 @@ import {name as appName} from './app.json';
 import {NavigationContainer} from '@react-navigation/native';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import {createNavigationContainerRef} from '@react-navigation/native';
+import 'react-native-gesture-handler';
 
 export const navigationRef = createNavigationContainerRef();
 

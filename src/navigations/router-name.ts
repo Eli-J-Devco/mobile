@@ -8,6 +8,15 @@ interface IRouteName {
   [key: string]: string;
 }
 
+export const rootRouteName = {
+  Login: 'Login',
+  DrawerNavigation: 'DrawerNavigation',
+};
+
+export const drawerRouteName = {
+  BottomNavigation: 'BottomNavigation',
+};
+
 export const routeName: IRouteName = {
   Home: 'Home',
   Setup: 'Setup',
