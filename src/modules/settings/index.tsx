@@ -39,14 +39,26 @@ const Settings = () => {
           title="Alert Config"
           onPress={() => navigation.navigate(settingRouteNames.AlertConfig)}
         />
-        <ConfigItem iconName="bag" title="Performance Estimation" />
-        <ConfigItem iconName="bag" title="PV Model Settings" />
+        <ConfigItem
+          iconName="bag"
+          title="Performance Estimation"
+          onPress={() => navigation.navigate(settingRouteNames.PVModelSettings)}
+        />
+        <ConfigItem
+          iconName="bag"
+          title="PV Model Settings"
+          onPress={() => navigation.navigate(settingRouteNames.PVModelSettings)}
+        />
         <ConfigItem
           iconName="setting"
           title="Site Setting"
           onPress={() => navigation.navigate(settingRouteNames.SiteSetting)}
         />
-        <ConfigItem iconName="dashboard" title="Leviton Widget" />
+        <ConfigItem
+          iconName="dashboard"
+          title="Leviton Widget"
+          onPress={() => navigation.navigate(settingRouteNames.PVModelSettings)}
+        />
       </View>
     </View>
   );

@@ -36,7 +36,8 @@ export const dashboardRouteNames = {
 };
 
 export const settingRouteNames = {
-  Setup: routeName.Setup,
+  Setup: 'SetupSreen',
   AlertConfig: 'AlertConfig',
   SiteSetting: 'SiteSetting',
+  PVModelSettings: 'PVModelSettings',
 };
