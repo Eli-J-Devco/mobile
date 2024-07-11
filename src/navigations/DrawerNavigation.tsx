@@ -7,19 +7,16 @@
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
-  DrawerItemList,
   DrawerItem,
+  DrawerItemList,
   useDrawerProgress,
 } from '@react-navigation/drawer';
-import BottomNavigation from './BottomNavigation';
-import {drawerRouteName} from './router-name';
-import Animated, {
-  useSharedValue,
-  useAnimatedStyle,
-  interpolate,
-} from 'react-native-reanimated';
-import {images} from '../assets';
 import {SafeAreaView, StatusBar, StyleSheet} from 'react-native';
+import Animated, {interpolate, useAnimatedStyle} from 'react-native-reanimated';
+import {images} from '../assets';
+import SvgIcon from '../common/components/SvgIcon';
+import BottomNavigation from './BottomNavigation';
+import {dashboardRouteNames, drawerRouteName} from './router-name';
 
 function CustomDrawerContent(props: any) {
   const progress = useDrawerProgress();
@@ -48,10 +45,12 @@ function CustomDrawerContent(props: any) {
           <Animated.Image source={images.logo} style={styles.logoImage} />
         </Animated.View>
         <Animated.View style={animatedStyle}>
-          <Animated.Text>Custom Drawer</Animated.Text>
           <DrawerItemList {...props} />
-          <DrawerItem label="Help" onPress={() => {}} />
-          <DrawerItem label="Help" onPress={() => {}} />
+          <DrawerItem
+            label="Alerts"
+            onPress={() => {}}
+            icon={({focused, color, size}) => <SvgIcon iconName="bell" />}
+          />
         </Animated.View>
       </SafeAreaView>
     </DrawerContentScrollView>
@@ -74,8 +73,11 @@ export default function DrawerNavigation() {
         },
       }}>
       <Drawer.Screen
-        name={drawerRouteName.BottomNavigation}
+        name={dashboardRouteNames.Dashboard}
         component={BottomNavigation}
+        options={{
+          drawerIcon: ({focused, size}) => <SvgIcon iconName="dashboard" />,
+        }}
       />
     </Drawer.Navigator>
   );
@@ -101,6 +103,7 @@ const styles = StyleSheet.create({
     // height: 150,
     resizeMode: 'contain',
     marginTop: -20,
+    marginLeft: 10,
   },
   imageContainer: {
     marginTop: -50,
