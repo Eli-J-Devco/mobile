@@ -87,7 +87,6 @@ const styles = StyleSheet.create({
   },
   image: {
     flex: 1,
-    opacity: 0.5,
   },
   content: {
     display: 'flex',
@@ -109,13 +108,14 @@ const styles = StyleSheet.create({
   headerContent: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 24,
     width: '100%',
     gap: 16,
     // backgroundColor: 'blue',
     marginTop: 50,
+    position: 'relative',
   },
   backBtn: {
     display: 'flex',
@@ -126,5 +126,8 @@ const styles = StyleSheet.create({
     width: 30,
     borderRadius: 30,
     borderWidth: 1,
+    position: 'absolute',
+    top: 'auto',
+    left: 10,
   },
 });

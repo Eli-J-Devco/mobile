@@ -8,6 +8,7 @@ import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import React from 'react';
 import {
+  FlatList,
   ImageBackground,
   KeyboardAvoidingView,
   Platform,
@@ -34,12 +35,12 @@ const DATA = [
   {
     icon: icons.bag,
     name: 'Portfolio',
-    sreen: 'PortfolioNavigation',
+    sreen: 'Portfolio',
   },
   {
     icon: icons.bell,
     name: 'Alerts',
-    sreen: 'AlertsNavigation',
+    sreen: 'Alerts',
   },
   {
     icon: icons.chart,
@@ -49,7 +50,12 @@ const DATA = [
   {
     icon: icons.map,
     name: 'Map',
-    sreen: 'PortfolioNavigation',
+    sreen: 'Map',
+  },
+  {
+    icon: icons.map,
+    name: 'OverView',
+    sreen: dashboardRouteNames.SiteOverView,
   },
 ];
 
@@ -97,9 +103,43 @@ const MainLayout = ({backgroundColor, children}: Props) => {
                 </TouchableOpacity>
               </View>
             </View>
+
             <View style={styles.action}>
-              {/* <Silder navigation={navigation} data={DATA} /> */}
               <View style={[styles.actionContainer]}>
+                <View
+                  style={[
+                    styles.actionContent,
+                    {backgroundColor: theme.palette.background.primary},
+                  ]}>
+                  <FlatList
+                    showsHorizontalScrollIndicator={false}
+                    data={DATA}
+                    renderItem={({item}: {item: any}) => (
+                      <TouchableOpacity
+                        activeOpacity={0.5}
+                        key={item.name}
+                        style={[styles.actionItem, {marginRight: 30}]}
+                        onPress={() => {
+                          navigation.navigate(item.sreen);
+                        }}>
+                        <View style={styles.actionIcon}>
+                          <WithLocalSvg
+                            width={20}
+                            height={20}
+                            asset={item.icon}
+                          />
+                        </View>
+                        <Text style={styles.actionLable}>{item.name}</Text>
+                      </TouchableOpacity>
+                    )}
+                    keyExtractor={(item: any, index: number) =>
+                      `id-silder-${item.name}`
+                    }
+                    horizontal={true}
+                  />
+                </View>
+              </View>
+              {/* <View style={[styles.actionContainer]}>
                 <View
                   style={[
                     styles.actionContent,
@@ -143,7 +183,7 @@ const MainLayout = ({backgroundColor, children}: Props) => {
                     </View>
                   </View>
                 </View>
-              </View>
+              </View> */}
             </View>
           </ImageBackground>
           <View

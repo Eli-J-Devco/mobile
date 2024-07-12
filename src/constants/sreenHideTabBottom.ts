@@ -13,6 +13,7 @@ const SREEN_HIDE_TAB_BOTTOM = [
   settingRouteNames.AlertConfig,
   settingRouteNames.SiteSetting,
   settingRouteNames.PVModelSettings,
+  dashboardRouteNames.Map,
 ];
 
 export default SREEN_HIDE_TAB_BOTTOM;

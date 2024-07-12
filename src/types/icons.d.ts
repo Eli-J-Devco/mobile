@@ -31,6 +31,9 @@ interface IIcons {
   close: any;
   checkGreen: any;
   datePicker: any;
+  download: any;
+  screens: any;
+  checkRound: any;
 }
 
 type IconNameType = keyof IIcons;

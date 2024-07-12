@@ -114,6 +114,7 @@ export const backgroundColor: Partial<ColorType> = {
   tertiary: '#F2F1F6',
   dark: '#373433',
   yellow: '#FEDA00',
+  disable: '#F2F2F2',
 };
 
 const themeDefaults = {

@@ -41,6 +41,7 @@ const Silder = ({data, navigation}: Props) => {
           {backgroundColor: theme.palette.background.primary},
         ]}>
         <FlatList
+          pagingEnabled
           showsHorizontalScrollIndicator={false}
           horizontal={true}
           contentContainerStyle={{
@@ -49,10 +50,10 @@ const Silder = ({data, navigation}: Props) => {
           }}
           renderItem={({item}: {item: any}) => <SilderItem items={item} />}
           data={values}
-          keyExtractor={(item: any, index: number) => `id-silder-${index}`}
+          keyExtractor={(item: any, index: number) => `id-silder-${item}`}
         />
 
-        {count > 1 && (
+        {/* {count > 1 && (
           <View style={styles.silderContainer}>
             <View style={styles.silder}>
               {Array.from({length: count}).map((_, index) => (
@@ -64,7 +65,7 @@ const Silder = ({data, navigation}: Props) => {
               ))}
             </View>
           </View>
-        )}
+        )} */}
       </View>
     </View>
   );

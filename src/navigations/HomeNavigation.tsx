@@ -6,11 +6,13 @@
 
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
-import SearchAndFilter from '../modules/dashboard/components/searchAndFilter';
 import Home from '../screens/home';
+import SearchAndFilterSreen from '../screens/home/search-and-filter';
+import MapScreen from '../screens/map';
+import SiteOverViewSreen from '../screens/site-over-view';
 import AlertsNavigation from './AlertsNavigation';
 import PortfolioNavigation from './PortfolioNavigation';
-import SearchAndFilterSreen from '../screens/home/search-and-filter';
+import {dashboardRouteNames} from './router-name';
 
 const Stack = createNativeStackNavigator();
 
@@ -21,23 +23,33 @@ const HomeNavigation = () => {
         gestureEnabled: false,
       }}>
       <Stack.Screen
-        name="Dashboard"
+        name={dashboardRouteNames.Dashboard}
         component={Home}
         options={{headerShown: false}}
       />
       <Stack.Screen
-        name="AlertsNavigation"
+        name={dashboardRouteNames.AlertsNavigation}
         component={AlertsNavigation}
         options={{headerShown: false}}
       />
       <Stack.Screen
-        name="PortfolioNavigation"
+        name={dashboardRouteNames.PortfolioNavigation}
         component={PortfolioNavigation}
         options={{headerShown: false}}
       />
       <Stack.Screen
-        name="SearchAndFilter"
+        name={dashboardRouteNames.SearchAndFilter}
         component={SearchAndFilterSreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name={dashboardRouteNames.SiteOverView}
+        component={SiteOverViewSreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name={dashboardRouteNames.Map}
+        component={MapScreen}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

@@ -39,9 +39,11 @@ export const alertRouteNames = {
 
 export const dashboardRouteNames = {
   Dashboard: 'Dashboard',
-  AlertsNavigation: alertRouteNames,
-  PortfolioNavigation: portfolioRouteName,
+  AlertsNavigation: alertRouteNames.Alerts,
+  PortfolioNavigation: portfolioRouteName.Portfolio,
   SearchAndFilter: 'SearchAndFilter',
+  SiteOverView: 'SiteOverView',
+  Map: 'Map',
 };
 
 export const settingRouteNames = {
