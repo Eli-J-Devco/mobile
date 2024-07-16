@@ -37,6 +37,20 @@ export const alertRouteNames = {
   AlertFilter: 'AlertFilter',
 };
 
+export const settingRouteNames = {
+  Setup: 'SetupSreen',
+  AlertConfig: 'AlertConfig',
+  SiteSetting: 'SiteSetting',
+  PVModelSettings: 'PVModelSettings',
+};
+
+export const devicesRouteNames = {
+  Devinavigation: 'Devinavigation',
+  Devices: 'Devices',
+  FilterColumns: 'FilterColumns',
+  SummaryDetail: 'SummaryDetail',
+};
+
 export const dashboardRouteNames = {
   Dashboard: 'Dashboard',
   AlertsNavigation: alertRouteNames.Alerts,
@@ -44,11 +58,5 @@ export const dashboardRouteNames = {
   SearchAndFilter: 'SearchAndFilter',
   SiteOverView: 'SiteOverView',
   Map: 'Map',
-};
-
-export const settingRouteNames = {
-  Setup: 'SetupSreen',
-  AlertConfig: 'AlertConfig',
-  SiteSetting: 'SiteSetting',
-  PVModelSettings: 'PVModelSettings',
+  Devices: devicesRouteNames.Devinavigation,
 };

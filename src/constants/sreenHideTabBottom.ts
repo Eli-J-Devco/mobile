@@ -1,6 +1,7 @@
 import {
   alertRouteNames,
   dashboardRouteNames,
+  devicesRouteNames,
   portfolioRouteName,
   settingRouteNames,
 } from '../navigations/router-name';
@@ -14,6 +15,7 @@ const SREEN_HIDE_TAB_BOTTOM = [
   settingRouteNames.SiteSetting,
   settingRouteNames.PVModelSettings,
   dashboardRouteNames.Map,
+  devicesRouteNames.FilterColumns,
 ];
 
 export default SREEN_HIDE_TAB_BOTTOM;

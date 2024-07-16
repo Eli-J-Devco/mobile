@@ -34,6 +34,11 @@ interface IIcons {
   download: any;
   screens: any;
   checkRound: any;
+  device: any;
+  devices: any;
+  overview: any;
+  plus: any;
+  checkRounded: any;
 }
 
 type IconNameType = keyof IIcons;

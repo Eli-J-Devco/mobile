@@ -18,7 +18,11 @@ import {
 import MyCheckBoxText from '../../../common/base/MyCheckBoxText';
 import useThemeContext from '../../../hooks/useThemeContext';
 
-const ArrangeColumns = () => {
+interface IArrangeColumnsProps {
+  data: IArrangeColumns[];
+}
+
+const ArrangeColumns = ({data}: IArrangeColumnsProps) => {
   const theme = useThemeContext();
 
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
@@ -44,21 +48,14 @@ const ArrangeColumns = () => {
         }}>
         <View style={[styles.container]}>
           <Text style={titleStyle}>Arrange Columns</Text>
-          <MyCheckBoxText
-            value={1}
-            onChecked={(c, v) => console.log('---onChecked--: ', c, v)}>
-            Alert
-          </MyCheckBoxText>
-          <MyCheckBoxText
-            value={2}
-            onChecked={(c, v) => console.log('---onChecked--: ', c, v)}>
-            Site Name
-          </MyCheckBoxText>
-          <MyCheckBoxText
-            value={3}
-            onChecked={(c, v) => console.log('---onChecked--: ', c, v)}>
-            Kiosk View
-          </MyCheckBoxText>
+          {data.map((item, index) => (
+            <MyCheckBoxText
+              key={item.value}
+              value={item.value}
+              onChecked={(c, v) => console.log('---onChecked--: ', c, v)}>
+              {item.title}
+            </MyCheckBoxText>
+          ))}
         </View>
       </ScrollView>
       <View style={styles.actionWraped}>

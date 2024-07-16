@@ -22,9 +22,11 @@ import {WithLocalSvg} from 'react-native-svg';
 import {icons, images} from '../assets';
 import MyTextInput from '../common/base/MyTextInput';
 import useThemeContext from '../hooks/useThemeContext';
-import {dashboardRouteNames} from '../navigations/router-name';
+import {
+  dashboardRouteNames,
+  devicesRouteNames,
+} from '../navigations/router-name';
 import {mainLayoutStyles as styles} from './main-layout.styles';
-import Silder from './components/Silder';
 
 const DATA = [
   {
@@ -53,9 +55,14 @@ const DATA = [
     sreen: 'Map',
   },
   {
-    icon: icons.map,
+    icon: icons.overview,
     name: 'OverView',
     sreen: dashboardRouteNames.SiteOverView,
+  },
+  {
+    icon: icons.devices,
+    name: 'Devices',
+    sreen: devicesRouteNames.Devinavigation,
   },
 ];
 

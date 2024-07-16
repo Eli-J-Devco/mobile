@@ -6,7 +6,6 @@
 
 import React from 'react';
 import ArrangeColumns from '../../../common/components/filters/ArrangeColumns';
-import PrimaryLayoutDetailItem from '../../../layouts/PrimaryLayoutDetailItem';
 
 const data: IArrangeColumns[] = [
   {
@@ -47,12 +46,8 @@ const data: IArrangeColumns[] = [
   },
 ];
 
-const ArrangeColumnsSreen = () => {
-  return (
-    <PrimaryLayoutDetailItem background="#fff">
-      <ArrangeColumns data={data} />
-    </PrimaryLayoutDetailItem>
-  );
+const FilterColumns = () => {
+  return <ArrangeColumns data={data} />;
 };
 
-export default ArrangeColumnsSreen;
+export default FilterColumns;

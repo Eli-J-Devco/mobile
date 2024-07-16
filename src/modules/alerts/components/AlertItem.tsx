@@ -14,6 +14,9 @@ import {
 import React from 'react';
 import SvgIcon from '../../../common/components/SvgIcon';
 import useThemeContext from '../../../hooks/useThemeContext';
+import H3 from '../../../common/components/text/H3';
+import TextBetweenView from '../../../common/components/view/TextBetweenView';
+import PrimaryCardItem from '../../../common/components/view/PrimaryCardItem';
 
 const AlertItem = () => {
   const theme = useThemeContext();
@@ -23,44 +26,17 @@ const AlertItem = () => {
     fontSize: theme.font.size.s,
   };
 
-  const borderBottomStyle: ViewStyle = {
-    borderBottomWidth: 1,
-    borderBottomColor: theme.palette.borderColor.secondary,
-  };
-
   return (
-    <View
-      style={[
-        styles.container,
-        {
-          backgroundColor: theme.palette.background.primary,
-        },
-      ]}>
+    <PrimaryCardItem>
       <View style={styles.left}>
         <SvgIcon iconName="exclamationRed" />
       </View>
       <View style={styles.center}>
-        <Text
-          style={[
-            {
-              color: theme.palette.text.primary,
-              fontSize: theme.font.size.xs,
-              fontWeight: '700',
-            },
-          ]}>
-          Elkor WattsOn Mk. II
-        </Text>
-        <View
-          style={[
-            styles.detailContent,
-            {
-              borderBottomWidth: 1,
-              borderBottomColor: theme.palette.borderColor.secondary,
-            },
-          ]}>
-          <Text style={styleText}>Device Categorize</Text>
-          <Text style={styleText}>PV System Inverter</Text>
-        </View>
+        <H3>Elkor WattsOn Mk. II</H3>
+        <TextBetweenView
+          leftText="Device Categorize"
+          rightText="PV System Inverter"
+        />
         <View
           style={[
             styles.detailContent,
@@ -83,26 +59,16 @@ const AlertItem = () => {
             COMM
           </Text>
         </View>
-        <View style={[styles.detailContent, borderBottomStyle]}>
-          <Text style={styleText}>Value</Text>
-          <Text style={styleText}>3.6 kW</Text>
-        </View>
-        <View style={[styles.detailContent, borderBottomStyle]}>
-          <Text style={styleText}>Open Period</Text>
-          <Text style={styleText}>10 Days</Text>
-        </View>
-        <View style={[styles.detailContent, borderBottomStyle]}>
-          <Text style={styleText}>Opened</Text>
-          <Text style={styleText}>06/20/2024 10:00 AM</Text>
-        </View>
-        <View style={[styles.detailContent, borderBottomStyle]}>
-          <Text style={styleText}>Closed</Text>
-          <Text style={styleText}>N/A</Text>
-        </View>
-        <View style={[styles.detailContent, borderBottomStyle]}>
-          <Text style={styleText}>Issue</Text>
-          <Text style={styleText}>Device has lost communication</Text>
-        </View>
+        <TextBetweenView leftText="Value" rightText="3.6 kW" />
+        <TextBetweenView leftText="Open Period" rightText="10 Days" />
+        <TextBetweenView leftText="Opened" rightText="06/20/2024 10:00 AM" />
+
+        <TextBetweenView leftText="Closed" rightText="N/A" />
+        <TextBetweenView
+          leftText="Issue"
+          rightText="Device has lost communication"
+        />
+
         <View
           style={{
             display: 'flex',
@@ -129,7 +95,7 @@ const AlertItem = () => {
           </TouchableOpacity>
         </View>
       </View>
-    </View>
+    </PrimaryCardItem>
   );
 };
 

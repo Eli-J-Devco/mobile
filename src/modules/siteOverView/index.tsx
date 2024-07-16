@@ -1,7 +1,8 @@
-import {View, Text, StyleSheet, ScrollView, TextStyle} from 'react-native';
 import React from 'react';
-import useThemeContext from '../../hooks/useThemeContext';
+import {StyleSheet, Text, TextStyle, View} from 'react-native';
+import MyScrollView from '../../common/base/MyScrollView';
 import Tabs from '../../common/components/tab/Tabs';
+import useThemeContext from '../../hooks/useThemeContext';
 import Charting from './components/Charting';
 import Components from './components/Components';
 import MapSiteOverview from './components/Map';
@@ -40,9 +41,7 @@ const SiteOverView = () => {
   };
 
   return (
-    <ScrollView
-      showsVerticalScrollIndicator={false}
-      contentContainerStyle={styles.container}>
+    <MyScrollView>
       <View
         style={[
           styles.overView,
@@ -69,23 +68,13 @@ const SiteOverView = () => {
       </View>
 
       <Tabs items={items} />
-    </ScrollView>
+    </MyScrollView>
   );
 };
 
 export default SiteOverView;
 
 const styles = StyleSheet.create({
-  container: {
-    paddingBottom: 16,
-    paddingTop: 8,
-    paddingHorizontal: 16,
-    display: 'flex',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
-    flexDirection: 'column',
-    gap: 16,
-  },
   overView: {
     width: '100%',
     height: 'auto',

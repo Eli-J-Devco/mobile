@@ -12,7 +12,8 @@ import MapScreen from '../screens/map';
 import SiteOverViewSreen from '../screens/site-over-view';
 import AlertsNavigation from './AlertsNavigation';
 import PortfolioNavigation from './PortfolioNavigation';
-import {dashboardRouteNames} from './router-name';
+import {dashboardRouteNames, devicesRouteNames} from './router-name';
+import DevicesNavigation from './DevicesNavigation';
 
 const Stack = createNativeStackNavigator();
 
@@ -50,6 +51,11 @@ const HomeNavigation = () => {
       <Stack.Screen
         name={dashboardRouteNames.Map}
         component={MapScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name={devicesRouteNames.Devinavigation}
+        component={DevicesNavigation}
         options={{headerShown: false}}
       />
     </Stack.Navigator>
