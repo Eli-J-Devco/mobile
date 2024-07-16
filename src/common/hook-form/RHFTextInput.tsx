@@ -1,3 +1,9 @@
+/********************************************************
+ * Copyright 2024 NEXT WAVE ENERGY MONITORING INC.
+ * All rights reserved.
+ *
+ *********************************************************/
+
 import React, {useState} from 'react';
 import {Controller, useFormContext} from 'react-hook-form';
 import {Pressable, Text, TextInput, TextInputProps, View} from 'react-native';
@@ -18,7 +24,13 @@ const RHFTextInput = ({name, type = 'passwork', ...other}: Props) => {
       name={name}
       render={({field, fieldState: {error}}) => (
         <>
-          <View style={{display: 'flex', width: '100%', height: 'auto', position: 'relative'}}>
+          <View
+            style={{
+              display: 'flex',
+              width: '100%',
+              height: 'auto',
+              position: 'relative',
+            }}>
             <MyTextInput
               {...field}
               value={field.value}

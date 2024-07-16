@@ -1,21 +1,24 @@
+/********************************************************
+ * Copyright 2024 NEXT WAVE ENERGY MONITORING INC.
+ * All rights reserved.
+ *
+ *********************************************************/
+
+import React, {useState} from 'react';
 import {
-  View,
-  Text,
+  Dimensions,
   StyleSheet,
   Switch,
+  Text,
   TextStyle,
   TouchableOpacity,
-  Dimensions,
+  View,
 } from 'react-native';
-import React, {useEffect, useState} from 'react';
-import useThemeContext from '../../../hooks/useThemeContext';
-import SvgIcon from '../../../common/components/SvgIcon';
 import MySelect from '../../../common/base/MySelect';
 import ButonText from '../../../common/components/button/ButonText';
-import {VictoryBar, VictoryChart, VictoryTheme} from 'victory-native';
 import ChartBar from '../../../common/components/chart/ChartBar';
-
-const {width} = Dimensions.get('window');
+import SvgIcon from '../../../common/components/SvgIcon';
+import useThemeContext from '../../../hooks/useThemeContext';
 
 const Charting = () => {
   const theme = useThemeContext();
@@ -163,23 +166,6 @@ const Charting = () => {
           Last updated on June 30, 2024 4:02 AM
         </Text>
         <View style={styles.chartContainer}>
-          {/* <VictoryChart
-            animate={{
-              duration: 1000,
-              onLoad: {duration: 500},
-            }}
-            // domainPadding={10}
-            domainPadding={{x: 4}}
-            width={width - width * 0.12}
-            theme={VictoryTheme.material}>
-            <VictoryBar
-              alignment="start"
-              data={data}
-              x="quarter"
-              y="earnings"
-              barRatio={1}
-            />
-          </VictoryChart> */}
           <ChartBar />
         </View>
       </View>

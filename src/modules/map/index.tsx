@@ -1,19 +1,13 @@
+/********************************************************
+ * Copyright 2024 NEXT WAVE ENERGY MONITORING INC.
+ * All rights reserved.
+ *
+ *********************************************************/
+
+import MapboxGL, {Logger, UserLocation} from '@rnmapbox/maps';
 import React, {useEffect, useState} from 'react';
-import {
-  Alert,
-  Image,
-  StatusBar,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import MapboxGL, {
-  Logger,
-  UserLocation,
-  UserLocationRenderMode,
-} from '@rnmapbox/maps';
+import {Image, StyleSheet, View} from 'react-native';
 import {images} from '../../assets';
-import SvgIcon from '../../common/components/SvgIcon';
 
 Logger.setLogCallback(log => {
   const {message} = log;
