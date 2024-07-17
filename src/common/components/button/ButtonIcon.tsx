@@ -40,7 +40,7 @@ const ButtonIcon = ({
       style={[styles.btn, touchableOpacityStyles]}
       activeOpacity={0.5}
       {...touchableOpacityProps}>
-      <SvgIcon w={16} h={16} iconName="plus" />
+      <SvgIcon w={16} h={16} iconName={iconName} />
       <Text style={[btnTextStyle, textStyles]} {...textProps}>
         {text}
       </Text>

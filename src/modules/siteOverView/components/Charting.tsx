@@ -19,6 +19,7 @@ import ButonText from '../../../common/components/button/ButonText';
 import ChartBar from '../../../common/components/chart/ChartBar';
 import SvgIcon from '../../../common/components/SvgIcon';
 import useThemeContext from '../../../hooks/useThemeContext';
+import TimeAxis from '../../../common/components/times/TimeAxis';
 
 const Charting = () => {
   const theme = useThemeContext();
@@ -72,94 +73,7 @@ const Charting = () => {
           </View>
         </View>
       </View>
-      <View
-        style={[
-          styles.timeContainer,
-          {backgroundColor: theme.palette.background.disable},
-        ]}>
-        <ButonText
-          text="1 Minute"
-          touchableOpacityStyles={{
-            backgroundColor: 'trasparent',
-            borderRadius: 0,
-            borderRightColor: theme.palette.text.secondary,
-            borderRightWidth: 0.5,
-            padding: 0,
-            paddingHorizontal: 4,
-          }}
-          textStyles={textStyles}
-        />
-        <ButonText
-          text="5 Minute"
-          touchableOpacityStyles={{
-            backgroundColor: 'trasparent',
-            borderRadius: 0,
-            borderRightColor: theme.palette.text.secondary,
-            borderRightWidth: 0.5,
-            padding: 0,
-            paddingHorizontal: 4,
-          }}
-          textStyles={textStyles}
-        />
-        <ButonText
-          text="1 Hour"
-          touchableOpacityStyles={{
-            backgroundColor: 'trasparent',
-            borderRadius: 0,
-            borderRightColor: theme.palette.text.secondary,
-            borderRightWidth: 0.5,
-            padding: 0,
-            paddingHorizontal: 4,
-          }}
-          textStyles={textStyles}
-        />
-        <ButonText
-          text="1 Day"
-          touchableOpacityStyles={{
-            backgroundColor: 'trasparent',
-            borderRadius: 0,
-            borderRightColor: theme.palette.text.secondary,
-            borderRightWidth: 0.5,
-            padding: 0,
-            paddingHorizontal: 4,
-          }}
-          textStyles={textStyles}
-        />
-        <ButonText
-          text="7 Day"
-          touchableOpacityStyles={{
-            backgroundColor: 'trasparent',
-            borderRadius: 0,
-            borderRightColor: theme.palette.text.secondary,
-            borderRightWidth: 0.5,
-            padding: 0,
-            paddingHorizontal: 4,
-          }}
-          textStyles={textStyles}
-        />
-        <ButonText
-          text="1 Month"
-          touchableOpacityStyles={{
-            backgroundColor: 'trasparent',
-            borderRadius: 0,
-            borderRightColor: theme.palette.text.secondary,
-            borderRightWidth: 0.5,
-            padding: 0,
-            paddingHorizontal: 4,
-          }}
-          textStyles={textStyles}
-        />
-        <ButonText
-          text="1 Year"
-          touchableOpacityStyles={{
-            backgroundColor: 'trasparent',
-            borderRadius: 0,
-            padding: 0,
-            paddingHorizontal: 4,
-          }}
-          textStyles={textStyles}
-        />
-      </View>
+      <TimeAxis />
       <View style={styles.generation}>
         <Text style={generationTextStyles}>Generation (0 kWh)</Text>
         <Text style={generationDesTextStyles}>

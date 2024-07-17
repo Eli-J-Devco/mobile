@@ -4,24 +4,24 @@
  *
  *********************************************************/
 
+import {View, Text} from 'react-native';
 import React from 'react';
-import {Text} from 'react-native';
 import useThemeContext from '../../../hooks/useThemeContext';
 
-interface IH3Props {
+interface IH3ThinProps {
   children: string;
 }
 
-const H3 = ({children}: IH3Props) => {
+const H4Thin = ({children}: IH3ThinProps) => {
   const theme = useThemeContext();
 
   const styleText: any = {
     color: theme.palette.text.primary,
     fontSize: theme.font.size.xs,
-    fontWeight: '700',
+    fontWeight: '400',
   };
 
   return <Text style={styleText}>{children}</Text>;
 };
 
-export default H3;
+export default H4Thin;

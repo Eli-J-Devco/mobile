@@ -1,5 +1,11 @@
-import {View, Text, ViewStyle} from 'react-native';
+/********************************************************
+ * Copyright 2024 NEXT WAVE ENERGY MONITORING INC.
+ * All rights reserved.
+ *
+ *********************************************************/
+
 import React from 'react';
+import {Text} from 'react-native';
 import useThemeContext from '../../../hooks/useThemeContext';
 
 interface IH3Props {

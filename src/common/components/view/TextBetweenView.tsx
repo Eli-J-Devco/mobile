@@ -15,6 +15,7 @@ interface ITextBetweenViewProps {
   paddingHorizontal?: number;
   backgroundColor?: string;
   borderBottom?: boolean;
+  color?: 'primary' | 'secondary';
 }
 
 const TextBetweenView = ({
@@ -24,16 +25,17 @@ const TextBetweenView = ({
   paddingHorizontal = 0,
   backgroundColor = 'transparent',
   borderBottom = true,
+  color = 'primary',
 }: ITextBetweenViewProps) => {
   const theme = useThemeContext();
 
   const styleText: any = {
-    color: theme.palette.text.primary,
+    color: theme.palette.text[color],
     fontSize: theme.font.size.s,
   };
 
   const styleAlertText: any = {
-    color: theme.palette.text.primary,
+    color: theme.palette.text[color],
     fontSize: theme.font.size.s,
     paddingVertical: 4,
     borderRadius: 4,

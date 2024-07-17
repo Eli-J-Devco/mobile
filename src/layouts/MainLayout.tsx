@@ -27,6 +27,7 @@ import {
   dashboardRouteNames,
   devicesRouteNames,
   portfolioRouteName,
+  reportsRouteNames,
 } from '../navigations/router-name';
 import {mainLayoutStyles as styles} from './main-layout.styles';
 
@@ -49,7 +50,7 @@ const DATA = [
   {
     icon: icons.chart,
     name: 'Reports',
-    sreen: 'PortfolioNavigation',
+    sreen: reportsRouteNames.ReportsNavigation,
   },
   {
     icon: icons.map,

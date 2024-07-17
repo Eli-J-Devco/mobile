@@ -9,6 +9,7 @@ import {ScrollView, ScrollViewProps, StyleSheet} from 'react-native';
 
 interface IMyScrollViewProps {
   scrollViewProps?: ScrollViewProps;
+  paddingHorizontal?: number;
   children: React.ReactNode;
 }
 
@@ -16,7 +17,15 @@ const MyScrollView = (props: IMyScrollViewProps) => {
   return (
     <ScrollView
       showsVerticalScrollIndicator={false}
-      contentContainerStyle={styles.container}
+      contentContainerStyle={[
+        styles.container,
+        {
+          paddingHorizontal:
+            props.paddingHorizontal !== undefined
+              ? props.paddingHorizontal
+              : 16,
+        },
+      ]}
       {...props.scrollViewProps}>
       {props.children}
     </ScrollView>
@@ -29,6 +38,5 @@ const styles = StyleSheet.create({
   container: {
     paddingBottom: 16,
     paddingTop: 8,
-    paddingHorizontal: 16,
   },
 });

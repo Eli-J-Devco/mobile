@@ -16,6 +16,7 @@ import useThemeContext from '../../hooks/useThemeContext';
 import MyCheckBox, {IMyCheckBoxProps} from './MyCheckBox';
 
 interface IMySwicthTextProps {
+  scale?: number;
   textStyle?: TextStyle;
   span?: number;
   children: string;
@@ -24,6 +25,7 @@ interface IMySwicthTextProps {
 }
 
 const MySwicthText = ({
+  scale = 0.8,
   value,
   span,
   textStyle,
@@ -62,7 +64,7 @@ const MySwicthText = ({
         onValueChange={toggleSwitch}
         value={isEnabled}
         style={{
-          transform: [{scaleX: 0.8}, {scaleY: 0.8}],
+          transform: [{scaleX: scale}, {scaleY: scale}],
           marginRight: -10,
         }}
       />

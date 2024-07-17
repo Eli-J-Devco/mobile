@@ -45,4 +45,5 @@ export const icons: Partial<IIcons> = {
   overview: require('./icons/overview.svg'),
   plus: require('./icons/plus.svg'),
   checkRounded: require('./icons/check-rounded.svg'),
+  more: require('./icons/more.svg'),
 };

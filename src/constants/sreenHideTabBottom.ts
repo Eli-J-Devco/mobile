@@ -3,6 +3,7 @@ import {
   dashboardRouteNames,
   devicesRouteNames,
   portfolioRouteName,
+  reportsRouteNames,
   settingRouteNames,
 } from '../navigations/router-name';
 
@@ -17,6 +18,8 @@ const SREEN_HIDE_TAB_BOTTOM = [
   dashboardRouteNames.Map,
   devicesRouteNames.FilterColumns,
   alertRouteNames.AlertDetail,
+  reportsRouteNames.ReportSetup,
+  reportsRouteNames.ReportFilter,
 ];
 
 export default SREEN_HIDE_TAB_BOTTOM;

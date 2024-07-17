@@ -28,6 +28,14 @@ export const portfolioRouteName = {
   ArrangeColumns: 'ArrangeColumns',
 };
 
+export const reportsRouteNames = {
+  ReportsNavigation: 'ReportsNavigation',
+  Reports: 'Reports',
+  ReportSetup: 'ReportSetup',
+  ReportFilter: 'ReportFilter',
+  AdditionalData: 'AdditionalData',
+};
+
 export const alertRouteNames = {
   AlertsNavigation: 'AlertsNavigation',
   Alerts: 'Alerts',

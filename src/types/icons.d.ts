@@ -39,6 +39,7 @@ interface IIcons {
   overview: any;
   plus: any;
   checkRounded: any;
+  more: any;
 }
 
 type IconNameType = keyof IIcons;
