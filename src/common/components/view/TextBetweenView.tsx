@@ -1,8 +1,15 @@
+/********************************************************
+ * Copyright 2024 NEXT WAVE ENERGY MONITORING INC.
+ * All rights reserved.
+ *
+ *********************************************************/
+
 import {View, Text, ViewStyle, StyleSheet} from 'react-native';
 import React from 'react';
 import useThemeContext from '../../../hooks/useThemeContext';
 
 interface ITextBetweenViewProps {
+  type?: 'primary' | 'alert';
   leftText: string;
   rightText?: string;
   paddingHorizontal?: number;
@@ -11,6 +18,7 @@ interface ITextBetweenViewProps {
 }
 
 const TextBetweenView = ({
+  type = 'primary',
   leftText,
   rightText,
   paddingHorizontal = 0,
@@ -22,6 +30,15 @@ const TextBetweenView = ({
   const styleText: any = {
     color: theme.palette.text.primary,
     fontSize: theme.font.size.s,
+  };
+
+  const styleAlertText: any = {
+    color: theme.palette.text.primary,
+    fontSize: theme.font.size.s,
+    paddingVertical: 4,
+    borderRadius: 4,
+    backgroundColor: theme.palette.background.yellow,
+    paddingHorizontal: 8,
   };
 
   const borderBottomStyle: ViewStyle = borderBottom
@@ -38,7 +55,9 @@ const TextBetweenView = ({
         {paddingHorizontal, backgroundColor},
       ]}>
       <Text style={styleText}>{leftText}</Text>
-      <Text style={styleText}>{rightText}</Text>
+      <Text style={type === 'primary' ? styleText : styleAlertText}>
+        {rightText}
+      </Text>
     </View>
   );
 };

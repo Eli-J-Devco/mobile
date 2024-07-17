@@ -13,9 +13,11 @@ interface InputLabelProps extends PrimaryInputProps {
   label: string;
   layout?: 'vertical' | 'horizontal';
   labelStyle?: TextStyle;
+  height?: number;
 }
 
 const InputLabel = ({
+  height,
   layout = 'vertical',
   labelStyle,
   label,
@@ -24,6 +26,8 @@ const InputLabel = ({
   placeholder,
   containerStyle,
   placeholderTextColor,
+  numberOfLines,
+  multiline,
 }: InputLabelProps) => {
   const theme = useThemeContext();
 
@@ -44,13 +48,17 @@ const InputLabel = ({
         },
       ]}>
       <Text style={[labelTextStyle, labelStyle]}>{label}</Text>
-      <PrimaryInput
-        value={value}
-        containerStyle={containerStyle}
-        onChange={onChange}
-        placeholder={placeholder}
-        placeholderTextColor={placeholderTextColor}
-      />
+      <View style={[containerStyle, {width: '100%', height: 'auto'}]}>
+        <PrimaryInput
+          multiline={multiline}
+          value={value}
+          containerStyle={containerStyle}
+          onChange={onChange}
+          placeholder={placeholder}
+          placeholderTextColor={placeholderTextColor}
+          numberOfLines={numberOfLines}
+        />
+      </View>
     </View>
   );
 };

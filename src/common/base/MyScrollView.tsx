@@ -30,10 +30,5 @@ const styles = StyleSheet.create({
     paddingBottom: 16,
     paddingTop: 8,
     paddingHorizontal: 16,
-    display: 'flex',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
-    flexDirection: 'column',
-    gap: 16,
   },
 });

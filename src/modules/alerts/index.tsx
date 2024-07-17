@@ -170,7 +170,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 16,
     gap: 8,
   },
   overViewBtn: {
@@ -183,7 +182,6 @@ const styles = StyleSheet.create({
     gap: 4,
   },
   listAlert: {
-    paddingHorizontal: 8,
     display: 'flex',
     flexDirection: 'column',
     gap: 16,
@@ -193,8 +191,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 16,
     gap: 8,
+    paddingVertical: 16,
   },
   filterMain: {
     display: 'flex',

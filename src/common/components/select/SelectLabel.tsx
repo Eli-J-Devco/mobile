@@ -13,6 +13,7 @@ interface SelectLabelProps extends MySelectProps {
   label: string;
   layout?: 'vertical' | 'horizontal';
   labelStyle?: TextStyle;
+  span?: number;
 }
 
 const SelectLabel = ({
@@ -24,6 +25,7 @@ const SelectLabel = ({
   placeholder,
   onChange,
   containerStyle,
+  span,
 }: SelectLabelProps) => {
   const theme = useThemeContext();
 
@@ -32,6 +34,12 @@ const SelectLabel = ({
     fontSize: theme.font.size.xs,
     fontWeight: '400',
   };
+
+  const gridStyle = span
+    ? {
+        flex: span,
+      }
+    : {};
 
   return (
     <View
@@ -42,6 +50,7 @@ const SelectLabel = ({
           gap: 4,
           alignItems: layout === 'vertical' ? 'flex-start' : 'center',
         },
+        gridStyle,
       ]}>
       <Text style={[labelTextStyle, labelStyle]}>{label}</Text>
       <MySelect

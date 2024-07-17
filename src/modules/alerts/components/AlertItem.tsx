@@ -4,22 +4,21 @@
  *
  *********************************************************/
 
-import {
-  View,
-  Text,
-  StyleSheet,
-  ViewStyle,
-  TouchableOpacity,
-} from 'react-native';
 import React from 'react';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import SvgIcon from '../../../common/components/SvgIcon';
-import useThemeContext from '../../../hooks/useThemeContext';
 import H3 from '../../../common/components/text/H3';
-import TextBetweenView from '../../../common/components/view/TextBetweenView';
 import PrimaryCardItem from '../../../common/components/view/PrimaryCardItem';
+import TextBetweenView from '../../../common/components/view/TextBetweenView';
+import useThemeContext from '../../../hooks/useThemeContext';
+import ButonText from '../../../common/components/button/ButonText';
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {alertRouteNames} from '../../../navigations/router-name';
 
 const AlertItem = () => {
   const theme = useThemeContext();
+  const navigation = useNavigation<NativeStackNavigationProp<any>>();
 
   const styleText: any = {
     color: theme.palette.text.primary,
@@ -37,28 +36,8 @@ const AlertItem = () => {
           leftText="Device Categorize"
           rightText="PV System Inverter"
         />
-        <View
-          style={[
-            styles.detailContent,
-            {
-              borderBottomWidth: 1,
-              borderBottomColor: theme.palette.borderColor.secondary,
-            },
-          ]}>
-          <Text style={styleText}>Error Level</Text>
-          <Text
-            style={[
-              styleText,
-              {
-                paddingVertical: 4,
-                borderRadius: 4,
-                backgroundColor: theme.palette.background.yellow,
-                paddingHorizontal: 8,
-              },
-            ]}>
-            COMM
-          </Text>
-        </View>
+
+        <TextBetweenView type="alert" leftText="Error Level" rightText="COMM" />
         <TextBetweenView leftText="Value" rightText="3.6 kW" />
         <TextBetweenView leftText="Open Period" rightText="10 Days" />
         <TextBetweenView leftText="Opened" rightText="06/20/2024 10:00 AM" />
@@ -77,22 +56,25 @@ const AlertItem = () => {
             width: '100%',
             paddingVertical: 8,
           }}>
-          <TouchableOpacity
-            style={{
+          <ButonText
+            touchableOpacityProps={{
+              onPress: () => {
+                navigation.navigate(alertRouteNames.AlertDetail);
+              },
+            }}
+            text="Detail"
+            touchableOpacityStyles={{
               paddingVertical: 8,
               paddingHorizontal: 16,
               borderRadius: 20,
               backgroundColor: theme.palette.background.dark,
-            }}>
-            <Text
-              style={{
-                color: theme.palette.text.white,
-                fontSize: theme.font.size.xs,
-                fontWeight: '700',
-              }}>
-              Detail
-            </Text>
-          </TouchableOpacity>
+            }}
+            textStyles={{
+              color: theme.palette.text.white,
+              fontSize: theme.font.size.xs,
+              fontWeight: '700',
+            }}
+          />
         </View>
       </View>
     </PrimaryCardItem>

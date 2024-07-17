@@ -23,7 +23,7 @@ type AssetsMap = {
   Home: typeof icons.home;
   Menu: typeof icons.menu;
   Reports: typeof icons.chart;
-  Setup: typeof icons.setting;
+  SetupNavigation: typeof icons.setting;
   Portfolio: typeof icons.bag;
 };
 
@@ -31,7 +31,7 @@ const assetsNotSelectMap: AssetsMap = {
   Home: icons.home,
   Menu: icons.menu,
   Reports: icons.chart,
-  Setup: icons.setting,
+  SetupNavigation: icons.setting,
   Portfolio: icons.bag,
 };
 
@@ -39,7 +39,7 @@ const assetsSelectMap: AssetsMap = {
   Home: icons.home,
   Menu: icons.menu,
   Reports: icons.chart,
-  Setup: icons.setting,
+  SetupNavigation: icons.setting,
   Portfolio: icons.bag,
 };
 
@@ -103,7 +103,7 @@ const BottomNavigation = (): JSX.Element => {
         name={routeName.Setup}
         component={SettingNavigation}
         options={{
-          tabBarLabel: routeName.Setup,
+          tabBarLabel: 'Setup',
           // tabBarActiveTintColor: '#F0DB2B',
           tabBarLabelStyle: styles.tabBarLabelStyle,
         }}

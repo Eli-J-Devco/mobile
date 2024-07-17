@@ -34,6 +34,7 @@ export const appThemeColor: AppThemeColor = {
       300: '#76BCFD',
       200: '#A8CBC7',
       100: '#EFFFFD',
+      50: '#F7FCFF',
     },
     alert: {
       Success: '#0ABE75',

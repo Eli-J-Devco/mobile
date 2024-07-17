@@ -7,9 +7,9 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
 import SettingSreen from '../screens/setting';
 import AlertConfigSreen from '../screens/setting/alert-config';
-import {routeName, settingRouteNames} from './router-name';
-import SiteSettingSreen from '../screens/setting/site-setting';
 import PVModelSettingsSreen from '../screens/setting/pv-model-settings';
+import SiteSettingSreen from '../screens/setting/site-setting';
+import {settingRouteNames} from './router-name';
 
 const Stack = createNativeStackNavigator();
 
@@ -20,7 +20,7 @@ const SettingNavigation = () => {
         gestureEnabled: false,
       }}>
       <Stack.Screen
-        name={routeName.Setup}
+        name={settingRouteNames.Setup}
         component={SettingSreen}
         options={{headerShown: false}}
       />

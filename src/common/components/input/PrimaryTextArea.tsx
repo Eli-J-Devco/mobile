@@ -1,27 +1,26 @@
-import React, {useEffect} from 'react';
-import {StyleSheet, TextStyle} from 'react-native';
-import MyTextInput from '../../base/MyTextInput';
+import React from 'react';
+import {StyleSheet, TextInput, TextStyle} from 'react-native';
 import useThemeContext from '../../../hooks/useThemeContext';
 
-export interface PrimaryInputProps {
+export interface PrimaryTextAreaProps {
   value?: string;
   onChange?: (value: string) => void;
   placeholder?: string;
   containerStyle?: TextStyle;
   placeholderTextColor?: string;
   numberOfLines?: number;
-  multiline?: boolean;
+  rows?: number;
 }
 
-const PrimaryInput = ({
+const PrimaryTextArea = ({
   value,
   onChange,
   placeholder,
   containerStyle,
   placeholderTextColor,
   numberOfLines,
-  multiline,
-}: PrimaryInputProps) => {
+  rows,
+}: PrimaryTextAreaProps) => {
   const theme = useThemeContext();
 
   const onChangeText = (text: string) => {
@@ -29,27 +28,26 @@ const PrimaryInput = ({
   };
 
   return (
-    <MyTextInput
-      multiline={multiline}
+    <TextInput
+      multiline={true}
       value={value}
       style={[
         styles.container,
         {
           backgroundColor: theme.palette.background.primary,
           borderColor: theme.palette.borderColor.base,
-          textAlignVertical: multiline ? 'top' : 'center',
         },
         containerStyle,
       ]}
       onChangeText={onChangeText}
       placeholder={placeholder}
       placeholderTextColor={placeholderTextColor}
-      numberOfLines={numberOfLines}
+      numberOfLines={5}
     />
   );
 };
 
-export default PrimaryInput;
+export default PrimaryTextArea;
 
 const styles = StyleSheet.create({
   container: {
@@ -63,5 +61,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     paddingRight: 4,
+    minHeight: 100,
   },
 });

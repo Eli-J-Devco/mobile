@@ -23,8 +23,10 @@ import {icons, images} from '../assets';
 import MyTextInput from '../common/base/MyTextInput';
 import useThemeContext from '../hooks/useThemeContext';
 import {
+  alertRouteNames,
   dashboardRouteNames,
   devicesRouteNames,
+  portfolioRouteName,
 } from '../navigations/router-name';
 import {mainLayoutStyles as styles} from './main-layout.styles';
 
@@ -37,12 +39,12 @@ const DATA = [
   {
     icon: icons.bag,
     name: 'Portfolio',
-    sreen: 'Portfolio',
+    sreen: portfolioRouteName.PortfolioNavigation,
   },
   {
     icon: icons.bell,
     name: 'Alerts',
-    sreen: 'Alerts',
+    sreen: alertRouteNames.AlertsNavigation,
   },
   {
     icon: icons.chart,

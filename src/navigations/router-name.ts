@@ -4,6 +4,9 @@
  *
  *********************************************************/
 
+import {Alert} from 'react-native';
+import Portfolio from '../modules/dashboard/components/portfolio';
+
 interface IRouteName {
   [key: string]: string;
 }
@@ -17,15 +20,8 @@ export const drawerRouteName = {
   BottomNavigation: 'BottomNavigation',
 };
 
-export const routeName: IRouteName = {
-  Home: 'Home',
-  Setup: 'Setup',
-  Reports: 'Reports',
-  Portfolio: 'Portfolio',
-  Menu: 'Menu',
-};
-
 export const portfolioRouteName = {
+  PortfolioNavigation: 'PortfolioNavigation',
   Portfolio: 'Portfolio',
   PortfolioDetails: 'PortfolioDetails',
   PortfolioFilter: 'PortfolioFilter',
@@ -33,12 +29,15 @@ export const portfolioRouteName = {
 };
 
 export const alertRouteNames = {
+  AlertsNavigation: 'AlertsNavigation',
   Alerts: 'Alerts',
   AlertFilter: 'AlertFilter',
+  AlertDetail: 'AlertDetail',
 };
 
 export const settingRouteNames = {
-  Setup: 'SetupSreen',
+  SetupNavigation: 'SetupNavigation',
+  Setup: 'Setup',
   AlertConfig: 'AlertConfig',
   SiteSetting: 'SiteSetting',
   PVModelSettings: 'PVModelSettings',
@@ -53,10 +52,18 @@ export const devicesRouteNames = {
 
 export const dashboardRouteNames = {
   Dashboard: 'Dashboard',
-  AlertsNavigation: alertRouteNames.Alerts,
-  PortfolioNavigation: portfolioRouteName.Portfolio,
+  AlertsNavigation: alertRouteNames.AlertsNavigation,
+  PortfolioNavigation: portfolioRouteName.PortfolioNavigation,
   SearchAndFilter: 'SearchAndFilter',
   SiteOverView: 'SiteOverView',
   Map: 'Map',
   Devices: devicesRouteNames.Devinavigation,
+};
+
+export const routeName: IRouteName = {
+  Home: 'Home',
+  Setup: settingRouteNames.SetupNavigation,
+  Reports: 'Reports',
+  Portfolio: 'Portfolio',
+  Menu: 'Menu',
 };

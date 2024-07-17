@@ -5,29 +5,35 @@
  *********************************************************/
 
 import React, {useState} from 'react';
-import {StyleSheet, Text, TextStyle, TouchableOpacity} from 'react-native';
+import {
+  StyleSheet,
+  Switch,
+  Text,
+  TextStyle,
+  TouchableOpacity,
+} from 'react-native';
 import useThemeContext from '../../hooks/useThemeContext';
 import MyCheckBox, {IMyCheckBoxProps} from './MyCheckBox';
 
-interface IMyCheckBoxTextProps extends IMyCheckBoxProps {
+interface IMySwicthTextProps {
   textStyle?: TextStyle;
   span?: number;
   children: string;
+  value?: boolean;
+  onValueChange?: (value: boolean) => void;
 }
 
-const MyCheckBoxText = ({
-  span,
+const MySwicthText = ({
   value,
-  checked,
-  onChecked,
-  checkBoxStyle,
-  iconSize,
+  span,
   textStyle,
   children,
-}: IMyCheckBoxTextProps) => {
+  onValueChange,
+}: IMySwicthTextProps) => {
   const theme = useThemeContext();
 
-  const [isChecked, setIsChecked] = useState(false);
+  const [isEnabled, setIsEnabled] = useState(false);
+  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 
   const text: TextStyle = {
     color: theme.palette.text.primary,
@@ -46,21 +52,26 @@ const MyCheckBoxText = ({
       style={[styles.container, gridStyle]}
       activeOpacity={0.5}
       onPress={() => {
-        setIsChecked(!isChecked);
-        onChecked && onChecked(!isChecked, value);
+        toggleSwitch();
+        onValueChange && onValueChange(!isEnabled);
       }}>
-      <MyCheckBox
-        value={value}
-        checked={isChecked}
-        checkBoxStyle={checkBoxStyle}
-        iconSize={iconSize}
+      <Switch
+        trackColor={{false: '#767577', true: '#81b0ff'}}
+        thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
+        ios_backgroundColor="#3e3e3e"
+        onValueChange={toggleSwitch}
+        value={isEnabled}
+        style={{
+          transform: [{scaleX: 0.8}, {scaleY: 0.8}],
+          marginRight: -10,
+        }}
       />
       <Text style={[text, textStyle]}>{children}</Text>
     </TouchableOpacity>
   );
 };
 
-export default MyCheckBoxText;
+export default MySwicthText;
 
 const styles = StyleSheet.create({
   container: {

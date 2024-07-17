@@ -41,7 +41,17 @@ const SiteOverView = () => {
   };
 
   return (
-    <MyScrollView>
+    <MyScrollView
+      scrollViewProps={{
+        contentContainerStyle: {
+          paddingBottom: 16,
+          paddingTop: 8,
+          paddingHorizontal: 16,
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 16,
+        },
+      }}>
       <View
         style={[
           styles.overView,

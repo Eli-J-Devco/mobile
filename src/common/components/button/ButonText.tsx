@@ -32,6 +32,7 @@ const ButonText = ({
     fontSize: theme.font.size.xs,
     fontWeight: '400',
   };
+
   return (
     <TouchableOpacity
       style={[styles.btn, touchableOpacityStyles]}
