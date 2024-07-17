@@ -6,7 +6,7 @@
 
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {Platform, StyleSheet, View} from 'react-native';
 import {WithLocalSvg} from 'react-native-svg';
 import {icons} from '../assets';
 import useHideTabBottom from '../hooks/useHideTabBottom';
@@ -15,6 +15,7 @@ import SettingSreen from '../screens/setting';
 import HomeNavigation from './HomeNavigation';
 import {routeName} from './router-name';
 import SettingNavigation from './SettingNavigation';
+import DrawerNavigation from './DrawerNavigation';
 
 const Tab = createBottomTabNavigator();
 
@@ -66,7 +67,12 @@ const BottomNavigation = (): JSX.Element => {
             backgroundColor: '#DCDCDC',
             borderTopWidth: 0,
             paddingVertical: 16,
-            height: 80,
+            height: Platform.OS === 'ios' ? 100 : 80,
+            // position: 'absolute',
+            // left: 0,
+            // right: 0,
+            // bottom: 0,
+            elevation: 0,
           },
           tabBarActiveTintColor: '#F0DB2B',
           tabBarIcon: ({focused}) => (
@@ -92,7 +98,7 @@ const BottomNavigation = (): JSX.Element => {
       />
       <Tab.Screen
         name={routeName.Menu}
-        component={Account}
+        component={DrawerNavigation}
         options={{
           tabBarLabel: routeName.Menu,
           // tabBarActiveTintColor: '#F0DB2B',

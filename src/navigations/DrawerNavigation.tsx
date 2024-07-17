@@ -15,8 +15,9 @@ import {SafeAreaView, StatusBar, StyleSheet} from 'react-native';
 import Animated, {interpolate, useAnimatedStyle} from 'react-native-reanimated';
 import {images} from '../assets';
 import SvgIcon from '../common/components/SvgIcon';
-import BottomNavigation from './BottomNavigation';
+import MenuScreen from '../screens/menu';
 import {dashboardRouteNames, drawerRouteName} from './router-name';
+import BottomNavigation from './BottomNavigation';
 
 function CustomDrawerContent(props: any) {
   const progress = useDrawerProgress();
@@ -68,13 +69,14 @@ export default function DrawerNavigation() {
         headerShown: false,
         drawerActiveTintColor: 'tomato',
         drawerInactiveTintColor: 'gray',
+        drawerType: 'slide',
         drawerStyle: {
           width: '80%',
         },
       }}>
       <Drawer.Screen
-        name={dashboardRouteNames.Dashboard}
-        component={BottomNavigation}
+        name="Menu"
+        component={MenuScreen}
         options={{
           drawerIcon: ({focused, size}) => <SvgIcon iconName="dashboard" />,
         }}

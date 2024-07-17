@@ -5,16 +5,15 @@
  *********************************************************/
 
 import React from 'react';
-import {StyleSheet} from 'react-native';
 import MainLayout from '../../layouts/MainLayout';
-import Dashboard from '../../modules/dashboard';
+import Menu from '../../modules/menu';
 
-const Home = () => {
+const MenuScreen = () => {
   return (
     <MainLayout>
-      <Dashboard />
+      <Menu />
     </MainLayout>
   );
 };
 
-export default Home;
+export default MenuScreen;
