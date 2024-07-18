@@ -11,8 +11,10 @@ import React, {useState} from 'react';
 import {images} from '../../assets';
 import LoginForm from '../../modules/auth/components/LoginForm';
 import ForgotForm from '../../modules/auth/components/ForgotForm';
+import useThemeContext from '../../hooks/useThemeContext';
 
 const Login = () => {
+  const theme = useThemeContext();
   const [isLogin, setIsLogin] = useState(true);
 
   return (
@@ -33,7 +35,12 @@ const Login = () => {
         <Pressable
           style={styles.btnForgot}
           onPress={() => setIsLogin(!isLogin)}>
-          <Text style={styles.forgotText}>
+          <Text
+            style={{
+              color: theme.palette.text.primary,
+              fontSize: theme.font.size.sm,
+              fontWeight: '400',
+            }}>
             {isLogin ? 'Forgot your password?' : 'Back to Login'}
           </Text>
         </Pressable>

@@ -1,5 +1,5 @@
 export const images = {
-  bgLogin: require('./image/bg-image.jpg'),
+  bgLogin: require('./image/bg-image.png'),
   bgHeader: require('./image/bg-header.png'),
   drawerHearBg: require('./image/drawer-hear-bg.png'),
   logo: require('./image/logo.png'),

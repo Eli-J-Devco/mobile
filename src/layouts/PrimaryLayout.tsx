@@ -17,6 +17,8 @@ import {images} from '../assets';
 import MyTextInput from '../common/base/MyTextInput';
 import SvgIcon from '../common/components/SvgIcon';
 import useThemeContext from '../hooks/useThemeContext';
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 interface Props {
   filter?: boolean;
@@ -24,6 +26,7 @@ interface Props {
 }
 
 const PrimaryLayout = ({filter = true, children}: Props) => {
+  const navigation = useNavigation<NativeStackNavigationProp<any>>();
   const theme = useThemeContext();
   return (
     <SafeAreaView style={styles.container}>
@@ -34,11 +37,16 @@ const PrimaryLayout = ({filter = true, children}: Props) => {
       />
       <ImageBackground
         resizeMode="cover"
-        source={images.bgLogin}
-        style={styles.image}>
-        <View style={styles.header}>
+        source={images.bgHeader}
+        style={[styles.header]}>
+        <View style={{width: '100%'}}>
           {filter && (
             <View style={styles.headerContent}>
+              <TouchableOpacity
+                activeOpacity={0.5}
+                onPress={() => navigation.goBack()}>
+                <SvgIcon iconName="arrowLeftWhite" />
+              </TouchableOpacity>
               <MyTextInput
                 style={[
                   styles.searchInput,
@@ -57,8 +65,8 @@ const PrimaryLayout = ({filter = true, children}: Props) => {
             </View>
           )}
         </View>
-        <View style={styles.content}>{children}</View>
       </ImageBackground>
+      <View style={styles.content}>{children}</View>
     </SafeAreaView>
   );
 };
@@ -69,26 +77,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  image: {
-    flex: 1,
-  },
   content: {
     display: 'flex',
     width: '100%',
     height: '100%',
     backgroundColor: '#F5F5F5',
-    flex: 9,
+    flex: 12,
   },
   header: {
     flex: 2,
-    backgroundColor: 'tranperant',
-    // backgroundColor: '#F0DB2B',
-    width: '100%',
-    display: 'flex',
-    alignItems: 'center',
-    height: '100%',
-    justifyContent: 'center',
-    flexDirection: 'column',
   },
   headerContent: {
     display: 'flex',
@@ -97,17 +94,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 24,
     width: '100%',
-    gap: 16,
+    gap: 8,
     // backgroundColor: 'blue',
     marginTop: 50,
   },
   searchInput: {
     backgroundColor: '#F6F6F6',
     borderRadius: 30,
-    flex: 4,
+    flex: 1,
+    height: 37,
+    paddingLeft: 10,
   },
   headerBtnContainer: {
-    flex: 1,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',

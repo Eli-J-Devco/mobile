@@ -6,21 +6,22 @@
 
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import React from 'react';
+import React, {useRef} from 'react';
 import {
+  Animated,
+  Dimensions,
   FlatList,
   ImageBackground,
-  KeyboardAvoidingView,
-  Platform,
-  SafeAreaView,
+  ScrollView,
   StatusBar,
-  Text,
+  StyleSheet,
+  TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
-import {WithLocalSvg} from 'react-native-svg';
-import {icons, images} from '../assets';
-import MyTextInput from '../common/base/MyTextInput';
+import {SafeAreaView} from 'react-native-safe-area-context';
+import {images} from '../assets';
+import SvgIcon from '../common/components/SvgIcon';
 import useThemeContext from '../hooks/useThemeContext';
 import {
   alertRouteNames,
@@ -29,187 +30,385 @@ import {
   portfolioRouteName,
   reportsRouteNames,
 } from '../navigations/router-name';
-import {mainLayoutStyles as styles} from './main-layout.styles';
+
+const {width, height} = Dimensions.get('window');
 
 const DATA = [
   {
-    icon: icons.dashboard,
+    icon: 'dashboard',
     name: 'Dashboard',
-    sreen: 'PortfolioNavigation',
+    sreen: dashboardRouteNames.Dashboard,
   },
   {
-    icon: icons.bag,
+    icon: 'bag',
     name: 'Portfolio',
     sreen: portfolioRouteName.PortfolioNavigation,
   },
   {
-    icon: icons.bell,
+    icon: 'bell',
     name: 'Alerts',
     sreen: alertRouteNames.AlertsNavigation,
   },
   {
-    icon: icons.chart,
+    icon: 'chart',
     name: 'Reports',
     sreen: reportsRouteNames.ReportsNavigation,
   },
   {
-    icon: icons.map,
+    icon: 'map',
     name: 'Map',
     sreen: 'Map',
   },
   {
-    icon: icons.overview,
+    icon: 'overview',
     name: 'OverView',
     sreen: dashboardRouteNames.SiteOverView,
   },
   {
-    icon: icons.devices,
+    icon: 'devices',
     name: 'Devices',
     sreen: devicesRouteNames.Devinavigation,
   },
 ];
 
+const UPPER_HEADER_HEIGHT = 32;
+const UPPER_HEADER_PADDING_TOP = 20;
+const LOWER_HEADER_HEIGHT = 96;
+const ACTION_CONTAINER_HEIGHT = 90;
+const ACTION_CONTAINER_PADDING_HORIZONTAL = 16;
+const ACTION_CONTAINER_MAGIN_TOP = 10;
 interface Props {
   backgroundColor?: string;
   children: React.ReactNode;
 }
 
+const TextInputAnimated = Animated.createAnimatedComponent(TextInput);
+const TouchableOpacityAnimated =
+  Animated.createAnimatedComponent(TouchableOpacity);
+
 const MainLayout = ({backgroundColor, children}: Props) => {
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
   const theme = useThemeContext();
 
-  return (
-    <SafeAreaView style={styles.container}>
-      <KeyboardAvoidingView
-        style={styles.container}
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-        <StatusBar
-          translucent={true}
-          barStyle="dark-content"
-          backgroundColor={'transparent'}
-        />
-        <View style={styles.container}>
-          <ImageBackground
-            resizeMode="cover"
-            source={images.bgLogin}
-            style={[styles.header, styles.image]}>
-            <View style={styles.headerContent}>
-              <MyTextInput
-                style={[
-                  styles.searchInput,
-                  {color: theme.palette.text.primary},
-                ]}
-                placeholder="Search"
-                onFocus={() => {
-                  navigation.navigate(dashboardRouteNames.SearchAndFilter);
-                }}
-              />
-              <View style={styles.headerBtnContainer}>
-                <TouchableOpacity activeOpacity={0.5} style={styles.headerBtn}>
-                  <WithLocalSvg asset={icons.bellWhite} />
-                </TouchableOpacity>
-                <TouchableOpacity activeOpacity={0.5} style={styles.headerBtn}>
-                  <WithLocalSvg asset={icons.user} />
-                </TouchableOpacity>
-              </View>
-            </View>
+  const animatedValue = useRef(new Animated.Value(0)).current;
 
-            <View style={styles.action}>
-              <View style={[styles.actionContainer]}>
-                <View
-                  style={[
-                    styles.actionContent,
-                    {backgroundColor: theme.palette.background.primary},
-                  ]}>
-                  <FlatList
-                    showsHorizontalScrollIndicator={false}
-                    data={DATA}
-                    renderItem={({item}: {item: any}) => (
-                      <TouchableOpacity
-                        activeOpacity={0.5}
-                        key={item.name}
-                        style={[styles.actionItem, {marginRight: 30}]}
-                        onPress={() => {
-                          navigation.navigate(item.sreen);
-                        }}>
-                        <View style={styles.actionIcon}>
-                          <WithLocalSvg
-                            width={20}
-                            height={20}
-                            asset={item.icon}
-                          />
-                        </View>
-                        <Text style={styles.actionLable}>{item.name}</Text>
-                      </TouchableOpacity>
-                    )}
-                    keyExtractor={(item: any, index: number) =>
-                      `id-silder-${item.name}`
-                    }
-                    horizontal={true}
-                  />
-                </View>
-              </View>
-              {/* <View style={[styles.actionContainer]}>
-                <View
-                  style={[
-                    styles.actionContent,
-                    {backgroundColor: theme.palette.background.primary},
-                  ]}>
-                  <View
-                    style={{
-                      flex: 90,
-                      display: 'flex',
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                      justifyContent: 'space-between',
-                      width: '100%',
-                      //   backgroundColor: 'red',
-                    }}>
-                    {DATA.map((item, index) => {
-                      return (
-                        <TouchableOpacity
-                          activeOpacity={0.5}
-                          key={item.name}
-                          style={styles.actionItem}
-                          onPress={() => {
-                            navigation.navigate(item.sreen);
-                          }}>
-                          <View style={styles.actionIcon}>
-                            <WithLocalSvg
-                              width={20}
-                              height={20}
-                              asset={item.icon}
-                            />
-                          </View>
-                          <Text style={styles.actionLable}>{item.name}</Text>
-                        </TouchableOpacity>
-                      );
-                    })}
-                  </View>
-                  <View style={styles.silderContainer}>
-                    <View style={styles.silder}>
-                      <View style={styles.silderItem} />
-                      <View style={styles.silderItem} />
-                    </View>
-                  </View>
-                </View>
-              </View> */}
-            </View>
-          </ImageBackground>
-          <View
-            style={[
-              styles.content,
-              {backgroundColor: theme.palette.background.secondary},
-              {
-                backgroundColor: backgroundColor ? backgroundColor : '',
-              },
-            ]}>
-            {children}
-          </View>
+  const scrollViewRef = useRef<ScrollView>(null);
+  const lastOffsetY = useRef(0);
+  const scrollDirection = useRef(0);
+
+  const searchInputAnimation = {
+    transform: [
+      {
+        scaleX: animatedValue.interpolate({
+          inputRange: [0, 50],
+          outputRange: [1, 0],
+          extrapolate: 'clamp',
+        }),
+      },
+      {
+        translateX: animatedValue.interpolate({
+          inputRange: [0, 25],
+          outputRange: [0, -100],
+          extrapolate: 'clamp',
+        }),
+      },
+    ],
+    opacity: animatedValue.interpolate({
+      inputRange: [0, 25],
+      outputRange: [1, 0],
+      extrapolate: 'clamp',
+    }),
+  };
+  const bellAnimation = {
+    transform: [
+      {
+        scaleX: animatedValue.interpolate({
+          inputRange: [0, 50],
+          outputRange: [1, 0],
+          extrapolate: 'clamp',
+        }),
+      },
+      {
+        translateX: animatedValue.interpolate({
+          inputRange: [0, 25],
+          outputRange: [0, 150],
+          extrapolate: 'clamp',
+        }),
+      },
+    ],
+    opacity: animatedValue.interpolate({
+      inputRange: [0, 25],
+      outputRange: [1, 0],
+      extrapolate: 'clamp',
+    }),
+  };
+
+  const portfolioAnimation = {
+    transform: [
+      // {
+      //   scaleX: animatedValue.interpolate({
+      //     inputRange: [0, 50],
+      //     outputRange: [1, 0.8],
+      //     extrapolate: 'clamp',
+      //   }),
+      // },
+      {
+        translateY: animatedValue.interpolate({
+          inputRange: [0, 100],
+          outputRange: [
+            0,
+            -(
+              UPPER_HEADER_HEIGHT +
+              (StatusBar.currentHeight ? StatusBar.currentHeight : 0) +
+              ACTION_CONTAINER_MAGIN_TOP +
+              UPPER_HEADER_PADDING_TOP
+            ),
+          ],
+          extrapolate: 'clamp',
+        }),
+      },
+      // {
+      //   translateX: animatedValue.interpolate({
+      //     inputRange: [0, 100],
+      //     outputRange: [0, -60],
+      //     extrapolate: 'clamp',
+      //   }),
+      // },
+    ],
+    height: animatedValue.interpolate({
+      inputRange: [0, 100],
+      outputRange: [LOWER_HEADER_HEIGHT, LOWER_HEADER_HEIGHT * 1.5],
+      extrapolate: 'clamp',
+    }),
+    width: animatedValue.interpolate({
+      inputRange: [0, 80, 100],
+      outputRange: [
+        width - ACTION_CONTAINER_PADDING_HORIZONTAL * 2,
+        width - ACTION_CONTAINER_PADDING_HORIZONTAL,
+        width,
+      ],
+      extrapolate: 'clamp',
+    }),
+    left: animatedValue.interpolate({
+      inputRange: [0, 80, 100],
+      outputRange: [
+        ACTION_CONTAINER_PADDING_HORIZONTAL,
+        ACTION_CONTAINER_PADDING_HORIZONTAL / 2,
+        0,
+      ],
+      extrapolate: 'clamp',
+    }),
+    paddingTop: animatedValue.interpolate({
+      inputRange: [0, 100],
+      outputRange: [0, LOWER_HEADER_HEIGHT / 2.5],
+      extrapolate: 'clamp',
+    }),
+  };
+
+  return (
+    <SafeAreaView style={[styles.container]}>
+      <StatusBar
+        translucent={true}
+        barStyle="dark-content"
+        backgroundColor={'transparent'}
+      />
+      {/* <View style={styles.upperHeaderPlaceholder}></View> */}
+      <ImageBackground
+        source={images.bgHeader}
+        style={[
+          styles.header,
+          {
+            paddingTop: StatusBar.currentHeight,
+          },
+        ]}>
+        <View style={[styles.upperHeader]}>
+          <TextInputAnimated
+            placeholder="Search"
+            style={[styles.searchInput, searchInputAnimation]}
+          />
+          <TouchableOpacityAnimated style={[styles.headerBtn, bellAnimation]}>
+            <SvgIcon iconName="bellWhite" />
+          </TouchableOpacityAnimated>
+          <TouchableOpacityAnimated style={[styles.headerBtn, bellAnimation]}>
+            <SvgIcon iconName="user" />
+          </TouchableOpacityAnimated>
         </View>
-      </KeyboardAvoidingView>
+
+        <View style={styles.lowerHeader}>
+          <Animated.View
+            style={[
+              {
+                display: 'flex',
+                flexDirection: 'row',
+                backgroundColor: '#fff',
+                shadowColor: '#333',
+                shadowOffset: {width: -2, height: 4},
+                shadowOpacity: 0.5,
+                shadowRadius: 3,
+                elevation: 20,
+                borderRadius: 8,
+                position: 'absolute',
+                top: ACTION_CONTAINER_MAGIN_TOP,
+                zIndex: 1,
+                height: ACTION_CONTAINER_HEIGHT,
+                alignItems: 'center',
+                paddingHorizontal: ACTION_CONTAINER_PADDING_HORIZONTAL,
+              },
+              portfolioAnimation,
+            ]}>
+            <FlatList
+              showsHorizontalScrollIndicator={false}
+              data={DATA}
+              renderItem={({item}: {item: any}) => (
+                <TouchableOpacityAnimated
+                  activeOpacity={0.5}
+                  style={[styles.actionItem]}
+                  onPress={() => {
+                    navigation.navigate(item.sreen);
+                  }}>
+                  <Animated.View style={[styles.actionIcon]}>
+                    <SvgIcon iconName={item.icon} />
+                  </Animated.View>
+                  <Animated.Text style={[styles.actionLable]}>
+                    {item.name}
+                  </Animated.Text>
+                </TouchableOpacityAnimated>
+              )}
+              keyExtractor={(item: any, index: number) =>
+                `id-silder-${item.name}`
+              }
+              horizontal={true}
+            />
+          </Animated.View>
+        </View>
+      </ImageBackground>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        ref={scrollViewRef}
+        onScroll={e => {
+          const offsetY = e.nativeEvent.contentOffset.y;
+          // scrollDirection.current = offsetY - lastOffsetY.current;
+          // lastOffsetY.current = offsetY;
+          animatedValue.setValue(offsetY);
+        }}
+        onScrollEndDrag={() => {
+          // scrollViewRef.current?.scrollTo({
+          //   y:
+          //     scrollDirection.current > 0
+          //       ? scrollDirection.current > 100
+          //         ? animatedValue.
+          //         : 100
+          //       : 0,
+          //   animated: true,
+          // });
+        }}
+        scrollEventThrottle={16}
+        contentContainerStyle={
+          {
+            // paddingBottom: 16,
+          }
+        }>
+        <View
+          style={{
+            height: StatusBar.currentHeight
+              ? 150 - StatusBar.currentHeight
+              : 150,
+          }}></View>
+        <View
+          style={[
+            {
+              paddingTop:
+                ACTION_CONTAINER_HEIGHT / 2 + ACTION_CONTAINER_MAGIN_TOP + 16,
+              // paddingBottom: 16,
+            },
+            styles.scrollViewContainer,
+            {backgroundColor: backgroundColor ? backgroundColor : '#F5F5F5'},
+          ]}>
+          {children}
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
 
 export default MainLayout;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  headerBtn: {
+    height: 40,
+    width: 40,
+    borderRadius: 20,
+    backgroundColor: 'rgba(0, 0, 0, 0.2)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    display: 'flex',
+  },
+  header: {
+    position: 'absolute',
+    width: '100%',
+  },
+  scrollViewContainer: {
+    height: 'auto',
+  },
+  upperHeader: {
+    height: UPPER_HEADER_HEIGHT,
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    marginTop: UPPER_HEADER_PADDING_TOP,
+    gap: 16,
+    position: 'relative',
+    zIndex: 2,
+  },
+  lowerHeader: {
+    height: LOWER_HEADER_HEIGHT,
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 16,
+    justifyContent: 'space-between',
+    position: 'relative',
+  },
+  searchInput: {
+    flex: 1,
+    backgroundColor: '#E8E4E4',
+    color: '#000',
+    borderRadius: 16,
+    paddingLeft: 8,
+    height: 37,
+    textAlignVertical: 'center',
+    alignItems: 'center',
+    paddingTop: 8,
+  },
+  bell: {
+    width: 16,
+    height: 16,
+    marginHorizontal: 32,
+  },
+  actionItem: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 4,
+    marginRight: 28,
+  },
+  actionIcon: {
+    backgroundColor: '#E6EFFC',
+    borderRadius: 8,
+    height: 40,
+    width: 40,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  actionLable: {
+    fontSize: 12,
+    color: '#000',
+  },
+});

@@ -73,7 +73,14 @@ const LoginForm = () => {
       </FormProvider>
 
       <Pressable style={styles.btn} onPress={handleSubmit(onSubmit)}>
-        <Text style={styles.btnText}>Log In</Text>
+        <Text
+          style={{
+            color: theme.palette.text.primary,
+            fontSize: theme.font.size.sm,
+            fontWeight: '500',
+          }}>
+          Log In
+        </Text>
       </Pressable>
     </View>
   );

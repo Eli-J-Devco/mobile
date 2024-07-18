@@ -6,10 +6,8 @@
 
 import React from 'react';
 import MyScrollView from '../../common/base/MyScrollView';
-import PrimaryLayoutDetail from '../../layouts/PrimaryLayoutDetail';
-import Reports from '../../modules/reports';
-import PrimaryLayout from '../../layouts/PrimaryLayout';
 import MainLayout from '../../layouts/MainLayout';
+import Reports from '../../modules/reports';
 
 const ReportsSreen = () => {
   return (

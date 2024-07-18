@@ -5,9 +5,8 @@
  *********************************************************/
 
 import React from 'react';
-import PrimaryLayout from '../../../layouts/PrimaryLayout';
-import AlertFilter from '../../../modules/alerts/components/AlertFilter';
 import PrimaryLayoutDetailItem from '../../../layouts/PrimaryLayoutDetailItem';
+import AlertFilter from '../../../modules/alerts/components/AlertFilter';
 
 const AlertFilterSreen = () => {
   return (
