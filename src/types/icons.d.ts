@@ -40,6 +40,9 @@ interface IIcons {
   plus: any;
   checkRounded: any;
   more: any;
+  search: any;
+  upload: any;
+  back: any;
 }
 
 type IconNameType = keyof IIcons;

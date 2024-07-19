@@ -14,6 +14,7 @@ import {
   SafeAreaView,
   StatusBar,
   StyleSheet,
+  TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
@@ -21,6 +22,7 @@ import {images} from '../assets';
 import MyTextInput from '../common/base/MyTextInput';
 import SvgIcon from '../common/components/SvgIcon';
 import useThemeContext from '../hooks/useThemeContext';
+import IconImage from '../common/components/icons/IconImage';
 
 interface Props {
   filter?: boolean;
@@ -45,22 +47,27 @@ const PrimaryLayoutDetail = ({filter = true, children}: Props) => {
           resizeMode="cover"
           source={images.bgHeader}
           style={[styles.image, styles.header]}>
-          <View style={styles.headerContent}>
+          <View
+            style={[
+              styles.headerContent,
+              {marginTop: StatusBar.currentHeight},
+            ]}>
             <TouchableOpacity
               activeOpacity={0.5}
               onPress={() => navigation.goBack()}>
-              <SvgIcon iconName="arrowLeftWhite" />
+              <IconImage iconName="arrowLeftWhite" />
             </TouchableOpacity>
-            <MyTextInput
-              style={[styles.searchInput, {color: theme.palette.text.primary}]}
-              placeholder="Search"
-            />
+            <View style={[styles.searchInput]}>
+              <IconImage iconName="search" />
+              <TextInput style={styles.input} placeholder="Search" />
+            </View>
+
             <View style={styles.headerBtnContainer}>
               <TouchableOpacity activeOpacity={0.5} style={styles.headerBtn}>
-                <SvgIcon iconName="bellWhite" />
+                <IconImage iconName="bellWhite" />
               </TouchableOpacity>
               <TouchableOpacity activeOpacity={0.5} style={styles.headerBtn}>
-                <SvgIcon iconName="user" />
+                <IconImage iconName="user" />
               </TouchableOpacity>
             </View>
           </View>
@@ -86,18 +93,18 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     backgroundColor: '#F5F5F5',
-    flex: 9,
+    flex: 12,
   },
   header: {
     flex: 2,
     backgroundColor: 'tranperant',
-    // backgroundColor: '#F0DB2B',
     width: '100%',
     display: 'flex',
-    alignItems: 'center',
     height: '100%',
-    justifyContent: 'center',
     flexDirection: 'column',
+    alignItems: 'center',
+    // paddingVertical: 'auto',
+    justifyContent: 'center',
   },
   headerContent: {
     display: 'flex',
@@ -106,19 +113,24 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 24,
     width: '100%',
-    gap: 16,
-    // backgroundColor: 'blue',
-    marginTop: 50,
+    gap: 8,
   },
   searchInput: {
-    backgroundColor: '#F6F6F6',
-    borderRadius: 30,
-    flex: 4,
-    height: 37,
+    flex: 1,
+    backgroundColor: '#E8E4E4',
+    color: '#000',
+    borderRadius: 16,
     paddingLeft: 8,
+    height: 40,
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  input: {
+    backgroundColor: 'transparent',
+    color: '#000',
   },
   headerBtnContainer: {
-    flex: 1,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',

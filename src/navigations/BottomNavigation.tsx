@@ -5,13 +5,12 @@
  *********************************************************/
 
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import React from 'react';
-import {StyleSheet, View} from 'react-native';
-import {WithLocalSvg} from 'react-native-svg';
+import React, {useEffect, useState} from 'react';
+import {Keyboard, StyleSheet, View} from 'react-native';
 import {icons} from '../assets';
+import IconImage from '../common/components/icons/IconImage';
 import useHideTabBottom from '../hooks/useHideTabBottom';
 import Account from '../screens/account';
-import SettingSreen from '../screens/setting';
 import HomeNavigation from './HomeNavigation';
 import {routeName} from './router-name';
 import SettingNavigation from './SettingNavigation';
@@ -20,26 +19,26 @@ const Tab = createBottomTabNavigator();
 
 type AssetsMap = {
   [key: string]: string;
-  Home: typeof icons.home;
-  Menu: typeof icons.menu;
+  Home: 'home';
+  Menu: 'menu';
   Reports: typeof icons.chart;
-  SetupNavigation: typeof icons.setting;
+  SetupNavigation: 'setting';
   Portfolio: typeof icons.bag;
 };
 
 const assetsNotSelectMap: AssetsMap = {
-  Home: icons.home,
-  Menu: icons.menu,
+  Home: 'home',
+  Menu: 'menu',
   Reports: icons.chart,
-  SetupNavigation: icons.setting,
+  SetupNavigation: 'setting',
   Portfolio: icons.bag,
 };
 
 const assetsSelectMap: AssetsMap = {
-  Home: icons.home,
-  Menu: icons.menu,
+  Home: 'home',
+  Menu: 'menu',
   Reports: icons.chart,
-  SetupNavigation: icons.setting,
+  SetupNavigation: 'setting',
   Portfolio: icons.bag,
 };
 
@@ -53,6 +52,29 @@ const BottomNavigation = (): JSX.Element => {
     return asset;
   };
 
+  const [keyboardHeight, setKeyboardHeight] = useState(false);
+
+  useEffect(() => {
+    const keyboardDidShowListener = Keyboard.addListener(
+      'keyboardDidShow',
+      event => {
+        setKeyboardHeight(true);
+      },
+    );
+
+    const keyboardDidHideListener = Keyboard.addListener(
+      'keyboardDidHide',
+      () => {
+        setKeyboardHeight(false);
+      },
+    );
+
+    return () => {
+      keyboardDidShowListener.remove();
+      keyboardDidHideListener.remove();
+    };
+  }, []);
+
   return (
     <Tab.Navigator
       initialRouteName="Home"
@@ -62,7 +84,7 @@ const BottomNavigation = (): JSX.Element => {
           headerShown: false,
           tabBarVisible: hide ? false : true,
           tabBarStyle: {
-            display: hide ? 'none' : 'flex',
+            display: hide || keyboardHeight ? 'none' : 'flex',
             backgroundColor: '#DCDCDC',
             borderTopWidth: 0,
             paddingVertical: 16,
@@ -76,7 +98,7 @@ const BottomNavigation = (): JSX.Element => {
                 borderRadius: 20,
                 backgroundColor: focused ? '#F0DB2B' : '#DCDCDC',
               }}>
-              <WithLocalSvg asset={getIcons(focused, route.name)} />
+              <IconImage iconName={getIcons(focused, route.name)} />
             </View>
           ),
         };

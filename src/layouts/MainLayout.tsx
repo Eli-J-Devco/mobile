@@ -30,6 +30,7 @@ import {
   portfolioRouteName,
   reportsRouteNames,
 } from '../navigations/router-name';
+import IconImage from '../common/components/icons/IconImage';
 
 const {width, height} = Dimensions.get('window');
 
@@ -120,7 +121,7 @@ const MainLayout = ({backgroundColor, children}: Props) => {
     }),
   };
 
-  const portfolioAnimation = {
+  const actionAnimation = {
     transform: [
       // {
       //   scaleX: animatedValue.interpolate({
@@ -134,7 +135,7 @@ const MainLayout = ({backgroundColor, children}: Props) => {
           inputRange: [0, 50, 70, 100],
           outputRange: [
             0,
-            -UPPER_HEADER_HEIGHT,
+            -UPPER_HEADER_HEIGHT + ACTION_CONTAINER_MAGIN_TOP,
             -(
               UPPER_HEADER_HEIGHT +
               ACTION_CONTAINER_MAGIN_TOP +
@@ -159,10 +160,11 @@ const MainLayout = ({backgroundColor, children}: Props) => {
       // },
     ],
     height: animatedValue.interpolate({
-      inputRange: [0, 50, 100],
+      inputRange: [0, 50, 70, 100],
       outputRange: [
         LOWER_HEADER_HEIGHT,
         LOWER_HEADER_HEIGHT * 1.2,
+        LOWER_HEADER_HEIGHT * 1.3,
         LOWER_HEADER_HEIGHT * 1.5,
       ],
       extrapolate: 'clamp',
@@ -171,8 +173,8 @@ const MainLayout = ({backgroundColor, children}: Props) => {
       inputRange: [0, 50, 80, 100],
       outputRange: [
         width - ACTION_CONTAINER_PADDING_HORIZONTAL * 2,
-        width - ACTION_CONTAINER_PADDING_HORIZONTAL,
         width - ACTION_CONTAINER_PADDING_HORIZONTAL - 6,
+        width - ACTION_CONTAINER_PADDING_HORIZONTAL,
         width,
       ],
       extrapolate: 'clamp',
@@ -210,17 +212,27 @@ const MainLayout = ({backgroundColor, children}: Props) => {
           },
         ]}>
         <View style={[styles.upperHeader]}>
-          <TextInputAnimated
-            placeholder="Search"
+          <TouchableOpacityAnimated
+            activeOpacity={0.5}
             style={[styles.searchInput, searchInputAnimation]}
-          />
+            onPress={() =>
+              navigation.navigate(dashboardRouteNames.SearchAndFilter)
+            }>
+            <IconImage iconName="search" />
+            <TextInputAnimated
+              editable={false}
+              style={styles.input}
+              placeholder="Search"
+            />
+          </TouchableOpacityAnimated>
+
           <TouchableOpacityAnimated
             style={[styles.headerBtn, searchInputAnimation]}>
-            <SvgIcon iconName="bellWhite" />
+            <IconImage iconName="bellWhite" />
           </TouchableOpacityAnimated>
           <TouchableOpacityAnimated
             style={[styles.headerBtn, searchInputAnimation]}>
-            <SvgIcon iconName="user" />
+            <IconImage iconName="user" />
           </TouchableOpacityAnimated>
         </View>
 
@@ -244,7 +256,7 @@ const MainLayout = ({backgroundColor, children}: Props) => {
                 alignItems: 'center',
                 paddingHorizontal: ACTION_CONTAINER_PADDING_HORIZONTAL,
               },
-              portfolioAnimation,
+              actionAnimation,
             ]}>
             <FlatList
               showsHorizontalScrollIndicator={false}
@@ -257,7 +269,7 @@ const MainLayout = ({backgroundColor, children}: Props) => {
                     navigation.navigate(item.sreen);
                   }}>
                   <Animated.View style={[styles.actionIcon]}>
-                    <SvgIcon iconName={item.icon} />
+                    <IconImage iconName={item.icon} />
                   </Animated.View>
                   <Animated.Text style={[styles.actionLable]}>
                     {item.name}
@@ -282,15 +294,13 @@ const MainLayout = ({backgroundColor, children}: Props) => {
           animatedValue.setValue(offsetY);
         }}
         onScrollEndDrag={() => {
-          // scrollViewRef.current?.scrollTo({
-          //   y:
-          //     scrollDirection.current > 0
-          //       ? scrollDirection.current > 100
-          //         ? animatedValue.
-          //         : 100
-          //       : 0,
-          //   animated: true,
-          // });
+          // console.log('----->', scrollDirection.current);
+          // if (scrollDirection.current > 0 && scrollDirection.current < 2) {
+          //   scrollViewRef.current?.scrollTo({
+          //     y: 100,
+          //     animated: true,
+          //   });
+          // }
         }}
         scrollEventThrottle={16}
         contentContainerStyle={
@@ -370,10 +380,14 @@ const styles = StyleSheet.create({
     color: '#000',
     borderRadius: 16,
     paddingLeft: 8,
-    height: 37,
-    textAlignVertical: 'center',
+    height: 40,
+    display: 'flex',
+    flexDirection: 'row',
     alignItems: 'center',
-    paddingTop: 8,
+  },
+  input: {
+    backgroundColor: 'transparent',
+    color: '#000',
   },
   bell: {
     width: 16,
