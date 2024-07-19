@@ -4,9 +4,6 @@
  *
  *********************************************************/
 
-import {Alert} from 'react-native';
-import Portfolio from '../modules/dashboard/components/portfolio';
-
 interface IRouteName {
   [key: string]: string;
 }

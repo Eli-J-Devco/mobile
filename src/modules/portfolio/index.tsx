@@ -14,10 +14,10 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import SvgIcon from '../../common/components/SvgIcon';
 import useThemeContext from '../../hooks/useThemeContext';
 import {portfolioRouteName} from '../../navigations/router-name';
 import PofolioItem from './components/PofolioItem';
+import IconImage from '../../common/components/icons/IconImage';
 
 const PortFolio = () => {
   const theme = useThemeContext();
@@ -77,7 +77,7 @@ const PortFolio = () => {
               gap: 4,
             },
           ]}>
-          <SvgIcon iconName="electricity" />
+          <IconImage iconName="electricity" />
           <Text
             style={{
               color: theme.palette.text.primary,
@@ -89,24 +89,24 @@ const PortFolio = () => {
         </View>
         <View style={styles.flexContainer}>
           <TouchableOpacity activeOpacity={0.5}>
-            <SvgIcon w={16} h={16} iconName="repeat" />
+            <IconImage iconName="repeat" size={18} />
           </TouchableOpacity>
           <TouchableOpacity activeOpacity={0.5}>
-            <SvgIcon w={16} h={16} iconName="export" />
+            <IconImage iconName="upload" size={16} />
           </TouchableOpacity>
           <TouchableOpacity
             activeOpacity={0.5}
             onPress={() =>
               navigation.navigate(portfolioRouteName.PortfolioFilter)
             }>
-            <SvgIcon w={16} h={16} iconName="filter" />
+            <IconImage iconName="filter" size={18} />
           </TouchableOpacity>
           <TouchableOpacity
             activeOpacity={0.5}
             onPress={() =>
               navigation.navigate(portfolioRouteName.ArrangeColumns)
             }>
-            <SvgIcon w={16} h={16} iconName="pause" />
+            <IconImage iconName="pause" size={18} />
           </TouchableOpacity>
         </View>
       </View>
@@ -130,20 +130,18 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 16,
     gap: 8,
   },
   overViewBtn: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    flex: 3,
+    flex: 1,
     padding: 16,
     borderRadius: 8,
     gap: 4,
   },
   listPofolio: {
-    paddingHorizontal: 8,
     display: 'flex',
     flexDirection: 'column',
     gap: 16,
@@ -153,7 +151,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 16,
+    paddingVertical: 16,
     gap: 8,
   },
   filterMain: {

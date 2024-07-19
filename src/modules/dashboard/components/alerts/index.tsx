@@ -9,6 +9,7 @@ import React from 'react';
 import useThemeContext from '../../../../hooks/useThemeContext';
 import SvgIcon from '../../../../common/components/SvgIcon';
 import AlertItem from './AlertItem';
+import IconImage from '../../../../common/components/icons/IconImage';
 
 const Alerts = () => {
   const theme = useThemeContext();
@@ -25,7 +26,7 @@ const Alerts = () => {
               gap: 8,
             }}>
             <TouchableOpacity activeOpacity={0.5}>
-              <SvgIcon iconName="exclamation" />
+              <IconImage iconName="exclamation" />
             </TouchableOpacity>
             <Text
               style={[
@@ -145,7 +146,7 @@ const Alerts = () => {
       </View>
       <View style={styles.titleWraped}>
         <View style={styles.title}>
-          <SvgIcon iconName="electricity" />
+          <IconImage iconName="electricity" />
           <Text
             style={[
               {
@@ -157,7 +158,7 @@ const Alerts = () => {
              Latest Fault Codes
           </Text>
         </View>
-        <SvgIcon w={16} h={16} iconName="pause" />
+        <IconImage iconName="pause" />
       </View>
       <View style={styles.details}>
         <AlertItem />

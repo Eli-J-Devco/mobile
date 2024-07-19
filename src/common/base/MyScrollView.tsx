@@ -17,6 +17,7 @@ const MyScrollView = (props: IMyScrollViewProps) => {
   return (
     <ScrollView
       showsVerticalScrollIndicator={false}
+      keyboardShouldPersistTaps="handled"
       contentContainerStyle={[
         styles.container,
         {

@@ -4,23 +4,23 @@
  *
  *********************************************************/
 
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import React from 'react';
 import {
   ImageBackground,
   SafeAreaView,
   StatusBar,
   StyleSheet,
-  TouchableOpacity,
-  View,
   Text,
   TextStyle,
+  TouchableOpacity,
+  View,
   ViewStyle,
 } from 'react-native';
 import {images} from '../assets';
-import SvgIcon from '../common/components/SvgIcon';
+import IconImage from '../common/components/icons/IconImage';
 import useThemeContext from '../hooks/useThemeContext';
-import {useNavigation} from '@react-navigation/native';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 interface Props {
   title?: string;
   background?: string;
@@ -57,10 +57,10 @@ const PrimaryLayoutDetailItem = ({
         style={[styles.image, styles.header]}>
         <View style={styles.headerContent}>
           <TouchableOpacity
-            style={[styles.backBtn, {borderColor: theme.palette.text.white}]}
+            style={[styles.backBtn]}
             activeOpacity={0.5}
             onPress={() => navigation.goBack()}>
-            <SvgIcon h={16} w={16} iconName="arrowLeftWhite" />
+            <IconImage size={30} iconName="back" />
           </TouchableOpacity>
           <Text style={textStyle}>{title}</Text>
           <View />
@@ -118,14 +118,6 @@ const styles = StyleSheet.create({
     position: 'relative',
   },
   backBtn: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: 30,
-    width: 30,
-    borderRadius: 30,
-    borderWidth: 1,
     position: 'absolute',
     top: 'auto',
     left: 10,

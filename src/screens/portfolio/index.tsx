@@ -8,17 +8,14 @@ import {View, Text, ScrollView} from 'react-native';
 import React from 'react';
 import PrimaryLayoutDetail from '../../layouts/PrimaryLayoutDetail';
 import PortFolio from '../../modules/portfolio';
+import MyScrollView from '../../common/base/MyScrollView';
 
 const PortfolioSreen = () => {
   return (
     <PrimaryLayoutDetail>
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={{
-          paddingBottom: 16,
-        }}>
+      <MyScrollView>
         <PortFolio />
-      </ScrollView>
+      </MyScrollView>
     </PrimaryLayoutDetail>
   );
 };

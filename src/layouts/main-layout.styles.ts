@@ -3,21 +3,20 @@ import {StyleSheet} from 'react-native';
 export const mainLayoutStyles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'column',
   },
   image: {
-    flex: 2,
+    flex: 1,
     justifyContent: 'center',
   },
   content: {
     display: 'flex',
     width: '100%',
     height: '100%',
-    flex: 6,
+    flex: 1,
     paddingTop: 50,
   },
   header: {
-    flex: 2,
+    flex: 1,
     backgroundColor: 'tranperant',
     width: '100%',
     position: 'relative',
@@ -130,5 +129,25 @@ export const mainLayoutStyles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     display: 'flex',
+  },
+  featureIcon: {
+    width: 16,
+    height: 16,
+    position: 'absolute',
+    top: 8,
+  },
+  feature: {
+    alignItems: 'center',
+  },
+  featureName: {
+    fontWeight: 'bold',
+    fontSize: 12,
+    lineHeight: 14,
+    color: '#FFFFFF',
+    marginTop: 12,
+  },
+  icon32: {
+    width: 32,
+    height: 32,
   },
 });

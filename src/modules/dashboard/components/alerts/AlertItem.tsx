@@ -8,6 +8,7 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import SvgIcon from '../../../../common/components/SvgIcon';
 import useThemeContext from '../../../../hooks/useThemeContext';
+import IconImage from '../../../../common/components/icons/IconImage';
 
 const AlertItem = () => {
   const theme = useThemeContext();
@@ -26,7 +27,7 @@ const AlertItem = () => {
         },
       ]}>
       <View style={styles.left}>
-        <SvgIcon iconName="exclamationRed" />
+        <IconImage iconName="exclamationRed" />
       </View>
       <View style={styles.center}>
         <Text
@@ -89,7 +90,7 @@ const AlertItem = () => {
         </View>
       </View>
       <View style={styles.right}>
-        <SvgIcon iconName="arrowRight" w={16} h={16} />
+        <IconImage iconName="arrowRight" />
       </View>
     </View>
   );

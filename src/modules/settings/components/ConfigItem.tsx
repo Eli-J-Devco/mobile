@@ -8,6 +8,7 @@ import {View, Text, TouchableOpacity} from 'react-native';
 import React from 'react';
 import SvgIcon from '../../../common/components/SvgIcon';
 import useThemeContext from '../../../hooks/useThemeContext';
+import IconImage from '../../../common/components/icons/IconImage';
 
 interface ConfigItemProps {
   iconName: IconNameType;
@@ -42,7 +43,7 @@ const ConfigItem = ({iconName, title, onPress}: ConfigItemProps) => {
           justifyContent: 'flex-start',
           gap: 8,
         }}>
-        <SvgIcon iconName={iconName} w={18} h={18} />
+        <IconImage iconName={iconName} size={18} />
         <Text
           style={{
             color: theme.palette.text.primary,
@@ -51,7 +52,7 @@ const ConfigItem = ({iconName, title, onPress}: ConfigItemProps) => {
           {title}
         </Text>
       </View>
-      <SvgIcon iconName="arrowRight" w={12} h={12} />
+      <IconImage iconName="arrowRight" size={12} />
     </TouchableOpacity>
   );
 };

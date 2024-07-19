@@ -9,6 +9,7 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import SvgIcon from '../../../../common/components/SvgIcon';
 import useThemeContext from '../../../../hooks/useThemeContext';
 import PortfolioItem from './PortfolioItem';
+import IconImage from '../../../../common/components/icons/IconImage';
 
 const PortfolioData: IDashboardPortfolio[] = [
   {
@@ -73,7 +74,7 @@ const Portfolio = () => {
               gap: 8,
             }}>
             <TouchableOpacity activeOpacity={0.5}>
-              <SvgIcon w={24} h={24} iconName="navMenuWhite" />
+              <IconImage iconName="navMenuWhite" />
             </TouchableOpacity>
             <Text
               style={[
@@ -195,7 +196,7 @@ const Portfolio = () => {
         </View>
       </View>
       <View style={styles.titleWraped}>
-        <SvgIcon w={24} h={24} iconName="electricity" />
+        <IconImage iconName="electricity" />
         <Text
           style={[
             {

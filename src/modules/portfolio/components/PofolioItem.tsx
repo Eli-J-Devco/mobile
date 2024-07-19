@@ -18,6 +18,7 @@ import SvgIcon from '../../../common/components/SvgIcon';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {portfolioRouteName} from '../../../navigations/router-name';
+import IconImage from '../../../common/components/icons/IconImage';
 
 const PofolioItem = () => {
   const theme = useThemeContext();
@@ -71,7 +72,7 @@ const PofolioItem = () => {
             onPress={() =>
               navigation.navigate(portfolioRouteName.PortfolioDetails)
             }>
-            <SvgIcon iconName="arrowRight" />
+            <IconImage iconName="arrowRight" />
           </TouchableOpacity>
         </View>
       </View>
