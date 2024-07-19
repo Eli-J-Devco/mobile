@@ -98,47 +98,24 @@ const MainLayout = ({backgroundColor, children}: Props) => {
 
   const searchInputAnimation = {
     transform: [
+      // {
+      //   scaleX: animatedValue.interpolate({
+      //     inputRange: [0, 10, 50],
+      //     outputRange: [1, 0.8, 0],
+      //     extrapolate: 'clamp',
+      //   }),
+      // },
       {
-        scaleX: animatedValue.interpolate({
-          inputRange: [0, 50],
-          outputRange: [1, 0],
-          extrapolate: 'clamp',
-        }),
-      },
-      {
-        translateX: animatedValue.interpolate({
-          inputRange: [0, 25],
-          outputRange: [0, -100],
-          extrapolate: 'clamp',
-        }),
-      },
-    ],
-    opacity: animatedValue.interpolate({
-      inputRange: [0, 25],
-      outputRange: [1, 0],
-      extrapolate: 'clamp',
-    }),
-  };
-  const bellAnimation = {
-    transform: [
-      {
-        scaleX: animatedValue.interpolate({
-          inputRange: [0, 50],
-          outputRange: [1, 0],
-          extrapolate: 'clamp',
-        }),
-      },
-      {
-        translateX: animatedValue.interpolate({
-          inputRange: [0, 25],
-          outputRange: [0, 150],
+        translateY: animatedValue.interpolate({
+          inputRange: [0, 15, 30, 50, 70, 100],
+          outputRange: [0, -10, -20, -40, -60, -100],
           extrapolate: 'clamp',
         }),
       },
     ],
     opacity: animatedValue.interpolate({
-      inputRange: [0, 25],
-      outputRange: [1, 0],
+      inputRange: [0, 15, 30, 50, 70, 100],
+      outputRange: [1, 0.8, 0.6, 0.4, 0.2, 0],
       extrapolate: 'clamp',
     }),
   };
@@ -154,9 +131,15 @@ const MainLayout = ({backgroundColor, children}: Props) => {
       // },
       {
         translateY: animatedValue.interpolate({
-          inputRange: [0, 100],
+          inputRange: [0, 50, 70, 100],
           outputRange: [
             0,
+            -UPPER_HEADER_HEIGHT,
+            -(
+              UPPER_HEADER_HEIGHT +
+              ACTION_CONTAINER_MAGIN_TOP +
+              UPPER_HEADER_PADDING_TOP
+            ),
             -(
               UPPER_HEADER_HEIGHT +
               (StatusBar.currentHeight ? StatusBar.currentHeight : 0) +
@@ -176,15 +159,20 @@ const MainLayout = ({backgroundColor, children}: Props) => {
       // },
     ],
     height: animatedValue.interpolate({
-      inputRange: [0, 100],
-      outputRange: [LOWER_HEADER_HEIGHT, LOWER_HEADER_HEIGHT * 1.5],
+      inputRange: [0, 50, 100],
+      outputRange: [
+        LOWER_HEADER_HEIGHT,
+        LOWER_HEADER_HEIGHT * 1.2,
+        LOWER_HEADER_HEIGHT * 1.5,
+      ],
       extrapolate: 'clamp',
     }),
     width: animatedValue.interpolate({
-      inputRange: [0, 80, 100],
+      inputRange: [0, 50, 80, 100],
       outputRange: [
         width - ACTION_CONTAINER_PADDING_HORIZONTAL * 2,
         width - ACTION_CONTAINER_PADDING_HORIZONTAL,
+        width - ACTION_CONTAINER_PADDING_HORIZONTAL - 6,
         width,
       ],
       extrapolate: 'clamp',
@@ -199,8 +187,8 @@ const MainLayout = ({backgroundColor, children}: Props) => {
       extrapolate: 'clamp',
     }),
     paddingTop: animatedValue.interpolate({
-      inputRange: [0, 100],
-      outputRange: [0, LOWER_HEADER_HEIGHT / 2.5],
+      inputRange: [0, 50, 100],
+      outputRange: [0, LOWER_HEADER_HEIGHT / 3, LOWER_HEADER_HEIGHT / 2.5],
       extrapolate: 'clamp',
     }),
   };
@@ -226,10 +214,12 @@ const MainLayout = ({backgroundColor, children}: Props) => {
             placeholder="Search"
             style={[styles.searchInput, searchInputAnimation]}
           />
-          <TouchableOpacityAnimated style={[styles.headerBtn, bellAnimation]}>
+          <TouchableOpacityAnimated
+            style={[styles.headerBtn, searchInputAnimation]}>
             <SvgIcon iconName="bellWhite" />
           </TouchableOpacityAnimated>
-          <TouchableOpacityAnimated style={[styles.headerBtn, bellAnimation]}>
+          <TouchableOpacityAnimated
+            style={[styles.headerBtn, searchInputAnimation]}>
             <SvgIcon iconName="user" />
           </TouchableOpacityAnimated>
         </View>
