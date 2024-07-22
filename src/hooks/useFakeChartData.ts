@@ -19,7 +19,7 @@ const useFakeChartData = () => {
     const setStateInterval = setInterval(() => {
       const team = getData();
       setState(team);
-    }, 5000);
+    }, 10000);
 
     return () => {
       clearInterval(setStateInterval);

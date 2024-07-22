@@ -11,13 +11,22 @@ import {
   DrawerItemList,
   useDrawerProgress,
 } from '@react-navigation/drawer';
-import {SafeAreaView, StatusBar, StyleSheet} from 'react-native';
+import {
+  Dimensions,
+  SafeAreaView,
+  ScrollView,
+  StatusBar,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import Animated, {interpolate, useAnimatedStyle} from 'react-native-reanimated';
 import {images} from '../assets';
+import IconImage from '../common/components/icons/IconImage';
 import SvgIcon from '../common/components/SvgIcon';
-import MenuScreen from '../screens/menu';
-import {dashboardRouteNames, drawerRouteName} from './router-name';
 import BottomNavigation from './BottomNavigation';
+
+const {width, height} = Dimensions.get('window');
 
 function CustomDrawerContent(props: any) {
   const progress = useDrawerProgress();
@@ -31,13 +40,13 @@ function CustomDrawerContent(props: any) {
   });
 
   return (
-    <DrawerContentScrollView {...props}>
-      <SafeAreaView style={{flex: 1}}>
-        <StatusBar
-          translucent={true}
-          barStyle="dark-content"
-          backgroundColor={'transparent'}
-        />
+    <DrawerContentScrollView showsVerticalScrollIndicator={false} {...props}>
+      <SafeAreaView
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          height: height,
+        }}>
         <Animated.View style={styles.imageContainer}>
           <Animated.Image
             source={images.drawerHearBg}
@@ -45,6 +54,7 @@ function CustomDrawerContent(props: any) {
           />
           <Animated.Image source={images.logo} style={styles.logoImage} />
         </Animated.View>
+
         <Animated.View style={animatedStyle}>
           <DrawerItemList {...props} />
           <DrawerItem
@@ -53,6 +63,32 @@ function CustomDrawerContent(props: any) {
             icon={({focused, color, size}) => <SvgIcon iconName="bell" />}
           />
         </Animated.View>
+        <View
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            marginTop: 'auto',
+            paddingBottom: 16,
+          }}>
+          <Text
+            style={{
+              color: '#000',
+              fontSize: 12,
+              fontWeight: '700',
+            }}>
+            Version 1.0
+          </Text>
+          <Text
+            style={{
+              color: '#000',
+              fontSize: 12,
+              fontWeight: '400',
+            }}>
+            Powered by Next Wave Energy Monitoring, Inc.
+          </Text>
+        </View>
       </SafeAreaView>
     </DrawerContentScrollView>
   );
@@ -64,21 +100,22 @@ export default function DrawerNavigation() {
   return (
     <Drawer.Navigator
       drawerContent={props => <CustomDrawerContent {...props} />}
-      initialRouteName={drawerRouteName.BottomNavigation}
+      initialRouteName="BottomNavigation"
       screenOptions={{
         headerShown: false,
-        drawerActiveTintColor: 'tomato',
-        drawerInactiveTintColor: 'gray',
-        drawerType: 'slide',
+        drawerActiveTintColor: '#000',
+        drawerInactiveTintColor: '#373433',
+        drawerType: 'front',
         drawerStyle: {
           width: '80%',
         },
       }}>
       <Drawer.Screen
-        name="Menu"
-        component={MenuScreen}
+        name="BottomNavigation"
+        component={BottomNavigation}
         options={{
-          drawerIcon: ({focused, size}) => <SvgIcon iconName="dashboard" />,
+          drawerLabel: 'Home',
+          drawerIcon: ({focused, size}) => <IconImage iconName="home" />,
         }}
       />
     </Drawer.Navigator>

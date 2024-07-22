@@ -79,6 +79,7 @@ const ACTION_CONTAINER_HEIGHT = 90;
 const ACTION_CONTAINER_PADDING_HORIZONTAL = 16;
 const ACTION_CONTAINER_MAGIN_TOP = 10;
 interface Props {
+  // navigation: any;
   backgroundColor?: string;
   children: React.ReactNode;
 }
@@ -88,8 +89,8 @@ const TouchableOpacityAnimated =
   Animated.createAnimatedComponent(TouchableOpacity);
 
 const MainLayout = ({backgroundColor, children}: Props) => {
-  const navigation = useNavigation<NativeStackNavigationProp<any>>();
   const theme = useThemeContext();
+  const navigation = useNavigation<any>();
 
   const animatedValue = useRef(new Animated.Value(0)).current;
 
@@ -214,6 +215,19 @@ const MainLayout = ({backgroundColor, children}: Props) => {
         <View style={[styles.upperHeader]}>
           <TouchableOpacityAnimated
             activeOpacity={0.5}
+            onPress={() => {
+              navigation.openDrawer();
+            }}
+            style={[
+              styles.headerBtn,
+              {backgroundColor: 'transparent'},
+              searchInputAnimation,
+            ]}>
+            <IconImage size={28} iconName="navMenuWhite" />
+          </TouchableOpacityAnimated>
+
+          <TouchableOpacityAnimated
+            activeOpacity={0.5}
             style={[styles.searchInput, searchInputAnimation]}
             onPress={() =>
               navigation.navigate(dashboardRouteNames.SearchAndFilter)
@@ -227,6 +241,9 @@ const MainLayout = ({backgroundColor, children}: Props) => {
           </TouchableOpacityAnimated>
 
           <TouchableOpacityAnimated
+            onPress={() => {
+              navigation.openDrawer();
+            }}
             style={[styles.headerBtn, searchInputAnimation]}>
             <IconImage iconName="bellWhite" />
           </TouchableOpacityAnimated>
@@ -358,10 +375,10 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 16,
+    paddingHorizontal: 8,
     paddingVertical: 8,
     marginTop: UPPER_HEADER_PADDING_TOP,
-    gap: 16,
+    gap: 8,
     position: 'relative',
     zIndex: 2,
   },

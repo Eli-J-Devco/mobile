@@ -10,9 +10,9 @@ import Menu from '../../modules/menu';
 
 const MenuScreen = () => {
   return (
-    <MainLayout>
+    <>
       <Menu />
-    </MainLayout>
+    </>
   );
 };
 

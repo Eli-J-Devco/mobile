@@ -20,7 +20,6 @@ const SREEN_HIDE_TAB_BOTTOM = [
   alertRouteNames.AlertDetail,
   reportsRouteNames.ReportSetup,
   reportsRouteNames.ReportFilter,
-  'Menu',
 ];
 
 export default SREEN_HIDE_TAB_BOTTOM;

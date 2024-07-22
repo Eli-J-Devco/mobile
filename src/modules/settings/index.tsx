@@ -42,7 +42,7 @@ const Settings = () => {
         <ConfigItem
           iconName="bag"
           title="Performance Estimation"
-          onPress={() => navigation.navigate(settingRouteNames.PVModelSettings)}
+          // onPress={() => navigation.navigate(settingRouteNames.PVModelSettings)}
         />
         <ConfigItem
           iconName="bag"
@@ -57,7 +57,7 @@ const Settings = () => {
         <ConfigItem
           iconName="dashboard"
           title="Leviton Widget"
-          onPress={() => navigation.navigate(settingRouteNames.PVModelSettings)}
+          // onPress={() => navigation.navigate(settingRouteNames.PVModelSettings)}
         />
       </View>
     </View>

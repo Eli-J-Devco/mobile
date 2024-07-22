@@ -4,16 +4,16 @@
  *
  *********************************************************/
 
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import SvgIcon from '../../../common/components/SvgIcon';
+import {StyleSheet, View} from 'react-native';
+import ButonText from '../../../common/components/button/ButonText';
+import IconImage from '../../../common/components/icons/IconImage';
 import H3 from '../../../common/components/text/H3';
 import PrimaryCardItem from '../../../common/components/view/PrimaryCardItem';
 import TextBetweenView from '../../../common/components/view/TextBetweenView';
 import useThemeContext from '../../../hooks/useThemeContext';
-import ButonText from '../../../common/components/button/ButonText';
-import {useNavigation} from '@react-navigation/native';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {alertRouteNames} from '../../../navigations/router-name';
 
 const AlertItem = () => {
@@ -28,7 +28,7 @@ const AlertItem = () => {
   return (
     <PrimaryCardItem>
       <View style={styles.left}>
-        <SvgIcon iconName="exclamationRed" />
+        <IconImage iconName="exclamationRed" />
       </View>
       <View style={styles.center}>
         <H3>Elkor WattsOn Mk. II</H3>

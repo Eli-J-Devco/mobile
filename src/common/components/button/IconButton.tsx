@@ -2,6 +2,7 @@ import React from 'react';
 import {TouchableOpacity} from 'react-native';
 import {TouchableOpacityProps} from 'react-native-gesture-handler';
 import SvgIcon from '../SvgIcon';
+import IconImage from '../icons/IconImage';
 
 interface IIconButtonProps {
   iconName: IconNameType;
@@ -23,7 +24,7 @@ const IconButton = ({
         onPress && onPress();
       }}
       {...touchableOpacityProps}>
-      <SvgIcon iconName={iconName} w={size} h={size} />
+      <IconImage iconName={iconName} size={size} />
     </TouchableOpacity>
   );
 };

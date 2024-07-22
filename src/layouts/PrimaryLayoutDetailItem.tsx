@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     width: '100%',
     height: '100%',
-    flex: 12,
+    flex: 14,
   },
   header: {
     flex: 2,

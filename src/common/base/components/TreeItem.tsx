@@ -8,6 +8,7 @@ import React, {useState} from 'react';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import SvgIcon from '../../components/SvgIcon';
 import MyCheckBoxText from './../MyCheckBoxText';
+import IconImage from '../../components/icons/IconImage';
 
 interface ChildItemProps {
   child: ITree;
@@ -70,9 +71,8 @@ const TreeItem = ({treeItem, onChecked}: TreeItemProps) => {
           <TouchableOpacity
             activeOpacity={0.5}
             onPress={() => setExpanded(!expanded)}>
-            <SvgIcon
-              w={10}
-              h={10}
+            <IconImage
+              size={expanded ? 18 : 15}
               iconName={expanded ? 'arrowUp' : 'arrowDown'}
             />
           </TouchableOpacity>

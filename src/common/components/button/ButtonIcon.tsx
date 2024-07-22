@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import useThemeContext from '../../../hooks/useThemeContext';
 import SvgIcon from '../SvgIcon';
+import IconImage from '../icons/IconImage';
 
 interface ButtonIconProps {
   iconName: IconNameType;
@@ -40,7 +41,7 @@ const ButtonIcon = ({
       style={[styles.btn, touchableOpacityStyles]}
       activeOpacity={0.5}
       {...touchableOpacityProps}>
-      <SvgIcon w={16} h={16} iconName={iconName} />
+      <IconImage size={16} iconName={iconName} />
       <Text style={[btnTextStyle, textStyles]} {...textProps}>
         {text}
       </Text>

@@ -25,8 +25,8 @@ const Root = () => {
         options={{headerShown: false}}
       />
       <Stack.Screen
-        name={rootRouteName.BottomNavigation}
-        component={BottomNavigation}
+        name="DrawerNavigation"
+        component={DrawerNavigation}
         options={{headerShown: false}}
       />
     </Stack.Navigator>
