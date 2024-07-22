@@ -13,7 +13,6 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import useThemeContext from '../../hooks/useThemeContext';
-import MyCheckBox, {IMyCheckBoxProps} from './MyCheckBox';
 
 interface IMySwicthTextProps {
   scale?: number;
@@ -58,7 +57,7 @@ const MySwicthText = ({
         onValueChange && onValueChange(!isEnabled);
       }}>
       <Switch
-        trackColor={{false: '#767577', true: '#81b0ff'}}
+        trackColor={{false: '#767577', true: theme.palette.background.dark}}
         thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
         ios_backgroundColor="#3e3e3e"
         onValueChange={toggleSwitch}

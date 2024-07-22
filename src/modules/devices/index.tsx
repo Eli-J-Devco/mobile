@@ -15,6 +15,7 @@ import Summary from './components/summary/Summary';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {devicesRouteNames} from '../../navigations/router-name';
+import IconImage from '../../common/components/icons/IconImage';
 
 const items: ITab[] = [
   {
@@ -39,13 +40,13 @@ const Devices = () => {
         extra={
           <View style={styles.action}>
             <MyTouchableOpacity>
-              <SvgIcon iconName="repeat" w={20} h={20} />
+              <IconImage iconName="repeat" size={24} />
             </MyTouchableOpacity>
             <MyTouchableOpacity
               onPress={() =>
                 navigation.navigate(devicesRouteNames.FilterColumns)
               }>
-              <SvgIcon iconName="pause" w={20} h={20} />
+              <IconImage iconName="pause" size={24} />
             </MyTouchableOpacity>
           </View>
         }

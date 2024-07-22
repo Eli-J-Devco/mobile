@@ -5,10 +5,16 @@
  *********************************************************/
 
 import React from 'react';
-import {Text, TouchableOpacity, TouchableOpacityProps} from 'react-native';
+import {
+  Text,
+  TouchableOpacity,
+  TouchableOpacityProps,
+  ViewStyle,
+} from 'react-native';
 
 interface IMyTouchableOpacityProps {
   touchableOpacityProps?: TouchableOpacityProps;
+  touchableOpacityStyle?: ViewStyle;
   onPress?: () => void;
   children: React.ReactNode;
 }
@@ -17,6 +23,7 @@ const MyTouchableOpacity = (props: IMyTouchableOpacityProps) => {
   return (
     <TouchableOpacity
       activeOpacity={0.5}
+      style={props.touchableOpacityStyle}
       onPress={() => {
         if (props.onPress) {
           props.onPress();

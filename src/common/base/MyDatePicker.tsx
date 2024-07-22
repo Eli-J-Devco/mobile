@@ -15,6 +15,7 @@ import {
 } from 'react-native';
 import useThemeContext from '../../hooks/useThemeContext';
 import SvgIcon from '../components/SvgIcon';
+import IconImage from '../components/icons/IconImage';
 
 interface MyDatePickerProps {
   value?: any;
@@ -63,7 +64,7 @@ const MyDatePicker = ({
           </Text>
         </View>
         <View style={styles.icon}>
-          <SvgIcon iconName="datePicker" w={12} h={12} />
+          <IconImage iconName="datePicker" size={14} />
         </View>
       </TouchableOpacity>
 

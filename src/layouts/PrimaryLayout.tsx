@@ -10,6 +10,7 @@ import {
   SafeAreaView,
   StatusBar,
   StyleSheet,
+  TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
@@ -19,6 +20,8 @@ import SvgIcon from '../common/components/SvgIcon';
 import useThemeContext from '../hooks/useThemeContext';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import IconImage from '../common/components/icons/IconImage';
+import MyTouchableOpacity from '../common/base/MyTouchableOpacity';
 
 interface Props {
   filter?: boolean;
@@ -42,25 +45,20 @@ const PrimaryLayout = ({filter = true, children}: Props) => {
         <View style={{width: '100%'}}>
           {filter && (
             <View style={styles.headerContent}>
-              <TouchableOpacity
-                activeOpacity={0.5}
-                onPress={() => navigation.goBack()}>
-                <SvgIcon iconName="arrowLeftWhite" />
-              </TouchableOpacity>
-              <MyTextInput
-                style={[
-                  styles.searchInput,
-                  {color: theme.palette.text.primary},
-                ]}
-                placeholder="Search"
-              />
+              <MyTouchableOpacity onPress={() => navigation.goBack()}>
+                <IconImage iconName="arrowLeftWhite" />
+              </MyTouchableOpacity>
+              <View style={[styles.searchInput]}>
+                <IconImage iconName="search" />
+                <TextInput style={styles.input} placeholder="Search" />
+              </View>
               <View style={styles.headerBtnContainer}>
-                <TouchableOpacity activeOpacity={0.5} style={styles.headerBtn}>
-                  <SvgIcon iconName="bellWhite" />
-                </TouchableOpacity>
-                <TouchableOpacity activeOpacity={0.5} style={styles.headerBtn}>
-                  <SvgIcon iconName="user" />
-                </TouchableOpacity>
+                <MyTouchableOpacity touchableOpacityStyle={styles.headerBtn}>
+                  <IconImage iconName="bellWhite" />
+                </MyTouchableOpacity>
+                <MyTouchableOpacity touchableOpacityStyle={styles.headerBtn}>
+                  <IconImage iconName="user" />
+                </MyTouchableOpacity>
               </View>
             </View>
           )}
@@ -99,11 +97,19 @@ const styles = StyleSheet.create({
     marginTop: 50,
   },
   searchInput: {
-    backgroundColor: '#F6F6F6',
-    borderRadius: 30,
     flex: 1,
-    height: 37,
-    paddingLeft: 10,
+    backgroundColor: '#E8E4E4',
+    color: '#000',
+    borderRadius: 16,
+    paddingLeft: 8,
+    height: 40,
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  input: {
+    backgroundColor: 'transparent',
+    color: '#000',
   },
   headerBtnContainer: {
     display: 'flex',

@@ -4,6 +4,8 @@
  *
  *********************************************************/
 
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import React, {useState} from 'react';
 import {
   StyleSheet,
@@ -13,12 +15,10 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import SvgIcon from '../../common/components/SvgIcon';
+import IconImage from '../../common/components/icons/IconImage';
 import useThemeContext from '../../hooks/useThemeContext';
-import AlertItem from './components/AlertItem';
-import {useNavigation} from '@react-navigation/native';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {alertRouteNames} from '../../navigations/router-name';
+import AlertItem from './components/AlertItem';
 
 const Alerts = () => {
   const theme = useThemeContext();
@@ -82,7 +82,7 @@ const Alerts = () => {
       <View style={styles.filterWraped}>
         <View style={styles.filterMain}>
           <View style={styles.flexContainer}>
-            <SvgIcon iconName="exclamationBlack" />
+            <IconImage iconName="exclamationBlack" />
             <Text
               style={{
                 color: theme.palette.text.primary,
@@ -101,7 +101,7 @@ const Alerts = () => {
                 styles.btn,
                 {borderColor: theme.palette.borderColor.base},
               ]}>
-              <SvgIcon w={16} h={16} iconName="filter" />
+              <IconImage size={18} iconName="filter" />
               <Text style={btnText}>Filter</Text>
             </TouchableOpacity>
             <TouchableOpacity
@@ -111,7 +111,7 @@ const Alerts = () => {
                 styles.btn,
                 {borderColor: theme.palette.borderColor.base},
               ]}>
-              <SvgIcon w={16} h={16} iconName="filter" />
+              <IconImage size={18} iconName="filter" />
               <Text style={btnText}>Alert Config</Text>
             </TouchableOpacity>
           </View>
@@ -119,7 +119,7 @@ const Alerts = () => {
         <View>
           <View style={styles.flexContainer}>
             <TouchableOpacity activeOpacity={0.5}>
-              <SvgIcon w={16} h={16} iconName="repeat" />
+              <IconImage size={20} iconName="repeat" />
             </TouchableOpacity>
             <TouchableOpacity
               activeOpacity={0.5}
@@ -128,14 +128,17 @@ const Alerts = () => {
                 styles.btn,
                 {borderColor: theme.palette.borderColor.base},
               ]}>
-              <SvgIcon w={16} h={16} iconName="export" />
+              <IconImage size={14} iconName="upload" />
               <Text style={btnText}>Export</Text>
             </TouchableOpacity>
           </View>
 
           <View style={styles.flexContainer}>
             <Switch
-              trackColor={{false: '#767577', true: '#81b0ff'}}
+              trackColor={{
+                false: '#767577',
+                true: theme.palette.background.dark,
+              }}
               thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
               ios_backgroundColor="#3e3e3e"
               onValueChange={toggleSwitch}

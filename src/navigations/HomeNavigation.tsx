@@ -22,7 +22,7 @@ import ReportsNavigation from './ReportsNavigation';
 
 const Stack = createNativeStackNavigator();
 
-const HomeNavigation = () => {
+const HomeNavigation = ({navigation}: any) => {
   return (
     <Stack.Navigator
       screenOptions={{

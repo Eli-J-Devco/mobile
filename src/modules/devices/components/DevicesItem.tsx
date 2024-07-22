@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import ButtonIcon from '../../../common/components/button/ButtonIcon';
-import SvgIcon from '../../../common/components/SvgIcon';
+import IconImage from '../../../common/components/icons/IconImage';
 import H3 from '../../../common/components/text/H3';
 import PrimaryCardItem from '../../../common/components/view/PrimaryCardItem';
 import TextBetweenView from '../../../common/components/view/TextBetweenView';
@@ -12,7 +12,7 @@ const DevicesItem = () => {
   return (
     <PrimaryCardItem>
       <View style={styles.left}>
-        <SvgIcon iconName="checkRounded" w={20} h={20} />
+        <IconImage iconName="checkBlue" size={26} />
       </View>
       <View style={styles.right}>
         <H3>Elkor WattsOn Mk. II</H3>

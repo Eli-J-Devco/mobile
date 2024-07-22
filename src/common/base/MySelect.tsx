@@ -18,6 +18,7 @@ import {
 } from 'react-native';
 import useThemeContext from '../../hooks/useThemeContext';
 import SvgIcon from '../components/SvgIcon';
+import IconImage from '../components/icons/IconImage';
 
 export interface MySelectProps {
   value?: string | number;
@@ -78,7 +79,7 @@ const MySelect = ({
           </Text>
         </View>
         <View style={styles.icon}>
-          <SvgIcon iconName="arrowDown" w={10} h={10} />
+          <IconImage iconName="arrowDown" size={14} />
         </View>
       </TouchableOpacity>
       <Modal transparent visible={modalVisible}>

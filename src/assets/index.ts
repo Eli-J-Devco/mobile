@@ -73,4 +73,12 @@ export const iconsImage: Partial<IIcons> = {
   filter: require('./icons-image/filter.png'),
   arrowLeftWhite: require('./icons-image/arrowLeftWhite.png'),
   back: require('./icons-image/back.png'),
+  arrowDown: require('./icons-image/arrow-down.png'),
+  datePicker: require('./icons-image/date-picker.png'),
+  arrowUp: require('./icons-image/arrow-up.png'),
+  checkBlue: require('./icons-image/check-blue.png'),
+  plus: require('./icons-image/plus.png'),
+  more: require('./icons-image/more.png'),
+  download: require('./icons-image/down-load.png'),
+  exclamationBlack: require('./icons-image/exclamation-black.png'),
 };

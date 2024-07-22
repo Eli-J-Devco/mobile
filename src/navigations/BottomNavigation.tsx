@@ -6,7 +6,7 @@
 
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import React, {useEffect, useState} from 'react';
-import {Keyboard, StyleSheet, View} from 'react-native';
+import {Keyboard, Platform, StyleSheet, View} from 'react-native';
 import {icons} from '../assets';
 import IconImage from '../common/components/icons/IconImage';
 import useHideTabBottom from '../hooks/useHideTabBottom';
@@ -14,6 +14,12 @@ import Account from '../screens/account';
 import HomeNavigation from './HomeNavigation';
 import {routeName} from './router-name';
 import SettingNavigation from './SettingNavigation';
+import DrawerNavigation from './DrawerNavigation';
+import {navigationRef} from '../..';
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {useDrawerStatus} from '@react-navigation/drawer';
+import MenuScreen from '../screens/menu';
 
 const Tab = createBottomTabNavigator();
 
@@ -44,6 +50,7 @@ const assetsSelectMap: AssetsMap = {
 
 const BottomNavigation = (): JSX.Element => {
   const hide = useHideTabBottom();
+
   const getIcons = (focused: boolean, name: string): any => {
     let asset = assetsNotSelectMap[name];
     if (focused) {
@@ -88,7 +95,12 @@ const BottomNavigation = (): JSX.Element => {
             backgroundColor: '#DCDCDC',
             borderTopWidth: 0,
             paddingVertical: 16,
-            height: 80,
+            height: Platform.OS === 'ios' ? 100 : 80,
+            // position: 'absolute',
+            // left: 0,
+            // right: 0,
+            // bottom: 0,
+            elevation: 0,
           },
           tabBarActiveTintColor: '#F0DB2B',
           tabBarIcon: ({focused}) => (
@@ -112,15 +124,15 @@ const BottomNavigation = (): JSX.Element => {
           tabBarLabelStyle: styles.tabBarLabelStyle,
         }}
       />
-      <Tab.Screen
+      {/* <Tab.Screen
         name={routeName.Menu}
-        component={Account}
+        component={MenuScreen}
         options={{
           tabBarLabel: routeName.Menu,
           // tabBarActiveTintColor: '#F0DB2B',
           tabBarLabelStyle: styles.tabBarLabelStyle,
         }}
-      />
+      /> */}
       <Tab.Screen
         name={routeName.Setup}
         component={SettingNavigation}
