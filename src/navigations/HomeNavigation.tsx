@@ -19,19 +19,105 @@ import {
 } from './router-name';
 import DevicesNavigation from './DevicesNavigation';
 import ReportsNavigation from './ReportsNavigation';
+import {
+  TransitionSpecs,
+  HeaderStyleInterpolators,
+  createStackNavigator,
+} from '@react-navigation/stack';
+import {Animated} from 'react-native';
+import {useDerivedValue, withTiming} from 'react-native-reanimated';
 
-const Stack = createNativeStackNavigator();
+const Stack = createStackNavigator();
+
+const MyTransition = {
+  gestureDirection: 'horizontal',
+  transitionSpec: {
+    open: TransitionSpecs.TransitionIOSSpec,
+    close: TransitionSpecs.TransitionIOSSpec,
+  },
+  headerStyleInterpolator: HeaderStyleInterpolators.forFade,
+  cardStyleInterpolator: ({current, next, layouts}: any) => {
+    return {
+      cardStyle: {
+        transform: [
+          {
+            translateX: current.progress.interpolate({
+              inputRange: [0, 1],
+              outputRange: [layouts.screen.width, 0],
+            }),
+          },
+          {
+            rotate: current.progress.interpolate({
+              inputRange: [0, 1],
+              outputRange: [1, 0],
+            }),
+          },
+          {
+            scale: next
+              ? next.progress.interpolate({
+                  inputRange: [0, 1],
+                  outputRange: [1, 0.9],
+                })
+              : 1,
+          },
+        ],
+      },
+      overlayStyle: {
+        opacity: current.progress.interpolate({
+          inputRange: [0, 1],
+          outputRange: [0, 0.5],
+        }),
+      },
+    };
+  },
+};
 
 const HomeNavigation = ({navigation}: any) => {
   return (
     <Stack.Navigator
       screenOptions={{
         gestureEnabled: false,
+        // animationTypeForReplace: 'push',
+        gestureDirection: 'horizontal',
+        transitionSpec: {
+          open: TransitionSpecs.TransitionIOSSpec,
+          close: TransitionSpecs.TransitionIOSSpec,
+        },
+        cardStyleInterpolator: ({current, next, layouts}: any) => {
+          return {
+            cardStyle: {
+              transform: [
+                {
+                  translateX: current.progress.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [layouts.screen.width, 0],
+                  }),
+                },
+                {
+                  scale: next
+                    ? next.progress.interpolate({
+                        inputRange: [0, 1],
+                        outputRange: [1, 0.9],
+                      })
+                    : 1,
+                },
+              ],
+            },
+            overlayStyle: {
+              opacity: current.progress.interpolate({
+                inputRange: [0, 1],
+                outputRange: [0, 0.5],
+              }),
+            },
+          };
+        },
       }}>
       <Stack.Screen
         name={dashboardRouteNames.Dashboard}
         component={Home}
-        options={{headerShown: false}}
+        options={{
+          headerShown: false,
+        }}
       />
       <Stack.Screen
         name={dashboardRouteNames.AlertsNavigation}

@@ -180,9 +180,9 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     flex: 3,
-    padding: 16,
+    padding: 8,
     borderRadius: 8,
-    gap: 4,
+    // gap: 4,
   },
   listAlert: {
     display: 'flex',

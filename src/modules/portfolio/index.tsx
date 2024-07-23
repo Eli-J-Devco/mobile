@@ -8,6 +8,7 @@ import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import React from 'react';
 import {
+  ScrollView,
   StyleSheet,
   Text,
   TextStyle,
@@ -38,36 +39,45 @@ const PortFolio = () => {
   return (
     <View>
       <View style={styles.overViewBtnWraped}>
-        <View
-          style={[
-            styles.overViewBtn,
-            {
-              backgroundColor: theme.palette.background.dark,
-            },
-          ]}>
-          <Text style={titleOverView}>Sites</Text>
-          <Text style={valueOverView}>270</Text>
-        </View>
-        <View
-          style={[
-            styles.overViewBtn,
-            {
-              backgroundColor: theme.palette.background.dark,
-            },
-          ]}>
-          <Text style={titleOverView}>Total Alerts</Text>
-          <Text style={valueOverView}>20</Text>
-        </View>
-        <View
-          style={[
-            styles.overViewBtn,
-            {
-              backgroundColor: theme.palette.background.dark,
-            },
-          ]}>
-          <Text style={titleOverView}>Throughput</Text>
-          <Text style={valueOverView}>7,485.1 kW - AC</Text>
-        </View>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={{
+            width: '100%',
+            display: 'flex',
+            gap: 8,
+          }}>
+          <View
+            style={[
+              styles.overViewBtn,
+              {
+                backgroundColor: theme.palette.background.dark,
+              },
+            ]}>
+            <Text style={titleOverView}>Sites</Text>
+            <Text style={valueOverView}>270</Text>
+          </View>
+          <View
+            style={[
+              styles.overViewBtn,
+              {
+                backgroundColor: theme.palette.background.dark,
+              },
+            ]}>
+            <Text style={titleOverView}>Total Alerts</Text>
+            <Text style={valueOverView}>20</Text>
+          </View>
+          <View
+            style={[
+              styles.overViewBtn,
+              {
+                backgroundColor: theme.palette.background.dark,
+              },
+            ]}>
+            <Text style={titleOverView}>Throughput</Text>
+            <Text style={valueOverView}>7,485.1 kW - AC</Text>
+          </View>
+        </ScrollView>
       </View>
       <View style={styles.filterWraped}>
         <View
@@ -137,9 +147,9 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     flex: 1,
-    padding: 16,
+    padding: 8,
     borderRadius: 8,
-    gap: 4,
+    // gap: 4,
   },
   listPofolio: {
     display: 'flex',
