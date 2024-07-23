@@ -20,6 +20,7 @@ import ChartBar from '../../../common/components/chart/ChartBar';
 import SvgIcon from '../../../common/components/SvgIcon';
 import useThemeContext from '../../../hooks/useThemeContext';
 import TimeAxis from '../../../common/components/times/TimeAxis';
+import BarChartKit from '../../../common/components/chart/BarChartKit';
 
 const Charting = () => {
   const theme = useThemeContext();
@@ -80,7 +81,9 @@ const Charting = () => {
           Last updated on June 30, 2024 4:02 AM
         </Text>
         <View style={styles.chartContainer}>
-          <ChartBar />
+          {/* <ChartBar /> */}
+
+          <BarChartKit />
         </View>
       </View>
     </View>

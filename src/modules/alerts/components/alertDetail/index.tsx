@@ -17,6 +17,7 @@ import MyCheckBoxText from '../../../../common/base/MyCheckBoxText';
 import Grid from '../../../../common/components/view/Grid';
 import PrimaryFooter from '../../../../common/components/footer/PrimaryFooter';
 import MySwicthText from '../../../../common/base/MySwicthText';
+import LineChartKit from '../../../../common/components/chart/LineChartKit';
 
 const AlertDetail = () => {
   return (
@@ -38,7 +39,7 @@ const AlertDetail = () => {
           </Card>
           <Card tiltle="Charting">
             <View style={styles.chart}>
-              <ChartLine />
+              <LineChartKit />
             </View>
           </Card>
           <Card tiltle="Update">
@@ -99,7 +100,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
   },
   chart: {
-    paddingRight: 8,
+    padding: 8,
   },
   update: {
     padding: 8,

@@ -16,14 +16,17 @@ const useFakeChartData = () => {
   const [state, setState] = useState<any>(null);
 
   useEffect(() => {
-    const setStateInterval = setInterval(() => {
-      const team = getData();
-      setState(team);
-    }, 1000);
+    const team = getData();
+    setState(team);
 
-    return () => {
-      clearInterval(setStateInterval);
-    };
+    // const setStateInterval = setInterval(() => {
+    //   const team = getData();
+    //   setState(team);
+    // }, 1000);
+
+    // return () => {
+    //   clearInterval(setStateInterval);
+    // };
   }, []);
 
   return state;

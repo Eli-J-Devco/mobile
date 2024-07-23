@@ -21,16 +21,6 @@ const ChartBar = () => {
           style={{
             data: {fill: 'tomato', width: 12},
           }}
-          animate={{
-            onExit: {
-              duration: 500,
-              before: () => ({
-                _y: 0,
-                fill: 'orange',
-                label: 'BYE',
-              }),
-            },
-          }}
         />
       )}
     </VictoryChart>
