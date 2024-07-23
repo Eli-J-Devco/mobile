@@ -113,6 +113,7 @@ const Portfolio = () => {
               {
                 borderRightWidth: 1,
                 borderRightColor: theme.palette.borderColor.tertiary,
+                flex: 2,
               },
             ]}>
             <Text
@@ -144,6 +145,7 @@ const Portfolio = () => {
               {
                 borderRightWidth: 1,
                 borderRightColor: theme.palette.borderColor.tertiary,
+                flex: 4,
               },
             ]}>
             <Text
@@ -169,7 +171,7 @@ const Portfolio = () => {
               154,657.66 kW
             </Text>
           </View>
-          <View style={[styles.contentItem]}>
+          <View style={[styles.contentItem, {flex: 4}]}>
             <Text
               style={[
                 {
@@ -243,15 +245,15 @@ const styles = StyleSheet.create({
     borderTopColor: '#fff',
     borderTopWidth: 1,
     paddingHorizontal: 8,
-    paddingVertical: 16,
+    paddingVertical: 8,
   },
   contentItem: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingRight: 16,
-    gap: 4,
+    // paddingHorizontal: 16,
+    // flex: 1
   },
   textValue: {
     borderBottomWidth: 2,

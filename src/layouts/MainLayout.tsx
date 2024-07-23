@@ -6,12 +6,14 @@
 
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import React, {useRef} from 'react';
+import React, {useRef, useState} from 'react';
 import {
+  ActivityIndicator,
   Animated,
   Dimensions,
   FlatList,
   ImageBackground,
+  RefreshControl,
   ScrollView,
   StatusBar,
   StyleSheet,
@@ -72,12 +74,12 @@ const DATA = [
   },
 ];
 
-const UPPER_HEADER_HEIGHT = 32;
-const UPPER_HEADER_PADDING_TOP = 20;
-const LOWER_HEADER_HEIGHT = 96;
+const UPPER_HEADER_HEIGHT = 30;
+const UPPER_HEADER_PADDING_TOP = 8;
+const LOWER_HEADER_HEIGHT = 80;
 const ACTION_CONTAINER_HEIGHT = 90;
 const ACTION_CONTAINER_PADDING_HORIZONTAL = 16;
-const ACTION_CONTAINER_MAGIN_TOP = 10;
+const ACTION_CONTAINER_MAGIN_TOP = 12;
 interface Props {
   // navigation: any;
   backgroundColor?: string;
@@ -91,6 +93,8 @@ const TouchableOpacityAnimated =
 const MainLayout = ({backgroundColor, children}: Props) => {
   const theme = useThemeContext();
   const navigation = useNavigation<any>();
+
+  const [refreshing, setRefreshing] = useState(false);
 
   const animatedValue = useRef(new Animated.Value(0)).current;
 
@@ -232,7 +236,7 @@ const MainLayout = ({backgroundColor, children}: Props) => {
             onPress={() =>
               navigation.navigate(dashboardRouteNames.SearchAndFilter)
             }>
-            <IconImage iconName="search" />
+            <IconImage size={20} iconName="search" />
             <TextInputAnimated
               editable={false}
               style={styles.input}
@@ -242,14 +246,14 @@ const MainLayout = ({backgroundColor, children}: Props) => {
 
           <TouchableOpacityAnimated
             onPress={() => {
-              navigation.openDrawer();
+              // navigation.openDrawer();
             }}
             style={[styles.headerBtn, searchInputAnimation]}>
-            <IconImage iconName="bellWhite" />
+            <IconImage size={20} iconName="bellWhite" />
           </TouchableOpacityAnimated>
           <TouchableOpacityAnimated
             style={[styles.headerBtn, searchInputAnimation]}>
-            <IconImage iconName="user" />
+            <IconImage size={20} iconName="user" />
           </TouchableOpacityAnimated>
         </View>
 
@@ -271,17 +275,22 @@ const MainLayout = ({backgroundColor, children}: Props) => {
                 zIndex: 1,
                 height: ACTION_CONTAINER_HEIGHT,
                 alignItems: 'center',
-                paddingHorizontal: ACTION_CONTAINER_PADDING_HORIZONTAL,
+                paddingHorizontal: ACTION_CONTAINER_PADDING_HORIZONTAL / 2,
               },
               actionAnimation,
             ]}>
             <FlatList
               showsHorizontalScrollIndicator={false}
               data={DATA}
-              renderItem={({item}: {item: any}) => (
+              renderItem={({item, index}: {item: any; index: number}) => (
                 <TouchableOpacityAnimated
                   activeOpacity={0.5}
-                  style={[styles.actionItem]}
+                  style={[
+                    styles.actionItem,
+                    {
+                      marginRight: index === DATA.length - 1 ? 0 : 28,
+                    },
+                  ]}
                   onPress={() => {
                     navigation.navigate(item.sreen);
                   }}>
@@ -306,13 +315,13 @@ const MainLayout = ({backgroundColor, children}: Props) => {
         ref={scrollViewRef}
         onScroll={e => {
           const offsetY = e.nativeEvent.contentOffset.y;
-          // scrollDirection.current = offsetY - lastOffsetY.current;
+          // scrollDirection.current = offsetY - lastOffsetY.current > 0 ? 1 : 2;
           // lastOffsetY.current = offsetY;
           animatedValue.setValue(offsetY);
         }}
         onScrollEndDrag={() => {
           // console.log('----->', scrollDirection.current);
-          // if (scrollDirection.current > 0 && scrollDirection.current < 2) {
+          // if (scrollDirection.current === 1) {
           //   scrollViewRef.current?.scrollTo({
           //     y: 100,
           //     animated: true,
@@ -324,18 +333,40 @@ const MainLayout = ({backgroundColor, children}: Props) => {
           {
             // paddingBottom: 16,
           }
+        }
+        refreshControl={
+          <RefreshControl
+            progressViewOffset={
+              StatusBar.currentHeight
+                ? ACTION_CONTAINER_HEIGHT +
+                  ACTION_CONTAINER_MAGIN_TOP +
+                  LOWER_HEADER_HEIGHT -
+                  StatusBar.currentHeight
+                : ACTION_CONTAINER_HEIGHT +
+                  ACTION_CONTAINER_MAGIN_TOP +
+                  LOWER_HEADER_HEIGHT
+            }
+            refreshing={refreshing}
+            onRefresh={() => {}}
+          />
         }>
         <View
           style={{
             height: StatusBar.currentHeight
-              ? 150 - StatusBar.currentHeight
-              : 150,
+              ? ACTION_CONTAINER_HEIGHT +
+                ACTION_CONTAINER_MAGIN_TOP +
+                LOWER_HEADER_HEIGHT -
+                StatusBar.currentHeight
+              : ACTION_CONTAINER_HEIGHT +
+                ACTION_CONTAINER_MAGIN_TOP +
+                LOWER_HEADER_HEIGHT,
+            // backgroundColor: 'red',
           }}></View>
         <View
           style={[
             {
-              paddingTop:
-                ACTION_CONTAINER_HEIGHT / 2 + ACTION_CONTAINER_MAGIN_TOP + 16,
+              // paddingTop:
+              //   ACTION_CONTAINER_HEIGHT / 2 + ACTION_CONTAINER_MAGIN_TOP + 16,
               // paddingBottom: 16,
             },
             styles.scrollViewContainer,
@@ -355,8 +386,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   headerBtn: {
-    height: 40,
-    width: 40,
+    height: 37,
+    width: 37,
     borderRadius: 20,
     backgroundColor: 'rgba(0, 0, 0, 0.2)',
     justifyContent: 'center',
@@ -383,11 +414,11 @@ const styles = StyleSheet.create({
     zIndex: 2,
   },
   lowerHeader: {
-    height: LOWER_HEADER_HEIGHT,
+    height: LOWER_HEADER_HEIGHT / 1.5,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 16,
+    paddingHorizontal: ACTION_CONTAINER_PADDING_HORIZONTAL,
     justifyContent: 'space-between',
     position: 'relative',
   },
@@ -395,9 +426,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#E8E4E4',
     color: '#000',
-    borderRadius: 16,
+    borderRadius: 20,
     paddingLeft: 8,
-    height: 40,
+    height: 37,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
@@ -405,6 +436,8 @@ const styles = StyleSheet.create({
   input: {
     backgroundColor: 'transparent',
     color: '#000',
+    height: 37,
+    textAlignVertical: 'center',
   },
   bell: {
     width: 16,
@@ -417,13 +450,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     gap: 4,
-    marginRight: 28,
   },
   actionIcon: {
     backgroundColor: '#E6EFFC',
     borderRadius: 8,
-    height: 40,
-    width: 40,
+    height: 37,
+    width: 37,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',

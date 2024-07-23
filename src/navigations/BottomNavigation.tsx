@@ -10,16 +10,9 @@ import {Keyboard, Platform, StyleSheet, View} from 'react-native';
 import {icons} from '../assets';
 import IconImage from '../common/components/icons/IconImage';
 import useHideTabBottom from '../hooks/useHideTabBottom';
-import Account from '../screens/account';
 import HomeNavigation from './HomeNavigation';
 import {routeName} from './router-name';
 import SettingNavigation from './SettingNavigation';
-import DrawerNavigation from './DrawerNavigation';
-import {navigationRef} from '../..';
-import {useNavigation} from '@react-navigation/native';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {useDrawerStatus} from '@react-navigation/drawer';
-import MenuScreen from '../screens/menu';
 
 const Tab = createBottomTabNavigator();
 
@@ -94,8 +87,9 @@ const BottomNavigation = (): JSX.Element => {
             display: hide || keyboardHeight ? 'none' : 'flex',
             backgroundColor: '#DCDCDC',
             borderTopWidth: 0,
-            paddingVertical: 16,
-            height: Platform.OS === 'ios' ? 100 : 80,
+            // paddingVertical: 4,
+            paddingTop: 8,
+            height: Platform.OS === 'ios' ? 80 : 65,
             // position: 'absolute',
             // left: 0,
             // right: 0,
@@ -106,7 +100,7 @@ const BottomNavigation = (): JSX.Element => {
           tabBarIcon: ({focused}) => (
             <View
               style={{
-                padding: 8,
+                padding: 4,
                 borderRadius: 20,
                 backgroundColor: focused ? '#F0DB2B' : '#DCDCDC',
               }}>

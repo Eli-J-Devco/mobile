@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#E8E4E4',
     color: '#000',
-    borderRadius: 16,
+    borderRadius: 20,
     paddingLeft: 8,
     height: 40,
     display: 'flex',

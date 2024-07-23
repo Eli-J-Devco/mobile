@@ -3,6 +3,7 @@ export const images = {
   bgHeader: require('./image/bg-header.png'),
   drawerHearBg: require('./image/drawer-hear-bg.png'),
   logo: require('./image/logo.png'),
+  photo1: require('./image/photo-1.jpg'),
 };
 
 export const icons: Partial<IIcons> = {
@@ -81,4 +82,10 @@ export const iconsImage: Partial<IIcons> = {
   more: require('./icons-image/more.png'),
   download: require('./icons-image/down-load.png'),
   exclamationBlack: require('./icons-image/exclamation-black.png'),
+  service: require('./icons-image/service.png'),
+  location: require('./icons-image/location.png'),
+  list: require('./icons-image/list.png'),
+  support: require('./icons-image/support.png'),
+  logout: require('./icons-image/logout.png'),
+  userBlack: require('./icons-image/user-black.png'),
 };

@@ -5,11 +5,12 @@
  *********************************************************/
 
 import React from 'react';
-import {StyleSheet, Text, TextStyle, View} from 'react-native';
+import {ImageBackground, StyleSheet, Text, TextStyle, View} from 'react-native';
 import SvgIcon from '../../../../common/components/SvgIcon';
 import useThemeContext from '../../../../hooks/useThemeContext';
 import DetailItem from './DetailItem';
 import SiteInformation from './SiteInformation';
+import {images} from '../../../../assets';
 
 const DATA: IDetailItem[] = [
   {
@@ -66,77 +67,80 @@ const PortfolioDetails = () => {
 
   return (
     <View>
-      <View style={styles.overViewContainer}>
-        <View
-          style={[
-            styles.todayWrapper,
-            {
-              borderColor: theme.palette.appThemeColor.colors.blue[300],
-            },
-          ]}>
+      <ImageBackground source={images.photo1}>
+        <View style={styles.overViewContainer}>
           <View
             style={[
-              styles.today,
+              styles.todayWrapper,
               {
-                backgroundColor: theme.palette.appThemeColor.colors.blue[400],
+                borderColor: theme.palette.appThemeColor.colors.blue[300],
               },
             ]}>
-            <Text style={todayLable}>Today</Text>
-            <Text style={todayValue}>13.5</Text>
-            <Text style={todayLable}>kWh</Text>
-          </View>
-        </View>
-        <View style={styles.summary}>
-          <View style={styles.summaryItem}>
             <View
               style={[
-                styles.summaryIcon,
-                {borderColor: theme.palette.appThemeColor.colors.blue[300]},
+                styles.today,
+                {
+                  backgroundColor: theme.palette.appThemeColor.colors.blue[400],
+                },
               ]}>
-              <SvgIcon iconName="solarPanels" />
-            </View>
-            <View style={styles.summaryText}>
-              <Text style={summaryLable}>This month (kWh)</Text>
-              <Text style={summaryValue}>569.5</Text>
+              <Text style={todayLable}>Today</Text>
+              <Text style={todayValue}>13.5</Text>
+              <Text style={todayLable}>kWh</Text>
             </View>
           </View>
-          <View style={styles.summaryItem}>
-            <View
-              style={[
-                styles.summaryIcon,
-                {borderColor: theme.palette.appThemeColor.colors.blue[300]},
-              ]}>
-              <SvgIcon iconName="irradiance" />
+          <View style={styles.summary}>
+            <View style={styles.summaryItem}>
+              <View
+                style={[
+                  styles.summaryIcon,
+                  {borderColor: theme.palette.appThemeColor.colors.blue[300]},
+                ]}>
+                <SvgIcon iconName="solarPanels" />
+              </View>
+              <View style={styles.summaryText}>
+                <Text style={summaryLable}>This month (kWh)</Text>
+                <Text style={summaryValue}>569.5</Text>
+              </View>
             </View>
-            <View style={styles.summaryText}>
-              <Text style={summaryLable}>Irradiance W/m2</Text>
-              <Text style={summaryValue}>569.5</Text>
+            <View style={styles.summaryItem}>
+              <View
+                style={[
+                  styles.summaryIcon,
+                  {borderColor: theme.palette.appThemeColor.colors.blue[300]},
+                ]}>
+                <SvgIcon iconName="irradiance" />
+              </View>
+              <View style={styles.summaryText}>
+                <Text style={summaryLable}>Irradiance W/m2</Text>
+                <Text style={summaryValue}>569.5</Text>
+              </View>
             </View>
           </View>
         </View>
-      </View>
-      <View style={styles.currentPower}>
-        <View
-          style={[
-            styles.currentPowerIcon,
-            {borderColor: theme.palette.appThemeColor.colors.blue[300]},
-          ]}>
-          <SvgIcon iconName="electricityBlue" />
-        </View>
-        <Text style={summaryLable}>
-          Current Power{' '}
-          <Text
+        <View style={styles.currentPower}>
+          <View
             style={[
-              summaryValue,
-              {
-                fontSize: theme.font.size.sm,
-              },
+              styles.currentPowerIcon,
+              {borderColor: theme.palette.appThemeColor.colors.blue[300]},
             ]}>
-            589
-          </Text>{' '}
-          kW
-        </Text>
-      </View>
+            <SvgIcon iconName="electricityBlue" />
+          </View>
+          <Text style={summaryLable}>
+            Current Power{' '}
+            <Text
+              style={[
+                summaryValue,
+                {
+                  fontSize: theme.font.size.sm,
+                },
+              ]}>
+              589
+            </Text>{' '}
+            kW
+          </Text>
+        </View>
+      </ImageBackground>
+
       <View style={styles.itemList}>
         {DATA.map((item: IDetailItem) => (
           <DetailItem key={item.id} item={item} />

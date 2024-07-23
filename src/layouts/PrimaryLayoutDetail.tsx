@@ -58,16 +58,16 @@ const PrimaryLayoutDetail = ({filter = true, children}: Props) => {
               <IconImage iconName="arrowLeftWhite" />
             </TouchableOpacity>
             <View style={[styles.searchInput]}>
-              <IconImage iconName="search" />
+              <IconImage size={20} iconName="search" />
               <TextInput style={styles.input} placeholder="Search" />
             </View>
 
             <View style={styles.headerBtnContainer}>
               <TouchableOpacity activeOpacity={0.5} style={styles.headerBtn}>
-                <IconImage iconName="bellWhite" />
+                <IconImage size={20} iconName="bellWhite" />
               </TouchableOpacity>
               <TouchableOpacity activeOpacity={0.5} style={styles.headerBtn}>
-                <IconImage iconName="user" />
+                <IconImage size={20} iconName="user" />
               </TouchableOpacity>
             </View>
           </View>
@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     backgroundColor: '#F5F5F5',
-    flex: 12,
+    flex: 14,
   },
   header: {
     flex: 2,
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: 24,
+    paddingHorizontal: 16,
     width: '100%',
     gap: 8,
   },
@@ -119,9 +119,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#E8E4E4',
     color: '#000',
-    borderRadius: 16,
+    borderRadius: 20,
     paddingLeft: 8,
-    height: 40,
+    height: 37,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
@@ -129,6 +129,7 @@ const styles = StyleSheet.create({
   input: {
     backgroundColor: 'transparent',
     color: '#000',
+    height: 37,
   },
   headerBtnContainer: {
     display: 'flex',
@@ -138,8 +139,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   headerBtn: {
-    height: 40,
-    width: 40,
+    height: 37,
+    width: 37,
     borderRadius: 20,
     backgroundColor: 'rgba(0, 0, 0, 0.2)',
     justifyContent: 'center',

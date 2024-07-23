@@ -43,6 +43,12 @@ interface IIcons {
   search: any;
   upload: any;
   back: any;
+  list: any;
+  location: any;
+  service: any;
+  support: any;
+  logout: any;
+  userBlack: any;
 }
 
 type IconNameType = keyof IIcons;
