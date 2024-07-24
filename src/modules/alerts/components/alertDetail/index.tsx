@@ -7,17 +7,14 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import MyScrollView from '../../../../common/base/MyScrollView';
-import ChartLine from '../../../../common/components/chart/ChartLine';
-import SelectLabel from '../../../../common/components/select/SelectLabel';
-import Card from '../../../../common/components/view/Card';
-import Item from '../../../../common/components/view/Item';
-import InputLabel from '../../../../common/components/input/InputLabel';
-import PrimaryTextArea from '../../../../common/components/input/PrimaryTextArea';
-import MyCheckBoxText from '../../../../common/base/MyCheckBoxText';
-import Grid from '../../../../common/components/view/Grid';
-import PrimaryFooter from '../../../../common/components/footer/PrimaryFooter';
 import MySwicthText from '../../../../common/base/MySwicthText';
 import LineChartKit from '../../../../common/components/chart/LineChartKit';
+import PrimaryFooter from '../../../../common/components/footer/PrimaryFooter';
+import InputLabel from '../../../../common/components/input/InputLabel';
+import SelectLabel from '../../../../common/components/select/SelectLabel';
+import Card from '../../../../common/components/view/Card';
+import Grid from '../../../../common/components/view/Grid';
+import Item from '../../../../common/components/view/Item';
 
 const AlertDetail = () => {
   return (
