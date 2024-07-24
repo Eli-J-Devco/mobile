@@ -4,14 +4,17 @@
  *
  *********************************************************/
 
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import React from 'react';
-import useThemeContext from '../../../../hooks/useThemeContext';
-import SvgIcon from '../../../../common/components/SvgIcon';
-import AlertItem from './AlertItem';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import MyTouchableOpacity from '../../../../common/base/MyTouchableOpacity';
 import IconImage from '../../../../common/components/icons/IconImage';
+import useThemeContext from '../../../../hooks/useThemeContext';
+import AlertItem from './AlertItem';
+import {NavigationProp, useNavigation} from '@react-navigation/native';
+import {dashboardRouteNames} from '../../../../navigations/router-name';
 
 const Alerts = () => {
+  const navigation = useNavigation<NavigationProp<any>>();
   const theme = useThemeContext();
 
   return (
@@ -25,9 +28,9 @@ const Alerts = () => {
               alignItems: 'center',
               gap: 8,
             }}>
-            <TouchableOpacity activeOpacity={0.5}>
+            <MyTouchableOpacity>
               <IconImage iconName="exclamation" />
-            </TouchableOpacity>
+            </MyTouchableOpacity>
             <Text
               style={[
                 {
@@ -39,7 +42,10 @@ const Alerts = () => {
               Alerts
             </Text>
           </View>
-          <TouchableOpacity activeOpacity={0.5}>
+          <MyTouchableOpacity
+            onPress={() => {
+              navigation.navigate(dashboardRouteNames.AlertsNavigation);
+            }}>
             <Text
               style={[
                 {
@@ -50,7 +56,7 @@ const Alerts = () => {
               ]}>
               View all
             </Text>
-          </TouchableOpacity>
+          </MyTouchableOpacity>
         </View>
         <View
           style={[

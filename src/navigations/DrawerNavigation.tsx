@@ -48,34 +48,3 @@ export default function DrawerNavigation() {
     </Drawer.Navigator>
   );
 }
-
-const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  drawerContent: {
-    flex: 1,
-    paddingTop: 50,
-  },
-  headerImage: {
-    width: '100%',
-    height: 100,
-    resizeMode: 'cover',
-  },
-  logoImage: {
-    width: 150,
-    // height: 150,
-    resizeMode: 'contain',
-    marginTop: -20,
-    marginLeft: 10,
-  },
-  imageContainer: {
-    marginTop: -50,
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'flex-start',
-    justifyContent: 'flex-start',
-  },
-});

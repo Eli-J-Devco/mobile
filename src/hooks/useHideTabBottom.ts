@@ -17,6 +17,8 @@ import SREEN_HIDE_TAB_BOTTOM from '../constants/sreenHideTabBottom';
 const useHideTabBottom = () => {
   const currentSreenName = navigationRef.getCurrentRoute()?.name;
 
+  // console.log('currentSreenName', navigationRef.getCurrentRoute());
+
   return currentSreenName
     ? SREEN_HIDE_TAB_BOTTOM.includes(currentSreenName)
     : false;

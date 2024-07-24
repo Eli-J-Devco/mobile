@@ -52,28 +52,28 @@ const BottomNavigation = (): JSX.Element => {
     return asset;
   };
 
-  const [keyboardHeight, setKeyboardHeight] = useState(false);
+  // const [keyboardHeight, setKeyboardHeight] = useState(false);
 
-  useEffect(() => {
-    const keyboardDidShowListener = Keyboard.addListener(
-      'keyboardDidShow',
-      event => {
-        setKeyboardHeight(true);
-      },
-    );
+  // useEffect(() => {
+  //   const keyboardDidShowListener = Keyboard.addListener(
+  //     'keyboardDidShow',
+  //     event => {
+  //       setKeyboardHeight(true);
+  //     },
+  //   );
 
-    const keyboardDidHideListener = Keyboard.addListener(
-      'keyboardDidHide',
-      () => {
-        setKeyboardHeight(false);
-      },
-    );
+  //   const keyboardDidHideListener = Keyboard.addListener(
+  //     'keyboardDidHide',
+  //     () => {
+  //       setKeyboardHeight(false);
+  //     },
+  //   );
 
-    return () => {
-      keyboardDidShowListener.remove();
-      keyboardDidHideListener.remove();
-    };
-  }, []);
+  //   return () => {
+  //     keyboardDidShowListener.remove();
+  //     keyboardDidHideListener.remove();
+  //   };
+  // }, []);
 
   return (
     <Tab.Navigator
@@ -81,10 +81,11 @@ const BottomNavigation = (): JSX.Element => {
       screenOptions={({route}) => {
         // console.log('----route.name----: ', route);
         return {
+          tabBarHideOnKeyboard: true,
           headerShown: false,
-          tabBarVisible: hide ? false : true,
+          // tabBarVisible: hide ? false : true,
           tabBarStyle: {
-            display: hide || keyboardHeight ? 'none' : 'flex',
+            display: hide ? 'none' : 'flex',
             backgroundColor: '#DCDCDC',
             borderTopWidth: 0,
             // paddingVertical: 4,

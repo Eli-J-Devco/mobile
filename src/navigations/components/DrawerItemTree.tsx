@@ -24,7 +24,11 @@ const ChildItem = ({item}: any) => {
             iconName="list"
             onPress={() => setExpanded(!expanded)}
           />
-          <MyTouchableOpacity touchableOpacityStyle={styles.arrowIcon}>
+          <MyTouchableOpacity
+            touchableOpacityStyle={{
+              ...styles.arrowIcon,
+              right: expanded ? 13 : 16,
+            }}>
             <IconImage
               size={expanded ? 20 : 16}
               iconName={expanded ? 'arrowUp' : 'arrowDown'}
@@ -41,7 +45,11 @@ const ChildItem = ({item}: any) => {
                   onPress={() => setExpandedChildren(!expandedChildren)}
                 />
 
-                <MyTouchableOpacity touchableOpacityStyle={styles.arrowIcon}>
+                <MyTouchableOpacity
+                  touchableOpacityStyle={{
+                    ...styles.arrowIcon,
+                    right: expandedChildren ? 13 : 16,
+                  }}>
                   <IconImage
                     size={expandedChildren ? 20 : 16}
                     iconName={expandedChildren ? 'arrowUp' : 'arrowDown'}
@@ -90,7 +98,11 @@ const DrawerItemTree = ({treeItem}: TreeItemProps) => {
           label="Portfolio"
           iconName="bag"
         />
-        <MyTouchableOpacity touchableOpacityStyle={styles.arrowIcon}>
+        <MyTouchableOpacity
+          touchableOpacityStyle={{
+            ...styles.arrowIcon,
+            right: expanded ? 13 : 16,
+          }}>
           <IconImage
             size={expanded ? 20 : 16}
             iconName={expanded ? 'arrowUp' : 'arrowDown'}
@@ -146,10 +158,10 @@ const styles = StyleSheet.create({
   },
   arrowIcon: {
     position: 'absolute',
-    right: 16,
+
     top: '40%',
   },
   children: {
-    paddingLeft: 24,
+    paddingLeft: 16,
   },
 });

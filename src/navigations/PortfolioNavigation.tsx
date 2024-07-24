@@ -16,6 +16,7 @@ const Stack = createNativeStackNavigator();
 const PortfolioNavigation = () => {
   return (
     <Stack.Navigator
+      initialRouteName={portfolioRouteName.Portfolio}
       screenOptions={{
         gestureEnabled: false,
       }}>

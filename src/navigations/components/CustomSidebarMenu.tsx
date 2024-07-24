@@ -15,6 +15,7 @@ import {images} from '../../assets';
 import CustomDrawerItem from './CustomDrawerItem';
 import DrawerItemTree from './DrawerItemTree';
 import ModalConfirm from '../../common/components/modal/ModalConfirm';
+import CustomerOrAccount from './CustomerOrAccount';
 
 const CustomSidebarMenu = (props: any) => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -46,7 +47,8 @@ const CustomSidebarMenu = (props: any) => {
         <CustomDrawerItem label="Map" iconName="map" />
         <CustomDrawerItem label="Report" iconName="chart" />
         <CustomDrawerItem label="Customer/Account" iconName="userBlack" />
-        <CustomDrawerItem label="Configuration" iconName="setting" />
+        <CustomerOrAccount />
+
         <View style={styles.bottomNav}>
           <CustomDrawerItem label="Support" iconName="support" />
           <CustomDrawerItem
@@ -92,7 +94,7 @@ const CustomSidebarMenu = (props: any) => {
 const styles = StyleSheet.create({
   headerImage: {
     width: '100%',
-    height: 100,
+    height: 80,
     resizeMode: 'cover',
   },
   logoImage: {
