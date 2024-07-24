@@ -240,7 +240,7 @@ const MainLayout = ({backgroundColor, children}: Props) => {
 
           <TouchableOpacityAnimated
             onPress={() => {
-              // navigation.openDrawer();
+              navigation.navigate(dashboardRouteNames.Notify);
             }}
             style={[styles.headerBtn, searchInputAnimation]}>
             <IconImage size={20} iconName="bellWhite" />
