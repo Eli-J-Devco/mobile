@@ -54,6 +54,7 @@ const SelectLabel = ({
       ]}>
       <Text style={[labelTextStyle, labelStyle]}>{label}</Text>
       <MySelect
+        lable={label}
         value={value}
         options={options}
         containerStyle={containerStyle}

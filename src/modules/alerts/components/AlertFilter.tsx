@@ -106,12 +106,6 @@ const AlertFilter = () => {
     fontWeight: '700',
   };
 
-  const btnTextStyle: TextStyle = {
-    color: theme.palette.text.primary,
-    fontSize: theme.font.size.xs,
-    fontWeight: '400',
-  };
-
   return (
     <>
       <ScrollView
@@ -150,6 +144,7 @@ const AlertFilter = () => {
                   flex: 1,
                   borderRadius: 20,
                 }}
+                textSize={theme.font.size.s}
               />
               <ButonText
                 text="ERROR"
@@ -157,6 +152,7 @@ const AlertFilter = () => {
                   flex: 1,
                   borderRadius: 20,
                 }}
+                textSize={theme.font.size.s}
               />
               <ButonText
                 text="INFO"
@@ -164,6 +160,7 @@ const AlertFilter = () => {
                   flex: 1,
                   borderRadius: 20,
                 }}
+                textSize={theme.font.size.s}
               />
             </View>
             <View style={styles.row}>
@@ -173,6 +170,7 @@ const AlertFilter = () => {
                   flex: 1,
                   borderRadius: 20,
                 }}
+                textSize={theme.font.size.s}
               />
               <ButonText
                 text="DEBUG"
@@ -180,6 +178,7 @@ const AlertFilter = () => {
                   flex: 1,
                   borderRadius: 20,
                 }}
+                textSize={theme.font.size.s}
               />
               <ButonText
                 text="FATAL"
@@ -187,6 +186,7 @@ const AlertFilter = () => {
                   flex: 1,
                   borderRadius: 20,
                 }}
+                textSize={theme.font.size.s}
               />
             </View>
           </View>

@@ -64,6 +64,7 @@ export const dashboardRouteNames = {
   SiteOverView: 'SiteOverView',
   Map: 'Map',
   Devices: devicesRouteNames.Devinavigation,
+  Notify: 'Notify',
 };
 
 export const routeName: IRouteName = {

@@ -4,7 +4,7 @@ function random(min: number, max: number) {
   return Math.ceil(Math.random() * (max - min) + min);
 }
 
-function getData() {
+export function getData() {
   const bars = random(6, 10);
 
   return [...new Array(bars)].map((vl, index) => {
@@ -16,6 +16,9 @@ const useFakeChartData = () => {
   const [state, setState] = useState<any>(null);
 
   useEffect(() => {
+    // const team = getData();
+    // setState(team);
+
     const setStateInterval = setInterval(() => {
       const team = getData();
       setState(team);

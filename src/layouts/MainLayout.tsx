@@ -17,6 +17,7 @@ import {
   ScrollView,
   StatusBar,
   StyleSheet,
+  Text,
   TextInput,
   TouchableOpacity,
   View,
@@ -104,13 +105,6 @@ const MainLayout = ({backgroundColor, children}: Props) => {
 
   const searchInputAnimation = {
     transform: [
-      // {
-      //   scaleX: animatedValue.interpolate({
-      //     inputRange: [0, 10, 50],
-      //     outputRange: [1, 0.8, 0],
-      //     extrapolate: 'clamp',
-      //   }),
-      // },
       {
         translateY: animatedValue.interpolate({
           inputRange: [0, 15, 30, 50, 70, 100],
@@ -126,15 +120,16 @@ const MainLayout = ({backgroundColor, children}: Props) => {
     }),
   };
 
+  const lowerHeaderAnimation = {
+    height: animatedValue.interpolate({
+      inputRange: [0, 100],
+      outputRange: [LOWER_HEADER_HEIGHT / 1.5, LOWER_HEADER_HEIGHT / 1.5 - 16],
+      extrapolate: 'clamp',
+    }),
+  };
+
   const actionAnimation = {
     transform: [
-      // {
-      //   scaleX: animatedValue.interpolate({
-      //     inputRange: [0, 50],
-      //     outputRange: [1, 0.8],
-      //     extrapolate: 'clamp',
-      //   }),
-      // },
       {
         translateY: animatedValue.interpolate({
           inputRange: [0, 50, 70, 100],
@@ -165,13 +160,8 @@ const MainLayout = ({backgroundColor, children}: Props) => {
       // },
     ],
     height: animatedValue.interpolate({
-      inputRange: [0, 50, 70, 100],
-      outputRange: [
-        LOWER_HEADER_HEIGHT,
-        LOWER_HEADER_HEIGHT * 1.2,
-        LOWER_HEADER_HEIGHT * 1.3,
-        LOWER_HEADER_HEIGHT * 1.5,
-      ],
+      inputRange: [0, 100],
+      outputRange: [LOWER_HEADER_HEIGHT, LOWER_HEADER_HEIGHT * 1.4],
       extrapolate: 'clamp',
     }),
     width: animatedValue.interpolate({
@@ -198,6 +188,11 @@ const MainLayout = ({backgroundColor, children}: Props) => {
       outputRange: [0, LOWER_HEADER_HEIGHT / 3, LOWER_HEADER_HEIGHT / 2.5],
       extrapolate: 'clamp',
     }),
+    borderRadius: animatedValue.interpolate({
+      inputRange: [0, 100],
+      outputRange: [8, 0],
+      extrapolate: 'clamp',
+    }),
   };
 
   return (
@@ -207,7 +202,6 @@ const MainLayout = ({backgroundColor, children}: Props) => {
         barStyle="dark-content"
         backgroundColor={'transparent'}
       />
-      {/* <View style={styles.upperHeaderPlaceholder}></View> */}
       <ImageBackground
         source={images.bgHeader}
         style={[
@@ -237,7 +231,7 @@ const MainLayout = ({backgroundColor, children}: Props) => {
               navigation.navigate(dashboardRouteNames.SearchAndFilter)
             }>
             <IconImage size={20} iconName="search" />
-            <TextInputAnimated
+            <TextInput
               editable={false}
               style={styles.input}
               placeholder="Search"
@@ -246,7 +240,7 @@ const MainLayout = ({backgroundColor, children}: Props) => {
 
           <TouchableOpacityAnimated
             onPress={() => {
-              // navigation.openDrawer();
+              navigation.navigate(dashboardRouteNames.Notify);
             }}
             style={[styles.headerBtn, searchInputAnimation]}>
             <IconImage size={20} iconName="bellWhite" />
@@ -257,7 +251,7 @@ const MainLayout = ({backgroundColor, children}: Props) => {
           </TouchableOpacityAnimated>
         </View>
 
-        <View style={styles.lowerHeader}>
+        <Animated.View style={[styles.lowerHeader, lowerHeaderAnimation]}>
           <Animated.View
             style={[
               {
@@ -269,7 +263,6 @@ const MainLayout = ({backgroundColor, children}: Props) => {
                 shadowOpacity: 0.5,
                 shadowRadius: 3,
                 elevation: 20,
-                borderRadius: 8,
                 position: 'absolute',
                 top: ACTION_CONTAINER_MAGIN_TOP,
                 zIndex: 1,
@@ -294,12 +287,10 @@ const MainLayout = ({backgroundColor, children}: Props) => {
                   onPress={() => {
                     navigation.navigate(item.sreen);
                   }}>
-                  <Animated.View style={[styles.actionIcon]}>
+                  <View style={[styles.actionIcon]}>
                     <IconImage iconName={item.icon} />
-                  </Animated.View>
-                  <Animated.Text style={[styles.actionLable]}>
-                    {item.name}
-                  </Animated.Text>
+                  </View>
+                  <Text style={[styles.actionLable]}>{item.name}</Text>
                 </TouchableOpacityAnimated>
               )}
               keyExtractor={(item: any, index: number) =>
@@ -308,7 +299,7 @@ const MainLayout = ({backgroundColor, children}: Props) => {
               horizontal={true}
             />
           </Animated.View>
-        </View>
+        </Animated.View>
       </ImageBackground>
       <ScrollView
         showsVerticalScrollIndicator={false}
@@ -352,16 +343,15 @@ const MainLayout = ({backgroundColor, children}: Props) => {
         }>
         <View
           style={{
-            height: StatusBar.currentHeight
-              ? ACTION_CONTAINER_HEIGHT +
-                ACTION_CONTAINER_MAGIN_TOP +
-                LOWER_HEADER_HEIGHT -
-                StatusBar.currentHeight
-              : ACTION_CONTAINER_HEIGHT +
-                ACTION_CONTAINER_MAGIN_TOP +
-                LOWER_HEADER_HEIGHT,
-            // backgroundColor: 'red',
-          }}></View>
+            height:
+              UPPER_HEADER_HEIGHT +
+              ACTION_CONTAINER_HEIGHT +
+              ACTION_CONTAINER_MAGIN_TOP +
+              UPPER_HEADER_PADDING_TOP,
+            backgroundColor: backgroundColor ? backgroundColor : '#F5F5F5',
+          }}
+        />
+
         <View
           style={[
             {
@@ -397,6 +387,7 @@ const styles = StyleSheet.create({
   header: {
     position: 'absolute',
     width: '100%',
+    zIndex: 1,
   },
   scrollViewContainer: {
     height: 'auto',
@@ -410,17 +401,13 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     marginTop: UPPER_HEADER_PADDING_TOP,
     gap: 8,
-    position: 'relative',
-    zIndex: 2,
   },
   lowerHeader: {
-    height: LOWER_HEADER_HEIGHT / 1.5,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: ACTION_CONTAINER_PADDING_HORIZONTAL,
     justifyContent: 'space-between',
-    position: 'relative',
   },
   searchInput: {
     flex: 1,

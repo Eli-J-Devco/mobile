@@ -1,13 +1,14 @@
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import ButtonIcon from '../../common/components/button/ButtonIcon';
 import IconButton from '../../common/components/button/IconButton';
-import PrimaryCardItem from '../../common/components/view/PrimaryCardItem';
-import {useNavigation} from '@react-navigation/native';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {reportsRouteNames} from '../../navigations/router-name';
-import TimeAxis from '../../common/components/times/TimeAxis';
 import ChartBar from '../../common/components/chart/ChartBar';
+import TimeAxis from '../../common/components/times/TimeAxis';
+import PrimaryCardItem from '../../common/components/view/PrimaryCardItem';
+import {reportsRouteNames} from '../../navigations/router-name';
+import BarChartKit from '../../common/components/chart/BarChartKit';
 
 const Reports = () => {
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
@@ -46,7 +47,7 @@ const Reports = () => {
           </View>
         </View>
         <TimeAxis />
-        <ChartBar />
+        <BarChartKit />
       </PrimaryCardItem>
     </View>
   );

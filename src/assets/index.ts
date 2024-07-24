@@ -88,4 +88,5 @@ export const iconsImage: Partial<IIcons> = {
   support: require('./icons-image/support.png'),
   logout: require('./icons-image/logout.png'),
   userBlack: require('./icons-image/user-black.png'),
+  close: require('./icons-image/close.png'),
 };

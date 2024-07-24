@@ -21,6 +21,7 @@ import SvgIcon from '../components/SvgIcon';
 import IconImage from '../components/icons/IconImage';
 
 export interface MySelectProps {
+  lable?: string;
   value?: string | number;
   placeholder?: string;
   options?: ISelectOption[];
@@ -29,6 +30,7 @@ export interface MySelectProps {
 }
 
 const MySelect = ({
+  lable,
   value,
   options,
   placeholder,
@@ -87,7 +89,7 @@ const MySelect = ({
           <StatusBar
             translucent={true}
             barStyle="dark-content"
-            backgroundColor={'transparent'}
+            backgroundColor={'rgba(0, 0, 0, 0.5)'}
           />
           <View
             style={[
@@ -95,8 +97,18 @@ const MySelect = ({
               {backgroundColor: theme.palette.background.primary},
             ]}>
             <View style={styles.header}>
-              <TouchableOpacity onPress={() => setModalVisible(false)}>
-                <SvgIcon iconName="close" />
+              <Text
+                style={{
+                  color: theme.palette.text.primary,
+                  fontSize: theme.font.size.xl,
+                  fontWeight: '600',
+                }}>
+                {lable}
+              </Text>
+              <TouchableOpacity
+                style={{position: 'absolute', top: 8, right: 8}}
+                onPress={() => setModalVisible(false)}>
+                <IconImage iconName="close" />
               </TouchableOpacity>
             </View>
             {options && (
@@ -191,9 +203,12 @@ const styles = StyleSheet.create({
   header: {
     width: '100%',
     display: 'flex',
-    alignItems: 'flex-end',
-    justifyContent: 'flex-end',
-    padding: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 8,
+    flexDirection: 'row',
+    borderBottomWidth: 1,
+    borderBottomColor: '#EBEBEB',
   },
   option: {
     padding: 16,

@@ -16,6 +16,7 @@ interface ButonTextProps {
   textStyles?: TextStyle;
   touchableOpacityStyles?: ViewStyle;
   text: string;
+  textSize?: number;
 }
 
 const ButonText = ({
@@ -24,12 +25,13 @@ const ButonText = ({
   textStyles,
   touchableOpacityStyles,
   text,
+  textSize,
 }: ButonTextProps) => {
   const theme = useThemeContext();
 
   const btnTextStyle: TextStyle = {
     color: theme.palette.text.primary,
-    fontSize: theme.font.size.xs,
+    fontSize: textSize ? textSize : theme.font.size.xs,
     fontWeight: '400',
   };
 
