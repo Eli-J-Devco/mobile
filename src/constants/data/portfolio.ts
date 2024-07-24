@@ -24,23 +24,23 @@ export const PORTFOLIO_DRAWER_NAV = [
     ],
   },
   {
-    id: 2,
+    id: 6,
     name: 'NW',
     children: [
       {
-        id: 2,
+        id: 7,
         name: 'PRS office Vietnam',
         children: [
           {
-            id: 3,
+            id: 8,
             name: 'IPC Datalogger',
           },
           {
-            id: 4,
+            id: 9,
             name: 'KLEA 200P Comsumption Meter',
           },
           {
-            id: 5,
+            id: 10,
             name: 'KLEA 200P',
           },
         ],
