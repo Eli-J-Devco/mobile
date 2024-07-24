@@ -4,13 +4,25 @@
  *
  *********************************************************/
 
+import {
+  CommonActions,
+  NavigationProp,
+  useNavigation,
+} from '@react-navigation/native';
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import SvgIcon from '../../../../common/components/SvgIcon';
-import useThemeContext from '../../../../hooks/useThemeContext';
 import IconImage from '../../../../common/components/icons/IconImage';
+import useThemeContext from '../../../../hooks/useThemeContext';
+import MyTouchableOpacity from '../../../../common/base/MyTouchableOpacity';
+import {
+  alertRouteNames,
+  dashboardRouteNames,
+  rootRouteName,
+} from '../../../../navigations/router-name';
+import {navigationRef} from '../../../../..';
 
 const AlertItem = () => {
+  const navigation = useNavigation<NavigationProp<any>>();
   const theme = useThemeContext();
 
   const styleText: any = {
@@ -89,9 +101,16 @@ const AlertItem = () => {
           <Text style={styleText}>Device has lost communication</Text>
         </View>
       </View>
-      <View style={styles.right}>
+      <MyTouchableOpacity
+        touchableOpacityStyle={styles.right}
+        onPress={() =>
+          navigation.navigate(dashboardRouteNames.AlertsNavigation, {
+            screen: alertRouteNames.AlertDetail,
+            params: {sort: 'latest'},
+          })
+        }>
         <IconImage iconName="arrowRight" />
-      </View>
+      </MyTouchableOpacity>
     </View>
   );
 };

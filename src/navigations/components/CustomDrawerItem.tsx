@@ -10,7 +10,7 @@ import IconImage from '../../common/components/icons/IconImage';
 
 interface ICustomDrawerItemProps {
   label: string;
-  iconName: IconNameType;
+  iconName?: IconNameType;
   onPress?: () => void;
 }
 
@@ -27,9 +27,9 @@ const CustomDrawerItem = ({
           onPress();
         }
       }}
-      icon={({focused, color, size}) => (
-        <IconImage size={16} iconName={iconName} />
-      )}
+      icon={({focused, color, size}) =>
+        iconName ? <IconImage size={16} iconName={iconName} /> : <></>
+      }
       style={{flex: 1}}
       labelStyle={{
         marginLeft: -25,

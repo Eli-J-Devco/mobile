@@ -4,7 +4,9 @@ import React from 'react';
 const Notify = () => {
   return (
     <View>
-      <Text>Notify</Text>
+      <View>
+        <Text>Notify</Text>
+      </View>
     </View>
   );
 };

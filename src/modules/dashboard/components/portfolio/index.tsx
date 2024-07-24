@@ -10,6 +10,9 @@ import SvgIcon from '../../../../common/components/SvgIcon';
 import useThemeContext from '../../../../hooks/useThemeContext';
 import PortfolioItem from './PortfolioItem';
 import IconImage from '../../../../common/components/icons/IconImage';
+import MyTouchableOpacity from '../../../../common/base/MyTouchableOpacity';
+import {NavigationProp, useNavigation} from '@react-navigation/native';
+import {dashboardRouteNames} from '../../../../navigations/router-name';
 
 const PortfolioData: IDashboardPortfolio[] = [
   {
@@ -60,6 +63,7 @@ const PortfolioData: IDashboardPortfolio[] = [
 ];
 
 const Portfolio = () => {
+  const navigation = useNavigation<NavigationProp<any>>();
   const theme = useThemeContext();
 
   return (
@@ -73,9 +77,9 @@ const Portfolio = () => {
               alignItems: 'center',
               gap: 8,
             }}>
-            <TouchableOpacity activeOpacity={0.5}>
+            <MyTouchableOpacity>
               <IconImage iconName="navMenuWhite" />
-            </TouchableOpacity>
+            </MyTouchableOpacity>
             <Text
               style={[
                 {
@@ -87,7 +91,10 @@ const Portfolio = () => {
               Portfolio
             </Text>
           </View>
-          <TouchableOpacity activeOpacity={0.5}>
+          <MyTouchableOpacity
+            onPress={() => {
+              navigation.navigate(dashboardRouteNames.PortfolioNavigation);
+            }}>
             <Text
               style={[
                 {
@@ -98,7 +105,7 @@ const Portfolio = () => {
               ]}>
               View all
             </Text>
-          </TouchableOpacity>
+          </MyTouchableOpacity>
         </View>
         <View
           style={[
