@@ -14,7 +14,10 @@ import H3 from '../../../common/components/text/H3';
 import PrimaryCardItem from '../../../common/components/view/PrimaryCardItem';
 import TextBetweenView from '../../../common/components/view/TextBetweenView';
 import useThemeContext from '../../../hooks/useThemeContext';
-import {alertRouteNames} from '../../../navigations/router-name';
+import {
+  alertRouteNames,
+  dashboardRouteNames,
+} from '../../../navigations/router-name';
 
 const AlertItem = () => {
   const theme = useThemeContext();

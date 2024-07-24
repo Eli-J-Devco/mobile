@@ -9,6 +9,7 @@ import {StyleSheet} from 'react-native';
 import IconImage from '../common/components/icons/IconImage';
 import BottomNavigation from './BottomNavigation';
 import CustomSidebarMenu from './components/CustomSidebarMenu';
+import CommonNavigation from './CommonNavigation';
 
 const Drawer = createDrawerNavigator();
 
@@ -35,8 +36,8 @@ export default function DrawerNavigation() {
         },
       }}>
       <Drawer.Screen
-        name="BottomNavigation"
-        component={BottomNavigation}
+        name="CommonNavigation"
+        component={CommonNavigation}
         options={{
           drawerLabel: 'Home',
           drawerIcon: ({focused, size}) => (

@@ -104,7 +104,7 @@ const AlertItem = () => {
       <MyTouchableOpacity
         touchableOpacityStyle={styles.right}
         onPress={() =>
-          navigation.navigate(dashboardRouteNames.AlertsNavigation, {
+          navigation.navigate('CommonNavigation', {
             screen: alertRouteNames.AlertDetail,
             params: {sort: 'latest'},
           })

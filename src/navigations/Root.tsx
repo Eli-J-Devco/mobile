@@ -8,7 +8,6 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
 import Login from '../screens/login';
 import DrawerNavigation from './DrawerNavigation';
-import {rootRouteName} from './router-name';
 
 const Stack = createNativeStackNavigator();
 
@@ -19,7 +18,7 @@ const Root = () => {
         gestureEnabled: false,
       }}>
       <Stack.Screen
-        name={rootRouteName.Login}
+        name={'Login'}
         component={Login}
         options={{headerShown: false}}
       />

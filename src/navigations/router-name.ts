@@ -11,7 +11,6 @@ interface IRouteName {
 export const rootRouteName = {
   Login: 'Login',
   DrawerNavigation: 'DrawerNavigation',
-  BottomNavigation: 'BottomNavigation',
 };
 
 export const drawerRouteName = {

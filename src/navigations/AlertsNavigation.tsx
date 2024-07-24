@@ -28,11 +28,11 @@ const AlertsNavigation = () => {
         component={AlertFilterSreen}
         options={{headerShown: false}}
       />
-      <Stack.Screen
+      {/* <Stack.Screen
         name={alertRouteNames.AlertDetail}
         component={AlertDetailSreen}
         options={{headerShown: false}}
-      />
+      /> */}
     </Stack.Navigator>
   );
 };

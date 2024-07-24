@@ -5,16 +5,20 @@
  *********************************************************/
 
 import {yupResolver} from '@hookform/resolvers/yup';
-import React, {useState} from 'react';
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import React from 'react';
 import {FormProvider, useForm} from 'react-hook-form';
-import {Pressable, StyleSheet, Text, View} from 'react-native';
+import {
+  Pressable,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import * as Yup from 'yup';
 import RHFTextInput from '../../../common/hook-form/RHFTextInput';
-import {useNavigation} from '@react-navigation/native';
-import {StackActions} from '@react-navigation/native';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import useThemeContext from '../../../hooks/useThemeContext';
-import {rootRouteName} from '../../../navigations/router-name';
 
 type LoginValuesFrom = {
   username: string;
@@ -72,7 +76,11 @@ const LoginForm = () => {
         />
       </FormProvider>
 
-      <Pressable style={styles.btn} onPress={handleSubmit(onSubmit)}>
+      <TouchableOpacity
+        activeOpacity={0.5}
+        accessibilityRole="button"
+        style={styles.btn}
+        onPress={handleSubmit(onSubmit)}>
         <Text
           style={{
             color: theme.palette.text.primary,
@@ -81,7 +89,7 @@ const LoginForm = () => {
           }}>
           Log In
         </Text>
-      </Pressable>
+      </TouchableOpacity>
     </View>
   );
 };

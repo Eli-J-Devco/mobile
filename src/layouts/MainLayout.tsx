@@ -228,7 +228,11 @@ const MainLayout = ({backgroundColor, children}: Props) => {
             activeOpacity={0.5}
             style={[styles.searchInput, searchInputAnimation]}
             onPress={() =>
-              navigation.navigate(dashboardRouteNames.SearchAndFilter)
+              // navigation.navigate(dashboardRouteNames.SearchAndFilter)
+              navigation.navigate('CommonNavigation', {
+                screen: dashboardRouteNames.Notify,
+                params: {sort: 'latest'},
+              })
             }>
             <IconImage size={20} iconName="search" />
             <TextInput

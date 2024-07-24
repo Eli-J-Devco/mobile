@@ -17,7 +17,7 @@ const SREEN_HIDE_TAB_BOTTOM = [
   settingRouteNames.PVModelSettings,
   dashboardRouteNames.Map,
   devicesRouteNames.FilterColumns,
-  alertRouteNames.AlertDetail,
+  // alertRouteNames.AlertDetail,
   reportsRouteNames.ReportSetup,
   reportsRouteNames.ReportFilter,
 ];

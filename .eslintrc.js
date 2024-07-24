@@ -43,12 +43,14 @@ module.exports = {
   //   ],
   //   'no-extra-parens': ['error', 'all', {nestedBinaryExpressions: false}],
   // },
-  // overrides: [
-  //   {
-  //     files: ['*.test.ts', '*.config.ts'],
-  //     rules: {
-  //       '@typescript-eslint/no-explicit-any': 'off',
-  //     },
-  //   },
-  // ],
+  overrides: [
+    {
+      // files: ['*.test.ts', '*.config.ts'],
+      // rules: {
+      //   '@typescript-eslint/no-explicit-any': 'off',
+      // },
+      files: ['**/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[jt]s?(x)'],
+      extends: ['plugin:testing-library/react'],
+    },
+  ],
 };

@@ -4,32 +4,19 @@
  *
  *********************************************************/
 
-import {
-  HeaderStyleInterpolators,
-  TransitionSpecs,
-  createStackNavigator,
-} from '@react-navigation/stack';
+import {TransitionSpecs, createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
-import Home from '../screens/home';
-import SearchAndFilterSreen from '../screens/home/search-and-filter';
-import MapScreen from '../screens/map';
-import SiteOverViewSreen from '../screens/site-over-view';
-import AlertsNavigation from './AlertsNavigation';
-import DevicesNavigation from './DevicesNavigation';
-import PortfolioNavigation from './PortfolioNavigation';
-import ReportsNavigation from './ReportsNavigation';
-import {
-  dashboardRouteNames,
-  devicesRouteNames,
-  reportsRouteNames,
-} from './router-name';
 import NotifySreen from '../screens/notify';
+import BottomNavigation from './BottomNavigation';
+import {alertRouteNames, dashboardRouteNames} from './router-name';
+import AlertDetailSreen from '../screens/alerts/alert-detail';
 
 const Stack = createStackNavigator();
 
-const HomeNavigation = ({navigation}: any) => {
+const CommonNavigation = () => {
   return (
     <Stack.Navigator
+      initialRouteName="BottomNavigation"
       screenOptions={{
         gestureEnabled: false,
         // animationTypeForReplace: 'push',
@@ -68,49 +55,25 @@ const HomeNavigation = ({navigation}: any) => {
         },
       }}>
       <Stack.Screen
-        name={dashboardRouteNames.Dashboard}
-        component={Home}
+        name="BottomNavigation"
+        component={BottomNavigation}
         options={{
           headerShown: false,
         }}
       />
+
       <Stack.Screen
-        name={dashboardRouteNames.AlertsNavigation}
-        component={AlertsNavigation}
+        name={dashboardRouteNames.Notify}
+        component={NotifySreen}
         options={{headerShown: false}}
       />
       <Stack.Screen
-        name={dashboardRouteNames.PortfolioNavigation}
-        component={PortfolioNavigation}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name={dashboardRouteNames.SearchAndFilter}
-        component={SearchAndFilterSreen}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name={dashboardRouteNames.SiteOverView}
-        component={SiteOverViewSreen}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name={dashboardRouteNames.Map}
-        component={MapScreen}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name={devicesRouteNames.Devinavigation}
-        component={DevicesNavigation}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name={reportsRouteNames.ReportsNavigation}
-        component={ReportsNavigation}
+        name={alertRouteNames.AlertDetail}
+        component={AlertDetailSreen}
         options={{headerShown: false}}
       />
     </Stack.Navigator>
   );
 };
 
-export default HomeNavigation;
+export default CommonNavigation;
