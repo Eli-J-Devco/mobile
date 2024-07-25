@@ -49,6 +49,8 @@ interface IIcons {
   support: any;
   logout: any;
   userBlack: any;
+  arrowIndicateDirectionLeft: any;
+  arrowIndicateDirectionRight: any;
 }
 
 type IconNameType = keyof IIcons;
