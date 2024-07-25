@@ -8,6 +8,7 @@ import MapboxGL, {Logger, UserLocation} from '@rnmapbox/maps';
 import React, {useEffect, useState} from 'react';
 import {Image, StyleSheet, View} from 'react-native';
 import {images} from '../../assets';
+import {MAP_BOX_ACCESS_TOKEN} from '@env';
 
 Logger.setLogCallback(log => {
   const {message} = log;
@@ -21,9 +22,7 @@ Logger.setLogCallback(log => {
   return false;
 });
 
-MapboxGL.setAccessToken(
-  'sk.eyJ1IjoicXVpdHJvbmduZ3V5ZW4iLCJhIjoiY2x5aWM4Y3JhMGNoODJrc2hpZmNiZDcyYSJ9.EGU9vFoFoWo66K-g_ZDMPw',
-);
+MapboxGL.setAccessToken(MAP_BOX_ACCESS_TOKEN);
 MapboxGL.UserTrackingMode.Follow;
 
 const Map = () => {
@@ -31,6 +30,7 @@ const Map = () => {
 
   useEffect(() => {
     // Request permission to access location
+
     (async () => {
       await MapboxGL.requestAndroidLocationPermissions();
     })();
