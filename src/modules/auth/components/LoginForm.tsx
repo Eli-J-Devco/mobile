@@ -15,6 +15,7 @@ import {StackActions} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import useThemeContext from '../../../hooks/useThemeContext';
 import {rootRouteName} from '../../../navigations/router-name';
+import MyTouchableOpacity from '../../../common/base/MyTouchableOpacity';
 
 type LoginValuesFrom = {
   username: string;
@@ -72,7 +73,9 @@ const LoginForm = () => {
         />
       </FormProvider>
 
-      <Pressable style={styles.btn} onPress={handleSubmit(onSubmit)}>
+      <MyTouchableOpacity
+        touchableOpacityStyle={styles.btn}
+        onPress={handleSubmit(onSubmit)}>
         <Text
           style={{
             color: theme.palette.text.primary,
@@ -81,7 +84,7 @@ const LoginForm = () => {
           }}>
           Log In
         </Text>
-      </Pressable>
+      </MyTouchableOpacity>
     </View>
   );
 };

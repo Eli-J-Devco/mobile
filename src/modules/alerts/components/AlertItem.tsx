@@ -16,7 +16,11 @@ import TextBetweenView from '../../../common/components/view/TextBetweenView';
 import useThemeContext from '../../../hooks/useThemeContext';
 import {alertRouteNames} from '../../../navigations/router-name';
 
-const AlertItem = () => {
+interface IAlertItemProps {
+  bgColor?: string;
+}
+
+const AlertItem = ({bgColor}: IAlertItemProps) => {
   const theme = useThemeContext();
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
 
@@ -26,7 +30,7 @@ const AlertItem = () => {
   };
 
   return (
-    <PrimaryCardItem>
+    <PrimaryCardItem bgColor={bgColor}>
       <View style={styles.left}>
         <IconImage iconName="exclamationRed" />
       </View>
@@ -64,7 +68,7 @@ const AlertItem = () => {
             }}
             text="Detail"
             touchableOpacityStyles={{
-              paddingVertical: 8,
+              paddingVertical: 4,
               paddingHorizontal: 16,
               borderRadius: 20,
               backgroundColor: theme.palette.background.dark,
