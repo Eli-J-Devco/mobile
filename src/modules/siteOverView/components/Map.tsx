@@ -1,10 +1,9 @@
 import React, {useEffect} from 'react';
 import {StyleSheet, View} from 'react-native';
 import Mapbox from '@rnmapbox/maps';
+import {MAP_BOX_ACCESS_TOKEN} from '@env';
 
-Mapbox.setAccessToken(
-  'sk.eyJ1IjoicXVpdHJvbmduZ3V5ZW4iLCJhIjoiY2x5aWM4Y3JhMGNoODJrc2hpZmNiZDcyYSJ9.EGU9vFoFoWo66K-g_ZDMPw',
-);
+Mapbox.setAccessToken(MAP_BOX_ACCESS_TOKEN);
 
 const MapSiteOverview = () => {
   useEffect(() => {
