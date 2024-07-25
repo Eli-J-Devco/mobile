@@ -102,6 +102,9 @@ const MySelect = ({
                   color: theme.palette.text.primary,
                   fontSize: theme.font.size.xl,
                   fontWeight: '600',
+                  flexWrap: 'wrap',
+                  maxWidth: '80%',
+                  textAlign: 'center',
                 }}>
                 {lable}
               </Text>
@@ -209,6 +212,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     borderBottomWidth: 1,
     borderBottomColor: '#EBEBEB',
+    marginBottom: 8,
   },
   option: {
     padding: 16,

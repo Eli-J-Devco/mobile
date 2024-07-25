@@ -3,7 +3,7 @@
  * All rights reserved.
  *
  *********************************************************/
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {createStackNavigator, TransitionSpecs} from '@react-navigation/stack';
 import React from 'react';
 import PortfolioSreen from '../screens/portfolio';
 import {portfolioRouteName} from './router-name';
@@ -11,7 +11,7 @@ import PortfolioDetailSreen from '../screens/portfolio/detail';
 import PortfolioFilterSreen from '../screens/portfolio/filter';
 import ArrangeColumnsSreen from '../screens/portfolio/arrange-columns';
 
-const Stack = createNativeStackNavigator();
+const Stack = createStackNavigator();
 
 const PortfolioNavigation = () => {
   return (
@@ -19,6 +19,40 @@ const PortfolioNavigation = () => {
       initialRouteName={portfolioRouteName.Portfolio}
       screenOptions={{
         gestureEnabled: false,
+        // animationTypeForReplace: 'push',
+        gestureDirection: 'horizontal',
+        transitionSpec: {
+          open: TransitionSpecs.TransitionIOSSpec,
+          close: TransitionSpecs.TransitionIOSSpec,
+        },
+        cardStyleInterpolator: ({current, next, layouts}: any) => {
+          return {
+            cardStyle: {
+              transform: [
+                {
+                  translateX: current.progress.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [layouts.screen.width, 0],
+                  }),
+                },
+                {
+                  scale: next
+                    ? next.progress.interpolate({
+                        inputRange: [0, 1],
+                        outputRange: [1, 0.9],
+                      })
+                    : 1,
+                },
+              ],
+            },
+            overlayStyle: {
+              opacity: current.progress.interpolate({
+                inputRange: [0, 1],
+                outputRange: [0, 0.5],
+              }),
+            },
+          };
+        },
       }}>
       <Stack.Screen
         name={portfolioRouteName.Portfolio}

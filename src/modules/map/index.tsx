@@ -56,14 +56,6 @@ const Map = () => {
           animationDuration={6000}
           followZoomLevel={14}
         />
-        <MapboxGL.UserLocation visible={true} showsUserHeadingIndicator />
-        {/* <MapboxGL.Camera
-          followUserLocation
-          zoomLevel={14}
-          centerCoordinate={location || [-73.9708, 40.7234]} // Default location if no location
-          animationMode={'flyTo'}
-          animationDuration={6000}
-        /> */}
 
         {location && (
           <MapboxGL.PointAnnotation
@@ -85,7 +77,6 @@ const Map = () => {
               newLocation.coords.longitude,
               newLocation.coords.latitude,
             ];
-            console.log('-----newLocation---: ', loca);
             setLocation(loca);
           }}
         />

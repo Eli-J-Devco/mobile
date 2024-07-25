@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
     height: 'auto',
     gap: 8,
     alignItems: 'center',
-    marginTop: 16,
+    marginTop: 8,
     // backgroundColor: 'red',
   },
   date: {
