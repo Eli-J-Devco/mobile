@@ -8,7 +8,6 @@ import React from 'react';
 import AlertSreen from '../screens/alerts';
 import AlertFilterSreen from '../screens/alerts/filter';
 import {alertRouteNames} from './router-name';
-import AlertDetailSreen from '../screens/alerts/alert-detail';
 
 const Stack = createNativeStackNavigator();
 
@@ -28,11 +27,11 @@ const AlertsNavigation = () => {
         component={AlertFilterSreen}
         options={{headerShown: false}}
       />
-      <Stack.Screen
+      {/* <Stack.Screen
         name={alertRouteNames.AlertDetail}
         component={AlertDetailSreen}
         options={{headerShown: false}}
-      />
+      /> */}
     </Stack.Navigator>
   );
 };

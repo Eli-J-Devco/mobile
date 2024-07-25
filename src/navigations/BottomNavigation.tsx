@@ -5,8 +5,8 @@
  *********************************************************/
 
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import React, {useEffect, useState} from 'react';
-import {Keyboard, Platform, StyleSheet, View} from 'react-native';
+import React from 'react';
+import {Platform, StyleSheet, View} from 'react-native';
 import {icons} from '../assets';
 import IconImage from '../common/components/icons/IconImage';
 import useHideTabBottom from '../hooks/useHideTabBottom';

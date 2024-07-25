@@ -10,14 +10,14 @@ import {
 const SREEN_HIDE_TAB_BOTTOM = [
   portfolioRouteName.PortfolioFilter,
   portfolioRouteName.ArrangeColumns,
-  alertRouteNames.AlertFilter,
+  // alertRouteNames.AlertFilter,
   dashboardRouteNames.SearchAndFilter,
   settingRouteNames.AlertConfig,
   settingRouteNames.SiteSetting,
   settingRouteNames.PVModelSettings,
   dashboardRouteNames.Map,
   devicesRouteNames.FilterColumns,
-  alertRouteNames.AlertDetail,
+  // alertRouteNames.AlertDetail,
   reportsRouteNames.ReportSetup,
   reportsRouteNames.ReportFilter,
 ];

@@ -50,7 +50,7 @@ const LoginForm = () => {
 
   const onSubmit = async (data: any) => {
     console.log('---onSubmit---: ', data);
-    navigation.replace('DrawerNavigation', {});
+    navigation.replace('MainNavigation', {});
   };
 
   return (
