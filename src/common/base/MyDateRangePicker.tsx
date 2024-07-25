@@ -99,7 +99,8 @@ const MyDateRangePicker = ({
 
       {toOpen && (
         <DateTimePicker
-          testID="fromDateTimePicker"
+          minimumDate={fromdate}
+          testID="toDateTimePicker"
           value={todate}
           mode="date"
           is24Hour={true}
