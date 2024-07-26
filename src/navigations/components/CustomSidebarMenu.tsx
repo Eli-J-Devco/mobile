@@ -16,9 +16,11 @@ import CustomDrawerItem from './CustomDrawerItem';
 import DrawerItemTree from './DrawerItemTree';
 import ModalConfirm from '../../common/components/modal/ModalConfirm';
 import CustomerOrAccount from './CustomerOrAccount';
+import useAppContext from '../../hooks/useAppContext';
 
 const CustomSidebarMenu = (props: any) => {
   const [modalVisible, setModalVisible] = useState(false);
+  const {logoutFnc} = useAppContext();
   return (
     <SafeAreaView style={{flex: 1}}>
       <ModalConfirm
@@ -30,6 +32,7 @@ const CustomSidebarMenu = (props: any) => {
         onOk={() => {
           setModalVisible(false);
           props?.navigation?.replace('Login');
+          logoutFnc();
         }}
       />
       <View style={styles.imageContainer}>

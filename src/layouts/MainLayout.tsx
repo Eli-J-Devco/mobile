@@ -5,10 +5,8 @@
  *********************************************************/
 
 import {useNavigation} from '@react-navigation/native';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
-  ActivityIndicator,
   Animated,
   Dimensions,
   FlatList,
@@ -24,8 +22,8 @@ import {
 } from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {images} from '../assets';
-import SvgIcon from '../common/components/SvgIcon';
-import useThemeContext from '../hooks/useThemeContext';
+import IconImage from '../common/components/icons/IconImage';
+import useAppContext from '../hooks/useAppContext';
 import {
   alertRouteNames,
   dashboardRouteNames,
@@ -33,7 +31,6 @@ import {
   portfolioRouteName,
   reportsRouteNames,
 } from '../navigations/router-name';
-import IconImage from '../common/components/icons/IconImage';
 
 const {width, height} = Dimensions.get('window');
 
@@ -92,7 +89,10 @@ const TouchableOpacityAnimated =
   Animated.createAnimatedComponent(TouchableOpacity);
 
 const MainLayout = ({backgroundColor, children}: Props) => {
-  const theme = useThemeContext();
+  // const theme = useThemeContext();
+
+  const {isAuth, user} = useAppContext();
+
   const navigation = useNavigation<any>();
 
   const [refreshing, setRefreshing] = useState(false);
@@ -100,8 +100,12 @@ const MainLayout = ({backgroundColor, children}: Props) => {
   const animatedValue = useRef(new Animated.Value(0)).current;
 
   const scrollViewRef = useRef<ScrollView>(null);
-  const lastOffsetY = useRef(0);
-  const scrollDirection = useRef(0);
+  // const lastOffsetY = useRef(0);
+  // const scrollDirection = useRef(0);
+
+  useEffect(() => {
+    console.log('----->', isAuth, user);
+  }, [isAuth, user]);
 
   const searchInputAnimation = {
     transform: [
@@ -194,6 +198,12 @@ const MainLayout = ({backgroundColor, children}: Props) => {
       extrapolate: 'clamp',
     }),
   };
+
+  if (!isAuth) {
+    console.log('no authen');
+    navigation.replace('Login');
+    return;
+  }
 
   return (
     <SafeAreaView style={[styles.container]}>
