@@ -20,6 +20,7 @@ import MyTextInput from '../../../common/base/MyTextInput';
 import ButonText from '../../../common/components/button/ButonText';
 import useThemeContext from '../../../hooks/useThemeContext';
 import PrimaryFooter from '../../../common/components/footer/PrimaryFooter';
+import {showNoti} from '../../../common/components/notify';
 
 const options: ISelectOption[] = [
   {
@@ -99,6 +100,11 @@ const PortfolioFilter = () => {
   //   }
   // }, []);
 
+  const onFApply = () => {
+    showNoti('success', 'Apply success !', 'Filter has been applied');
+    navigation.goBack();
+  };
+
   return (
     <>
       <ScrollView
@@ -170,7 +176,7 @@ const PortfolioFilter = () => {
           </View>
         </View>
       </ScrollView>
-      <PrimaryFooter />
+      <PrimaryFooter onOK={onFApply} />
     </>
   );
 };
