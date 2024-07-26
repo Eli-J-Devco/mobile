@@ -10,6 +10,7 @@ import React from 'react';
 import AppThemeProvider from './src/context/AppThemeProvider';
 import Root from './src/navigations/Root';
 import Toast from 'react-native-toast-message';
+import AppProvider from './src/context/AppProvider';
 
 function App(): React.JSX.Element {
   // const isDarkMode = useColorScheme() === 'dark';
@@ -21,7 +22,9 @@ function App(): React.JSX.Element {
   return (
     <>
       <AppThemeProvider>
-        <Root />
+        <AppProvider>
+          <Root />
+        </AppProvider>
       </AppThemeProvider>
       <Toast />
     </>

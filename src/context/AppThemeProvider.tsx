@@ -1,3 +1,9 @@
+/********************************************************
+ * Copyright 2024 NEXT WAVE ENERGY MONITORING INC.
+ * All rights reserved.
+ *
+ *********************************************************/
+
 import React, {ReactElement, createContext, useEffect, useState} from 'react';
 import themeDefaults from '../utils/configDefault';
 

@@ -7,14 +7,16 @@
 import {yupResolver} from '@hookform/resolvers/yup';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import React from 'react';
+import React, {useState} from 'react';
 import {FormProvider, useForm} from 'react-hook-form';
 import {StyleSheet, Text, View} from 'react-native';
 import * as Yup from 'yup';
+import MySpin from '../../../common/base/MySpin';
 import MyTouchableOpacity from '../../../common/base/MyTouchableOpacity';
-import RHFTextInput from '../../../common/hook-form/RHFTextInput';
-import useThemeContext from '../../../hooks/useThemeContext';
 import {showNoti} from '../../../common/components/notify';
+import RHFTextInput from '../../../common/hook-form/RHFTextInput';
+import useAppContext from '../../../hooks/useAppContext';
+import useThemeContext from '../../../hooks/useThemeContext';
 
 type LoginValuesFrom = {
   username: string;
@@ -24,6 +26,9 @@ type LoginValuesFrom = {
 const LoginForm = () => {
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
   const theme = useThemeContext();
+  const {loginFnc} = useAppContext();
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const defaultValues = {
     username: __DEV__ ? 'dongnguyen' : '',
@@ -49,9 +54,12 @@ const LoginForm = () => {
   } = methods;
 
   const onSubmit = async (data: any) => {
+    setIsLoading(true);
     console.log('---onSubmit---: ', data);
-    showNoti('success', 'Login success !');
+    loginFnc();
     navigation.replace('MainNavigation', {});
+    showNoti('success', 'Login success !');
+    setIsLoading(false);
   };
 
   return (
@@ -76,14 +84,18 @@ const LoginForm = () => {
       <MyTouchableOpacity
         touchableOpacityStyle={styles.btn}
         onPress={handleSubmit(onSubmit)}>
-        <Text
-          style={{
-            color: theme.palette.text.primary,
-            fontSize: theme.font.size.sm,
-            fontWeight: '500',
-          }}>
-          Log In
-        </Text>
+        {isLoading ? (
+          <MySpin />
+        ) : (
+          <Text
+            style={{
+              color: theme.palette.text.primary,
+              fontSize: theme.font.size.sm,
+              fontWeight: '500',
+            }}>
+            Log In
+          </Text>
+        )}
       </MyTouchableOpacity>
     </View>
   );
