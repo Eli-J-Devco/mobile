@@ -6,12 +6,15 @@ import {
   StyleSheet,
   StatusBar,
   Pressable,
+  TouchableOpacity,
+  Button,
 } from 'react-native';
 import React, {useState} from 'react';
 import {images} from '../../assets';
 import LoginForm from '../../modules/auth/components/LoginForm';
 import ForgotForm from '../../modules/auth/components/ForgotForm';
 import useThemeContext from '../../hooks/useThemeContext';
+import MyTouchableOpacity from '../../common/base/MyTouchableOpacity';
 
 const Login = () => {
   const theme = useThemeContext();
@@ -32,8 +35,8 @@ const Login = () => {
           {isLogin ? 'Log In' : 'Forgot Your Password'}
         </Text>
         {isLogin ? <LoginForm /> : <ForgotForm />}
-        <Pressable
-          style={styles.btnForgot}
+        <MyTouchableOpacity
+          touchableOpacityStyle={styles.btnForgot}
           onPress={() => setIsLogin(!isLogin)}>
           <Text
             style={{
@@ -43,7 +46,7 @@ const Login = () => {
             }}>
             {isLogin ? 'Forgot your password?' : 'Back to Login'}
           </Text>
-        </Pressable>
+        </MyTouchableOpacity>
       </ImageBackground>
     </SafeAreaView>
   );

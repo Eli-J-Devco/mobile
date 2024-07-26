@@ -6,8 +6,9 @@
 
 import MapboxGL, {Logger, UserLocation} from '@rnmapbox/maps';
 import React, {useEffect, useState} from 'react';
-import {Image, StyleSheet, View} from 'react-native';
+import {Image, StyleSheet, Text, View} from 'react-native';
 import {images} from '../../assets';
+import {MAP_BOX_ACCESS_TOKEN} from '@env';
 
 Logger.setLogCallback(log => {
   const {message} = log;
@@ -21,9 +22,7 @@ Logger.setLogCallback(log => {
   return false;
 });
 
-MapboxGL.setAccessToken(
-  'sk.eyJ1IjoicXVpdHJvbmduZ3V5ZW4iLCJhIjoiY2x5aWM4Y3JhMGNoODJrc2hpZmNiZDcyYSJ9.EGU9vFoFoWo66K-g_ZDMPw',
-);
+MapboxGL.setAccessToken(MAP_BOX_ACCESS_TOKEN);
 MapboxGL.UserTrackingMode.Follow;
 
 const Map = () => {
@@ -31,6 +30,7 @@ const Map = () => {
 
   useEffect(() => {
     // Request permission to access location
+
     (async () => {
       await MapboxGL.requestAndroidLocationPermissions();
     })();
@@ -56,38 +56,55 @@ const Map = () => {
           animationDuration={6000}
           followZoomLevel={14}
         />
-        <MapboxGL.UserLocation visible={true} showsUserHeadingIndicator />
-        {/* <MapboxGL.Camera
-          followUserLocation
-          zoomLevel={14}
-          centerCoordinate={location || [-73.9708, 40.7234]} // Default location if no location
-          animationMode={'flyTo'}
-          animationDuration={6000}
-        /> */}
+        <MapboxGL.PointAnnotation
+          key="pointAnnotation"
+          id="pointAnnotation"
+          coordinate={[106.7040318, 10.8920713]}
+          title="Test">
+          <MapboxGL.Callout title="">
+            <View style={styles.myLocal}></View>
+          </MapboxGL.Callout>
+        </MapboxGL.PointAnnotation>
+        <MapboxGL.PointAnnotation
+          key="pointAnnotation1"
+          id="pointAnnotation1"
+          coordinate={[106.7040318, 10.9020713]}
+          title="Test">
+          <MapboxGL.Callout title="">
+            <View style={styles.myLocal}></View>
+          </MapboxGL.Callout>
+        </MapboxGL.PointAnnotation>
 
-        {location && (
+        {/* {location && (
           <MapboxGL.PointAnnotation
             id="userLocation"
             coordinate={location}
             title="Your Location">
-            <View style={styles.marker} />
+            <View style={styles.myLocal}>
+              <Text
+                style={{
+                  color: 'black',
+                  fontSize: 10,
+                  textAlign: 'center',
+                }}>
+                Nguyen Trong Qui
+              </Text>
+            </View>
           </MapboxGL.PointAnnotation>
-        )}
-
+        )} */}
         <UserLocation
           visible={true}
           androidRenderMode="gps"
           showsUserHeadingIndicator={true}
-          onUpdate={(newLocation: any) => {
-            console.log('-----newLocation---: ', newLocation);
+          // onUpdate={(newLocation: any) => {
+          //   const loca = [
+          //     newLocation.coords.longitude,
+          //     newLocation.coords.latitude,
+          //   ];
+          //   console.log('-----newLocation---: ', loca);
 
-            const loca = [
-              newLocation.coords.longitude,
-              newLocation.coords.latitude,
-            ];
-            console.log('-----newLocation---: ', loca);
-            setLocation(loca);
-          }}
+          //   setLocation(loca);
+          // }}
         />
       </MapboxGL.MapView>
       <View style={styles.logoConteiner}>
@@ -125,5 +142,22 @@ const styles = StyleSheet.create({
     bottom: 0,
     padding: 10,
     width: '100%',
+  },
+  myLocal: {
+    height: 100,
+    width: 100,
+    backgroundColor: '#fff',
+    borderRadius: 4,
+  },
+  annotationContainer: {
+    backgroundColor: '#ffffff',
+    padding: 10,
+    borderRadius: 20,
+    borderColor: '#7a7a7a',
+    borderWidth: 1,
+  },
+  annotationText: {
+    fontSize: 15,
+    fontWeight: 'bold',
   },
 });

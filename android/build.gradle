@@ -46,11 +46,8 @@ allprojects {
                 basic(BasicAuthentication)
             }
             credentials {
-                // Do not change the username below.
-                // This should always be `mapbox` (not your username).
                 username = 'mapbox'
-                // Use the secret token you stored in gradle.properties as the password
-                password = 'sk.eyJ1IjoicXVpdHJvbmduZ3V5ZW4iLCJhIjoiY2x5aWM4Y3JhMGNoODJrc2hpZmNiZDcyYSJ9.EGU9vFoFoWo66K-g_ZDMPw'
+                password = MAP_BOX_ACCESS_TOKEN
             }
         }
     }

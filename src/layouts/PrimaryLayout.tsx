@@ -25,14 +25,19 @@ import MyTouchableOpacity from '../common/base/MyTouchableOpacity';
 
 interface Props {
   filter?: boolean;
+  bgColor?: string;
   children: React.ReactNode;
 }
 
-const PrimaryLayout = ({filter = true, children}: Props) => {
+const PrimaryLayout = ({
+  filter = true,
+  bgColor = '#F5F5F5',
+  children,
+}: Props) => {
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
   const theme = useThemeContext();
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container]}>
       <StatusBar
         translucent={true}
         barStyle="dark-content"
@@ -64,7 +69,9 @@ const PrimaryLayout = ({filter = true, children}: Props) => {
           )}
         </View>
       </ImageBackground>
-      <View style={styles.content}>{children}</View>
+      <View style={[styles.content, {backgroundColor: bgColor}]}>
+        {children}
+      </View>
     </SafeAreaView>
   );
 };
@@ -79,7 +86,6 @@ const styles = StyleSheet.create({
     display: 'flex',
     width: '100%',
     height: '100%',
-    backgroundColor: '#F5F5F5',
     flex: 12,
   },
   header: {

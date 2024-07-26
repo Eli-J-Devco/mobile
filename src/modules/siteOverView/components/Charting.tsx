@@ -21,6 +21,8 @@ import SvgIcon from '../../../common/components/SvgIcon';
 import useThemeContext from '../../../hooks/useThemeContext';
 import TimeAxis from '../../../common/components/times/TimeAxis';
 import BarChartKit from '../../../common/components/chart/BarChartKit';
+import H3 from '../../../common/components/text/H3';
+import MyDateRangePicker from '../../../common/base/MyDateRangePicker';
 
 const Charting = () => {
   const theme = useThemeContext();
@@ -86,6 +88,15 @@ const Charting = () => {
           <BarChartKit />
         </View>
       </View>
+      <View style={styles.description}>
+        <View style={styles.dot} />
+        <H3>Energy Output</H3>
+      </View>
+      <View style={styles.date}>
+        <View style={styles.datePicker}>
+          <MyDateRangePicker />
+        </View>
+      </View>
     </View>
   );
 };
@@ -148,5 +159,33 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#fff',
+  },
+  dot: {
+    height: 8,
+    width: 8,
+    borderRadius: 4,
+    backgroundColor: '#a9a9a9',
+  },
+  description: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    width: '100%',
+    height: 'auto',
+    gap: 8,
+    alignItems: 'center',
+    // backgroundColor: 'red',
+  },
+  date: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    width: '100%',
+    height: 'auto',
+    alignItems: 'flex-end',
+    marginTop: 16,
+  },
+  datePicker: {
+    width: 200,
   },
 });

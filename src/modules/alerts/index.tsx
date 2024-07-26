@@ -156,10 +156,9 @@ const Alerts = () => {
         </View>
       </View>
       <View style={styles.listAlert}>
-        <AlertItem />
-        <AlertItem />
-        <AlertItem />
-        <AlertItem />
+        {[...new Array(10)].map((_, index) => (
+          <AlertItem key={index} bgColor={index % 2 === 0 ? '#F2F2F2' : ''} />
+        ))}
       </View>
     </View>
   );

@@ -12,7 +12,7 @@ import MyScrollView from '../../common/base/MyScrollView';
 
 const AlertSreen = () => {
   return (
-    <PrimaryLayout>
+    <PrimaryLayout bgColor="#fff">
       <MyScrollView>
         <Alerts />
       </MyScrollView>

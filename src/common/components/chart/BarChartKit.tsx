@@ -66,7 +66,7 @@ const BarChartKit = () => {
         verticalLabelRotation={-45}
         showBarTops={false}
         data={{
-          labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+          labels: ['05/01', '05/01', '05/01', '05/01', '05/01', '05/01'],
           datasets: [
             {
               data: data,
@@ -75,7 +75,7 @@ const BarChartKit = () => {
         }}
         width={width - width * 0.12}
         height={220}
-        yAxisLabel="$"
+        yAxisLabel=""
         yAxisSuffix="k"
         yAxisInterval={1}
         chartConfig={chartConfig}

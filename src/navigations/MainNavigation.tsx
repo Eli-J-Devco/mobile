@@ -3,21 +3,23 @@
  * All rights reserved.
  *
  *********************************************************/
-import {createStackNavigator, TransitionSpecs} from '@react-navigation/stack';
+
+import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
-import DevicesScreen from '../screens/devices';
-import {devicesRouteNames} from './router-name';
-import FilterColumnsScreen from '../screens/devices/filter-colums';
-import SummaryDetailScreen from '../screens/devices/summary-detail';
+import DrawerNavigation from './DrawerNavigation';
+import {alertRouteNames} from './router-name';
+import AlertDetailSreen from '../screens/alerts/alert-detail';
+import AlertFilterSreen from '../screens/alerts/filter';
+import {TransitionSpecs} from '@react-navigation/stack';
 
 const Stack = createStackNavigator();
 
-const DevicesNavigation = () => {
+const MainNavigation = () => {
   return (
     <Stack.Navigator
+      initialRouteName="DrawerNavigation"
       screenOptions={{
         gestureEnabled: false,
-        // animationTypeForReplace: 'push',
         gestureDirection: 'horizontal',
         transitionSpec: {
           open: TransitionSpecs.TransitionIOSSpec,
@@ -53,22 +55,17 @@ const DevicesNavigation = () => {
         },
       }}>
       <Stack.Screen
-        name={devicesRouteNames.Devices}
-        component={DevicesScreen}
+        name="DrawerNavigation"
+        component={DrawerNavigation}
         options={{headerShown: false}}
       />
       <Stack.Screen
-        name={devicesRouteNames.FilterColumns}
-        component={FilterColumnsScreen}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name={devicesRouteNames.SummaryDetail}
-        component={SummaryDetailScreen}
+        name={alertRouteNames.AlertDetail}
+        component={AlertDetailSreen}
         options={{headerShown: false}}
       />
     </Stack.Navigator>
   );
 };
 
-export default DevicesNavigation;
+export default MainNavigation;

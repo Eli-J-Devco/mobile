@@ -89,4 +89,6 @@ export const iconsImage: Partial<IIcons> = {
   logout: require('./icons-image/logout.png'),
   userBlack: require('./icons-image/user-black.png'),
   close: require('./icons-image/close.png'),
+  arrowIndicateDirectionLeft: require('./icons-image/arrow-indicate-direction-left.png'),
+  arrowIndicateDirectionRight: require('./icons-image/arrow-indicate-direction-right.png'),
 };

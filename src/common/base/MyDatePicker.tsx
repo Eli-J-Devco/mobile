@@ -14,7 +14,6 @@ import {
   ViewStyle,
 } from 'react-native';
 import useThemeContext from '../../hooks/useThemeContext';
-import SvgIcon from '../components/SvgIcon';
 import IconImage from '../components/icons/IconImage';
 
 interface MyDatePickerProps {
