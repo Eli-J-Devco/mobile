@@ -5,17 +5,16 @@
  *********************************************************/
 
 import {yupResolver} from '@hookform/resolvers/yup';
-import React, {useState} from 'react';
-import {FormProvider, useForm} from 'react-hook-form';
-import {Pressable, StyleSheet, Text, View} from 'react-native';
-import * as Yup from 'yup';
-import RHFTextInput from '../../../common/hook-form/RHFTextInput';
 import {useNavigation} from '@react-navigation/native';
-import {StackActions} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import useThemeContext from '../../../hooks/useThemeContext';
-import {rootRouteName} from '../../../navigations/router-name';
+import React from 'react';
+import {FormProvider, useForm} from 'react-hook-form';
+import {StyleSheet, Text, View} from 'react-native';
+import * as Yup from 'yup';
 import MyTouchableOpacity from '../../../common/base/MyTouchableOpacity';
+import RHFTextInput from '../../../common/hook-form/RHFTextInput';
+import useThemeContext from '../../../hooks/useThemeContext';
+import {showNoti} from '../../../common/components/notify';
 
 type LoginValuesFrom = {
   username: string;
@@ -51,6 +50,7 @@ const LoginForm = () => {
 
   const onSubmit = async (data: any) => {
     console.log('---onSubmit---: ', data);
+    showNoti('success', 'Login success !');
     navigation.replace('MainNavigation', {});
   };
 

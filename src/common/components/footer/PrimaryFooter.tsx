@@ -1,24 +1,19 @@
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-  TextStyle,
-} from 'react-native';
 import React from 'react';
+import {StyleSheet, Text, TextStyle, View} from 'react-native';
 import useThemeContext from '../../../hooks/useThemeContext';
+import MyTouchableOpacity from '../../base/MyTouchableOpacity';
 
 interface PrimaryFooterProps {
   okText?: string;
   cancleText?: string;
-  onCanceled?: () => void;
+  onCancel?: () => void;
   onOK?: () => void;
 }
 
 const PrimaryFooter = ({
   okText,
   cancleText,
-  onCanceled,
+  onCancel,
   onOK,
 }: PrimaryFooterProps) => {
   const theme = useThemeContext();
@@ -31,12 +26,24 @@ const PrimaryFooter = ({
 
   return (
     <View style={styles.actionWraped}>
-      <TouchableOpacity style={styles.btnReset} activeOpacity={0.5}>
+      <MyTouchableOpacity
+        touchableOpacityStyle={styles.btnReset}
+        onPress={() => {
+          if (onCancel) {
+            onCancel();
+          }
+        }}>
         <Text style={btnTextStyle}>{cancleText ? cancleText : 'Clear'}</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.btnApply} activeOpacity={0.5}>
+      </MyTouchableOpacity>
+      <MyTouchableOpacity
+        touchableOpacityStyle={styles.btnApply}
+        onPress={() => {
+          if (onOK) {
+            onOK();
+          }
+        }}>
         <Text style={btnTextStyle}>{okText ? okText : 'Apply'}</Text>
-      </TouchableOpacity>
+      </MyTouchableOpacity>
     </View>
   );
 };
