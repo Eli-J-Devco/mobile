@@ -1,7 +1,7 @@
-import {View, Text, StyleSheet, TextStyle} from 'react-native';
 import React from 'react';
-import ButonText from '../button/ButonText';
+import {StyleSheet, TextStyle, View, ViewStyle} from 'react-native';
 import useThemeContext from '../../../hooks/useThemeContext';
+import ButonText from '../button/ButonText';
 
 const TimeAxis = () => {
   const theme = useThemeContext();
@@ -9,6 +9,21 @@ const TimeAxis = () => {
   const textStyles: TextStyle = {
     color: theme.palette.text.primary,
     fontSize: theme.font.size.s,
+  };
+
+  const touchableOpacityStyles: ViewStyle = {
+    backgroundColor: 'trasparent',
+    borderRadius: 0,
+    borderRightColor: theme.palette.text.secondary,
+    borderRightWidth: 0.5,
+    padding: 0,
+    paddingHorizontal: 4,
+  };
+  const touchableOpacityEndStyles: ViewStyle = {
+    backgroundColor: 'trasparent',
+    borderRadius: 0,
+    padding: 0,
+    paddingHorizontal: 4,
   };
 
   return (
@@ -19,84 +34,37 @@ const TimeAxis = () => {
       ]}>
       <ButonText
         text="1 Minute"
-        touchableOpacityStyles={{
-          backgroundColor: 'trasparent',
-          borderRadius: 0,
-          borderRightColor: theme.palette.text.secondary,
-          borderRightWidth: 0.5,
-          padding: 0,
-          paddingHorizontal: 4,
-        }}
+        touchableOpacityStyles={touchableOpacityStyles}
         textStyles={textStyles}
       />
       <ButonText
         text="5 Minute"
-        touchableOpacityStyles={{
-          backgroundColor: 'trasparent',
-          borderRadius: 0,
-          borderRightColor: theme.palette.text.secondary,
-          borderRightWidth: 0.5,
-          padding: 0,
-          paddingHorizontal: 4,
-        }}
+        touchableOpacityStyles={touchableOpacityStyles}
         textStyles={textStyles}
       />
       <ButonText
         text="1 Hour"
-        touchableOpacityStyles={{
-          backgroundColor: 'trasparent',
-          borderRadius: 0,
-          borderRightColor: theme.palette.text.secondary,
-          borderRightWidth: 0.5,
-          padding: 0,
-          paddingHorizontal: 4,
-        }}
+        touchableOpacityStyles={touchableOpacityStyles}
         textStyles={textStyles}
       />
       <ButonText
         text="1 Day"
-        touchableOpacityStyles={{
-          backgroundColor: 'trasparent',
-          borderRadius: 0,
-          borderRightColor: theme.palette.text.secondary,
-          borderRightWidth: 0.5,
-          padding: 0,
-          paddingHorizontal: 4,
-        }}
+        touchableOpacityStyles={touchableOpacityStyles}
         textStyles={textStyles}
       />
       <ButonText
         text="7 Day"
-        touchableOpacityStyles={{
-          backgroundColor: 'trasparent',
-          borderRadius: 0,
-          borderRightColor: theme.palette.text.secondary,
-          borderRightWidth: 0.5,
-          padding: 0,
-          paddingHorizontal: 4,
-        }}
+        touchableOpacityStyles={touchableOpacityStyles}
         textStyles={textStyles}
       />
       <ButonText
         text="1 Month"
-        touchableOpacityStyles={{
-          backgroundColor: 'trasparent',
-          borderRadius: 0,
-          borderRightColor: theme.palette.text.secondary,
-          borderRightWidth: 0.5,
-          padding: 0,
-          paddingHorizontal: 4,
-        }}
+        touchableOpacityStyles={touchableOpacityStyles}
         textStyles={textStyles}
       />
       <ButonText
         text="1 Year"
-        touchableOpacityStyles={{
-          backgroundColor: 'trasparent',
-          borderRadius: 0,
-          padding: 0,
-          paddingHorizontal: 4,
-        }}
+        touchableOpacityStyles={touchableOpacityEndStyles}
         textStyles={textStyles}
       />
     </View>

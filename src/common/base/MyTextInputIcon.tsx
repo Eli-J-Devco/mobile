@@ -20,6 +20,7 @@ import {
 interface Props {
   inputProps?: TextInputProps;
   inputStyle?: ViewStyle | TextStyle;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   icon?: any;
   text?: string;
 }
@@ -29,7 +30,7 @@ const MyTextInputIcon = ({inputProps, inputStyle, icon, text}: Props) => {
     <View style={styles.container}>
       <TextInput style={[styles.input, {...inputStyle}]} {...inputProps} />
       <Pressable style={styles.icon}>
-        {!!text ? <Text>{text}</Text> : <Image source={icon} />}
+        {text ? <Text>{text}</Text> : <Image source={icon} />}
       </Pressable>
     </View>
   );

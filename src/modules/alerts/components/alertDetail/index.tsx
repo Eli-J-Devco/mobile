@@ -48,33 +48,18 @@ const AlertDetail = () => {
               <InputLabel
                 multiline
                 label="Notes"
-                containerStyle={{
-                  minHeight: 100,
-                }}
+                containerStyle={styles.inputLableContainer}
               />
               {/* <PrimaryTextArea /> */}
               <Grid gap={16}>
-                <MySwicthText
-                  span={1}
-                  textStyle={{
-                    fontSize: 12,
-                  }}>
+                <MySwicthText span={1} textStyle={styles.fontSize}>
                   Alert acknowledged
                 </MySwicthText>
-                <MySwicthText
-                  textStyle={{
-                    fontSize: 12,
-                  }}
-                  span={1}>
+                <MySwicthText textStyle={styles.fontSize} span={1}>
                   Disable notification
                 </MySwicthText>
               </Grid>
-              <MySwicthText
-                textStyle={{
-                  fontSize: 12,
-                }}>
-                Resolved
-              </MySwicthText>
+              <MySwicthText textStyle={styles.fontSize}>Resolved</MySwicthText>
             </View>
           </Card>
         </View>
@@ -104,10 +89,10 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     gap: 16,
   },
-  updateItem: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: 8,
-    flexDirection: 'row',
+  fontSize: {
+    fontSize: 12,
+  },
+  inputLableContainer: {
+    minHeight: 100,
   },
 });

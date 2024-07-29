@@ -18,8 +18,6 @@ const PrimaryTextArea = ({
   placeholder,
   containerStyle,
   placeholderTextColor,
-  numberOfLines,
-  rows,
 }: PrimaryTextAreaProps) => {
   const theme = useThemeContext();
 

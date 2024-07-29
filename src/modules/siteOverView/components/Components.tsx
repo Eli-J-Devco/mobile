@@ -28,6 +28,7 @@ const Components = () => {
       <View
         style={[
           styles.card,
+          // eslint-disable-next-line react-native/no-inline-styles
           {
             backgroundColor: theme.palette.background.primary,
             borderWidth: 1,
@@ -60,6 +61,7 @@ const Components = () => {
       <View
         style={[
           styles.card,
+          // eslint-disable-next-line react-native/no-inline-styles
           {
             backgroundColor: '#F0F0F0',
           },

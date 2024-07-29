@@ -6,8 +6,9 @@
 
 import React, {useState} from 'react';
 import {Controller, useFormContext} from 'react-hook-form';
-import {Pressable, Text, TextInput, TextInputProps, View} from 'react-native';
+import {StyleSheet, Text, TextInputProps, View} from 'react-native';
 import MyTextInput from '../base/MyTextInput';
+import MyTouchableOpacity from '../base/MyTouchableOpacity';
 
 type Props = TextInputProps & {
   name: string;
@@ -24,13 +25,7 @@ const RHFTextInput = ({name, type = 'passwork', ...other}: Props) => {
       name={name}
       render={({field, fieldState: {error}}) => (
         <>
-          <View
-            style={{
-              display: 'flex',
-              width: '100%',
-              height: 'auto',
-              position: 'relative',
-            }}>
+          <View style={styles.container}>
             <MyTextInput
               {...field}
               value={field.value}
@@ -39,14 +34,14 @@ const RHFTextInput = ({name, type = 'passwork', ...other}: Props) => {
               {...other}
             />
             {type === 'passwork' && (
-              <Pressable
-                style={{position: 'absolute', top: '35%', right: 10}}
-                onPressIn={() => setShowPass(!showPass)}>
+              <MyTouchableOpacity
+                touchableOpacityStyle={styles.touchableOpacityStyle}
+                onPress={() => setShowPass(!showPass)}>
                 <Text> {!showPass ? 'Show' : 'hidden'}</Text>
-              </Pressable>
+              </MyTouchableOpacity>
             )}
           </View>
-          {error && <Text style={{color: 'red'}}>{error.message}</Text>}
+          {error && <Text style={styles.textColor}>{error.message}</Text>}
         </>
       )}
     />
@@ -54,3 +49,16 @@ const RHFTextInput = ({name, type = 'passwork', ...other}: Props) => {
 };
 
 export default RHFTextInput;
+
+const styles = StyleSheet.create({
+  container: {
+    display: 'flex',
+    width: '100%',
+    height: 'auto',
+    position: 'relative',
+  },
+  touchableOpacityStyle: {position: 'absolute', top: '35%', right: 10},
+  textColor: {
+    color: 'red',
+  },
+});

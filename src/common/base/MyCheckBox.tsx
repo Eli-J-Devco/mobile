@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /********************************************************
  * Copyright 2024 NEXT WAVE ENERGY MONITORING INC.
  * All rights reserved.
@@ -39,12 +40,8 @@ const MyCheckBox = ({
       }}
       style={[
         styles.container,
-        {
-          height: 16,
-          width: 16,
-          borderRadius: 4,
-        },
         checkBoxStyle,
+        // eslint-disable-next-line react-native/no-inline-styles
         {
           backgroundColor: isChecked ? '#373433' : 'transparent',
         },
@@ -65,5 +62,8 @@ const styles = StyleSheet.create({
     borderColor: '#373433',
     borderWidth: 1,
     justifyContent: 'center',
+    height: 16,
+    width: 16,
+    borderRadius: 4,
   },
 });

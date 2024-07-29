@@ -9,7 +9,7 @@ import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import React, {useState} from 'react';
 import {FormProvider, useForm} from 'react-hook-form';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, TextStyle, View} from 'react-native';
 import * as Yup from 'yup';
 import MySpin from '../../../common/base/MySpin';
 import MyTouchableOpacity from '../../../common/base/MyTouchableOpacity';
@@ -24,6 +24,7 @@ type LoginValuesFrom = {
 };
 
 const LoginForm = () => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
   const theme = useThemeContext();
   const {loginFnc} = useAppContext();
@@ -45,21 +46,22 @@ const LoginForm = () => {
     defaultValues,
   });
 
-  const {
-    reset,
-    watch,
-    setValue,
-    handleSubmit,
-    formState: {isSubmitting, isValid},
-  } = methods;
+  const {handleSubmit} = methods;
 
-  const onSubmit = async (data: any) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const onSubmit = (data: any) => {
     setIsLoading(true);
     console.log('---onSubmit---: ', data);
     loginFnc();
-    navigation.replace('MainNavigation', {});
+    navigation.replace('MainNavigation');
     showNoti('success', 'Login success !');
     setIsLoading(false);
+  };
+
+  const textButtonStyles: TextStyle = {
+    color: theme.palette.text.primary,
+    fontSize: theme.font.size.sm,
+    fontWeight: '500',
   };
 
   return (
@@ -84,18 +86,7 @@ const LoginForm = () => {
       <MyTouchableOpacity
         touchableOpacityStyle={styles.btn}
         onPress={handleSubmit(onSubmit)}>
-        {isLoading ? (
-          <MySpin />
-        ) : (
-          <Text
-            style={{
-              color: theme.palette.text.primary,
-              fontSize: theme.font.size.sm,
-              fontWeight: '500',
-            }}>
-            Log In
-          </Text>
-        )}
+        {isLoading ? <MySpin /> : <Text style={textButtonStyles}>Log In</Text>}
       </MyTouchableOpacity>
     </View>
   );
@@ -112,13 +103,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  lable: {
-    fontSize: 32,
-    fontWeight: '600',
-    color: '#212121',
-    textAlign: 'center',
-    marginBottom: 32,
-  },
   btn: {
     height: 48,
     width: '100%',
@@ -128,10 +112,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 24,
-  },
-  btnText: {
-    color: '#212121',
-    fontSize: 24,
-    fontWeight: '700',
   },
 });

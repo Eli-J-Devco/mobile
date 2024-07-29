@@ -1,7 +1,7 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {StyleSheet, TextStyle} from 'react-native';
-import MyTextInput from '../../base/MyTextInput';
 import useThemeContext from '../../../hooks/useThemeContext';
+import MyTextInput from '../../base/MyTextInput';
 
 export interface PrimaryInputProps {
   value?: string;
@@ -34,6 +34,7 @@ const PrimaryInput = ({
       value={value}
       style={[
         styles.container,
+        // eslint-disable-next-line react-native/no-inline-styles
         {
           backgroundColor: theme.palette.background.primary,
           borderColor: theme.palette.borderColor.base,

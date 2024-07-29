@@ -4,13 +4,11 @@
  *
  *********************************************************/
 
-import {createStackNavigator} from '@react-navigation/stack';
+import {createStackNavigator, TransitionSpecs} from '@react-navigation/stack';
 import React from 'react';
+import AlertDetailSreen from '../screens/alerts/alert-detail';
 import DrawerNavigation from './DrawerNavigation';
 import {alertRouteNames} from './router-name';
-import AlertDetailSreen from '../screens/alerts/alert-detail';
-import AlertFilterSreen from '../screens/alerts/filter';
-import {TransitionSpecs} from '@react-navigation/stack';
 
 const Stack = createStackNavigator();
 
@@ -25,6 +23,8 @@ const MainNavigation = () => {
           open: TransitionSpecs.TransitionIOSSpec,
           close: TransitionSpecs.TransitionIOSSpec,
         },
+
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         cardStyleInterpolator: ({current, next, layouts}: any) => {
           return {
             cardStyle: {

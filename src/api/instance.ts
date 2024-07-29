@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from 'axios';
 import {apiConfigs} from '../configs/api-configs';
-import { Alert } from 'react-native';
+import {Alert} from 'react-native';
 
 export const instance = axios.create({
   baseURL: apiConfigs.baseUrl,
@@ -34,18 +35,20 @@ function getUrl(config: any) {
   if (config?.baseURL) {
     return config?.url?.replace(config?.baseURL, '');
   }
+
   return config?.url;
 }
 
 // Intercept all responses
 instance.interceptors.response.use(
-  async response => {
+  response => {
     // /*
     console.log(
       `%c ${response?.status} - ${getUrl(response?.config)}:`,
       'color: #008000; font-weight: bold',
       response,
     );
+
     // */
     return response;
   },
@@ -75,6 +78,7 @@ instance.interceptors.response.use(
       'color: #a71d5d; font-weight: bold',
       error?.response,
     );
+
     return Promise.reject(error);
   },
 );

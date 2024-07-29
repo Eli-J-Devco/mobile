@@ -4,58 +4,69 @@
  *
  *********************************************************/
 
+import {NavigationProp, useNavigation} from '@react-navigation/native';
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import MyTouchableOpacity from '../../../../common/base/MyTouchableOpacity';
 import IconImage from '../../../../common/components/icons/IconImage';
 import useThemeContext from '../../../../hooks/useThemeContext';
-import AlertItem from './AlertItem';
-import {NavigationProp, useNavigation} from '@react-navigation/native';
 import {dashboardRouteNames} from '../../../../navigations/router-name';
+import AlertItem from './AlertItem';
 
 const Alerts = () => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const navigation = useNavigation<NavigationProp<any>>();
   const theme = useThemeContext();
+
+  const titleStyle = {
+    color: theme.palette.text.white,
+    fontSize: theme.font.size.xl,
+    fontWeight: theme.font.weight.md,
+  };
+
+  const viewAllStyles = {
+    color: theme.palette.text.yellow,
+    fontSize: theme.font.size.sm,
+    fontWeight: theme.font.weight.sm,
+  };
+
+  const borderRightStyle = {
+    borderRightWidth: 1,
+    borderRightColor: theme.palette.borderColor.tertiary,
+  };
+
+  const textOverViewStyles = {
+    color: theme.palette.text.white,
+    fontSize: theme.font.size.s,
+    fontWeight: theme.font.weight.md,
+  };
+
+  const valueOverViewStyles = {
+    color: theme.palette.text.yellow,
+    fontSize: theme.font.size.s,
+    fontWeight: theme.font.weight.md,
+  };
+  const labelStyle = {
+    color: theme.palette.text.primary,
+    fontSize: theme.font.size.s,
+    fontWeight: theme.font.weight.md,
+  };
 
   return (
     <View style={styles.container}>
       <View style={styles.overview}>
         <View style={styles.header}>
-          <View
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
-              gap: 8,
-            }}>
+          <View style={styles.titleContainer}>
             <MyTouchableOpacity>
               <IconImage iconName="exclamation" />
             </MyTouchableOpacity>
-            <Text
-              style={[
-                {
-                  color: theme.palette.text.white,
-                  fontSize: theme.font.size.xl,
-                  fontWeight: theme.font.weight.md,
-                },
-              ]}>
-              Alerts
-            </Text>
+            <Text style={titleStyle}>Alerts</Text>
           </View>
           <MyTouchableOpacity
             onPress={() => {
               navigation.navigate(dashboardRouteNames.AlertsNavigation);
             }}>
-            <Text
-              style={[
-                {
-                  color: theme.palette.text.yellow,
-                  fontSize: theme.font.size.sm,
-                  fontWeight: theme.font.weight.sm,
-                },
-              ]}>
-              View all
-            </Text>
+            <Text style={viewAllStyles}>View all</Text>
           </MyTouchableOpacity>
         </View>
         <View
@@ -65,106 +76,24 @@ const Alerts = () => {
               borderTopColor: theme.palette.borderColor.tertiary,
             },
           ]}>
-          <View
-            style={[
-              styles.contentItem,
-              {
-                borderRightWidth: 1,
-                borderRightColor: theme.palette.borderColor.tertiary,
-                flex: 2,
-              },
-            ]}>
-            <Text
-              style={[
-                {
-                  color: theme.palette.text.white,
-                  fontSize: theme.font.size.s,
-                  fontWeight: theme.font.weight.md,
-                },
-              ]}>
-              Total
-            </Text>
-            <Text
-              style={[
-                styles.textValue,
-                {
-                  color: theme.palette.text.yellow,
-                  fontSize: theme.font.size.s,
-                  fontWeight: theme.font.weight.md,
-                },
-              ]}>
-              256
-            </Text>
+          <View style={[styles.contentItem, borderRightStyle, styles.flex2]}>
+            <Text style={textOverViewStyles}>Total</Text>
+            <Text style={[styles.textValue, valueOverViewStyles]}>256</Text>
           </View>
-          <View
-            style={[
-              styles.contentItem,
-              {
-                borderRightWidth: 1,
-                borderRightColor: theme.palette.borderColor.tertiary,
-                flex: 4,
-              },
-            ]}>
-            <Text
-              style={[
-                {
-                  color: theme.palette.text.white,
-                  fontSize: theme.font.size.s,
-                  fontWeight: theme.font.weight.md,
-                },
-              ]}>
-              High Priority
-            </Text>
-            <Text
-              style={[
-                styles.textValue,
-                {
-                  color: theme.palette.text.yellow,
-                  fontSize: theme.font.size.s,
-                  fontWeight: theme.font.weight.md,
-                },
-              ]}>
-              80
-            </Text>
+          <View style={[styles.contentItem, styles.flex4, borderRightStyle]}>
+            <Text style={textOverViewStyles}>High Priority</Text>
+            <Text style={[styles.textValue, valueOverViewStyles]}>80</Text>
           </View>
-          <View style={[styles.contentItem, {flex: 4}]}>
-            <Text
-              style={[
-                {
-                  color: theme.palette.text.white,
-                  fontSize: theme.font.size.s,
-                  fontWeight: theme.font.weight.md,
-                },
-              ]}>
-              Low Priority
-            </Text>
-            <Text
-              style={[
-                styles.textValue,
-                {
-                  color: theme.palette.text.yellow,
-                  fontSize: theme.font.size.s,
-                  fontWeight: theme.font.weight.md,
-                },
-              ]}>
-              20
-            </Text>
+          <View style={[styles.contentItem, styles.flex4]}>
+            <Text style={textOverViewStyles}>Low Priority</Text>
+            <Text style={[styles.textValue, valueOverViewStyles]}>20</Text>
           </View>
         </View>
       </View>
       <View style={styles.titleWraped}>
         <View style={styles.title}>
           <IconImage iconName="electricity" />
-          <Text
-            style={[
-              {
-                color: theme.palette.text.primary,
-                fontSize: theme.font.size.s,
-                fontWeight: theme.font.weight.md,
-              },
-            ]}>
-             Latest Fault Codes
-          </Text>
+          <Text style={labelStyle}>Latest Fault Codes</Text>
         </View>
         <IconImage iconName="pause" />
       </View>
@@ -233,5 +162,17 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     gap: 16,
     marginTop: 16,
+  },
+  titleContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+  },
+  flex2: {
+    flex: 2,
+  },
+  flex4: {
+    flex: 4,
   },
 });

@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 /********************************************************
  * Copyright 2024 NEXT WAVE ENERGY MONITORING INC.
  * All rights reserved.
@@ -12,6 +13,7 @@ import {
   StatusBar,
   StyleSheet,
   Text,
+  TextStyle,
   TouchableOpacity,
   View,
   ViewStyle,
@@ -59,6 +61,20 @@ const MySelect = ({
     }
   }, [value]);
 
+  const lableStyle: TextStyle = {
+    color: theme.palette.text.primary,
+    fontSize: theme.font.size.xl,
+    fontWeight: '600',
+    flexWrap: 'wrap',
+    maxWidth: '80%',
+    textAlign: 'center',
+  };
+  const valueStyle: TextStyle = {
+    color: theme.palette.text.primary,
+    fontSize: theme.font.size.s,
+    fontWeight: '400',
+  };
+
   return (
     <>
       <TouchableOpacity
@@ -69,12 +85,7 @@ const MySelect = ({
           // openBottomSheet();
         }}>
         <View style={styles.contentWraped}>
-          <Text
-            style={{
-              color: theme.palette.text.primary,
-              fontSize: theme.font.size.s,
-              fontWeight: '400',
-            }}>
+          <Text style={valueStyle}>
             {options && options?.find(e => e.value === currentValue)?.label
               ? options?.find(e => e.value === currentValue)?.label
               : placeholder}
@@ -85,7 +96,7 @@ const MySelect = ({
         </View>
       </TouchableOpacity>
       <Modal transparent visible={modalVisible}>
-        <SafeAreaView style={[styles.modal]}>
+        <SafeAreaView style={styles.modal}>
           <StatusBar
             translucent={true}
             barStyle="dark-content"
@@ -97,17 +108,7 @@ const MySelect = ({
               {backgroundColor: theme.palette.background.primary},
             ]}>
             <View style={styles.header}>
-              <Text
-                style={{
-                  color: theme.palette.text.primary,
-                  fontSize: theme.font.size.xl,
-                  fontWeight: '600',
-                  flexWrap: 'wrap',
-                  maxWidth: '80%',
-                  textAlign: 'center',
-                }}>
-                {lable}
-              </Text>
+              <Text style={lableStyle}>{lable}</Text>
               <TouchableOpacity
                 style={{position: 'absolute', top: 8, right: 8}}
                 onPress={() => setModalVisible(false)}>
@@ -118,13 +119,7 @@ const MySelect = ({
               <FlatList
                 contentContainerStyle={styles.contentContainerStyle}
                 data={options}
-                renderItem={({
-                  item,
-                  index,
-                }: {
-                  item: ISelectOption;
-                  index: number;
-                }) => (
+                renderItem={({item}: {item: ISelectOption; index: number}) => (
                   <TouchableOpacity
                     activeOpacity={0.5}
                     style={styles.option}

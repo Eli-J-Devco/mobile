@@ -4,8 +4,8 @@
  *
  *********************************************************/
 
-import {View, Text, ViewStyle} from 'react-native';
 import React from 'react';
+import {View, ViewStyle} from 'react-native';
 
 interface IGridProps {
   style?: ViewStyle;
@@ -18,6 +18,7 @@ const Grid = ({style, gap, flexDirection = 'row', children}: IGridProps) => {
   return (
     <View
       style={[
+        // eslint-disable-next-line react-native/no-inline-styles
         {
           display: 'flex',
           flexDirection,

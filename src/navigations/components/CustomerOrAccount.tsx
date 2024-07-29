@@ -1,11 +1,12 @@
-import {View, Text, StyleSheet} from 'react-native';
 import React, {useState} from 'react';
-import CustomDrawerItem from './CustomDrawerItem';
+import {StyleSheet, View} from 'react-native';
 import MyTouchableOpacity from '../../common/base/MyTouchableOpacity';
 import IconImage from '../../common/components/icons/IconImage';
-
+import CustomDrawerItem from './CustomDrawerItem';
+/* eslint-disable react-native/no-inline-styles */
 const CustomerOrAccount = () => {
   const [expanded, setExpanded] = useState(false);
+
   return (
     <View style={styles.container}>
       <View style={styles.navItem}>
@@ -14,6 +15,7 @@ const CustomerOrAccount = () => {
           label="Configuration"
           iconName="setting"
         />
+
         <MyTouchableOpacity
           touchableOpacityStyle={{
             ...styles.arrowIcon,

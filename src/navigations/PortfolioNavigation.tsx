@@ -6,10 +6,10 @@
 import {createStackNavigator, TransitionSpecs} from '@react-navigation/stack';
 import React from 'react';
 import PortfolioSreen from '../screens/portfolio';
-import {portfolioRouteName} from './router-name';
+import ArrangeColumnsSreen from '../screens/portfolio/arrange-columns';
 import PortfolioDetailSreen from '../screens/portfolio/detail';
 import PortfolioFilterSreen from '../screens/portfolio/filter';
-import ArrangeColumnsSreen from '../screens/portfolio/arrange-columns';
+import {portfolioRouteName} from './router-name';
 
 const Stack = createStackNavigator();
 
@@ -25,6 +25,8 @@ const PortfolioNavigation = () => {
           open: TransitionSpecs.TransitionIOSSpec,
           close: TransitionSpecs.TransitionIOSSpec,
         },
+
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         cardStyleInterpolator: ({current, next, layouts}: any) => {
           return {
             cardStyle: {

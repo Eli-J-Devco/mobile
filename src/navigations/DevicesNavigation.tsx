@@ -23,6 +23,7 @@ const DevicesNavigation = () => {
           open: TransitionSpecs.TransitionIOSSpec,
           close: TransitionSpecs.TransitionIOSSpec,
         },
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         cardStyleInterpolator: ({current, next, layouts}: any) => {
           return {
             cardStyle: {

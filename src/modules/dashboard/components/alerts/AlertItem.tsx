@@ -4,30 +4,24 @@
  *
  *********************************************************/
 
-import {
-  CommonActions,
-  NavigationProp,
-  useNavigation,
-} from '@react-navigation/native';
+import {NavigationProp, useNavigation} from '@react-navigation/native';
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, TextStyle, View} from 'react-native';
+import MyTouchableOpacity from '../../../../common/base/MyTouchableOpacity';
 import IconImage from '../../../../common/components/icons/IconImage';
 import useThemeContext from '../../../../hooks/useThemeContext';
-import MyTouchableOpacity from '../../../../common/base/MyTouchableOpacity';
-import {
-  alertRouteNames,
-  dashboardRouteNames,
-  rootRouteName,
-} from '../../../../navigations/router-name';
-import {navigationRef} from '../../../../..';
+import {alertRouteNames} from '../../../../navigations/router-name';
+import TextBetweenView from '../../../../common/components/view/TextBetweenView';
 
 const AlertItem = () => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const navigation = useNavigation<NavigationProp<any>>();
   const theme = useThemeContext();
 
-  const styleText: any = {
+  const titleStyle: TextStyle = {
     color: theme.palette.text.primary,
-    fontSize: theme.font.size.s,
+    fontSize: theme.font.size.xs,
+    fontWeight: '700',
   };
 
   return (
@@ -42,64 +36,17 @@ const AlertItem = () => {
         <IconImage iconName="exclamationRed" />
       </View>
       <View style={styles.center}>
-        <Text
-          style={[
-            {
-              color: theme.palette.text.primary,
-              fontSize: theme.font.size.xs,
-              fontWeight: '700',
-            },
-          ]}>
-          Elkor WattsOn Mk. II
-        </Text>
-        <View
-          style={[
-            styles.detailContent,
-            {
-              borderBottomWidth: 1,
-              borderBottomColor: theme.palette.borderColor.secondary,
-            },
-          ]}>
-          <Text style={styleText}>Device Categorize</Text>
-          <Text style={styleText}>PV System Inverter</Text>
-        </View>
-        <View
-          style={[
-            styles.detailContent,
-            {
-              borderBottomWidth: 1,
-              borderBottomColor: theme.palette.borderColor.secondary,
-            },
-          ]}>
-          <Text style={styleText}>Error Level</Text>
-          <Text
-            style={[
-              styleText,
-              {
-                paddingVertical: 4,
-                borderRadius: 4,
-                backgroundColor: theme.palette.background.yellow,
-                paddingHorizontal: 8,
-              },
-            ]}>
-            COMM
-          </Text>
-        </View>
-        <View
-          style={[
-            styles.detailContent,
-            {
-              borderBottomWidth: 1,
-              borderBottomColor: theme.palette.borderColor.secondary,
-            },
-          ]}>
-          <Text style={styleText}>Opened</Text>
-          <Text style={styleText}>06/20/2024 10:00 AM</Text>
-        </View>
-        <View style={styles.detailContent}>
-          <Text style={styleText}>Issue</Text>
-          <Text style={styleText}>Device has lost communication</Text>
-        </View>
+        <Text style={titleStyle}>Elkor WattsOn Mk. II</Text>
+        <TextBetweenView
+          rightText="PV System Inverter"
+          leftText="Device Categorize"
+        />
+        <TextBetweenView rightText="COMM" leftText="Error Level" type="alert" />
+        <TextBetweenView rightText="06/20/2024 10:00 AM" leftText="Opened" />
+        <TextBetweenView
+          rightText="Device has lost communication"
+          leftText="Issue"
+        />
       </View>
       <MyTouchableOpacity
         touchableOpacityStyle={styles.right}
@@ -130,13 +77,6 @@ const styles = StyleSheet.create({
     elevation: 10,
     borderRadius: 8,
     padding: 8,
-  },
-  detailContent: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignContent: 'center',
-    paddingVertical: 4,
   },
   left: {
     display: 'flex',

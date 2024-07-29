@@ -4,9 +4,8 @@
  *
  *********************************************************/
 
-import React, {useState} from 'react';
+import React from 'react';
 import {
-  Dimensions,
   StyleSheet,
   Switch,
   Text,
@@ -14,25 +13,16 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import MySelect from '../../../common/base/MySelect';
-import ButonText from '../../../common/components/button/ButonText';
-import ChartBar from '../../../common/components/chart/ChartBar';
-import SvgIcon from '../../../common/components/SvgIcon';
-import useThemeContext from '../../../hooks/useThemeContext';
-import TimeAxis from '../../../common/components/times/TimeAxis';
-import BarChartKit from '../../../common/components/chart/BarChartKit';
-import H3 from '../../../common/components/text/H3';
 import MyDateRangePicker from '../../../common/base/MyDateRangePicker';
+import MySelect from '../../../common/base/MySelect';
+import BarChartKit from '../../../common/components/chart/BarChartKit';
+import SvgIcon from '../../../common/components/SvgIcon';
+import H3 from '../../../common/components/text/H3';
+import TimeAxis from '../../../common/components/times/TimeAxis';
+import useThemeContext from '../../../hooks/useThemeContext';
 
 const Charting = () => {
   const theme = useThemeContext();
-
-  const [data, setData] = useState([
-    {quarter: 1, earnings: 13000},
-    {quarter: 2, earnings: 16500},
-    {quarter: 3, earnings: 14250},
-    {quarter: 4, earnings: 19000},
-  ]);
 
   const textStyles: TextStyle = {
     color: theme.palette.text.primary,
@@ -66,21 +56,15 @@ const Charting = () => {
             <SvgIcon iconName="download" />
           </TouchableOpacity>
           <View style={styles.flex}>
-            <MySelect
-              containerStyle={{
-                width: 100,
-                height: 30,
-                borderRadius: 30,
-              }}
-            />
+            <MySelect containerStyle={styles.selectContainer} />
           </View>
         </View>
       </View>
       <TimeAxis />
       <View style={styles.generation}>
-        <Text style={generationTextStyles}>Generation (0 kWh)</Text>
+        <Text style={generationTextStyles}>Generation (0 kWh)</Text>
         <Text style={generationDesTextStyles}>
-          Last updated on June 30, 2024 4:02 AM
+          Last updated on June 30, 2024 4:02 AM
         </Text>
         <View style={styles.chartContainer}>
           {/* <ChartBar /> */}
@@ -138,16 +122,6 @@ const styles = StyleSheet.create({
     transform: [{scaleX: 0.5}, {scaleY: 0.5}],
     marginRight: -10,
   },
-  timeContainer: {
-    display: 'flex',
-    alignItems: 'center',
-    flexDirection: 'row',
-    width: '100%',
-    height: 'auto',
-    borderRadius: 30,
-    padding: 4,
-    justifyContent: 'space-between',
-  },
   generation: {
     display: 'flex',
     flexDirection: 'column',
@@ -187,5 +161,10 @@ const styles = StyleSheet.create({
   },
   datePicker: {
     width: 200,
+  },
+  selectContainer: {
+    width: 100,
+    height: 30,
+    borderRadius: 30,
   },
 });

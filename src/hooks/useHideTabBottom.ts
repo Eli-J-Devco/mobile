@@ -23,4 +23,5 @@ const useHideTabBottom = () => {
     ? SREEN_HIDE_TAB_BOTTOM.includes(currentSreenName)
     : false;
 };
+
 export default useHideTabBottom;

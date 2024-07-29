@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 /********************************************************
  * Copyright 2024 NEXT WAVE ENERGY MONITORING INC.
  * All rights reserved.
@@ -27,7 +28,7 @@ const CustomDrawerItem = ({
           onPress();
         }
       }}
-      icon={({focused, color, size}) =>
+      icon={() =>
         iconName ? <IconImage size={16} iconName={iconName} /> : <></>
       }
       style={{flex: 1}}

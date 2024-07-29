@@ -18,7 +18,6 @@ interface IMyCheckBoxTextProps extends IMyCheckBoxProps {
 const MyCheckBoxText = ({
   span,
   value,
-  checked,
   onChecked,
   checkBoxStyle,
   iconSize,

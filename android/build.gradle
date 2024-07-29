@@ -47,7 +47,7 @@ allprojects {
             }
             credentials {
                 username = 'mapbox'
-                password = MAP_BOX_ACCESS_TOKEN
+                password = project.properties['MAPBOX_DOWNLOADS_TOKEN'] ?: ""
             }
         }
     }

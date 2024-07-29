@@ -11,6 +11,7 @@ import {
   StatusBar,
   StyleSheet,
   Text,
+  TextStyle,
   View,
 } from 'react-native';
 import useThemeContext from '../../../hooks/useThemeContext';
@@ -44,9 +45,27 @@ const ModalConfirm = ({visible, onCancel, title, onOk}: IModalConfirmProps) => {
     setModalVisible(visible);
   }, [visible]);
 
+  const titleStyle: TextStyle = {
+    color: theme.palette.text.primary,
+    fontSize: theme.font.size.xl,
+    fontWeight: '400',
+    marginTop: 10,
+  };
+
+  const cancelTextStyle: TextStyle = {
+    color: theme.palette.text.primary,
+    fontSize: theme.font.size.sm,
+    fontWeight: '400',
+  };
+  const okTextStyle: TextStyle = {
+    color: theme.palette.text.white,
+    fontSize: theme.font.size.sm,
+    fontWeight: '400',
+  };
+
   return (
     <Modal transparent visible={modalVisible}>
-      <SafeAreaView style={[styles.modal]}>
+      <SafeAreaView style={styles.modal}>
         <StatusBar
           translucent={true}
           barStyle="dark-content"
@@ -62,15 +81,7 @@ const ModalConfirm = ({visible, onCancel, title, onOk}: IModalConfirmProps) => {
               Confirm
             </Text>
           </View>
-          <Text
-            style={{
-              color: theme.palette.text.primary,
-              fontSize: theme.font.size.xl,
-              fontWeight: '400',
-              marginTop: 10,
-            }}>
-            {title}
-          </Text>
+          <Text style={titleStyle}>{title}</Text>
           <View style={styles.actionWraped}>
             <MyTouchableOpacity
               onPress={handleCancel}
@@ -78,14 +89,7 @@ const ModalConfirm = ({visible, onCancel, title, onOk}: IModalConfirmProps) => {
                 ...styles.actionItem,
                 backgroundColor: theme.palette.background.disable,
               }}>
-              <Text
-                style={{
-                  color: theme.palette.text.primary,
-                  fontSize: theme.font.size.sm,
-                  fontWeight: '400',
-                }}>
-                Cancel
-              </Text>
+              <Text style={cancelTextStyle}>Cancel</Text>
             </MyTouchableOpacity>
             <MyTouchableOpacity
               onPress={handleOk}
@@ -93,14 +97,7 @@ const ModalConfirm = ({visible, onCancel, title, onOk}: IModalConfirmProps) => {
                 ...styles.actionItem,
                 backgroundColor: theme.palette.background.dark,
               }}>
-              <Text
-                style={{
-                  color: theme.palette.text.white,
-                  fontSize: theme.font.size.sm,
-                  fontWeight: '400',
-                }}>
-                Ok
-              </Text>
+              <Text style={okTextStyle}>Ok</Text>
             </MyTouchableOpacity>
           </View>
         </View>

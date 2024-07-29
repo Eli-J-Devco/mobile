@@ -25,7 +25,6 @@ interface IMySwicthTextProps {
 
 const MySwicthText = ({
   scale = 0.8,
-  value,
   span,
   textStyle,
   children,
@@ -62,6 +61,7 @@ const MySwicthText = ({
         ios_backgroundColor="#3e3e3e"
         onValueChange={toggleSwitch}
         value={isEnabled}
+        // eslint-disable-next-line react-native/no-inline-styles
         style={{
           transform: [{scaleX: scale}, {scaleY: scale}],
           marginRight: -10,

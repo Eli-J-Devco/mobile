@@ -10,15 +10,15 @@ import {
   StyleSheet,
   Text,
   TextStyle,
-  TouchableOpacity,
   View,
+  ViewStyle,
 } from 'react-native';
 import MyCheckBoxText from '../../../common/base/MyCheckBoxText';
+import PrimaryFooter from '../../../common/components/footer/PrimaryFooter';
 import InputLabel from '../../../common/components/input/InputLabel';
 import SelectLabel from '../../../common/components/select/SelectLabel';
 import useThemeContext from '../../../hooks/useThemeContext';
 import {globalStyles} from '../../../styles';
-import PrimaryFooter from '../../../common/components/footer/PrimaryFooter';
 
 const AlertConfig = () => {
   const theme = useThemeContext();
@@ -31,41 +31,29 @@ const AlertConfig = () => {
     fontWeight: '700',
   };
 
+  const commonStyle: ViewStyle = {
+    backgroundColor: theme.palette.background.primary,
+    marginTop: 16,
+  };
+
   return (
     <>
       <ScrollView
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{
-          paddingBottom: 16,
-        }}>
-        <View
-          style={[
-            globalStyles.view,
-            styles.container,
-            {backgroundColor: theme.palette.background.primary, marginTop: 16},
-          ]}>
+        contentContainerStyle={styles.contentContainerStyle}>
+        <View style={[globalStyles.view, styles.container, commonStyle]}>
           <Text style={labelStyle}>Alert Config</Text>
           <SelectLabel label="Start time (Hour)" />
           <SelectLabel value={cc} label="End time (Hour)" />
           <SelectLabel label="Alert Trigger Threshold" />
         </View>
-        <View
-          style={[
-            globalStyles.view,
-            styles.container,
-            {backgroundColor: theme.palette.background.primary, marginTop: 16},
-          ]}>
+        <View style={[globalStyles.view, styles.container, commonStyle]}>
           <Text style={labelStyle}>Email Subscribers</Text>
           <InputLabel label="To" />
           <InputLabel value={cc} onChange={vl => setCC(vl)} label="CC" />
           <InputLabel label="BCC" />
         </View>
-        <View
-          style={[
-            globalStyles.view,
-            styles.container,
-            {backgroundColor: theme.palette.background.primary, marginTop: 16},
-          ]}>
+        <View style={[globalStyles.view, styles.container, commonStyle]}>
           <Text style={labelStyle}>Alert Type</Text>
 
           <MyCheckBoxText>All</MyCheckBoxText>
@@ -94,12 +82,7 @@ const AlertConfig = () => {
             </View>
           </View>
         </View>
-        <View
-          style={[
-            globalStyles.view,
-            styles.container,
-            {backgroundColor: theme.palette.background.primary, marginTop: 16},
-          ]}>
+        <View style={[globalStyles.view, styles.container, commonStyle]}>
           <Text style={labelStyle}>Devices</Text>
           <MyCheckBoxText>All</MyCheckBoxText>
           <MyCheckBoxText>Datalogger</MyCheckBoxText>
@@ -129,4 +112,5 @@ const styles = StyleSheet.create({
   col1: {
     flex: 1,
   },
+  contentContainerStyle: {},
 });

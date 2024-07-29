@@ -103,6 +103,7 @@ const AppProvider: FC<AppProviderProps> = props => {
     }),
     [state.isAuth, state.user, loginFnc, logoutFnc],
   );
+
   return (
     <AppContext.Provider value={memoizedValue}>
       {props.children}

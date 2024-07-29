@@ -4,8 +4,8 @@
  *
  *********************************************************/
 
+import React from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
-import {StyleSheet} from 'react-native';
 import IconImage from '../common/components/icons/IconImage';
 import BottomNavigation from './BottomNavigation';
 import CustomSidebarMenu from './components/CustomSidebarMenu';
@@ -39,9 +39,7 @@ export default function DrawerNavigation() {
         component={BottomNavigation}
         options={{
           drawerLabel: 'Home',
-          drawerIcon: ({focused, size}) => (
-            <IconImage size={20} iconName="home" />
-          ),
+          drawerIcon: () => <IconImage size={20} iconName="home" />,
           drawerItemStyle: {marginVertical: 0, paddingVertical: 0},
         }}
       />

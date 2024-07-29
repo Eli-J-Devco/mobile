@@ -4,14 +4,13 @@
  *
  *********************************************************/
 
-import {View, Text, ScrollView, StyleSheet, TextStyle} from 'react-native';
 import React from 'react';
-import useThemeContext from '../../../../hooks/useThemeContext';
-import ButonText from '../../../../common/components/button/ButonText';
-import MySelect from '../../../../common/base/MySelect';
+import {ScrollView, StyleSheet, Text, TextStyle, View} from 'react-native';
 import MyDatePicker from '../../../../common/base/MyDatePicker';
-import MyTextInput from '../../../../common/base/MyTextInput';
+import MySelect from '../../../../common/base/MySelect';
+import ButonText from '../../../../common/components/button/ButonText';
 import PrimaryInput from '../../../../common/components/input/PrimaryInput';
+import useThemeContext from '../../../../hooks/useThemeContext';
 
 const SearchAndFilter = () => {
   const theme = useThemeContext();
@@ -23,6 +22,12 @@ const SearchAndFilter = () => {
     flex: 3,
   };
 
+  const textStyle: TextStyle = {
+    color: theme.palette.text.primary,
+    fontSize: theme.font.size.sm,
+    fontWeight: '700',
+  };
+
   return (
     <ScrollView contentContainerStyle={styles.contentContainerStyle}>
       <View
@@ -30,14 +35,7 @@ const SearchAndFilter = () => {
           styles.container,
           {backgroundColor: theme.palette.background.primary},
         ]}>
-        <Text
-          style={{
-            color: theme.palette.text.primary,
-            fontSize: theme.font.size.sm,
-            fontWeight: '700',
-          }}>
-          Search By
-        </Text>
+        <Text style={textStyle}>Search By</Text>
         <View style={[styles.content, styles.search]}>
           <ButonText
             text="Site Name"
@@ -109,14 +107,7 @@ const SearchAndFilter = () => {
           styles.container,
           {backgroundColor: theme.palette.background.primary},
         ]}>
-        <Text
-          style={{
-            color: theme.palette.text.primary,
-            fontSize: theme.font.size.sm,
-            fontWeight: '700',
-          }}>
-          Filter By
-        </Text>
+        <Text style={textStyle}>Filter By</Text>
         <View style={[styles.content, styles.filter]}>
           <View style={styles.filterItem}>
             <Text style={label}>Inverter Type</Text>

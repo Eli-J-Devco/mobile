@@ -1,11 +1,12 @@
+/* eslint-disable react-native/no-inline-styles */
 /********************************************************
  * Copyright 2024 NEXT WAVE ENERGY MONITORING INC.
  * All rights reserved.
  *
  *********************************************************/
 
-import {View, Text, TextStyle, FlatList} from 'react-native';
 import React from 'react';
+import {Text, TextStyle, View} from 'react-native';
 import useThemeContext from '../../../hooks/useThemeContext';
 import MySelect, {MySelectProps} from '../../base/MySelect';
 

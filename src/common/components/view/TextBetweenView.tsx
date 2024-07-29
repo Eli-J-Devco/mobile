@@ -4,7 +4,7 @@
  *
  *********************************************************/
 
-import {View, Text, ViewStyle, StyleSheet} from 'react-native';
+import {View, Text, ViewStyle, StyleSheet, TextStyle} from 'react-native';
 import React from 'react';
 import useThemeContext from '../../../hooks/useThemeContext';
 
@@ -29,12 +29,12 @@ const TextBetweenView = ({
 }: ITextBetweenViewProps) => {
   const theme = useThemeContext();
 
-  const styleText: any = {
+  const styleText: TextStyle = {
     color: theme.palette.text[color],
     fontSize: theme.font.size.s,
   };
 
-  const styleAlertText: any = {
+  const styleAlertText: TextStyle = {
     color: theme.palette.text[color],
     fontSize: theme.font.size.s,
     paddingVertical: 4,
@@ -49,6 +49,7 @@ const TextBetweenView = ({
         borderBottomColor: theme.palette.borderColor.secondary,
       }
     : {};
+
   return (
     <View
       style={[

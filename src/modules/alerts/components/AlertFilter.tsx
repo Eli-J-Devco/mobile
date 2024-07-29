@@ -4,20 +4,14 @@
  *
  *********************************************************/
 
-import {
-  View,
-  Text,
-  ScrollView,
-  StyleSheet,
-  TextStyle,
-  TouchableOpacity,
-} from 'react-native';
 import React from 'react';
-import useThemeContext from '../../../hooks/useThemeContext';
-import ButonText from '../../../common/components/button/ButonText';
+import {ScrollView, StyleSheet, Text, TextStyle, View} from 'react-native';
 import MyTree from '../../../common/base/MyTree';
+import ButonText from '../../../common/components/button/ButonText';
 import PrimaryFooter from '../../../common/components/footer/PrimaryFooter';
+import useThemeContext from '../../../hooks/useThemeContext';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const treeData: any = [
   {
     id: 1,
@@ -110,11 +104,9 @@ const AlertFilter = () => {
     <>
       <ScrollView
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{
-          paddingBottom: 16,
-        }}>
-        <View style={[styles.container]}>
-          <View style={[styles.wraped]}>
+        contentContainerStyle={styles.srcollViewContentContainerStyle}>
+        <View style={styles.container}>
+          <View style={styles.wraped}>
             <Text style={titleStyle}>Site Name:</Text>
             <MyTree
               data={treeData}
@@ -124,175 +116,120 @@ const AlertFilter = () => {
               }}
             />
           </View>
-          <View style={[styles.wraped]}>
+          <View style={styles.wraped}>
             <View style={styles.row}>
               <Text style={titleStyle}>Device Categorize:</Text>
               <ButonText
                 text="ALL"
-                touchableOpacityStyles={{
-                  borderRadius: 20,
-                  width: 'auto',
-                  paddingHorizontal: 16,
-                  paddingVertical: 4,
-                }}
+                touchableOpacityStyles={styles.touchableOpacityAll}
               />
             </View>
             <View style={styles.row}>
               <ButonText
                 text="COMM"
-                touchableOpacityStyles={{
-                  flex: 1,
-                  borderRadius: 20,
-                }}
+                touchableOpacityStyles={styles.touchableOpacityStyles}
                 textSize={theme.font.size.s}
               />
               <ButonText
                 text="ERROR"
-                touchableOpacityStyles={{
-                  flex: 1,
-                  borderRadius: 20,
-                }}
+                touchableOpacityStyles={styles.touchableOpacityStyles}
                 textSize={theme.font.size.s}
               />
               <ButonText
                 text="INFO"
-                touchableOpacityStyles={{
-                  flex: 1,
-                  borderRadius: 20,
-                }}
+                touchableOpacityStyles={styles.touchableOpacityStyles}
                 textSize={theme.font.size.s}
               />
             </View>
             <View style={styles.row}>
               <ButonText
                 text="PRODUCTION"
-                touchableOpacityStyles={{
-                  flex: 1,
-                  borderRadius: 20,
-                }}
+                touchableOpacityStyles={styles.touchableOpacityStyles}
                 textSize={theme.font.size.s}
               />
               <ButonText
                 text="DEBUG"
-                touchableOpacityStyles={{
-                  flex: 1,
-                  borderRadius: 20,
-                }}
+                touchableOpacityStyles={styles.touchableOpacityStyles}
                 textSize={theme.font.size.s}
               />
               <ButonText
                 text="FATAL"
-                touchableOpacityStyles={{
-                  flex: 1,
-                  borderRadius: 20,
-                }}
+                touchableOpacityStyles={styles.touchableOpacityStyles}
                 textSize={theme.font.size.s}
               />
             </View>
           </View>
-          <View style={[styles.wraped]}>
+          <View style={styles.wraped}>
             <View style={styles.row}>
               <Text style={titleStyle}>Error Type:</Text>
               <ButonText
                 text="ALL"
-                touchableOpacityStyles={{
-                  borderRadius: 20,
-                  width: 'auto',
-                  paddingHorizontal: 16,
-                  paddingVertical: 4,
-                }}
+                touchableOpacityStyles={styles.touchableOpacityAll}
               />
             </View>
             <View style={styles.row}>
               <ButonText
                 text="System Disconnect"
-                touchableOpacityStyles={{
-                  flex: 1,
-                }}
+                touchableOpacityStyles={styles.errTypeBtn}
               />
               <ButonText
                 text="String Performance"
-                touchableOpacityStyles={{
-                  flex: 1,
-                }}
+                touchableOpacityStyles={styles.errTypeBtn}
               />
             </View>
             <View style={styles.row}>
               <ButonText
                 text="Performance Index"
-                touchableOpacityStyles={{
-                  flex: 1,
-                }}
+                touchableOpacityStyles={styles.errTypeBtn}
               />
               <ButonText
                 text="Zero Generation"
-                touchableOpacityStyles={{
-                  flex: 1,
-                }}
+                touchableOpacityStyles={styles.errTypeBtn}
               />
             </View>
             <View style={styles.row}>
               <ButonText
                 text="Device Fault"
-                touchableOpacityStyles={{
-                  flex: 1,
-                }}
+                touchableOpacityStyles={styles.errTypeBtn}
               />
             </View>
           </View>
-          <View style={[styles.wraped]}>
+          <View style={styles.wraped}>
             <View style={styles.row}>
               <Text style={titleStyle}>Device Categorize:</Text>
               <ButonText
                 text="ALL"
-                touchableOpacityStyles={{
-                  borderRadius: 20,
-                  width: 'auto',
-                  paddingHorizontal: 16,
-                  paddingVertical: 4,
-                }}
+                touchableOpacityStyles={styles.touchableOpacityAll}
               />
             </View>
             <View style={styles.row}>
               <ButonText
                 text="PV System Inverter"
-                touchableOpacityStyles={{
-                  flex: 1,
-                }}
+                touchableOpacityStyles={styles.errTypeBtn}
               />
               <ButonText
                 text="Production Meter"
-                touchableOpacityStyles={{
-                  flex: 1,
-                }}
+                touchableOpacityStyles={styles.errTypeBtn}
               />
             </View>
             <View style={styles.row}>
               <ButonText
                 text="Solar Tracker"
-                touchableOpacityStyles={{
-                  flex: 1,
-                }}
+                touchableOpacityStyles={styles.errTypeBtn}
               />
               <ButonText
                 text="Datalogger"
-                touchableOpacityStyles={{
-                  flex: 1,
-                }}
+                touchableOpacityStyles={styles.errTypeBtn}
               />
             </View>
             <View style={styles.row}>
               <ButonText
                 text="Sensor"
-                touchableOpacityStyles={{
-                  flex: 1,
-                }}
+                touchableOpacityStyles={styles.errTypeBtn}
               />
               <ButonText
                 text="Weather Station"
-                touchableOpacityStyles={{
-                  flex: 1,
-                }}
+                touchableOpacityStyles={styles.errTypeBtn}
               />
             </View>
           </View>
@@ -333,29 +270,20 @@ const styles = StyleSheet.create({
     gap: 16,
     width: '100%',
   },
-  deviceItem: {
-    flex: 1,
-    backgroundColor: '#F0F0F0',
-    padding: 8,
-    borderRadius: 4,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
+  srcollViewContentContainerStyle: {
+    paddingBottom: 16,
   },
-  all: {
-    backgroundColor: '#F0F0F0',
+  touchableOpacityAll: {
     borderRadius: 20,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
+    width: 'auto',
     paddingHorizontal: 16,
     paddingVertical: 4,
   },
-  input: {
-    borderColor: '#C5C5C5',
-    borderWidth: 1,
-    borderRadius: 8,
-    height: 37,
-    width: '100%',
+  touchableOpacityStyles: {
+    flex: 1,
+    borderRadius: 20,
+  },
+  errTypeBtn: {
+    flex: 1,
   },
 });

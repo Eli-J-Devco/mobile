@@ -19,9 +19,6 @@ import {
   View,
 } from 'react-native';
 import {images} from '../assets';
-import MyTextInput from '../common/base/MyTextInput';
-import SvgIcon from '../common/components/SvgIcon';
-import useThemeContext from '../hooks/useThemeContext';
 import IconImage from '../common/components/icons/IconImage';
 
 interface Props {
@@ -29,9 +26,9 @@ interface Props {
   children: React.ReactNode;
 }
 
-const PrimaryLayoutDetail = ({filter = true, children}: Props) => {
+const PrimaryLayoutDetail = ({children}: Props) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
-  const theme = useThemeContext();
 
   return (
     <SafeAreaView style={styles.container}>
@@ -57,7 +54,7 @@ const PrimaryLayoutDetail = ({filter = true, children}: Props) => {
               onPress={() => navigation.goBack()}>
               <IconImage iconName="arrowLeftWhite" />
             </TouchableOpacity>
-            <View style={[styles.searchInput]}>
+            <View style={styles.searchInput}>
               <IconImage size={20} iconName="search" />
               <TextInput style={styles.input} placeholder="Search" />
             </View>

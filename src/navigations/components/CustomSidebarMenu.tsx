@@ -3,7 +3,7 @@
  * All rights reserved.
  *
  *********************************************************/
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, {useState} from 'react';
 import {Image, SafeAreaView, StyleSheet, Text, View} from 'react-native';
 
@@ -12,17 +12,18 @@ import {
   DrawerItemList,
 } from '@react-navigation/drawer';
 import {images} from '../../assets';
-import CustomDrawerItem from './CustomDrawerItem';
-import DrawerItemTree from './DrawerItemTree';
 import ModalConfirm from '../../common/components/modal/ModalConfirm';
-import CustomerOrAccount from './CustomerOrAccount';
 import useAppContext from '../../hooks/useAppContext';
+import CustomDrawerItem from './CustomDrawerItem';
+import CustomerOrAccount from './CustomerOrAccount';
+import DrawerItemTree from './DrawerItemTree';
 
 const CustomSidebarMenu = (props: any) => {
   const [modalVisible, setModalVisible] = useState(false);
   const {logoutFnc} = useAppContext();
+
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={styles.container}>
       <ModalConfirm
         title="Do you want to log out?"
         visible={modalVisible}
@@ -40,9 +41,7 @@ const CustomSidebarMenu = (props: any) => {
         <Image source={images.logo} style={styles.logoImage} />
       </View>
       <DrawerContentScrollView
-        contentContainerStyle={{
-          paddingTop: 0,
-        }}
+        contentContainerStyle={styles.drawerContentScrollViewStyle}
         {...props}>
         <DrawerItemList {...props} />
         <CustomDrawerItem label="Alerts" iconName="bell" />
@@ -64,29 +63,9 @@ const CustomSidebarMenu = (props: any) => {
           />
         </View>
       </DrawerContentScrollView>
-      <View
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          marginTop: 'auto',
-          paddingBottom: 16,
-        }}>
-        <Text
-          style={{
-            color: '#000',
-            fontSize: 12,
-            fontWeight: '700',
-          }}>
-          Version 1.0
-        </Text>
-        <Text
-          style={{
-            color: '#000',
-            fontSize: 12,
-            fontWeight: '400',
-          }}>
+      <View style={styles.versonContainer}>
+        <Text style={styles.versionText}>Version 1.0</Text>
+        <Text style={styles.versionTextDes}>
           Powered by Next Wave Energy Monitoring, Inc.
         </Text>
       </View>
@@ -95,6 +74,9 @@ const CustomSidebarMenu = (props: any) => {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   headerImage: {
     width: '100%',
     height: 80,
@@ -116,6 +98,27 @@ const styles = StyleSheet.create({
   bottomNav: {
     borderTopColor: '#EDEDED',
     borderTopWidth: 1,
+  },
+  drawerContentScrollViewStyle: {
+    paddingTop: 0,
+  },
+  versonContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 'auto',
+    paddingBottom: 16,
+  },
+  versionText: {
+    color: '#000',
+    fontSize: 12,
+    fontWeight: '700',
+  },
+  versionTextDes: {
+    color: '#000',
+    fontSize: 12,
+    fontWeight: '400',
   },
 });
 

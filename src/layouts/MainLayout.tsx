@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable react-native/no-inline-styles */
 /********************************************************
  * Copyright 2024 NEXT WAVE ENERGY MONITORING INC.
  * All rights reserved.
@@ -32,7 +34,7 @@ import {
   reportsRouteNames,
 } from '../navigations/router-name';
 
-const {width, height} = Dimensions.get('window');
+const {width} = Dimensions.get('window');
 
 const DATA = [
   {
@@ -78,13 +80,12 @@ const LOWER_HEADER_HEIGHT = 80;
 const ACTION_CONTAINER_HEIGHT = 90;
 const ACTION_CONTAINER_PADDING_HORIZONTAL = 16;
 const ACTION_CONTAINER_MAGIN_TOP = 12;
+
 interface Props {
-  // navigation: any;
   backgroundColor?: string;
   children: React.ReactNode;
 }
 
-const TextInputAnimated = Animated.createAnimatedComponent(TextInput);
 const TouchableOpacityAnimated =
   Animated.createAnimatedComponent(TouchableOpacity);
 
@@ -93,8 +94,10 @@ const MainLayout = ({backgroundColor, children}: Props) => {
 
   const {isAuth, user} = useAppContext();
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const navigation = useNavigation<any>();
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [refreshing, setRefreshing] = useState(false);
 
   const animatedValue = useRef(new Animated.Value(0)).current;
@@ -202,11 +205,12 @@ const MainLayout = ({backgroundColor, children}: Props) => {
   if (!isAuth) {
     console.log('no authen');
     navigation.replace('Login');
+
     return;
   }
 
   return (
-    <SafeAreaView style={[styles.container]}>
+    <SafeAreaView style={styles.container}>
       <StatusBar
         translucent={true}
         barStyle="dark-content"
@@ -220,7 +224,7 @@ const MainLayout = ({backgroundColor, children}: Props) => {
             paddingTop: StatusBar.currentHeight,
           },
         ]}>
-        <View style={[styles.upperHeader]}>
+        <View style={styles.upperHeader}>
           <TouchableOpacityAnimated
             activeOpacity={0.5}
             onPress={() => {
@@ -297,15 +301,13 @@ const MainLayout = ({backgroundColor, children}: Props) => {
                   onPress={() => {
                     navigation.navigate(item.sreen);
                   }}>
-                  <View style={[styles.actionIcon]}>
+                  <View style={styles.actionIcon}>
                     <IconImage iconName={item.icon} />
                   </View>
-                  <Text style={[styles.actionLable]}>{item.name}</Text>
+                  <Text style={styles.actionLable}>{item.name}</Text>
                 </TouchableOpacityAnimated>
               )}
-              keyExtractor={(item: any, index: number) =>
-                `id-silder-${item.name}`
-              }
+              keyExtractor={(item: any) => `id-silder-${item.name}`}
               horizontal={true}
             />
           </Animated.View>
@@ -316,6 +318,7 @@ const MainLayout = ({backgroundColor, children}: Props) => {
         ref={scrollViewRef}
         onScroll={e => {
           const offsetY = e.nativeEvent.contentOffset.y;
+
           // scrollDirection.current = offsetY - lastOffsetY.current > 0 ? 1 : 2;
           // lastOffsetY.current = offsetY;
           animatedValue.setValue(offsetY);
@@ -435,11 +438,6 @@ const styles = StyleSheet.create({
     color: '#000',
     height: 37,
     textAlignVertical: 'center',
-  },
-  bell: {
-    width: 16,
-    height: 16,
-    marginHorizontal: 32,
   },
   actionItem: {
     display: 'flex',

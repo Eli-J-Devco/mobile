@@ -1,13 +1,6 @@
-import {useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Dimensions, View} from 'react-native';
-import {
-  LineChart,
-  BarChart,
-  PieChart,
-  ProgressChart,
-  ContributionGraph,
-  StackedBarChart,
-} from 'react-native-chart-kit';
+import {LineChart} from 'react-native-chart-kit';
 
 const {width} = Dimensions.get('window');
 
@@ -75,7 +68,7 @@ const LineChartKit = () => {
           datasets: [
             {
               data: data,
-              color: (opacity = 1) => `rgba(0, 0, 255, 0.5)`,
+              color: () => `rgba(0, 0, 255, 0.5)`,
               strokeWidth: 0,
             },
           ],

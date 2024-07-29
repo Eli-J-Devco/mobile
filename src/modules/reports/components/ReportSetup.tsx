@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, TextStyle, View, ViewStyle} from 'react-native';
 import MyScrollView from '../../../common/base/MyScrollView';
 import MySwicthText from '../../../common/base/MySwicthText';
 import SelectLabel from '../../../common/components/select/SelectLabel';
@@ -11,6 +11,9 @@ import ColorSetingItem from './ColorSetingItem';
 import PrimaryFooter from '../../../common/components/footer/PrimaryFooter';
 
 const ReportSetup = () => {
+  const fonsSize: TextStyle = {fontSize: 12};
+  const flex1: ViewStyle = {flex: 1};
+
   return (
     <>
       <MyScrollView paddingHorizontal={0}>
@@ -20,18 +23,18 @@ const ReportSetup = () => {
             <SelectLabel label="Amount of Decimal Points to Be Display" />
             <View style={styles.switchContainer}>
               <Grid>
-                <MySwicthText scale={0.6} textStyle={{fontSize: 12}} span={1}>
+                <MySwicthText scale={0.6} textStyle={fonsSize} span={1}>
                   Legend
                 </MySwicthText>
-                <MySwicthText scale={0.6} textStyle={{fontSize: 12}} span={1}>
+                <MySwicthText scale={0.6} textStyle={fonsSize} span={1}>
                   Filter
                 </MySwicthText>
               </Grid>
               <Grid>
-                <MySwicthText scale={0.6} textStyle={{fontSize: 12}} span={1}>
+                <MySwicthText scale={0.6} textStyle={fonsSize} span={1}>
                   Group By Filed
                 </MySwicthText>
-                <MySwicthText scale={0.6} textStyle={{fontSize: 12}} span={1}>
+                <MySwicthText scale={0.6} textStyle={fonsSize} span={1}>
                   Day/Night
                 </MySwicthText>
               </Grid>
@@ -42,7 +45,7 @@ const ReportSetup = () => {
             <View style={styles.flex}>
               <H2>Chart Type</H2>
               <View>
-                <MySwicthText scale={0.6} textStyle={{fontSize: 12}} span={1}>
+                <MySwicthText scale={0.6} textStyle={fonsSize} span={1}>
                   All
                 </MySwicthText>
               </View>
@@ -70,7 +73,7 @@ const ReportSetup = () => {
               <View style={styles.colorSetting}>
                 <Grid>
                   <ColorSetingItem />
-                  <View style={{flex: 1}} />
+                  <View style={flex1} />
                 </Grid>
               </View>
             </View>

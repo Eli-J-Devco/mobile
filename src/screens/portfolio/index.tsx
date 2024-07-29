@@ -4,11 +4,10 @@
  *
  *********************************************************/
 
-import {View, Text, ScrollView} from 'react-native';
 import React from 'react';
+import MyScrollView from '../../common/base/MyScrollView';
 import PrimaryLayoutDetail from '../../layouts/PrimaryLayoutDetail';
 import PortFolio from '../../modules/portfolio';
-import MyScrollView from '../../common/base/MyScrollView';
 
 const PortfolioSreen = () => {
   return (

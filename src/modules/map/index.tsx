@@ -4,11 +4,11 @@
  *
  *********************************************************/
 
-import MapboxGL, {Logger, UserLocation} from '@rnmapbox/maps';
-import React, {useEffect, useState} from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
-import {images} from '../../assets';
 import {MAP_BOX_ACCESS_TOKEN} from '@env';
+import MapboxGL, {Logger, UserLocation} from '@rnmapbox/maps';
+import React, {useEffect} from 'react';
+import {Image, StyleSheet, View} from 'react-native';
+import {images} from '../../assets';
 
 Logger.setLogCallback(log => {
   const {message} = log;
@@ -19,6 +19,7 @@ Logger.setLogCallback(log => {
   ) {
     return true;
   }
+
   return false;
 });
 
@@ -26,14 +27,15 @@ MapboxGL.setAccessToken(MAP_BOX_ACCESS_TOKEN);
 MapboxGL.UserTrackingMode.Follow;
 
 const Map = () => {
-  const [location, setLocation] = useState<any[]>();
-
   useEffect(() => {
     // Request permission to access location
+
+    console.log('-----location---: ', MAP_BOX_ACCESS_TOKEN);
 
     (async () => {
       await MapboxGL.requestAndroidLocationPermissions();
     })();
+
     return () => {
       MapboxGL.setTelemetryEnabled(false);
     };
@@ -124,12 +126,7 @@ const styles = StyleSheet.create({
   map: {
     flex: 1,
   },
-  marker: {
-    width: 10,
-    height: 10,
-    backgroundColor: 'blue',
-    borderRadius: 5,
-  },
+
   logo: {
     height: '100%',
     width: '100%',
@@ -148,16 +145,5 @@ const styles = StyleSheet.create({
     width: 100,
     backgroundColor: '#fff',
     borderRadius: 4,
-  },
-  annotationContainer: {
-    backgroundColor: '#ffffff',
-    padding: 10,
-    borderRadius: 20,
-    borderColor: '#7a7a7a',
-    borderWidth: 1,
-  },
-  annotationText: {
-    fontSize: 15,
-    fontWeight: 'bold',
   },
 });

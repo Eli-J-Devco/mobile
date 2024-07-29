@@ -44,11 +44,14 @@ const assetsSelectMap: AssetsMap = {
 const BottomNavigation = (): JSX.Element => {
   const hide = useHideTabBottom();
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const getIcons = (focused: boolean, name: string): any => {
     let asset = assetsNotSelectMap[name];
+
     if (focused) {
       asset = assetsSelectMap[name];
     }
+
     return asset;
   };
 
@@ -100,6 +103,7 @@ const BottomNavigation = (): JSX.Element => {
           tabBarActiveTintColor: '#F0DB2B',
           tabBarIcon: ({focused}) => (
             <View
+              // eslint-disable-next-line react-native/no-inline-styles
               style={{
                 padding: 4,
                 borderRadius: 20,

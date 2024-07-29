@@ -25,6 +25,7 @@ const Alerts = () => {
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
 
   const titleOverView: TextStyle = {
@@ -42,6 +43,18 @@ const Alerts = () => {
   const btnText: TextStyle = {
     color: theme.palette.text.primary,
     fontSize: theme.font.size.s,
+    fontWeight: '400',
+  };
+
+  const titleStyle: TextStyle = {
+    color: theme.palette.text.primary,
+    fontSize: theme.font.size.xs,
+    fontWeight: '700',
+  };
+
+  const switchTextStyles: TextStyle = {
+    color: theme.palette.text.primary,
+    fontSize: theme.font.size.mini,
     fontWeight: '400',
   };
 
@@ -83,14 +96,7 @@ const Alerts = () => {
         <View style={styles.filterMain}>
           <View style={styles.flexContainer}>
             <IconImage iconName="exclamationBlack" />
-            <Text
-              style={{
-                color: theme.palette.text.primary,
-                fontSize: theme.font.size.xs,
-                fontWeight: '700',
-              }}>
-              Alerts
-            </Text>
+            <Text style={titleStyle}>Alerts</Text>
           </View>
           <View style={styles.flexContainer}>
             <TouchableOpacity
@@ -144,14 +150,7 @@ const Alerts = () => {
               onValueChange={toggleSwitch}
               value={isEnabled}
             />
-            <Text
-              style={{
-                color: theme.palette.text.primary,
-                fontSize: theme.font.size.mini,
-                fontWeight: '400',
-              }}>
-              Group by site
-            </Text>
+            <Text style={switchTextStyles}>Group by site</Text>
           </View>
         </View>
       </View>

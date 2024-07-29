@@ -11,25 +11,19 @@ import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 interface Props {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   items: any[];
 }
 
 const {width} = Dimensions.get('window');
 
 const SilderItem = ({items}: Props) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
+
   return (
-    <View
-      style={{
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'center',
-        // justifyContent: 'space-between',
-        width: width,
-        height: '100%',
-        marginRight: 20,
-      }}>
-      {items.map((item, index) => {
+    <View style={styles.container}>
+      {items.map(item => {
         return (
           <TouchableOpacity
             activeOpacity={0.5}
@@ -52,49 +46,13 @@ const SilderItem = ({items}: Props) => {
 export default SilderItem;
 
 const styles = StyleSheet.create({
-  actionContent: {
-    paddingHorizontal: 8,
-    shadowColor: '#333',
-    shadowOffset: {width: -2, height: 4},
-    shadowOpacity: 0.5,
-    shadowRadius: 3,
-    elevation: 20,
-    width: '100%',
-    borderRadius: 8,
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flex: 1,
-  },
-  actionContainer: {
-    display: 'flex',
-    width: '100%',
-    height: '100%',
-    // backgroundColor: 'blue',
-  },
-  silderContainer: {
-    width: '100%',
-    flex: 10,
-    paddingBottom: 4,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  silder: {
+  container: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    width: 'auto',
-    backgroundColor: '#D9D9D9',
-    borderRadius: 10,
-    height: 5,
-  },
-  silderItem: {
-    width: 20,
+    width: width,
     height: '100%',
-    backgroundColor: '#373433',
-    borderRadius: 10,
+    marginRight: 20,
   },
   actionItem: {
     display: 'flex',

@@ -17,6 +17,7 @@ export function getData() {
 }
 
 const ChartBar = () => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [state, setState] = useState<any>(null);
 
   useEffect(() => {
@@ -25,6 +26,7 @@ const ChartBar = () => {
 
     const setStateInterval = setInterval(() => {
       const team = getData();
+
       setState(team);
     }, 1000);
 

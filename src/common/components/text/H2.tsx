@@ -5,7 +5,7 @@
  *********************************************************/
 
 import React from 'react';
-import {Text} from 'react-native';
+import {Text, TextStyle} from 'react-native';
 import useThemeContext from '../../../hooks/useThemeContext';
 
 interface IH3Props {
@@ -15,7 +15,7 @@ interface IH3Props {
 const H2 = ({children}: IH3Props) => {
   const theme = useThemeContext();
 
-  const styleText: any = {
+  const styleText: TextStyle = {
     color: theme.palette.text.primary,
     fontSize: theme.font.size.sm,
     fontWeight: '700',

@@ -4,6 +4,8 @@
  *
  *********************************************************/
 
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import React from 'react';
 import {
   ImageBackground,
@@ -14,21 +16,26 @@ import {
   StyleSheet,
   Text,
   TextInput,
+  TextStyle,
   View,
 } from 'react-native';
-import PrimaryLayoutDetail from '../../../layouts/PrimaryLayoutDetail';
-import SearchAndFilter from '../../../modules/dashboard/components/searchAndFilter';
-import {useNavigation} from '@react-navigation/native';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import useThemeContext from '../../../hooks/useThemeContext';
-import IconImage from '../../../common/components/icons/IconImage';
-import MyTouchableOpacity from '../../../common/base/MyTouchableOpacity';
 import {images} from '../../../assets';
 import MyScrollView from '../../../common/base/MyScrollView';
+import MyTouchableOpacity from '../../../common/base/MyTouchableOpacity';
+import IconImage from '../../../common/components/icons/IconImage';
+import useThemeContext from '../../../hooks/useThemeContext';
+import SearchAndFilter from '../../../modules/dashboard/components/searchAndFilter';
 
 const SearchAndFilterSreen = () => {
+  /* eslint-disable @typescript-eslint/no-explicit-any */
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
   const theme = useThemeContext();
+
+  const textStyles: TextStyle = {
+    fontSize: theme.font.size.sm,
+    color: theme.palette.text.primary,
+    fontWeight: '400',
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -49,21 +56,14 @@ const SearchAndFilterSreen = () => {
               styles.headerContent,
               {marginTop: StatusBar.currentHeight},
             ]}>
-            <View style={[styles.searchInput]}>
+            <View style={styles.searchInput}>
               <IconImage iconName="search" />
               <TextInput style={styles.input} placeholder="Search" />
             </View>
 
             <View style={styles.headerBtnContainer}>
               <MyTouchableOpacity onPress={() => navigation.goBack()}>
-                <Text
-                  style={{
-                    fontSize: theme.font.size.sm,
-                    color: theme.palette.text.primary,
-                    fontWeight: '400',
-                  }}>
-                  Cancel
-                </Text>
+                <Text style={textStyles}>Cancel</Text>
               </MyTouchableOpacity>
             </View>
           </View>
@@ -84,10 +84,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  image: {
-    flex: 1,
-    opacity: 0.8,
-  },
   content: {
     display: 'flex',
     width: '100%',
@@ -95,6 +91,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5F5F5',
     flex: 14,
   },
+  image: {
+    flex: 1,
+    opacity: 0.8,
+  },
+
   header: {
     flex: 2,
     backgroundColor: 'tranperant',
@@ -135,14 +136,5 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  headerBtn: {
-    height: 40,
-    width: 40,
-    borderRadius: 20,
-    backgroundColor: 'rgba(0, 0, 0, 0.2)',
-    justifyContent: 'center',
-    alignItems: 'center',
-    display: 'flex',
   },
 });

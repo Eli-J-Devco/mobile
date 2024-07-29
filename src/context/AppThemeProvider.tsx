@@ -4,7 +4,7 @@
  *
  *********************************************************/
 
-import React, {ReactElement, createContext, useEffect, useState} from 'react';
+import React, {ReactElement, createContext, useState} from 'react';
 import themeDefaults from '../utils/configDefault';
 
 interface AppThemeProviderProps {
@@ -14,7 +14,8 @@ interface AppThemeProviderProps {
 export const ThemeContext = createContext<ThemeDefaultsType | null>(null);
 
 const AppThemeProvider: React.FC<AppThemeProviderProps> = props => {
-  const [theme, setTheme] = useState<any>(themeDefaults);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [theme] = useState<any>(themeDefaults);
 
   return (
     <ThemeContext.Provider value={theme}>

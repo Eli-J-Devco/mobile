@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable react/display-name */
 import React, {useCallback, useImperativeHandle} from 'react';
 import {Dimensions, StyleSheet, View} from 'react-native';
 import {Gesture, GestureDetector} from 'react-native-gesture-handler';
@@ -97,6 +99,7 @@ const BottomSheet = React.forwardRef<BottomSheetRefProps, BottomSheetProps>(
           }}
           animatedProps={rBackdropProps}
           style={[
+            // eslint-disable-next-line react-native/no-inline-styles
             {
               ...StyleSheet.absoluteFillObject,
               backgroundColor: 'rgba(0,0,0,0.4)',

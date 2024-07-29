@@ -1,11 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, {useEffect, useState} from 'react';
-import {
-  FlatList,
-  ScrollView,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {FlatList, StyleSheet, View} from 'react-native';
 import useThemeContext from '../../hooks/useThemeContext';
 import SilderItem from './SilderItem';
 
@@ -14,7 +9,7 @@ interface Props {
   navigation: any;
 }
 
-const Silder = ({data, navigation}: Props) => {
+const Silder = ({data}: Props) => {
   const theme = useThemeContext();
   const [count, setCount] = useState(1);
   const [values, setValues] = useState<any[]>([]);
@@ -23,7 +18,8 @@ const Silder = ({data, navigation}: Props) => {
     if (data) {
       const countValue = Math.ceil(data.length / 5);
       //   console.log('----countValue', countValue);
-      let team: any[] = [];
+      const team: any[] = [];
+
       Array.from({length: count}).map((_, index) => {
         team.push(data.slice(index * 5, (index + 1) * 5));
       });
@@ -34,7 +30,7 @@ const Silder = ({data, navigation}: Props) => {
   }, [data]);
 
   return (
-    <View style={[styles.actionContainer]}>
+    <View style={styles.actionContainer}>
       <View
         style={[
           styles.actionContent,
@@ -44,13 +40,10 @@ const Silder = ({data, navigation}: Props) => {
           pagingEnabled
           showsHorizontalScrollIndicator={false}
           horizontal={true}
-          contentContainerStyle={{
-            flex: 90,
-            paddingVertical: 8,
-          }}
+          contentContainerStyle={styles.contentContainerStyle}
           renderItem={({item}: {item: any}) => <SilderItem items={item} />}
           data={values}
-          keyExtractor={(item: any, index: number) => `id-silder-${item}`}
+          keyExtractor={(item: any) => `id-silder-${item}`}
         />
 
         {/* {count > 1 && (
@@ -87,56 +80,15 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    // backgroundColor: 'blue',
     flex: 1,
   },
   actionContainer: {
     display: 'flex',
     width: '100%',
     height: '100%',
-    // backgroundColor: 'blue',
   },
-  silderContainer: {
-    width: '100%',
-    flex: 10,
-    paddingBottom: 4,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  silder: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    width: 'auto',
-    backgroundColor: '#D9D9D9',
-    borderRadius: 10,
-    height: 5,
-  },
-  silderItem: {
-    width: 20,
-    height: '100%',
-    backgroundColor: '#373433',
-    borderRadius: 10,
-  },
-  actionItem: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 4,
-  },
-  actionIcon: {
-    backgroundColor: '#E6EFFC',
-    borderRadius: 8,
-    height: 40,
-    width: 40,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  actionLable: {
-    fontSize: 12,
-    color: '#000000',
+  contentContainerStyle: {
+    flex: 90,
+    paddingVertical: 8,
   },
 });

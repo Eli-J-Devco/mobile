@@ -4,7 +4,7 @@
  *
  *********************************************************/
 
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, TextStyle} from 'react-native';
 import React from 'react';
 import useThemeContext from '../../../../hooks/useThemeContext';
 
@@ -14,6 +14,21 @@ interface PortfolioItemProps {
 
 const PortfolioItem = ({item}: PortfolioItemProps) => {
   const theme = useThemeContext();
+
+  const text700Style: TextStyle = {
+    color: theme.palette.text.primary,
+    fontSize: theme.font.size.xs,
+    fontWeight: '700',
+  };
+  const text400Style: TextStyle = {
+    color: theme.palette.text.primary,
+    fontSize: theme.font.size.s,
+    fontWeight: '400',
+  };
+  const lableStyle: TextStyle = {
+    color: theme.palette.text.primary,
+    fontSize: theme.font.size.xs,
+  };
 
   return (
     <View
@@ -41,45 +56,14 @@ const PortfolioItem = ({item}: PortfolioItemProps) => {
           ]}>
           {item.percentage}%
         </Text>
-        <Text
-          style={[
-            {
-              color: theme.palette.text.primary,
-              fontSize: theme.font.size.xs,
-            },
-          ]}>
-          A/E
-        </Text>
+        <Text style={lableStyle}>A/E</Text>
       </View>
-      <View style={[styles.content, {}]}>
-        <Text
-          style={[
-            {
-              color: theme.palette.text.primary,
-              fontSize: theme.font.size.xs,
-              fontWeight: '700',
-            },
-          ]}>
-          {item.name}
-        </Text>
+      <View style={styles.content}>
+        <Text style={text700Style}>{item.name}</Text>
         {item.children.map((child, index) => (
           <View style={styles.contentItem} key={index}>
-            <Text
-              style={{
-                color: theme.palette.text.primary,
-                fontSize: theme.font.size.s,
-                fontWeight: '400',
-              }}>
-              {child.title}
-            </Text>
-            <Text
-              style={{
-                color: theme.palette.text.primary,
-                fontSize: theme.font.size.s,
-                fontWeight: '400',
-              }}>
-              {child.value}kW
-            </Text>
+            <Text style={text400Style}>{child.title}</Text>
+            <Text style={text400Style}>{child.value}kW</Text>
           </View>
         ))}
       </View>

@@ -5,17 +5,14 @@
  *********************************************************/
 
 import React from 'react';
-import {ScrollView, StyleSheet, Text, TextStyle, View} from 'react-native';
-import MyTree from '../../../common/base/MyTree';
-import ButonText from '../../../common/components/button/ButonText';
-import PrimaryFooter from '../../../common/components/footer/PrimaryFooter';
-import useThemeContext from '../../../hooks/useThemeContext';
-import Grid from '../../../common/components/view/Grid';
+import {StyleSheet, View} from 'react-native';
 import MyCheckBoxText from '../../../common/base/MyCheckBoxText';
 import MyScrollView from '../../../common/base/MyScrollView';
-import H3 from '../../../common/components/text/H3';
+import MyTree from '../../../common/base/MyTree';
+import PrimaryFooter from '../../../common/components/footer/PrimaryFooter';
 import H2 from '../../../common/components/text/H2';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const treeData: any = [
   {
     id: 1,
@@ -96,13 +93,11 @@ const treeData: any = [
 ];
 
 const ReportFilter = () => {
-  const theme = useThemeContext();
-
   return (
     <>
       <MyScrollView paddingHorizontal={0}>
-        <View style={[styles.container]}>
-          <View style={[styles.wraped]}>
+        <View style={styles.container}>
+          <View style={styles.wraped}>
             <H2>Components:</H2>
             <MyTree
               data={treeData}
@@ -112,7 +107,7 @@ const ReportFilter = () => {
               }}
             />
           </View>
-          <View style={[styles.wraped]}>
+          <View style={styles.wraped}>
             <View style={styles.row}>
               <H2>Measurements:</H2>
             </View>
@@ -126,7 +121,7 @@ const ReportFilter = () => {
             <MyCheckBoxText span={1}>Phase Angle</MyCheckBoxText>
             <MyCheckBoxText span={1}>Power</MyCheckBoxText>
           </View>
-          <View style={[styles.wraped]}>
+          <View style={styles.wraped}>
             <H2>Hardware Registers:</H2>
             <MyTree
               data={treeData}
@@ -170,31 +165,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     gap: 16,
-    width: '100%',
-  },
-  deviceItem: {
-    flex: 1,
-    backgroundColor: '#F0F0F0',
-    padding: 8,
-    borderRadius: 4,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  all: {
-    backgroundColor: '#F0F0F0',
-    borderRadius: 20,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingHorizontal: 16,
-    paddingVertical: 4,
-  },
-  input: {
-    borderColor: '#C5C5C5',
-    borderWidth: 1,
-    borderRadius: 8,
-    height: 37,
     width: '100%',
   },
 });

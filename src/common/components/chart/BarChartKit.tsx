@@ -1,13 +1,6 @@
-import {useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Dimensions, View} from 'react-native';
-import {
-  LineChart,
-  BarChart,
-  PieChart,
-  ProgressChart,
-  ContributionGraph,
-  StackedBarChart,
-} from 'react-native-chart-kit';
+import {BarChart} from 'react-native-chart-kit';
 
 const {width} = Dimensions.get('window');
 

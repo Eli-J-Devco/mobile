@@ -31,13 +31,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  lable: {
-    fontSize: 32,
-    fontWeight: '600',
-    color: '#212121',
-    textAlign: 'center',
-    marginBottom: 32,
-  },
   btn: {
     height: 48,
     width: '100%',

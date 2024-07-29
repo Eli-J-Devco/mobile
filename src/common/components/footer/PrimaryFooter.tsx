@@ -51,20 +51,6 @@ const PrimaryFooter = ({
 export default PrimaryFooter;
 
 const styles = StyleSheet.create({
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: 16,
-  },
-  alertType: {
-    display: 'flex',
-    flexDirection: 'row',
-    gap: 16,
-    alignItems: 'center',
-  },
-  col1: {
-    flex: 1,
-  },
   actionWraped: {
     display: 'flex',
     flexDirection: 'row',

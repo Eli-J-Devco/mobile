@@ -1,5 +1,5 @@
-import {View, Text, StyleSheet, SafeAreaView} from 'react-native';
 import React from 'react';
+import {SafeAreaView, StyleSheet, View} from 'react-native';
 
 const Account = () => {
   return (

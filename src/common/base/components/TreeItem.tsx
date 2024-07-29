@@ -12,10 +12,11 @@ import IconImage from '../../components/icons/IconImage';
 
 interface ChildItemProps {
   child: ITree;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onChecked?: (checked: boolean, value?: any) => void;
 }
 
-const ChildItem = ({child, onChecked}: ChildItemProps) => {
+const ChildItem = ({child}: ChildItemProps) => {
   const [expanded, setExpanded] = useState(false);
 
   return (
@@ -44,11 +45,14 @@ const ChildItem = ({child, onChecked}: ChildItemProps) => {
 };
 
 const getChild = (item: ITree) => {
-  return item.children?.map(child => <ChildItem child={child} />);
+  return item.children?.map(child => (
+    <ChildItem key={child.id} child={child} />
+  ));
 };
 
 interface TreeItemProps {
   treeItem: ITree;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onChecked?: (checked: boolean, value?: any) => void;
 }
 

@@ -12,6 +12,7 @@ const useAppContext = () => {
 
   if (!context)
     throw new Error('useContext context must be use inside AuthProvider');
+
   return context;
 };
 

@@ -30,6 +30,7 @@ const Card = ({tiltle, mode = 'dark', children}: ICardProps) => {
           },
         ]}>
         <Text
+          // eslint-disable-next-line react-native/no-inline-styles
           style={{
             color:
               mode === 'light'

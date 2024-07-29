@@ -36,6 +36,7 @@ const PrimaryLayoutDetailItem = ({
 }: Props) => {
   const theme = useThemeContext();
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
 
   const textStyle: TextStyle = {
@@ -57,7 +58,7 @@ const PrimaryLayoutDetailItem = ({
         style={[styles.image, styles.header]}>
         <View style={styles.headerContent}>
           <TouchableOpacity
-            style={[styles.backBtn]}
+            style={styles.backBtn}
             activeOpacity={0.5}
             onPress={() => navigation.goBack()}>
             <IconImage size={30} iconName="back" />
@@ -69,6 +70,7 @@ const PrimaryLayoutDetailItem = ({
       <View
         style={[
           styles.content,
+          // eslint-disable-next-line react-native/no-inline-styles
           {
             backgroundColor: background ? background : '#F5F5F5',
           },

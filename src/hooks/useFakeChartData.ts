@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {useEffect, useState} from 'react';
 
 function random(min: number, max: number) {
@@ -21,6 +22,7 @@ const useFakeChartData = () => {
 
     const setStateInterval = setInterval(() => {
       const team = getData();
+
       setState(team);
     }, 1000);
 

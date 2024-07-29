@@ -4,11 +4,10 @@
  *
  *********************************************************/
 
-import {View, Text, ScrollView} from 'react-native';
 import React from 'react';
+import MyScrollView from '../../common/base/MyScrollView';
 import PrimaryLayout from '../../layouts/PrimaryLayout';
 import Alerts from '../../modules/alerts';
-import MyScrollView from '../../common/base/MyScrollView';
 
 const AlertSreen = () => {
   return (

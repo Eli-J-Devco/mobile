@@ -4,15 +4,12 @@
  *
  *********************************************************/
 
-import {
-  HeaderStyleInterpolators,
-  TransitionSpecs,
-  createStackNavigator,
-} from '@react-navigation/stack';
+import {TransitionSpecs, createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
 import Home from '../screens/home';
 import SearchAndFilterSreen from '../screens/home/search-and-filter';
 import MapScreen from '../screens/map';
+import NotifySreen from '../screens/notify';
 import SiteOverViewSreen from '../screens/site-over-view';
 import AlertsNavigation from './AlertsNavigation';
 import DevicesNavigation from './DevicesNavigation';
@@ -23,11 +20,10 @@ import {
   devicesRouteNames,
   reportsRouteNames,
 } from './router-name';
-import NotifySreen from '../screens/notify';
 
 const Stack = createStackNavigator();
 
-const HomeNavigation = ({navigation}: any) => {
+const HomeNavigation = () => {
   return (
     <Stack.Navigator
       screenOptions={{
@@ -38,6 +34,7 @@ const HomeNavigation = ({navigation}: any) => {
           open: TransitionSpecs.TransitionIOSSpec,
           close: TransitionSpecs.TransitionIOSSpec,
         },
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         cardStyleInterpolator: ({current, next, layouts}: any) => {
           return {
             cardStyle: {

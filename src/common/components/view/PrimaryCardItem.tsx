@@ -4,8 +4,8 @@
  *
  *********************************************************/
 
-import {View, Text, StyleSheet} from 'react-native';
 import React from 'react';
+import {StyleSheet, View} from 'react-native';
 import useThemeContext from '../../../hooks/useThemeContext';
 
 interface IPrimaryCardItemProps {
@@ -24,6 +24,7 @@ const PrimaryCardItem = ({
   children,
 }: IPrimaryCardItemProps) => {
   const theme = useThemeContext();
+
   return (
     <View
       style={[

@@ -1,25 +1,27 @@
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, View, ViewStyle} from 'react-native';
+import MyDateRangePicker from '../../common/base/MyDateRangePicker';
+import MySelect from '../../common/base/MySelect';
 import ButtonIcon from '../../common/components/button/ButtonIcon';
 import IconButton from '../../common/components/button/IconButton';
-import ChartBar from '../../common/components/chart/ChartBar';
+import BarChartKit from '../../common/components/chart/BarChartKit';
+import H3 from '../../common/components/text/H3';
 import TimeAxis from '../../common/components/times/TimeAxis';
 import PrimaryCardItem from '../../common/components/view/PrimaryCardItem';
 import {reportsRouteNames} from '../../navigations/router-name';
-import BarChartKit from '../../common/components/chart/BarChartKit';
-import H3 from '../../common/components/text/H3';
-import MyDateRangePicker from '../../common/base/MyDateRangePicker';
-import MySelect from '../../common/base/MySelect';
 
 const Reports = () => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
+
+  const gap: ViewStyle = {gap: 8};
 
   return (
     <PrimaryCardItem layout="column">
       <View style={[styles.action, styles.flex]}>
-        <View style={[styles.flex, {gap: 8}]}>
+        <View style={[styles.flex, gap]}>
           <IconButton size={20} iconName="download" />
           <IconButton
             size={20}
@@ -27,7 +29,7 @@ const Reports = () => {
             onPress={() => navigation.navigate(reportsRouteNames.ReportSetup)}
           />
         </View>
-        <View style={[styles.flex, {gap: 8}]}>
+        <View style={[styles.flex, gap]}>
           <ButtonIcon
             iconName="filter"
             text="Filter"
@@ -35,9 +37,7 @@ const Reports = () => {
               onPress: () =>
                 navigation.navigate(reportsRouteNames.ReportFilter),
             }}
-            touchableOpacityStyles={{
-              backgroundColor: 'transparent',
-            }}
+            touchableOpacityStyles={styles.touchableOpacityStyles}
           />
           <IconButton
             iconName="more"
@@ -77,11 +77,7 @@ const Reports = () => {
               value: 'year',
             },
           ]}
-          containerStyle={{
-            width: 100,
-            height: 25,
-            borderRadius: 30,
-          }}
+          containerStyle={styles.selectContainerStyle}
         />
         <View style={styles.datePicker}>
           <MyDateRangePicker />
@@ -94,11 +90,6 @@ const Reports = () => {
 export default Reports;
 
 const styles = StyleSheet.create({
-  container: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
   flex: {
     display: 'flex',
     flexDirection: 'row',
@@ -141,5 +132,13 @@ const styles = StyleSheet.create({
   },
   timeAxis: {
     marginBottom: 16,
+  },
+  selectContainerStyle: {
+    width: 100,
+    height: 25,
+    borderRadius: 30,
+  },
+  touchableOpacityStyles: {
+    backgroundColor: 'transparent',
   },
 });

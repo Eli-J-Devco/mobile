@@ -4,7 +4,7 @@
  *
  *********************************************************/
 
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, TextStyle} from 'react-native';
 import React from 'react';
 import useThemeContext from '../../hooks/useThemeContext';
 import ConfigItem from './components/ConfigItem';
@@ -14,18 +14,18 @@ import {settingRouteNames} from '../../navigations/router-name';
 
 const Settings = () => {
   const theme = useThemeContext();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
+
+  const textStyle: TextStyle = {
+    color: theme.palette.text.primary,
+    fontSize: theme.font.size.sm,
+    fontWeight: 'bold',
+  };
 
   return (
     <View style={styles.container}>
-      <Text
-        style={{
-          color: theme.palette.text.primary,
-          fontSize: theme.font.size.sm,
-          fontWeight: 'bold',
-        }}>
-        Config
-      </Text>
+      <Text style={textStyle}>Config</Text>
       <View
         style={[
           styles.contentContainer,

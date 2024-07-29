@@ -22,6 +22,7 @@ import IconImage from '../../common/components/icons/IconImage';
 
 const PortFolio = () => {
   const theme = useThemeContext();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
 
   const titleOverView: TextStyle = {
@@ -36,66 +37,43 @@ const PortFolio = () => {
     fontWeight: '700',
   };
 
+  const lable: TextStyle = {
+    color: theme.palette.text.primary,
+    fontSize: theme.font.size.sm,
+    fontWeight: '700',
+  };
+
+  const gap4 = {
+    gap: 4,
+  };
+
+  const bg = {backgroundColor: theme.palette.background.dark};
+
   return (
     <View>
       <View style={styles.overViewBtnWraped}>
         <ScrollView
           horizontal
           showsHorizontalScrollIndicator={false}
-          contentContainerStyle={{
-            width: '100%',
-            display: 'flex',
-            gap: 8,
-          }}>
-          <View
-            style={[
-              styles.overViewBtn,
-              {
-                backgroundColor: theme.palette.background.dark,
-              },
-            ]}>
+          contentContainerStyle={styles.srcollContentContainerStyle}>
+          <View style={[styles.overViewBtn, bg]}>
             <Text style={titleOverView}>Sites</Text>
             <Text style={valueOverView}>270</Text>
           </View>
-          <View
-            style={[
-              styles.overViewBtn,
-              {
-                backgroundColor: theme.palette.background.dark,
-              },
-            ]}>
+          <View style={[styles.overViewBtn, bg]}>
             <Text style={titleOverView}>Total Alerts</Text>
             <Text style={valueOverView}>20</Text>
           </View>
-          <View
-            style={[
-              styles.overViewBtn,
-              {
-                backgroundColor: theme.palette.background.dark,
-              },
-            ]}>
+          <View style={[styles.overViewBtn, bg]}>
             <Text style={titleOverView}>Throughput</Text>
             <Text style={valueOverView}>7,485.1 kW - AC</Text>
           </View>
         </ScrollView>
       </View>
       <View style={styles.filterWraped}>
-        <View
-          style={[
-            styles.flexContainer,
-            {
-              gap: 4,
-            },
-          ]}>
+        <View style={[styles.flexContainer, gap4]}>
           <IconImage iconName="electricity" />
-          <Text
-            style={{
-              color: theme.palette.text.primary,
-              fontSize: theme.font.size.sm,
-              fontWeight: '700',
-            }}>
-            Portfolio
-          </Text>
+          <Text style={lable}>Portfolio</Text>
         </View>
         <View style={styles.flexContainer}>
           <TouchableOpacity activeOpacity={0.5}>
@@ -164,13 +142,7 @@ const styles = StyleSheet.create({
     paddingVertical: 16,
     gap: 8,
   },
-  filterMain: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
-    gap: 8,
-  },
+
   flexContainer: {
     display: 'flex',
     flexDirection: 'row',
@@ -178,10 +150,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 16,
   },
-  btn: {
-    borderWidth: 1,
-    paddingVertical: 8,
-    borderRadius: 20,
-    paddingHorizontal: 16,
+  srcollContentContainerStyle: {
+    width: '100%',
+    display: 'flex',
+    gap: 8,
   },
 });

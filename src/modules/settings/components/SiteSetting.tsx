@@ -20,36 +20,25 @@ const SiteSetting = () => {
     fontSize: theme.font.size.sm,
     fontWeight: '700',
   };
+
   return (
     <>
       <ScrollView
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{
-          paddingBottom: 16,
-        }}>
+        contentContainerStyle={styles.contentContainerStyle}>
         <View
           style={[
             globalStyles.view,
             styles.container,
+            // eslint-disable-next-line react-native/no-inline-styles
             {backgroundColor: theme.palette.background.primary, marginTop: 16},
           ]}>
           <Text style={labelStyle}>Date and Time</Text>
           <SelectLabel label="Time zone" />
           <SelectLabel label="Date format" />
           <SelectLabel label="Time format" />
-          <View
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
-            }}>
-            <Switch
-              style={
-                {
-                  // transform: [{scaleX: 0.8}, {scaleY: 0.8}],
-                }
-              }
-            />
+          <View style={styles.switchContainer}>
+            <Switch />
             <Text>Apply for all sites</Text>
           </View>
         </View>
@@ -68,13 +57,12 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     gap: 16,
   },
-  alertType: {
+  contentContainerStyle: {
+    paddingBottom: 16,
+  },
+  switchContainer: {
     display: 'flex',
     flexDirection: 'row',
-    gap: 16,
     alignItems: 'center',
-  },
-  col1: {
-    flex: 1,
   },
 });

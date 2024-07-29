@@ -4,8 +4,8 @@
  *
  *********************************************************/
 
-import {View, Text, ScrollView} from 'react-native';
 import React from 'react';
+import {ScrollView, StyleSheet} from 'react-native';
 import PrimaryLayoutDetailItem from '../../../layouts/PrimaryLayoutDetailItem';
 import PortfolioDetails from '../../../modules/portfolio/components/detail';
 
@@ -14,9 +14,7 @@ const PortfolioDetailSreen = () => {
     <PrimaryLayoutDetailItem title="Target Eastvale - T1961">
       <ScrollView
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{
-          paddingBottom: 16,
-        }}>
+        contentContainerStyle={styles.container}>
         <PortfolioDetails />
       </ScrollView>
     </PrimaryLayoutDetailItem>
@@ -24,3 +22,9 @@ const PortfolioDetailSreen = () => {
 };
 
 export default PortfolioDetailSreen;
+
+const styles = StyleSheet.create({
+  container: {
+    paddingBottom: 16,
+  },
+});

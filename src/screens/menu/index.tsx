@@ -5,7 +5,6 @@
  *********************************************************/
 
 import React from 'react';
-import MainLayout from '../../layouts/MainLayout';
 import Menu from '../../modules/menu';
 
 const MenuScreen = () => {

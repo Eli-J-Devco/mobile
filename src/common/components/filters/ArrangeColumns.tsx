@@ -4,8 +4,6 @@
  *
  *********************************************************/
 
-import {useNavigation} from '@react-navigation/native';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import React from 'react';
 import {
   ScrollView,
@@ -25,8 +23,6 @@ interface IArrangeColumnsProps {
 const ArrangeColumns = ({data}: IArrangeColumnsProps) => {
   const theme = useThemeContext();
 
-  const navigation = useNavigation<NativeStackNavigationProp<any>>();
-
   const titleStyle: TextStyle = {
     color: theme.palette.text.primary,
     fontSize: theme.font.size.sm,
@@ -43,12 +39,10 @@ const ArrangeColumns = ({data}: IArrangeColumnsProps) => {
     <>
       <ScrollView
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{
-          paddingBottom: 16,
-        }}>
-        <View style={[styles.container]}>
+        contentContainerStyle={styles.srcollViewContentContainerStyle}>
+        <View style={styles.container}>
           <Text style={titleStyle}>Arrange Columns</Text>
-          {data.map((item, index) => (
+          {data.map(item => (
             <MyCheckBoxText
               key={item.value}
               value={item.value}
@@ -109,5 +103,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#FEDA00',
     borderRadius: 8,
+  },
+  srcollViewContentContainerStyle: {
+    paddingBottom: 16,
   },
 });

@@ -11,10 +11,7 @@ import PortfolioFilter from '../../../modules/portfolio/components/PortfolioFilt
 
 const PortfolioFilterSreen = () => {
   return (
-    <PrimaryLayoutDetailItem
-      contentStyle={{
-        position: 'relative',
-      }}>
+    <PrimaryLayoutDetailItem contentStyle={styles.container}>
       <PortfolioFilter />
     </PrimaryLayoutDetailItem>
   );
@@ -22,4 +19,8 @@ const PortfolioFilterSreen = () => {
 
 export default PortfolioFilterSreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    position: 'relative',
+  },
+});

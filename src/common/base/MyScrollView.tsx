@@ -20,6 +20,7 @@ const MyScrollView = (props: IMyScrollViewProps) => {
       keyboardShouldPersistTaps="handled"
       contentContainerStyle={[
         styles.container,
+        // eslint-disable-next-line react-native/no-inline-styles
         {
           paddingHorizontal:
             props.paddingHorizontal !== undefined

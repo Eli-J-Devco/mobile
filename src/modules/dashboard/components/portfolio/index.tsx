@@ -4,15 +4,14 @@
  *
  *********************************************************/
 
-import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import SvgIcon from '../../../../common/components/SvgIcon';
-import useThemeContext from '../../../../hooks/useThemeContext';
-import PortfolioItem from './PortfolioItem';
-import IconImage from '../../../../common/components/icons/IconImage';
-import MyTouchableOpacity from '../../../../common/base/MyTouchableOpacity';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
+import React from 'react';
+import {StyleSheet, Text, View} from 'react-native';
+import MyTouchableOpacity from '../../../../common/base/MyTouchableOpacity';
+import IconImage from '../../../../common/components/icons/IconImage';
+import useThemeContext from '../../../../hooks/useThemeContext';
 import {dashboardRouteNames} from '../../../../navigations/router-name';
+import PortfolioItem from './PortfolioItem';
 
 const PortfolioData: IDashboardPortfolio[] = [
   {
@@ -63,48 +62,68 @@ const PortfolioData: IDashboardPortfolio[] = [
 ];
 
 const Portfolio = () => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const navigation = useNavigation<NavigationProp<any>>();
   const theme = useThemeContext();
+
+  const textStyles = {
+    color: theme.palette.text.white,
+    fontSize: theme.font.size.xl,
+    fontWeight: theme.font.weight.md,
+  };
+
+  const textViewAllStyles = {
+    color: theme.palette.text.yellow,
+    fontSize: theme.font.size.sm,
+    fontWeight: theme.font.weight.sm,
+  };
+
+  const titleTextStyles = {
+    color: theme.palette.text.primary,
+    fontSize: theme.font.size.s,
+    fontWeight: theme.font.weight.md,
+  };
+
+  const borderSites = {
+    borderRightWidth: 1,
+    borderRightColor: theme.palette.borderColor.tertiary,
+    flex: 2,
+  };
+
+  const borderRight = {
+    borderRightWidth: 1,
+    borderRightColor: theme.palette.borderColor.tertiary,
+    flex: 4,
+  };
+
+  const textOverViewStyles = {
+    color: theme.palette.text.white,
+    fontSize: theme.font.size.s,
+    fontWeight: theme.font.weight.md,
+  };
+
+  const textValueStyle = {
+    color: theme.palette.text.yellow,
+    fontSize: theme.font.size.s,
+    fontWeight: theme.font.weight.md,
+    borderBottomColor: theme.palette.text.yellow,
+  };
 
   return (
     <View style={styles.container}>
       <View style={styles.overview}>
         <View style={styles.header}>
-          <View
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
-              gap: 8,
-            }}>
+          <View style={styles.lableContainer}>
             <MyTouchableOpacity>
               <IconImage iconName="navMenuWhite" />
             </MyTouchableOpacity>
-            <Text
-              style={[
-                {
-                  color: theme.palette.text.white,
-                  fontSize: theme.font.size.xl,
-                  fontWeight: theme.font.weight.md,
-                },
-              ]}>
-              Portfolio
-            </Text>
+            <Text style={textStyles}>Portfolio</Text>
           </View>
           <MyTouchableOpacity
             onPress={() => {
               navigation.navigate(dashboardRouteNames.PortfolioNavigation);
             }}>
-            <Text
-              style={[
-                {
-                  color: theme.palette.text.yellow,
-                  fontSize: theme.font.size.sm,
-                  fontWeight: theme.font.weight.sm,
-                },
-              ]}>
-              View all
-            </Text>
+            <Text style={textViewAllStyles}>View all</Text>
           </MyTouchableOpacity>
         </View>
         <View
@@ -114,91 +133,19 @@ const Portfolio = () => {
               borderTopColor: theme.palette.borderColor.tertiary,
             },
           ]}>
-          <View
-            style={[
-              styles.contentItem,
-              {
-                borderRightWidth: 1,
-                borderRightColor: theme.palette.borderColor.tertiary,
-                flex: 2,
-              },
-            ]}>
-            <Text
-              style={[
-                {
-                  color: theme.palette.text.white,
-                  fontSize: theme.font.size.s,
-                  fontWeight: theme.font.weight.md,
-                },
-              ]}>
-              Sites
-            </Text>
-            <Text
-              style={[
-                styles.textValue,
-                {
-                  color: theme.palette.text.yellow,
-                  fontSize: theme.font.size.s,
-                  fontWeight: theme.font.weight.md,
-                  borderBottomColor: theme.palette.text.yellow,
-                },
-              ]}>
-              256
-            </Text>
+          <View style={[styles.contentItem, borderSites]}>
+            <Text style={textOverViewStyles}>Sites</Text>
+            <Text style={[styles.textValue, textValueStyle]}>256</Text>
           </View>
-          <View
-            style={[
-              styles.contentItem,
-              {
-                borderRightWidth: 1,
-                borderRightColor: theme.palette.borderColor.tertiary,
-                flex: 4,
-              },
-            ]}>
-            <Text
-              style={[
-                {
-                  color: theme.palette.text.white,
-                  fontSize: theme.font.size.s,
-                  fontWeight: theme.font.weight.md,
-                },
-              ]}>
-              Rated DC Capacity
-            </Text>
-            <Text
-              style={[
-                styles.textValue,
-                {
-                  color: theme.palette.text.yellow,
-                  fontSize: theme.font.size.s,
-                  fontWeight: theme.font.weight.md,
-                  borderBottomColor: theme.palette.text.yellow,
-                },
-              ]}>
+          <View style={[styles.contentItem, borderRight]}>
+            <Text style={textOverViewStyles}>Rated DC Capacity</Text>
+            <Text style={[styles.textValue, textValueStyle]}>
               154,657.66 kW
             </Text>
           </View>
-          <View style={[styles.contentItem, {flex: 4}]}>
-            <Text
-              style={[
-                {
-                  color: theme.palette.text.white,
-                  fontSize: theme.font.size.s,
-                  fontWeight: theme.font.weight.md,
-                },
-              ]}>
-              Generation Now
-            </Text>
-            <Text
-              style={[
-                styles.textValue,
-                {
-                  color: theme.palette.text.yellow,
-                  fontSize: theme.font.size.s,
-                  fontWeight: theme.font.weight.md,
-                  borderBottomColor: theme.palette.text.yellow,
-                },
-              ]}>
+          <View style={[styles.contentItem, styles.flex4]}>
+            <Text style={textOverViewStyles}>Generation Now</Text>
+            <Text style={[styles.textValue, textValueStyle]}>
               1,038.9 kW-AC
             </Text>
           </View>
@@ -206,16 +153,7 @@ const Portfolio = () => {
       </View>
       <View style={styles.titleWraped}>
         <IconImage iconName="electricity" />
-        <Text
-          style={[
-            {
-              color: theme.palette.text.primary,
-              fontSize: theme.font.size.s,
-              fontWeight: theme.font.weight.md,
-            },
-          ]}>
-          Actual vs. Expected Power
-        </Text>
+        <Text style={titleTextStyles}>Actual vs. Expected Power</Text>
       </View>
       <View style={styles.details}>
         {PortfolioData.map((item, index) => (
@@ -279,5 +217,14 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     gap: 16,
     marginTop: 16,
+  },
+  lableContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+  },
+  flex4: {
+    flex: 4,
   },
 });

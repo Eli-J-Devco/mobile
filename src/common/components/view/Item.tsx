@@ -4,8 +4,8 @@
  *
  *********************************************************/
 
-import {View, Text, ViewStyle, StyleSheet} from 'react-native';
 import React from 'react';
+import {StyleSheet, Text, TextStyle, View} from 'react-native';
 import useThemeContext from '../../../hooks/useThemeContext';
 
 interface IItemProps {
@@ -25,10 +25,15 @@ const Item = ({
 }: IItemProps) => {
   const theme = useThemeContext();
 
-  const styleText: any = {
+  const styleText: TextStyle = {
     color: theme.palette.text.primary,
     fontSize: theme.font.size.s,
     fontWeight: '400',
+  };
+  const style700Text: TextStyle = {
+    color: theme.palette.text.primary,
+    fontSize: theme.font.size.s,
+    fontWeight: '700',
   };
 
   return (
@@ -45,7 +50,7 @@ const Item = ({
         },
         {paddingHorizontal},
       ]}>
-      <Text style={[styleText, {fontWeight: '700'}]}>{lable}</Text>
+      <Text style={style700Text}>{lable}</Text>
       <Text style={styleText}>{value}</Text>
     </View>
   );

@@ -110,12 +110,6 @@ const styles = StyleSheet.create({
     width: '100%',
     paddingTop: 32,
   },
-  historyContent: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: 8,
-    width: '100%',
-  },
   historyHeader: {
     display: 'flex',
     flexDirection: 'row',

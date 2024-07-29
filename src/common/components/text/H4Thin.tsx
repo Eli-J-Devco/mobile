@@ -4,8 +4,8 @@
  *
  *********************************************************/
 
-import {View, Text} from 'react-native';
 import React from 'react';
+import {Text, TextStyle} from 'react-native';
 import useThemeContext from '../../../hooks/useThemeContext';
 
 interface IH3ThinProps {
@@ -15,7 +15,7 @@ interface IH3ThinProps {
 const H4Thin = ({children}: IH3ThinProps) => {
   const theme = useThemeContext();
 
-  const styleText: any = {
+  const styleText: TextStyle = {
     color: theme.palette.text.primary,
     fontSize: theme.font.size.xs,
     fontWeight: '400',

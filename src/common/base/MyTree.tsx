@@ -10,6 +10,7 @@ import TreeItem from './components/TreeItem';
 
 interface IMyTreeProps {
   data: ITree[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onChecked?: (checked: boolean, value?: any) => void;
 }
 

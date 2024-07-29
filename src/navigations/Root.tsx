@@ -7,9 +7,8 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
 import Login from '../screens/login';
-import DrawerNavigation from './DrawerNavigation';
-import {rootRouteName} from './router-name';
 import MainNavigation from './MainNavigation';
+import {rootRouteName} from './router-name';
 
 const Stack = createNativeStackNavigator();
 

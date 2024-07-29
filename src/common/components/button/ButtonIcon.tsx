@@ -9,7 +9,6 @@ import {
   ViewStyle,
 } from 'react-native';
 import useThemeContext from '../../../hooks/useThemeContext';
-import SvgIcon from '../SvgIcon';
 import IconImage from '../icons/IconImage';
 
 interface ButtonIconProps {
@@ -36,6 +35,7 @@ const ButtonIcon = ({
     fontSize: theme.font.size.xs,
     fontWeight: '400',
   };
+
   return (
     <TouchableOpacity
       style={[styles.btn, touchableOpacityStyles]}

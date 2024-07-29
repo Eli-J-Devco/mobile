@@ -5,12 +5,7 @@
  *********************************************************/
 
 import React from 'react';
-import {
-  Text,
-  TouchableOpacity,
-  TouchableOpacityProps,
-  ViewStyle,
-} from 'react-native';
+import {TouchableOpacity, TouchableOpacityProps, ViewStyle} from 'react-native';
 
 interface IMyTouchableOpacityProps {
   touchableOpacityProps?: TouchableOpacityProps;

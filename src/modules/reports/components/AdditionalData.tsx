@@ -15,19 +15,21 @@ import useThemeContext from '../../../hooks/useThemeContext';
 const AdditionalData = () => {
   const theme = useThemeContext();
 
+  const card = {
+    backgroundColor: theme.palette.background.primary,
+    borderWidth: 1,
+    borderColor: theme.palette.borderColor.base,
+  };
+
+  const bgF0F0F0 = {
+    backgroundColor: '#F0F0F0',
+  };
+
   return (
     <View style={styles.container}>
       <H2>Additional Data</H2>
 
-      <View
-        style={[
-          styles.card,
-          {
-            backgroundColor: theme.palette.background.primary,
-            borderWidth: 1,
-            borderColor: theme.palette.borderColor.base,
-          },
-        ]}>
+      <View style={[styles.card, card]}>
         <View style={styles.cardIconContainer}>
           <View style={styles.cardIcon}>
             <SvgIcon iconName="screens" />
@@ -60,13 +62,7 @@ const AdditionalData = () => {
           </View>
         </View>
       </View>
-      <View
-        style={[
-          styles.card,
-          {
-            backgroundColor: '#F0F0F0',
-          },
-        ]}>
+      <View style={[styles.card, bgF0F0F0]}>
         <View style={styles.cardIconContainer}>
           <View style={styles.cardIcon}>
             <SvgIcon iconName="screens" />
@@ -141,13 +137,6 @@ const styles = StyleSheet.create({
   cardValueContainer: {
     display: 'flex',
     flexDirection: 'column',
-    gap: 8,
-    width: '100%',
-  },
-  cardValue: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
     gap: 8,
     width: '100%',
   },

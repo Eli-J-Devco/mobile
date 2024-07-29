@@ -11,11 +11,12 @@ const useCountDown: (
   ms?: number,
 ) => [number, () => void, () => void, () => void] = (
   total: number,
-  ms: number = 1000,
+  ms = 1000,
 ) => {
   const [counter, setCountDown] = useState(total);
   const [startCountDown, setStartCountDown] = useState(false);
   // Store the created interval
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const intervalId = useRef<any>();
   const start: () => void = () => setStartCountDown(true);
   const pause: () => void = () => setStartCountDown(false);
@@ -31,6 +32,7 @@ const useCountDown: (
     }, ms);
     // Clear interval when count to zero
     if (counter === 0) clearInterval(intervalId.current);
+
     // Clear interval when unmount
     return () => clearInterval(intervalId.current);
   }, [startCountDown, counter, ms]);

@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import {View, Text, TextStyle, ScrollView, StyleSheet} from 'react-native';
 import React from 'react';
 import useThemeContext from '../../../hooks/useThemeContext';
@@ -14,6 +15,7 @@ const PVModelSettings = () => {
     fontSize: theme.font.size.sm,
     fontWeight: '700',
   };
+
   return (
     <>
       <ScrollView
@@ -61,14 +63,5 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     gap: 16,
-  },
-  alertType: {
-    display: 'flex',
-    flexDirection: 'row',
-    gap: 16,
-    alignItems: 'center',
-  },
-  col1: {
-    flex: 1,
   },
 });

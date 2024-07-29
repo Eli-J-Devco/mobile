@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /********************************************************
  * Copyright 2024 NEXT WAVE ENERGY MONITORING INC.
  * All rights reserved.
@@ -9,6 +10,7 @@ import React, {useEffect, useState} from 'react';
 import {
   StyleSheet,
   Text,
+  TextStyle,
   TouchableOpacity,
   View,
   ViewStyle,
@@ -35,16 +37,23 @@ const MyDatePicker = ({
 
   const onChangeValue = (event: any, selectedDate: any) => {
     const currentDate = selectedDate;
+
     setShow(false);
     setDate(currentDate);
     if (onChange) onChange(currentDate);
   };
 
   useEffect(() => {
-    if (!!value) {
+    if (value) {
       setDate(value);
     }
   }, [value]);
+
+  const dateStyle: TextStyle = {
+    color: theme.palette.text.primary,
+    fontSize: theme.font.size.s,
+    fontWeight: '400',
+  };
 
   return (
     <>
@@ -53,13 +62,8 @@ const MyDatePicker = ({
         style={[styles.container, containerStyle]}
         onPress={() => setShow(true)}>
         <View style={styles.contentWraped}>
-          <Text
-            style={{
-              color: theme.palette.text.primary,
-              fontSize: theme.font.size.s,
-              fontWeight: '400',
-            }}>
-            {!!date ? date.toLocaleDateString() : placeholder}
+          <Text style={dateStyle}>
+            {date ? date.toLocaleDateString() : placeholder}
           </Text>
         </View>
         <View style={styles.icon}>

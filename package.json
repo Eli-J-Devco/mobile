@@ -5,7 +5,7 @@
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
-    "lint": "eslint .",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "start": "react-native start",
     "test": "jest",
     "eject": "react-native eject",
@@ -62,6 +62,7 @@
     "@types/react-test-renderer": "^18.0.0",
     "babel-jest": "^29.6.3",
     "eslint": "^8.19.0",
+    "eslint-plugin-jest": "^28.6.0",
     "eslint-plugin-testing-library": "^6.2.2",
     "jest": "^29.7.0",
     "prettier": "2.8.8",

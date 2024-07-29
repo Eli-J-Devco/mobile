@@ -9,6 +9,7 @@ import useThemeContext from '../../../hooks/useThemeContext';
 
 const DevicesItem = () => {
   const theme = useThemeContext();
+
   return (
     <PrimaryCardItem>
       <View style={styles.left}>

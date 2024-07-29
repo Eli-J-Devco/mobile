@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 /********************************************************
  * Copyright 2024 NEXT WAVE ENERGY MONITORING INC.
  * All rights reserved.
@@ -17,7 +18,6 @@ interface InputLabelProps extends PrimaryInputProps {
 }
 
 const InputLabel = ({
-  height,
   layout = 'vertical',
   labelStyle,
   label,
@@ -39,14 +39,12 @@ const InputLabel = ({
 
   return (
     <View
-      style={[
-        {
-          display: 'flex',
-          flexDirection: layout === 'vertical' ? 'column' : 'row',
-          gap: 4,
-          alignItems: layout === 'vertical' ? 'flex-start' : 'center',
-        },
-      ]}>
+      style={{
+        display: 'flex',
+        flexDirection: layout === 'vertical' ? 'column' : 'row',
+        gap: 4,
+        alignItems: layout === 'vertical' ? 'flex-start' : 'center',
+      }}>
       <Text style={[labelTextStyle, labelStyle]}>{label}</Text>
       <View style={[containerStyle, {width: '100%', height: 'auto'}]}>
         <PrimaryInput

@@ -4,6 +4,8 @@
  *
  *********************************************************/
 
+/* eslint-disable react-native/no-inline-styles */
+
 import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import MyTouchableOpacity from '../../common/base/MyTouchableOpacity';
@@ -11,6 +13,7 @@ import IconImage from '../../common/components/icons/IconImage';
 import CustomDrawerItem from './CustomDrawerItem';
 import {PORTFOLIO_DRAWER_NAV} from '../../constants/data/portfolio';
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 const ChildItem = ({item}: any) => {
   const [expanded, setExpanded] = useState(false);
   const [expandedChildren, setExpandedChildren] = useState(false);
@@ -83,11 +86,7 @@ const ChildItem = ({item}: any) => {
   );
 };
 
-interface TreeItemProps {
-  treeItem?: ITree;
-}
-
-const DrawerItemTree = ({treeItem}: TreeItemProps) => {
+const DrawerItemTree = () => {
   const [expanded, setExpanded] = useState(false);
 
   return (
@@ -112,7 +111,7 @@ const DrawerItemTree = ({treeItem}: TreeItemProps) => {
       {expanded && (
         <>
           {PORTFOLIO_DRAWER_NAV.map(item => (
-            <ChildItem item={item} />
+            <ChildItem key={item.id} item={item} />
           ))}
         </>
       )}
@@ -123,30 +122,6 @@ const DrawerItemTree = ({treeItem}: TreeItemProps) => {
 export default DrawerItemTree;
 
 const styles = StyleSheet.create({
-  item: {
-    display: 'flex',
-    alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: '100%',
-    paddingVertical: 4,
-  },
-  child: {
-    display: 'flex',
-    alignItems: 'flex-start',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    width: '100%',
-    paddingLeft: 16,
-  },
-  childItem: {
-    display: 'flex',
-    alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: '100%',
-    paddingVertical: 4,
-  },
   navItem: {
     display: 'flex',
     alignItems: 'center',

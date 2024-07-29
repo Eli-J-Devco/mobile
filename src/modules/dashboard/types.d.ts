@@ -8,8 +8,10 @@ interface IDashboardPortfolio {
   id: number;
   name: string;
   percentage: number;
-  children: {
-    title: string;
-    value: number;
-  }[];
+  children: IDashboardPortfolioData[];
+}
+
+interface IDashboardPortfolioData {
+  title: string;
+  value: number;
 }

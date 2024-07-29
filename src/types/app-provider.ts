@@ -4,9 +4,12 @@
  *
  *********************************************************/
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 export type AppContextType = {
   isLoading: boolean;
   isAuth: boolean;
+
   user: any;
 };
 

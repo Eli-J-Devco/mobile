@@ -4,18 +4,17 @@
  *
  *********************************************************/
 
-import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import MyScrollView from '../../common/base/MyScrollView';
-import Tabs from '../../common/components/tab/Tabs';
-import DevicesList from './components/DevicesList';
-import MyTouchableOpacity from '../../common/base/MyTouchableOpacity';
-import SvgIcon from '../../common/components/SvgIcon';
-import Summary from './components/summary/Summary';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {devicesRouteNames} from '../../navigations/router-name';
+import React from 'react';
+import {StyleSheet, View} from 'react-native';
+import MyScrollView from '../../common/base/MyScrollView';
+import MyTouchableOpacity from '../../common/base/MyTouchableOpacity';
 import IconImage from '../../common/components/icons/IconImage';
+import Tabs from '../../common/components/tab/Tabs';
+import {devicesRouteNames} from '../../navigations/router-name';
+import DevicesList from './components/DevicesList';
+import Summary from './components/summary/Summary';
 
 const items: ITab[] = [
   {
@@ -31,6 +30,7 @@ const items: ITab[] = [
 ];
 
 const Devices = () => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
 
   return (
@@ -58,7 +58,6 @@ const Devices = () => {
 export default Devices;
 
 const styles = StyleSheet.create({
-  container: {},
   action: {
     display: 'flex',
     flexDirection: 'row',

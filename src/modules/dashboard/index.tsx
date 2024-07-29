@@ -4,21 +4,16 @@
  *
  *********************************************************/
 
-import {View, Text, ScrollView} from 'react-native';
 import React from 'react';
-import Portfolio from './components/portfolio';
+import {ScrollView, StyleSheet} from 'react-native';
 import Alerts from './components/alerts';
+import Portfolio from './components/portfolio';
 
 const Dashboard = () => {
   return (
     <ScrollView
       showsVerticalScrollIndicator={false}
-      contentContainerStyle={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 24,
-        paddingBottom: 8,
-      }}>
+      contentContainerStyle={styles.container}>
       <Portfolio />
       <Alerts />
     </ScrollView>
@@ -26,3 +21,11 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+const styles = StyleSheet.create({
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 24,
+    paddingBottom: 8,
+  },
+});

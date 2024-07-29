@@ -4,6 +4,8 @@
  *
  *********************************************************/
 
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import React from 'react';
 import {
   ImageBackground,
@@ -11,17 +13,11 @@ import {
   StatusBar,
   StyleSheet,
   TextInput,
-  TouchableOpacity,
   View,
 } from 'react-native';
 import {images} from '../assets';
-import MyTextInput from '../common/base/MyTextInput';
-import SvgIcon from '../common/components/SvgIcon';
-import useThemeContext from '../hooks/useThemeContext';
-import {useNavigation} from '@react-navigation/native';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import IconImage from '../common/components/icons/IconImage';
 import MyTouchableOpacity from '../common/base/MyTouchableOpacity';
+import IconImage from '../common/components/icons/IconImage';
 
 interface Props {
   filter?: boolean;
@@ -34,10 +30,11 @@ const PrimaryLayout = ({
   bgColor = '#F5F5F5',
   children,
 }: Props) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
-  const theme = useThemeContext();
+
   return (
-    <SafeAreaView style={[styles.container]}>
+    <SafeAreaView style={styles.container}>
       <StatusBar
         translucent={true}
         barStyle="dark-content"
@@ -46,14 +43,14 @@ const PrimaryLayout = ({
       <ImageBackground
         resizeMode="cover"
         source={images.bgHeader}
-        style={[styles.header]}>
-        <View style={{width: '100%'}}>
+        style={styles.header}>
+        <View style={styles.filterContainer}>
           {filter && (
             <View style={styles.headerContent}>
               <MyTouchableOpacity onPress={() => navigation.goBack()}>
                 <IconImage size={20} iconName="arrowLeftWhite" />
               </MyTouchableOpacity>
-              <View style={[styles.searchInput]}>
+              <View style={styles.searchInput}>
                 <IconImage size={20} iconName="search" />
                 <TextInput style={styles.input} placeholder="Search" />
               </View>
@@ -132,5 +129,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     display: 'flex',
+  },
+  filterContainer: {
+    width: '100%',
   },
 });

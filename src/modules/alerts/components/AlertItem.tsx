@@ -7,7 +7,7 @@
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, TextStyle, View} from 'react-native';
 import ButonText from '../../../common/components/button/ButonText';
 import IconImage from '../../../common/components/icons/IconImage';
 import H3 from '../../../common/components/text/H3';
@@ -22,11 +22,19 @@ interface IAlertItemProps {
 
 const AlertItem = ({bgColor}: IAlertItemProps) => {
   const theme = useThemeContext();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
 
-  const styleText: any = {
-    color: theme.palette.text.primary,
-    fontSize: theme.font.size.s,
+  const touchableOpacityStyles = {
+    paddingVertical: 4,
+    paddingHorizontal: 16,
+    borderRadius: 20,
+    backgroundColor: theme.palette.background.dark,
+  };
+  const textStyles: TextStyle = {
+    color: theme.palette.text.white,
+    fontSize: theme.font.size.xs,
+    fontWeight: '700',
   };
 
   return (
@@ -52,14 +60,7 @@ const AlertItem = ({bgColor}: IAlertItemProps) => {
           rightText="Device has lost communication"
         />
 
-        <View
-          style={{
-            display: 'flex',
-            alignItems: 'flex-end',
-            justifyContent: 'flex-end',
-            width: '100%',
-            paddingVertical: 8,
-          }}>
+        <View style={styles.container}>
           <ButonText
             touchableOpacityProps={{
               onPress: () => {
@@ -67,17 +68,8 @@ const AlertItem = ({bgColor}: IAlertItemProps) => {
               },
             }}
             text="Detail"
-            touchableOpacityStyles={{
-              paddingVertical: 4,
-              paddingHorizontal: 16,
-              borderRadius: 20,
-              backgroundColor: theme.palette.background.dark,
-            }}
-            textStyles={{
-              color: theme.palette.text.white,
-              fontSize: theme.font.size.xs,
-              fontWeight: '700',
-            }}
+            touchableOpacityStyles={touchableOpacityStyles}
+            textStyles={textStyles}
           />
         </View>
       </View>
@@ -90,23 +82,12 @@ export default AlertItem;
 const styles = StyleSheet.create({
   container: {
     display: 'flex',
-    flexDirection: 'row',
-    gap: 8,
-    shadowColor: 'rgba(16, 24, 40, 0.1)',
-    shadowOffset: {width: -2, height: 4},
-    shadowOpacity: 0.5,
-    shadowRadius: 3,
-    elevation: 20,
-    borderRadius: 8,
-    padding: 8,
+    alignItems: 'flex-end',
+    justifyContent: 'flex-end',
+    width: '100%',
+    paddingVertical: 8,
   },
-  detailContent: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignContent: 'center',
-    paddingVertical: 4,
-  },
+
   left: {
     display: 'flex',
     flexDirection: 'column',

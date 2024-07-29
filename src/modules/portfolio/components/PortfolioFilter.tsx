@@ -77,6 +77,8 @@ const PortfolioFilter = () => {
   const theme = useThemeContext();
 
   // const bottomSheetRef = React.useRef<any>(null);
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
 
   const titleStyle: TextStyle = {
@@ -109,10 +111,8 @@ const PortfolioFilter = () => {
     <>
       <ScrollView
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{
-          paddingBottom: 16,
-        }}>
-        <View style={[styles.container]}>
+        contentContainerStyle={styles.contentContainerStyle}>
+        <View style={styles.container}>
           <View style={styles.wraped}>
             <Text style={titleStyle}>Column</Text>
             <MySelect
@@ -134,43 +134,28 @@ const PortfolioFilter = () => {
             <View style={styles.deviceRow}>
               <ButonText
                 text="PV System Inverter"
-                touchableOpacityStyles={{
-                  flex: 1,
-                }}
+                touchableOpacityStyles={styles.flex1}
               />
               <ButonText
                 text="Production Meter"
-                touchableOpacityStyles={{
-                  flex: 1,
-                }}
+                touchableOpacityStyles={styles.flex1}
               />
             </View>
             <View style={styles.deviceRow}>
               <ButonText
                 text="Solar Tracker"
-                touchableOpacityStyles={{
-                  flex: 1,
-                }}
+                touchableOpacityStyles={styles.flex1}
               />
               <ButonText
                 text="Datalogger"
-                touchableOpacityStyles={{
-                  flex: 1,
-                }}
+                touchableOpacityStyles={styles.flex1}
               />
             </View>
             <View style={styles.deviceRow}>
-              <ButonText
-                text="Sensor"
-                touchableOpacityStyles={{
-                  flex: 1,
-                }}
-              />
+              <ButonText text="Sensor" touchableOpacityStyles={styles.flex1} />
               <ButonText
                 text="Weather Station"
-                touchableOpacityStyles={{
-                  flex: 1,
-                }}
+                touchableOpacityStyles={styles.flex1}
               />
             </View>
           </View>
@@ -211,15 +196,7 @@ const styles = StyleSheet.create({
     gap: 16,
     width: '100%',
   },
-  deviceItem: {
-    flex: 1,
-    backgroundColor: '#F0F0F0',
-    padding: 8,
-    borderRadius: 4,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+
   all: {
     backgroundColor: '#F0F0F0',
     borderRadius: 20,
@@ -235,5 +212,11 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     height: 37,
     width: '100%',
+  },
+  contentContainerStyle: {
+    paddingBottom: 16,
+  },
+  flex1: {
+    flex: 1,
   },
 });

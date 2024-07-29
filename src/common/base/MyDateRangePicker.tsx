@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /********************************************************
  * Copyright 2024 NEXT WAVE ENERGY MONITORING INC.
  * All rights reserved.
@@ -9,6 +10,7 @@ import React, {useState} from 'react';
 import {
   StyleSheet,
   Text,
+  TextStyle,
   TouchableOpacity,
   View,
   ViewStyle,
@@ -24,9 +26,8 @@ interface IMyDateRangePicker {
 }
 
 const MyDateRangePicker = ({
-  value,
   placeholder,
-  onChange,
+
   containerStyle,
 }: IMyDateRangePicker) => {
   const theme = useThemeContext();
@@ -37,12 +38,14 @@ const MyDateRangePicker = ({
 
   const onChangeFromDateValue = (event: any, selectedDate: any) => {
     const currentDate = selectedDate;
+
     setFromDate(currentDate);
     setFormOpen(false);
     setToOpen(true);
   };
   const onChangeToDateValue = (event: any, selectedDate: any) => {
     const currentDate = selectedDate;
+
     setToDate(currentDate);
     setToOpen(false);
     // if (onChange) onChange(currentDate);
@@ -54,6 +57,12 @@ const MyDateRangePicker = ({
   //     }
   //   }, [value]);
 
+  const valueStyle: TextStyle = {
+    color: theme.palette.text.primary,
+    fontSize: theme.font.size.s,
+    fontWeight: '400',
+  };
+
   return (
     <>
       <TouchableOpacity
@@ -64,22 +73,12 @@ const MyDateRangePicker = ({
           <IconImage iconName="arrowIndicateDirectionLeft" size={14} />
         </View>
         <View style={styles.contentWraped}>
-          <Text
-            style={{
-              color: theme.palette.text.primary,
-              fontSize: theme.font.size.s,
-              fontWeight: '400',
-            }}>
-            {!!fromdate ? fromdate.toLocaleDateString() : placeholder}
+          <Text style={valueStyle}>
+            {fromdate ? fromdate.toLocaleDateString() : placeholder}
           </Text>
           <Text>-</Text>
-          <Text
-            style={{
-              color: theme.palette.text.primary,
-              fontSize: theme.font.size.s,
-              fontWeight: '400',
-            }}>
-            {!!todate ? todate.toLocaleDateString() : placeholder}
+          <Text style={valueStyle}>
+            {todate ? todate.toLocaleDateString() : placeholder}
           </Text>
         </View>
         <View style={styles.icon}>

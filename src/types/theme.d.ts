@@ -109,8 +109,11 @@ type AppThemeColor = {
     };
     greyScale: Partial<ColorRank>;
     darkColor: Partial<ColorRank>;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     others: any;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     backgrounds: any;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     transparent: any;
     transparentColor: 'transparent';
   };
