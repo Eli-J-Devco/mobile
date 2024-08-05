@@ -30,7 +30,7 @@ const Map = () => {
   useEffect(() => {
     // Request permission to access location
 
-    console.log('-----location---: ', MAP_BOX_ACCESS_TOKEN);
+    // console.log('----MAP_BOX_ACCESS_TOKEN---: ', MAP_BOX_ACCESS_TOKEN);
 
     (async () => {
       await MapboxGL.requestAndroidLocationPermissions();
@@ -46,11 +46,7 @@ const Map = () => {
       <MapboxGL.MapView
         style={styles.map}
         styleURL="mapbox://styles/mapbox/streets-v12"
-        rotateEnabled={true}
-        // onUserLocationUpdate={handleLocationUpdate}
-        onDidFinishLoadingMap={async () => {
-          // await createRouterLine(coords, selectedRouteProfile);
-        }}>
+        rotateEnabled={true}>
         <MapboxGL.Camera
           zoomLevel={8}
           followUserLocation={true}

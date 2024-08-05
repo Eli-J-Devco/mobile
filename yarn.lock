@@ -2800,9 +2800,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rnmapbox/maps@npm:^10.1.27":
-  version: 10.1.27
-  resolution: "@rnmapbox/maps@npm:10.1.27"
+"@rnmapbox/maps@npm:^10.1.28":
+  version: 10.1.28
+  resolution: "@rnmapbox/maps@npm:10.1.28"
   dependencies:
     "@turf/along": 6.5.0
     "@turf/distance": 6.5.0
@@ -2824,7 +2824,7 @@ __metadata:
       optional: true
     react-dom:
       optional: true
-  checksum: 915d27a97f488ee0fdda12a464b17519e2dd59cc07ded0cb0be4123356b9a032293821ba0b9cc80370001efa7e951b797b1a1752da30afd97bcf9ffae419fedb
+  checksum: 134f9aacd235a3c631b45b50747195c32a0ba9d259da94ccf5a75f174a8c8801e0d32c411f4b224f2416431ddf387805ff3fd48503c1fbc93c9559bd48500c51
   languageName: node
   linkType: hard
 
@@ -3730,7 +3730,7 @@ __metadata:
     "@react-navigation/native-stack": ^6.9.26
     "@react-navigation/stack": ^6.4.1
     "@reduxjs/toolkit": ^2.2.5
-    "@rnmapbox/maps": ^10.1.27
+    "@rnmapbox/maps": ^10.1.28
     "@tanstack/react-query": ^5.40.0
     "@types/jest": ^29.5.12
     "@types/react": ^18.2.6
