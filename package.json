@@ -10,7 +10,8 @@
     "test": "jest",
     "eject": "react-native eject",
     "export": "cd ./android && ./gradlew assembleRelease",
-    "install": "cd ./android && ./gradlew installRelease"
+    "installApp": "cd ./android && ./gradlew installRelease",
+    "build": "react-native build-android --mode=release"
   },
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
