@@ -71,7 +71,7 @@ const AppProvider: FC<AppProviderProps> = props => {
   }, []);
 
   const loginFnc = useCallback(() => {
-    console.log('---loginFnc---');
+    // console.log('---loginFnc---');
     dispatch({
       type: Types.LOGIN,
       payload: {
@@ -84,7 +84,7 @@ const AppProvider: FC<AppProviderProps> = props => {
   }, []);
 
   const logoutFnc = useCallback(() => {
-    console.log('---logoutFnc---');
+    // console.log('---logoutFnc---');
     dispatch({
       type: Types.LOGOUT,
       payload: {

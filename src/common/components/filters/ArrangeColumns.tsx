@@ -46,7 +46,9 @@ const ArrangeColumns = ({data}: IArrangeColumnsProps) => {
             <MyCheckBoxText
               key={item.value}
               value={item.value}
-              onChecked={(c, v) => console.log('---onChecked--: ', c, v)}>
+              onChecked={() => {
+                // console.log('---onChecked--: ', c, v);
+              }}>
               {item.title}
             </MyCheckBoxText>
           ))}

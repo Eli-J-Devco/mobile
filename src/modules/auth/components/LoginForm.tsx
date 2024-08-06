@@ -49,9 +49,9 @@ const LoginForm = () => {
   const {handleSubmit} = methods;
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const onSubmit = (data: any) => {
+  const onSubmit = () => {
     setIsLoading(true);
-    console.log('---onSubmit---: ', data);
+    // console.log('---onSubmit---: ');
     loginFnc();
     navigation.replace('MainNavigation');
     showNoti('success', 'Login success !');

@@ -17,6 +17,7 @@ interface ButonTextProps {
   touchableOpacityStyles?: ViewStyle;
   text: string;
   textSize?: number;
+  onPress?: () => void;
 }
 
 const ButonText = ({
@@ -26,6 +27,7 @@ const ButonText = ({
   touchableOpacityStyles,
   text,
   textSize,
+  onPress,
 }: ButonTextProps) => {
   const theme = useThemeContext();
 
@@ -39,6 +41,13 @@ const ButonText = ({
     <TouchableOpacity
       style={[styles.btn, touchableOpacityStyles]}
       activeOpacity={0.5}
+      onPress={() => {
+        requestAnimationFrame(() => {
+          if (onPress) {
+            onPress();
+          }
+        });
+      }}
       {...touchableOpacityProps}>
       <Text style={[btnTextStyle, textStyles]} {...textProps}>
         {text}

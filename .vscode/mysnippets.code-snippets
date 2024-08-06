@@ -1,0 +1,13 @@
+{
+  "Add License Comment": {
+    "prefix": "license", // Từ khóa để gọi snippet
+    "body": [
+      "/********************************************************",
+      " * Copyright 2024 NEXT WAVE ENERGY MONITORING INC.",
+      " * All rights reserved.",
+      " *",
+      " *********************************************************/"
+    ],
+    "description": "Add a license comment to the top of the file"
+  }
+}

@@ -32,6 +32,7 @@ module.exports = {
       },
     ],
     'no-extra-parens': ['error', 'all', {nestedBinaryExpressions: false}],
+    'no-console': 'error',
   },
   overrides: [
     {

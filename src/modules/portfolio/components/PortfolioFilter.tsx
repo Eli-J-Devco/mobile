@@ -117,8 +117,8 @@ const PortfolioFilter = () => {
             <Text style={titleStyle}>Column</Text>
             <MySelect
               options={options}
-              onChange={vl => {
-                console.log('--onChange--: ', vl);
+              onChange={() => {
+                // console.log('--onChange--: ', vl);
               }}
             />
             <MyTextInput style={styles.input} />

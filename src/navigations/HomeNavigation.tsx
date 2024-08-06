@@ -20,6 +20,7 @@ import {
   devicesRouteNames,
   reportsRouteNames,
 } from './router-name';
+import SearchResultSreen from '../screens/home/search-and-filter/search-results';
 
 const Stack = createStackNavigator();
 
@@ -109,6 +110,11 @@ const HomeNavigation = () => {
       <Stack.Screen
         name={dashboardRouteNames.Notify}
         component={NotifySreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name={dashboardRouteNames.SearchResult}
+        component={SearchResultSreen}
         options={{headerShown: false}}
       />
     </Stack.Navigator>
