@@ -9,7 +9,6 @@
 export type AppContextType = {
   isLoading: boolean;
   isAuth: boolean;
-
   user: any;
 };
 

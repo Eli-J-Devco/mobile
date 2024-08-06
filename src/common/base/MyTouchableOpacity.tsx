@@ -20,9 +20,11 @@ const MyTouchableOpacity = (props: IMyTouchableOpacityProps) => {
       activeOpacity={0.5}
       style={props.touchableOpacityStyle}
       onPress={() => {
-        if (props.onPress) {
-          props.onPress();
-        }
+        requestAnimationFrame(() => {
+          if (props.onPress) {
+            props.onPress();
+          }
+        });
       }}
       {...props.touchableOpacityProps}>
       {props.children}
