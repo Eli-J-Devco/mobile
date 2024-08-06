@@ -445,6 +445,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     gap: 4,
+    height: '100%',
   },
   actionIcon: {
     backgroundColor: '#E6EFFC',

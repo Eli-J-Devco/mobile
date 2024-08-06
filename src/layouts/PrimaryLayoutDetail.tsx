@@ -9,8 +9,6 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import React from 'react';
 import {
   ImageBackground,
-  KeyboardAvoidingView,
-  Platform,
   SafeAreaView,
   StatusBar,
   StyleSheet,
@@ -32,45 +30,38 @@ const PrimaryLayoutDetail = ({children}: Props) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <KeyboardAvoidingView
-        style={styles.container}
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-        <StatusBar
-          translucent={true}
-          barStyle="dark-content"
-          backgroundColor={'transparent'}
-        />
-        <ImageBackground
-          resizeMode="cover"
-          source={images.bgHeader}
-          style={[styles.image, styles.header]}>
-          <View
-            style={[
-              styles.headerContent,
-              {marginTop: StatusBar.currentHeight},
-            ]}>
-            <TouchableOpacity
-              activeOpacity={0.5}
-              onPress={() => navigation.goBack()}>
-              <IconImage iconName="arrowLeftWhite" />
-            </TouchableOpacity>
-            <View style={styles.searchInput}>
-              <IconImage size={20} iconName="search" />
-              <TextInput style={styles.input} placeholder="Search" />
-            </View>
-
-            <View style={styles.headerBtnContainer}>
-              <TouchableOpacity activeOpacity={0.5} style={styles.headerBtn}>
-                <IconImage size={20} iconName="bellWhite" />
-              </TouchableOpacity>
-              <TouchableOpacity activeOpacity={0.5} style={styles.headerBtn}>
-                <IconImage size={20} iconName="user" />
-              </TouchableOpacity>
-            </View>
+      <StatusBar
+        translucent={true}
+        barStyle="dark-content"
+        backgroundColor={'transparent'}
+      />
+      <ImageBackground
+        resizeMode="cover"
+        source={images.bgHeader}
+        style={[styles.image, styles.header]}>
+        <View
+          style={[styles.headerContent, {marginTop: StatusBar.currentHeight}]}>
+          <TouchableOpacity
+            activeOpacity={0.5}
+            onPress={() => navigation.goBack()}>
+            <IconImage iconName="arrowLeftWhite" />
+          </TouchableOpacity>
+          <View style={styles.searchInput}>
+            <IconImage size={20} iconName="search" />
+            <TextInput style={styles.input} placeholder="Search" />
           </View>
-        </ImageBackground>
-        <View style={styles.content}>{children}</View>
-      </KeyboardAvoidingView>
+
+          <View style={styles.headerBtnContainer}>
+            <TouchableOpacity activeOpacity={0.5} style={styles.headerBtn}>
+              <IconImage size={20} iconName="bellWhite" />
+            </TouchableOpacity>
+            <TouchableOpacity activeOpacity={0.5} style={styles.headerBtn}>
+              <IconImage size={20} iconName="user" />
+            </TouchableOpacity>
+          </View>
+        </View>
+      </ImageBackground>
+      <View style={styles.content}>{children}</View>
     </SafeAreaView>
   );
 };
