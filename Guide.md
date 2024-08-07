@@ -167,3 +167,31 @@ export default App;
 ### `containerStyle`
 
 - **Type**: `ViewStyle`
+
+# MyDateRangePicker
+
+## Usage Pattern
+
+```tsx
+import React from 'react';
+import MyDateRangePicker from './MyDateRangePicker'; // Make sure that path is
+
+const App = () => {
+  const [date, setDate] = useState<any>([new Date(), new Date()]);
+
+  return <MyDateRangePicker value={date} placeholder="- - -" />;
+};
+
+export default App;
+```
+
+## Reference
+
+## Props
+
+### Inherits `MyDateRangePickerProps`
+
+### `value`
+
+- **Type**: `[any, any]`
+- **Required**: false

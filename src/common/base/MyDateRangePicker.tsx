@@ -19,7 +19,7 @@ import useThemeContext from '../../hooks/useThemeContext';
 import IconImage from '../components/icons/IconImage';
 
 interface IMyDateRangePicker {
-  value?: any;
+  value?: [any, any];
   placeholder?: string;
   onChange?: (value: any) => void;
   containerStyle?: ViewStyle;
