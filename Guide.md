@@ -5,6 +5,7 @@
 - [MyDatePicker](#mydatepicker)
 - [MyDateRangePicker](#mydaterangepicker)
 - [PrimaryCardItem](#primarycarditem)
+- [card](card)
 
 # ButtonText
 
@@ -132,6 +133,12 @@ export default App;
 
 # MyDatePicker
 
+`MyDatePicker` to select a date.
+
+## When to use
+
+By clicking the input box, use can select a date form a popup calenda.
+
 ## Usage Pattern
 
 ```tsx
@@ -172,6 +179,8 @@ export default App;
 
 # MyDateRangePicker
 
+`MyDateRangePicker` to select a date range
+
 ## Usage Pattern
 
 ```tsx
@@ -199,6 +208,12 @@ export default App;
 - **Required**: false
 
 # PrimaryCardItem
+
+`PrimaryCardItem` is a container for display information.
+
+## When to use
+
+`PrimaryCardItem` can be uesed display content relate to a singer subject. The content can consist of multiple element of varying types and sizes. But no title.
 
 ## Usage Pattern
 
@@ -240,10 +255,56 @@ export default App;
 ### `bgColor`
 
 - **Type**: `string`
-- **Description**: Backgroup color of card
+- **Description**: Background color of card
 
 ### `children`
 
 - **Type**: `ReactNode`
 - **Description**: child element
 - **Required**: true
+
+# Card
+
+`Card` is a container for displaying information.
+
+## When to use
+
+A card can be used to display content related to a single subject. The content can consist of multiple element of varying types and sizes.
+
+## Usage Pattern
+
+```tsx
+import React from 'react';
+import Card from './Card'; // Make sure that path is
+
+const App = () => {
+  return (
+    <Card tiltle="My card">
+      <Text>Example</Text>
+    </Card>
+  );
+};
+
+export default App;
+```
+
+## Reference
+
+## Props
+
+### `title`
+
+- **Type**: `string`
+- **Description**: Title of the card
+- **Required**: `false`
+
+### `mode`
+
+- **Type**: `light` or `dark`
+- **Description**: Card title background color.
+- **Default**: `dark`
+
+### `children`
+
+- **Type**: `ReactNode`
+- **Description**: Child element
