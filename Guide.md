@@ -1,3 +1,8 @@
+# Components
+
+- [ButtonText](#button-text)
+- [MySelect](#my-select)
+
 # ButtonText
 
 `ButtonText` is a simple commponent that allows you to create buttons with custom sized text. This is a useful component when you need to display buttons with styled text that fits your design.
