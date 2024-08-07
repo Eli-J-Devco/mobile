@@ -2,6 +2,7 @@
 
 - [ButtonText](#buttontext)
 - [MySelect](#myselect)
+- [MyDatePicker](#mydatepicker)
 
 # ButtonText
 
@@ -122,6 +123,46 @@ export default App;
 
 - **Type**: `Function(value: string | number) => void`
 - **Description**: Called when select an option or input value change
+
+### `containerStyle`
+
+- **Type**: `ViewStyle`
+
+# MyDatePicker
+
+## Usage Pattern
+
+```tsx
+import React from 'react';
+import MyDatePicker from './MyDatePicker'; // Make sure that path is
+
+const App = () => {
+  const [date, setDate] = useState<any>(new Date());
+
+  return <MyDatePicker value={date} placeholder="- - -" />;
+};
+
+export default App;
+```
+
+## Reference
+
+## Props
+
+### `value`
+
+- **Type**: `DateTime`
+- **Required**: false
+
+### `placeholder`
+
+- **Type**: `string`
+- **Description**: The string that will be rendered before value has been selected.
+
+### `onChange`
+
+- **Type**: `Function(value: any) => void`
+- **Description**: Called when the selected time is changing.
 
 ### `containerStyle`
 
