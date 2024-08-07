@@ -3,6 +3,8 @@
 - [ButtonText](#buttontext)
 - [MySelect](#myselect)
 - [MyDatePicker](#mydatepicker)
+- [MyDateRangePicker](#mydaterangepicker)
+- [PrimaryCardItem](#primarycarditem)
 
 # ButtonText
 
@@ -195,3 +197,53 @@ export default App;
 
 - **Type**: `[any, any]`
 - **Required**: false
+
+# PrimaryCardItem
+
+## Usage Pattern
+
+```tsx
+import React from 'react';
+import PrimaryCardItem from './PrimaryCardItem'; // Make sure that path is
+
+const App = () => {
+  return (
+    <PrimaryCardItem bgColor="#000">
+      <Text>Example</Text>
+    </PrimaryCardItem>
+  );
+};
+
+export default App;
+```
+
+## Reference
+
+## Props
+
+### `gap`
+
+- **Type**: `number`
+- **Default**: 4
+
+### `padding`
+
+- **Type**: `number`
+- **Default**: 8
+
+### `layout`
+
+- **Type**: `row` or `colunm`
+- **Description**: Layout items in the card
+- **Default**: `row`
+
+### `bgColor`
+
+- **Type**: `string`
+- **Description**: Backgroup color of card
+
+### `children`
+
+- **Type**: `ReactNode`
+- **Description**: child element
+- **Required**: true
