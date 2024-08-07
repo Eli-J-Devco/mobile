@@ -1,10 +1,10 @@
-# ButtonText Component
+# ButtonText
 
-`ButtonText` is a simple commponent that allows you to create buttons with custom sized text. This is a usefuly component when you need to display buttons with styled text that fits your design.
+`ButtonText` is a simple commponent that allows you to create buttons with custom sized text. This is a useful component when you need to display buttons with styled text that fits your design.
 
 ## Usage Pattern
 
-Here is an example of how to use `ButtonText` in your React app:
+Here is an example of how to use `ButtonText` in your React Navite app:
 
 ```jsx
 import React from 'react';
@@ -12,11 +12,11 @@ import ButtonText from './ButtonText'; // Make sure that path is
 
 const App = () => {
   return (
-    <div>
+    <>
       <ButtonText text="Click Me" size="18px" />
       <ButtonText text="Submit" />
       <ButtonText text="Cancel" size="14px" />
-    </div>
+    </>
   );
 };
 
@@ -35,7 +35,7 @@ export default App;
 
 ### `textSize`
 
-- **Type**: `number` (CSS font-size value, Example: `'14px'`, `'1em'`, `'1.5rem'`, etc.)
+- **Type**: `number` (CSS font-size value, Example: `'14'`, `'16'`, `'17'`, etc.)
 - **Description**: Size of text on button.
 - **Required**: false
 - **Default**: `'14px'` (if not specified)
@@ -61,3 +61,63 @@ export default App;
 ### `textProps`
 
 - **Type**: `TextProps`
+
+# MySelect
+
+`MySelect` is a simple component that allows you to create selects. This is a useful component when you need to display selects with a style that matches your design.
+
+## Usage Pattern
+
+Here is an example of how to use `MySelect` in your React Navite App:
+
+```tsx
+import React from 'react';
+import MySelect from './MySelect'; // Make sure that path is
+
+const App = () => {
+  const [options, setOptions] = useState([
+    {
+      value: '1',
+      label: 'Viet Nam',
+    },
+  ]);
+
+  return <MySelect options={options} />;
+};
+
+export default App;
+```
+
+## Reference
+
+## Props
+
+### `lable`
+
+- **Type**: `string`
+- **Description**: The string that will be rendered on top of modal menu.
+
+### `value`
+
+- **Type**: `string` or `number`
+- **Required**: true
+
+### `placeholder`
+
+- **Type**: `string`
+- **Description**: The string that will be rendered before text value has been selected.
+
+### `options`
+
+- **Type**: `ISelectOption[]`
+- **Description**: Select options
+- **Required**: true
+
+### `onChange`
+
+- **Type**: `Function(value: string | number) => void`
+- **Description**: Called when select an option or input value change
+
+### `containerStyle`
+
+- **Type**: `ViewStyle`
