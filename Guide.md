@@ -1,29 +1,14 @@
 # ButtonText Component
 
-`ButtonText` là một component đơn giản cho phép bạn tạo các nút với văn bản có kích thước tùy chỉnh. Đây là một component hữu ích khi bạn cần hiển thị các nút với văn bản có kiểu dáng phù hợp với thiết kế của bạn.
+`ButtonText` is a simple commponent that allows you to create buttons with custom sized text. This is a usefuly component when you need to display buttons with styled text that fits your design.
 
-## Props
+## Usage Pattern
 
-### `text`
-
-- **Type**: `string`
-- **Description**: Văn bản mà bạn muốn hiển thị trên nút.
-- **Required**: Có
-
-### `size`
-
-- **Type**: `string` (CSS font-size value, ví dụ: `'14px'`, `'1em'`, `'1.5rem'`, etc.)
-- **Description**: Kích thước của văn bản trên nút.
-- **Required**: Không
-- **Default**: `'16px'` (nếu không được chỉ định)
-
-## Cách Sử Dụng
-
-Dưới đây là một ví dụ về cách sử dụng `ButtonText` trong ứng dụng React của bạn:
+Here is an example of how to use `ButtonText` in your React app:
 
 ```jsx
 import React from 'react';
-import ButtonText from './ButtonText'; // Đảm bảo đường dẫn chính xác
+import ButtonText from './ButtonText'; // Make sure that path is
 
 const App = () => {
   return (
@@ -37,3 +22,42 @@ const App = () => {
 
 export default App;
 ```
+
+## Reference
+
+## Props
+
+### `text`
+
+- **Type**: `string`
+- **Description**: The text you want to display on the button.
+- **Required**: true
+
+### `textSize`
+
+- **Type**: `number` (CSS font-size value, Example: `'14px'`, `'1em'`, `'1.5rem'`, etc.)
+- **Description**: Size of text on button.
+- **Required**: false
+- **Default**: `'14px'` (if not specified)
+
+### `onPress`
+
+- **Type**: `Function`
+- **Description**: Called when the touch is released, but not if cancelled (e.g by scroll that
+  steals the responder lock). The first function argument is an event in form of PressEvent.
+
+### `textStyle`
+
+- **Type**: `TextStyle`
+
+### `touchableOpacityStyles`
+
+- **Type**: `ViewStyle`
+
+### `touchableOpacityProps`
+
+- **Type**: `TouchableOpacityProps`
+
+### `textProps`
+
+- **Type**: `TextProps`
