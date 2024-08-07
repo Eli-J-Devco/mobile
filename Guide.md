@@ -1,7 +1,7 @@
 # Components
 
-- [ButtonText](#button-text)
-- [MySelect](#my-select)
+- [ButtonText](#buttontext)
+- [MySelect](#myselect)
 
 # ButtonText
 
