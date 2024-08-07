@@ -14,10 +14,10 @@ interface IIconImageProps {
 }
 
 /**
- * @description Get icon from svg file
- * @author qui.nguyen 2024-07-1
+ * @description Get icon from image file
+ * @author qui.nguyen 2024-08-07
  * @param {iconName, w, h}
- * @returns Svg icon
+ * @returns  Image icon
  */
 
 const IconImage = ({iconName, size = 24}: IIconImageProps) => {

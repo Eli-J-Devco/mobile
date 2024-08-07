@@ -7,7 +7,7 @@
  *********************************************************/
 
 import {useNavigation} from '@react-navigation/native';
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {
   Animated,
   Dimensions,
@@ -92,7 +92,7 @@ const TouchableOpacityAnimated =
 const MainLayout = ({backgroundColor, children}: Props) => {
   // const theme = useThemeContext();
 
-  const {isAuth, user} = useAppContext();
+  const {isAuth} = useAppContext();
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const navigation = useNavigation<any>();
@@ -106,9 +106,9 @@ const MainLayout = ({backgroundColor, children}: Props) => {
   // const lastOffsetY = useRef(0);
   // const scrollDirection = useRef(0);
 
-  useEffect(() => {
-    console.log('----->', isAuth, user);
-  }, [isAuth, user]);
+  // useEffect(() => {
+  //   console.log('----->', isAuth, user);
+  // }, [isAuth, user]);
 
   const searchInputAnimation = {
     transform: [
@@ -203,7 +203,7 @@ const MainLayout = ({backgroundColor, children}: Props) => {
   };
 
   if (!isAuth) {
-    console.log('no authen');
+    // console.log('no authen');
     navigation.replace('Login');
 
     return;

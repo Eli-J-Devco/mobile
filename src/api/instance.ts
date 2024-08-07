@@ -31,7 +31,7 @@ export function getURL() {
   return instance?.defaults?.baseURL;
 }
 
-function getUrl(config: any) {
+export function getUrl(config: any) {
   if (config?.baseURL) {
     return config?.url?.replace(config?.baseURL, '');
   }
@@ -43,11 +43,11 @@ function getUrl(config: any) {
 instance.interceptors.response.use(
   response => {
     // /*
-    console.log(
-      `%c ${response?.status} - ${getUrl(response?.config)}:`,
-      'color: #008000; font-weight: bold',
-      response,
-    );
+    // console.log(
+    //   `%c ${response?.status} - ${getUrl(response?.config)}:`,
+    //   'color: #008000; font-weight: bold',
+    //   response,
+    // );
 
     // */
     return response;
@@ -55,7 +55,7 @@ instance.interceptors.response.use(
   error => {
     // const navigation = useNavigation<NativeStackNavigationProp<any>>();
 
-    console.log(error);
+    // console.log(error);
 
     if (error?.response?.status === 429) {
       Alert.alert('Too many requests. Please try again later.');
@@ -73,11 +73,11 @@ instance.interceptors.response.use(
       // ]);
       // Alert.alert('Phiên đăng nhập hết hạn, vui lòng đăng nhập lại', '', [{}]);
     }
-    console.log(
-      `%c ${error?.response?.status} - ${getUrl(error?.response?.config)}:`,
-      'color: #a71d5d; font-weight: bold',
-      error?.response,
-    );
+    // console.log(
+    //   `%c ${error?.response?.status} - ${getUrl(error?.response?.config)}:`,
+    //   'color: #a71d5d; font-weight: bold',
+    //   error?.response,
+    // );
 
     return Promise.reject(error);
   },

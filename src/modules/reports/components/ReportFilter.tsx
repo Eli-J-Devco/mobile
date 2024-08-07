@@ -101,10 +101,10 @@ const ReportFilter = () => {
             <H2>Components:</H2>
             <MyTree
               data={treeData}
-              onChecked={(x, y) => {
-                console.log('----x----: ', x);
-                console.log('----y----: ', y);
-              }}
+              // onChecked={(x, y) => {
+              //   console.log('----x----: ', x);
+              //   console.log('----y----: ', y);
+              // }}
             />
           </View>
           <View style={styles.wraped}>
@@ -125,10 +125,10 @@ const ReportFilter = () => {
             <H2>Hardware Registers:</H2>
             <MyTree
               data={treeData}
-              onChecked={(x, y) => {
-                console.log('----x----: ', x);
-                console.log('----y----: ', y);
-              }}
+              // onChecked={(x, y) => {
+              //   console.log('----x----: ', x);
+              //   console.log('----y----: ', y);
+              // }}
             />
           </View>
         </View>

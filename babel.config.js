@@ -19,5 +19,6 @@ module.exports = {
         verbose: false,
       },
     ],
+    // ['transform-remove-console', {exclude: ['error', 'warn']}],
   ],
 };

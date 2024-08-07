@@ -65,6 +65,7 @@ export const dashboardRouteNames = {
   Map: 'Map',
   Devices: devicesRouteNames.Devinavigation,
   Notify: 'Notify',
+  SearchResult: 'SearchResult',
 };
 
 export const routeName: IRouteName = {

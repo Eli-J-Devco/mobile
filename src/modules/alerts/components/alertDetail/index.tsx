@@ -5,7 +5,7 @@
  *********************************************************/
 
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, View, Text, TextStyle} from 'react-native';
 import MyScrollView from '../../../../common/base/MyScrollView';
 import MySwicthText from '../../../../common/base/MySwicthText';
 import LineChartKit from '../../../../common/components/chart/LineChartKit';
@@ -15,8 +15,17 @@ import SelectLabel from '../../../../common/components/select/SelectLabel';
 import Card from '../../../../common/components/view/Card';
 import Grid from '../../../../common/components/view/Grid';
 import Item from '../../../../common/components/view/Item';
+import useThemeContext from '../../../../hooks/useThemeContext';
 
 const AlertDetail = () => {
+  const theme = useThemeContext();
+
+  const lableStyle: TextStyle = {
+    color: theme.palette.text.primary,
+    fontSize: theme.font.size.xs,
+    fontWeight: '600',
+  };
+
   return (
     <>
       <MyScrollView>
@@ -37,6 +46,13 @@ const AlertDetail = () => {
           <Card tiltle="Charting">
             <View style={styles.chart}>
               <LineChartKit />
+              <View style={styles.descriptionContent}>
+                <View style={styles.iconContainer}>
+                  <View style={styles.dot} />
+                  <View style={styles.line} />
+                </View>
+                <Text style={lableStyle}>Elkor WattsOn Mk. II</Text>
+              </View>
             </View>
           </Card>
           <Card tiltle="Update">
@@ -94,5 +110,31 @@ const styles = StyleSheet.create({
   },
   inputLableContainer: {
     minHeight: 100,
+  },
+  descriptionContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 8,
+  },
+  iconContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'relative',
+  },
+  line: {
+    height: 1.5,
+    width: 20,
+    backgroundColor: 'rgba(0, 148, 255, 100)',
+  },
+  dot: {
+    height: 10,
+    width: 10,
+    backgroundColor: 'rgba(0, 148, 255, 100)',
+    borderRadius: 5,
+    position: 'absolute',
+    top: -4.5,
+    left: 5,
   },
 });

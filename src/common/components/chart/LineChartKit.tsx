@@ -24,8 +24,8 @@ const chartConfig = {
   propsForVerticalLabels: {
     fontSize: '10',
     fontWeight: 'bold',
-    dx: '-25',
-    dy: '-10',
+    // dx: '-25',
+    // dy: '-10',
   },
 };
 
@@ -61,22 +61,22 @@ const LineChartKit = () => {
   return (
     <View>
       <LineChart
-        verticalLabelRotation={-45}
+        // verticalLabelRotation={-45}
         // withVerticalLabels={true}
         data={{
-          labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+          labels: ['05/01', '05/01', '05/01', '05/01', '05/01', '05/01'],
           datasets: [
             {
               data: data,
-              color: () => `rgba(0, 0, 255, 0.5)`,
+              color: () => `rgba(0, 148, 255, 100)`,
               strokeWidth: 0,
             },
           ],
         }}
         width={width - width * 0.12}
         height={220}
-        yAxisLabel="$"
-        yAxisSuffix="k"
+        yAxisLabel=""
+        yAxisSuffix="kW"
         yAxisInterval={1} // optional, defaults to 1
         chartConfig={chartConfig}
         // transparent

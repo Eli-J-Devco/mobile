@@ -110,10 +110,10 @@ const AlertFilter = () => {
             <Text style={titleStyle}>Site Name:</Text>
             <MyTree
               data={treeData}
-              onChecked={(x, y) => {
-                console.log('----x----: ', x);
-                console.log('----y----: ', y);
-              }}
+              // onChecked={(x, y) => {
+              //   console.log('----x----: ', x);
+              //   console.log('----y----: ', y);
+              // }}
             />
           </View>
           <View style={styles.wraped}>

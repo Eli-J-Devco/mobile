@@ -11,9 +11,13 @@ import MySelect from '../../../../common/base/MySelect';
 import ButonText from '../../../../common/components/button/ButonText';
 import PrimaryInput from '../../../../common/components/input/PrimaryInput';
 import useThemeContext from '../../../../hooks/useThemeContext';
+import {NavigationProp, useNavigation} from '@react-navigation/native';
+import {dashboardRouteNames} from '../../../../navigations/router-name';
 
 const SearchAndFilter = () => {
   const theme = useThemeContext();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const navigation = useNavigation<NavigationProp<any>>();
 
   const label: TextStyle = {
     color: theme.palette.text.primary,
@@ -179,6 +183,17 @@ const SearchAndFilter = () => {
             textStyles={{
               fontSize: theme.font.size.s,
               color: theme.palette.text.white,
+            }}
+            onPress={() => {
+              navigation.navigate(dashboardRouteNames.SearchResult, {
+                sort: 'latest',
+                seatchBy: 'SiteName',
+                filterBy: {
+                  InverterType: '1',
+                  TagSite: '2',
+                  TagDevices: '3',
+                },
+              });
             }}
           />
           <ButonText

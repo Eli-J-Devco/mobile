@@ -7,8 +7,9 @@
 import {MAP_BOX_ACCESS_TOKEN} from '@env';
 import MapboxGL, {Logger, UserLocation} from '@rnmapbox/maps';
 import React, {useEffect} from 'react';
-import {Image, StyleSheet, View} from 'react-native';
+import {Image, StyleSheet, Text, TextStyle, View} from 'react-native';
 import {images} from '../../assets';
+import useThemeContext from '../../hooks/useThemeContext';
 
 Logger.setLogCallback(log => {
   const {message} = log;
@@ -27,6 +28,19 @@ MapboxGL.setAccessToken(MAP_BOX_ACCESS_TOKEN);
 MapboxGL.UserTrackingMode.Follow;
 
 const Map = () => {
+  const theme = useThemeContext();
+
+  const textNameStyle: TextStyle = {
+    color: theme.palette.text.primary,
+    fontSize: 10,
+    fontWeight: '600',
+  };
+  const textStyle: TextStyle = {
+    color: theme.palette.text.primary,
+    fontSize: 8,
+    fontWeight: '400',
+  };
+
   useEffect(() => {
     // Request permission to access location
 
@@ -60,7 +74,15 @@ const Map = () => {
           coordinate={[106.7040318, 10.8920713]}
           title="Test">
           <MapboxGL.Callout title="">
-            <View style={styles.myLocal}></View>
+            <View style={styles.myLocal}>
+              <View style={styles.myLocal}>
+                <Text style={textNameStyle}>Target Eastvale - T1962</Text>
+                <Text style={textStyle}>System Size (kW - DC): 546.5 kW</Text>
+                <Text style={textStyle}>
+                  Current Production (kW - AC): 546.5 kW
+                </Text>
+              </View>
+            </View>
           </MapboxGL.Callout>
         </MapboxGL.PointAnnotation>
         <MapboxGL.PointAnnotation
@@ -69,7 +91,13 @@ const Map = () => {
           coordinate={[106.7040318, 10.9020713]}
           title="Test">
           <MapboxGL.Callout title="">
-            <View style={styles.myLocal}></View>
+            <View style={styles.myLocal}>
+              <Text style={textNameStyle}>Target Eastvale - T1961</Text>
+              <Text style={textStyle}>System Size (kW - DC): 546.5 kW</Text>
+              <Text style={textStyle}>
+                Current Production (kW - AC): 546.5 kW
+              </Text>
+            </View>
           </MapboxGL.Callout>
         </MapboxGL.PointAnnotation>
 
@@ -141,5 +169,9 @@ const styles = StyleSheet.create({
     width: 100,
     backgroundColor: '#fff',
     borderRadius: 4,
+    padding: 4,
+    display: 'flex',
+    alignItems: 'flex-start',
+    justifyContent: 'center',
   },
 });
