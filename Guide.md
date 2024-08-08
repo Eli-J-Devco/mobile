@@ -8,6 +8,7 @@
 - [Card](#card)
 - [Item](#item)
 - [TextBetweenView](#textbetweenview)
+- [MySpin](#myspin)
 
 # ButtonText
 
@@ -436,3 +437,40 @@ export default App;
 
 - **Type**: `primary` or `secondary`
 - **Default**: `primary`
+
+# MySpin
+
+Used for the loading status of a page or a block.
+
+## When to use
+
+When part of the page is waiting for asynchronous data or during a rendering process, an appropriate loading animation can effectively alleviate useer's inquietude.
+
+## Usage Pattern
+
+Here is example of how to use `MySpin` in your React Native app:
+
+```tsx
+import React from 'react';
+import MySpin from './MySpin'; // Make sure that path is
+
+const App = () => {
+  return <MySpin />;
+};
+
+export default App;
+```
+
+## Referen
+
+## Props
+
+### `size`
+
+- **Type**: `small` or `large`
+- **Default**: `small`
+
+### `color`
+
+- **Type**: `string`
+- **Default**: `#fff`
