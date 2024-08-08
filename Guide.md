@@ -5,8 +5,9 @@
 - [MyDatePicker](#mydatepicker)
 - [MyDateRangePicker](#mydaterangepicker)
 - [PrimaryCardItem](#primarycarditem)
-- [Card](card)
-- [Item](item)
+- [Card](#card)
+- [Item](#item)
+- [TextBetweenView](#textbetweenview)
 
 # ButtonText
 
@@ -371,3 +372,67 @@ export default App;
 - **Type**: `string`
 - **Description**: Item background color
 - **Default**: `transparent`
+
+# TextBetweenView
+
+`TextBetweenView` is used to display text and a value or an alert on a row.
+
+## When to use
+
+When you need to display a row of text and value or an alert with or without a bottom border.
+
+## Usage Pattern
+
+Here is example of how to use `TextBetweenView` in your React Native app:
+
+```tsx
+import React from 'react';
+import TextBetweenView from './TextBetweenView'; // Make sure that path is
+
+const App = () => {
+  return <TextBetweenView leftText="Weather" rightText="26C" />;
+};
+
+export default App;
+```
+
+## Referen
+
+## Props
+
+### `type`
+
+- **Type**: `primary` or `alert`
+- **Default**: `primary`
+
+### `leftText`
+
+- **Type**: `string`
+- **Discription**: Text displayed on the left.
+- **Required**: `true`
+
+### `rightText`
+
+- **Type**: `string`
+- **Discription**: Text displayed on the right.
+- **Required**: `false`
+
+### `paddingHorizontal`
+
+- **Type**: `number`
+- **Default**: 0
+
+### `backgroundColor`
+
+- **Type**: `string`
+- **Default**: `transparent`
+
+### `borderBottom`
+
+- **Type**: `boolean`
+- **Default**: `true`
+
+### `color`
+
+- **Type**: `primary` or `secondary`
+- **Default**: `primary`
