@@ -7,6 +7,7 @@
 
 import React from 'react';
 import {View, ViewStyle} from 'react-native';
+import {GAP_DEFAULT} from '../../../constants/view/space';
 
 interface IRowProps {
   style?: ViewStyle;
@@ -20,7 +21,7 @@ const Row = ({style, gap, children}: IRowProps) => {
       style={[
         {
           display: 'flex',
-          gap: gap ? gap : 8,
+          gap: gap ? gap : GAP_DEFAULT,
           flex: 1,
           flexDirection: 'row',
         },

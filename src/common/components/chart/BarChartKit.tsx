@@ -1,3 +1,4 @@
+/* eslint-disable no-magic-numbers */
 import React, {useEffect, useState} from 'react';
 import {Dimensions, View} from 'react-native';
 import {BarChart} from 'react-native-chart-kit';

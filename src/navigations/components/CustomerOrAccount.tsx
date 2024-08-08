@@ -1,3 +1,4 @@
+/* eslint-disable no-magic-numbers */
 import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import MyTouchableOpacity from '../../common/base/MyTouchableOpacity';

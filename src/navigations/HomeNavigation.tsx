@@ -21,6 +21,7 @@ import {
   reportsRouteNames,
 } from './router-name';
 import SearchResultSreen from '../screens/home/search-and-filter/search-results';
+import {NAVIGATION_CARD_SCALE} from '../constants/view/display';
 
 const Stack = createStackNavigator();
 
@@ -50,7 +51,7 @@ const HomeNavigation = () => {
                   scale: next
                     ? next.progress.interpolate({
                         inputRange: [0, 1],
-                        outputRange: [1, 0.9],
+                        outputRange: [1, NAVIGATION_CARD_SCALE],
                       })
                     : 1,
                 },
@@ -59,7 +60,7 @@ const HomeNavigation = () => {
             overlayStyle: {
               opacity: current.progress.interpolate({
                 inputRange: [0, 1],
-                outputRange: [0, 0.5],
+                outputRange: [0, NAVIGATION_CARD_SCALE],
               }),
             },
           };

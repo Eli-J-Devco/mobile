@@ -9,6 +9,10 @@ import React from 'react';
 import AlertDetailSreen from '../screens/alerts/alert-detail';
 import DrawerNavigation from './DrawerNavigation';
 import {alertRouteNames} from './router-name';
+import {
+  NAVIGATION_CARD_SCALE,
+  NAVIGATION_OVERLAY_OPACITY,
+} from '../constants/view/display';
 
 const Stack = createStackNavigator();
 
@@ -39,7 +43,7 @@ const MainNavigation = () => {
                   scale: next
                     ? next.progress.interpolate({
                         inputRange: [0, 1],
-                        outputRange: [1, 0.9],
+                        outputRange: [1, NAVIGATION_CARD_SCALE],
                       })
                     : 1,
                 },
@@ -48,7 +52,7 @@ const MainNavigation = () => {
             overlayStyle: {
               opacity: current.progress.interpolate({
                 inputRange: [0, 1],
-                outputRange: [0, 0.5],
+                outputRange: [0, NAVIGATION_OVERLAY_OPACITY],
               }),
             },
           };

@@ -1,0 +1,2 @@
+export const NAVIGATION_CARD_SCALE = 0.9;
+export const NAVIGATION_OVERLAY_OPACITY = 0.5;

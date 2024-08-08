@@ -3,12 +3,17 @@
  * All rights reserved.
  *
  *********************************************************/
+
 import {createStackNavigator, TransitionSpecs} from '@react-navigation/stack';
 import React from 'react';
 import DevicesScreen from '../screens/devices';
 import {devicesRouteNames} from './router-name';
 import FilterColumnsScreen from '../screens/devices/filter-colums';
 import SummaryDetailScreen from '../screens/devices/summary-detail';
+import {
+  NAVIGATION_CARD_SCALE,
+  NAVIGATION_OVERLAY_OPACITY,
+} from '../constants/view/display';
 
 const Stack = createStackNavigator();
 
@@ -38,7 +43,7 @@ const DevicesNavigation = () => {
                   scale: next
                     ? next.progress.interpolate({
                         inputRange: [0, 1],
-                        outputRange: [1, 0.9],
+                        outputRange: [1, NAVIGATION_CARD_SCALE],
                       })
                     : 1,
                 },
@@ -47,7 +52,7 @@ const DevicesNavigation = () => {
             overlayStyle: {
               opacity: current.progress.interpolate({
                 inputRange: [0, 1],
-                outputRange: [0, 0.5],
+                outputRange: [0, NAVIGATION_OVERLAY_OPACITY],
               }),
             },
           };

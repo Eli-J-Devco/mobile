@@ -6,6 +6,7 @@
 
 import React from 'react';
 import {ScrollView, ScrollViewProps, StyleSheet} from 'react-native';
+import {PADDING_DEFAULT} from '../../constants/view/space';
 
 interface IMyScrollViewProps {
   scrollViewProps?: ScrollViewProps;
@@ -25,7 +26,7 @@ const MyScrollView = (props: IMyScrollViewProps) => {
           paddingHorizontal:
             props.paddingHorizontal !== undefined
               ? props.paddingHorizontal
-              : 16,
+              : PADDING_DEFAULT,
         },
       ]}
       {...props.scrollViewProps}>

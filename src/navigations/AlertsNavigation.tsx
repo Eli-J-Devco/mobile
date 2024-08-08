@@ -3,12 +3,17 @@
  * All rights reserved.
  *
  *********************************************************/
+
 import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
 import AlertSreen from '../screens/alerts';
 import AlertFilterSreen from '../screens/alerts/filter';
 import {alertRouteNames} from './router-name';
 import {TransitionSpecs} from '@react-navigation/stack';
+import {
+  NAVIGATION_CARD_SCALE,
+  NAVIGATION_OVERLAY_OPACITY,
+} from '../constants/view/display';
 
 const Stack = createStackNavigator();
 
@@ -38,7 +43,7 @@ const AlertsNavigation = () => {
                   scale: next
                     ? next.progress.interpolate({
                         inputRange: [0, 1],
-                        outputRange: [1, 0.9],
+                        outputRange: [1, NAVIGATION_CARD_SCALE],
                       })
                     : 1,
                 },
@@ -47,7 +52,7 @@ const AlertsNavigation = () => {
             overlayStyle: {
               opacity: current.progress.interpolate({
                 inputRange: [0, 1],
-                outputRange: [0, 0.5],
+                outputRange: [0, NAVIGATION_OVERLAY_OPACITY],
               }),
             },
           };

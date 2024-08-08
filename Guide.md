@@ -5,7 +5,8 @@
 - [MyDatePicker](#mydatepicker)
 - [MyDateRangePicker](#mydaterangepicker)
 - [PrimaryCardItem](#primarycarditem)
-- [card](card)
+- [Card](card)
+- [Item](item)
 
 # ButtonText
 
@@ -141,6 +142,8 @@ By clicking the input box, use can select a date form a popup calenda.
 
 ## Usage Pattern
 
+Here is an example of how to use `MyDatePicker` in your React Native app:
+
 ```tsx
 import React from 'react';
 import MyDatePicker from './MyDatePicker'; // Make sure that path is
@@ -183,6 +186,8 @@ export default App;
 
 ## Usage Pattern
 
+Here is an example of how to use `MyDateRangePicker` in your React Native app:
+
 ```tsx
 import React from 'react';
 import MyDateRangePicker from './MyDateRangePicker'; // Make sure that path is
@@ -216,6 +221,8 @@ export default App;
 `PrimaryCardItem` can be uesed display content relate to a singer subject. The content can consist of multiple element of varying types and sizes. But no title.
 
 ## Usage Pattern
+
+Here is an example of how to use `PrimaryCardItem` in your React Native app:
 
 ```tsx
 import React from 'react';
@@ -273,6 +280,8 @@ A card can be used to display content related to a single subject. The content c
 
 ## Usage Pattern
 
+Here is an example of how to use `Card` in your React Native app:
+
 ```tsx
 import React from 'react';
 import Card from './Card'; // Make sure that path is
@@ -308,3 +317,57 @@ export default App;
 
 - **Type**: `ReactNode`
 - **Description**: Child element
+
+# Item
+
+`Item` is for display basic text including label and value.
+
+## When to use
+
+When you need to display a value and its label.
+
+## Usage Pattern
+
+Here is an example of how to use `Item` in your React Native app:
+
+```tsx
+import React from 'react';
+import Item from './Item'; // Make sure that path is
+
+const App = () => {
+  return <Item label="Weather" value="26C" />;
+};
+
+export default App;
+```
+
+## Reference
+
+## Props
+
+### `mode`
+
+- **Type**: `light` or `dark`
+- **Description**: Item background color
+- **Default**: `light`
+
+### `lable`
+
+- **Type**: `string`
+- **Required**: `true`
+
+### `value`
+
+- **Type**: `string`
+- **Required**: `false`
+
+### `paddingHorizontal`
+
+- **Type**: `number`
+- **Default**: 0
+
+### `backgroundColor`
+
+- **Type**: `string`
+- **Description**: Item background color
+- **Default**: `transparent`

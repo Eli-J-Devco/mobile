@@ -33,6 +33,14 @@ module.exports = {
     ],
     'no-extra-parens': ['error', 'all', {nestedBinaryExpressions: false}],
     'no-console': 'error',
+    'no-magic-numbers': [
+      'error',
+      {
+        ignore: [0, 1],
+        ignoreArrayIndexes: true,
+        ignoreDefaultValues: true,
+      },
+    ],
   },
   overrides: [
     {

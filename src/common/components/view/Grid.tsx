@@ -6,6 +6,7 @@
 
 import React from 'react';
 import {View, ViewStyle} from 'react-native';
+import {GAP_DEFAULT} from '../../../constants/view/space';
 
 interface IGridProps {
   style?: ViewStyle;
@@ -22,7 +23,7 @@ const Grid = ({style, gap, flexDirection = 'row', children}: IGridProps) => {
         {
           display: 'flex',
           flexDirection,
-          gap: gap ? gap : 8,
+          gap: gap ? gap : GAP_DEFAULT,
         },
         style,
       ]}>

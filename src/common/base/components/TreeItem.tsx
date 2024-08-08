@@ -10,6 +10,9 @@ import SvgIcon from '../../components/SvgIcon';
 import MyCheckBoxText from './../MyCheckBoxText';
 import IconImage from '../../components/icons/IconImage';
 
+const ICON_MINI_ZISE = 15;
+const ICON_LARGE_ZISE = 18;
+
 interface ChildItemProps {
   child: ITree;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -76,7 +79,7 @@ const TreeItem = ({treeItem, onChecked}: TreeItemProps) => {
             activeOpacity={0.5}
             onPress={() => setExpanded(!expanded)}>
             <IconImage
-              size={expanded ? 18 : 15}
+              size={expanded ? ICON_LARGE_ZISE : ICON_MINI_ZISE}
               iconName={expanded ? 'arrowUp' : 'arrowDown'}
             />
           </TouchableOpacity>

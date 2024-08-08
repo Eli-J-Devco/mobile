@@ -10,6 +10,10 @@ import AlertConfigSreen from '../screens/setting/alert-config';
 import PVModelSettingsSreen from '../screens/setting/pv-model-settings';
 import SiteSettingSreen from '../screens/setting/site-setting';
 import {settingRouteNames} from './router-name';
+import {
+  NAVIGATION_CARD_SCALE,
+  NAVIGATION_OVERLAY_OPACITY,
+} from '../constants/view/display';
 
 const Stack = createStackNavigator();
 
@@ -39,7 +43,7 @@ const SettingNavigation = () => {
                   scale: next
                     ? next.progress.interpolate({
                         inputRange: [0, 1],
-                        outputRange: [1, 0.9],
+                        outputRange: [1, NAVIGATION_CARD_SCALE],
                       })
                     : 1,
                 },
@@ -48,7 +52,7 @@ const SettingNavigation = () => {
             overlayStyle: {
               opacity: current.progress.interpolate({
                 inputRange: [0, 1],
-                outputRange: [0, 0.5],
+                outputRange: [0, NAVIGATION_OVERLAY_OPACITY],
               }),
             },
           };

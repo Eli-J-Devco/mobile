@@ -2,6 +2,7 @@
 import axios from 'axios';
 import {apiConfigs} from '../configs/api-configs';
 import {Alert} from 'react-native';
+import {TOO_MANY_REQUESTS, UNAUTHORIZED} from '../constants/apiStatusCode';
 
 export const instance = axios.create({
   baseURL: apiConfigs.baseUrl,
@@ -57,10 +58,10 @@ instance.interceptors.response.use(
 
     // console.log(error);
 
-    if (error?.response?.status === 429) {
+    if (error?.response?.status === TOO_MANY_REQUESTS) {
       Alert.alert('Too many requests. Please try again later.');
     }
-    if (error?.response?.status === 401) {
+    if (error?.response?.status === UNAUTHORIZED) {
       // navigation.navigate('Login');
       //   EventRegister.emit('LOGOUT', {});
       // Alert.alert('Phiên đăng nhập hết hạn, vui lòng đăng nhập lại', [

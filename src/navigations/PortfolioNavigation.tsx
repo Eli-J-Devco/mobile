@@ -10,6 +10,10 @@ import ArrangeColumnsSreen from '../screens/portfolio/arrange-columns';
 import PortfolioDetailSreen from '../screens/portfolio/detail';
 import PortfolioFilterSreen from '../screens/portfolio/filter';
 import {portfolioRouteName} from './router-name';
+import {
+  NAVIGATION_CARD_SCALE,
+  NAVIGATION_OVERLAY_OPACITY,
+} from '../constants/view/display';
 
 const Stack = createStackNavigator();
 
@@ -41,7 +45,7 @@ const PortfolioNavigation = () => {
                   scale: next
                     ? next.progress.interpolate({
                         inputRange: [0, 1],
-                        outputRange: [1, 0.9],
+                        outputRange: [1, NAVIGATION_CARD_SCALE],
                       })
                     : 1,
                 },
@@ -50,7 +54,7 @@ const PortfolioNavigation = () => {
             overlayStyle: {
               opacity: current.progress.interpolate({
                 inputRange: [0, 1],
-                outputRange: [0, 0.5],
+                outputRange: [0, NAVIGATION_OVERLAY_OPACITY],
               }),
             },
           };

@@ -1,3 +1,4 @@
+/* eslint-disable no-magic-numbers */
 import React, {useEffect, useState} from 'react';
 import {Dimensions} from 'react-native';
 import {VictoryBar, VictoryChart, VictoryTheme} from 'victory-native';
