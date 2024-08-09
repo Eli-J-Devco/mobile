@@ -644,3 +644,40 @@ export default App;
 
 - **Type**: `Func(checked: boolean, value?: any) => void`
 - **Description**: The callback function that is triggered when the state changes.
+
+# `MyCheckBoxText`
+
+Collect user's choices
+
+## When to use
+
+Use for selecting multiple values from several options. It is the same as [`MyCheckBox`](#mycheckbox) the difference is that `MyCheckBoxText` has text added.
+
+## Usage Pattern
+
+Here is example of how to use `MyCheckBoxText` in your React Native app:
+
+```tsx
+import React from 'react';
+import MyCheckBoxText from './MyCheckBoxText'; // Make sure path that is correct
+
+const App = () => {
+  return <MyCheckBoxText value={1}>Example</MyCheckBoxText>;
+};
+
+export default App;
+```
+
+## Reference
+
+## Props
+
+Inherit [`MyCheckBox Props`](#mycheckbox)
+
+### `span`
+
+- **Type**: `number`
+
+### `textStyle`
+
+- **Type**: `TextStyle`
