@@ -10,6 +10,7 @@
 - [TextBetweenView](#textbetweenview)
 - [MySpin](#myspin)
 - [MyTree](#mytree)
+- [MyCheckBox](#mycheckbox)
 
 # ButtonText
 
@@ -569,7 +570,7 @@ const treeData: ITree[] = [
 ];
 
 import React from 'react';
-import MyTree from './MyTree'; // Make sure that path is
+import MyTree from './MyTree'; // Make sure path that is correct
 
 const App = () => {
   return <MyTree data={treeData} />;
@@ -591,3 +592,55 @@ export default App;
 
 - **Type**: `Func(checked: boolean, value?: any) => void`
 - **Desrciption**: Callback function for when the user click a treeNode.
+
+# MyCheckBox
+
+Collect user's choices.
+
+## When to use
+
+- Used for selecting multiple values from several options.
+- If you use only one checkbox, it is the same as using `MySwicth` to toggle beween to states. The difference is that `MySwicth` will trigger the state change directly, but `MyCheckBox` just marks the state changed and this needs to be submitted.
+
+## Usage Pattern
+
+Here is example of how to use `MyCheckBox` in your React Native app:
+
+```tsx
+import React from 'react';
+import MyCheckBox from './MyCheckBox'; // Make sure path that is correct
+
+const App = () => {
+  return <MyCheckBox value={1} />;
+};
+
+export default App;
+```
+
+## Referen
+
+## Props
+
+### `value`
+
+- **Type**: `any`
+- **Description**: Used for setting the currently selected value
+
+### `checked`
+
+- **Type**: `boolean`
+- **Description**: Specifies whether the checkbox is selected.
+
+### `iconSize`
+
+- **Type**: `number`
+- **Default**: 10
+
+### `checkBoxStyle`
+
+- **Type**: `ViewStyle`
+
+### `onChecked`
+
+- **Type**: `Func(checked: boolean, value?: any) => void`
+- **Description**: The callback function that is triggered when the state changes.
