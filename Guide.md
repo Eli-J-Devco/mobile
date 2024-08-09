@@ -9,6 +9,7 @@
 - [Item](#item)
 - [TextBetweenView](#textbetweenview)
 - [MySpin](#myspin)
+- [MyTree](#mytree)
 
 # ButtonText
 
@@ -474,3 +475,119 @@ export default App;
 
 - **Type**: `string`
 - **Default**: `#fff`
+
+# MyTree
+
+Multiple-level structure list.
+
+## When to use
+
+Almost anything can be represented in tree structure. Example include directories, countries, organization hỉerarchy, etc.The `MyTree` component is a way of representeding the hierachial relationship between these things. You can also expand, collapse and select a treeNode within a Tree.
+
+## Usage Pattern
+
+Here is example of how to use `MyTree` in your React Native app:
+
+```tsx
+const treeData: ITree[] = [
+  {
+    id: 1,
+    name: 'All',
+  },
+  {
+    id: 4,
+    name: 'Leviton',
+    children: [
+      {
+        id: 5,
+        name: 'PRS office Vietnam',
+        children: [
+          {
+            id: 6,
+            name: 'Child 4',
+            children: [
+              {
+                id: 8,
+                name: 'Child 5',
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: 5,
+        name: 'PRS office Vietnam',
+        children: [
+          {
+            id: 6,
+            name: 'Child 4',
+            children: [
+              {
+                id: 8,
+                name: 'Child 5',
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: 5,
+        name: 'PRS office Vietnam',
+        children: [
+          {
+            id: 6,
+            name: 'Child 4',
+            children: [
+              {
+                id: 8,
+                name: 'Child 5',
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 9,
+    name: 'NW',
+    children: [
+      {
+        id: 10,
+        name: 'ACRA Investments, Inc.',
+      },
+      {
+        id: 11,
+        name: 'ACRA Investments, Inc.',
+      },
+      {
+        id: 14,
+        name: 'ACRA Investments, Inc.',
+      },
+    ],
+  },
+];
+
+import React from 'react';
+import MyTree from './MyTree'; // Make sure that path is
+
+const App = () => {
+  return <MyTree data={treeData} />;
+};
+
+export default App;
+```
+
+## Reference
+
+## Props
+
+### `data`
+
+- **Type**: `ITree[]`
+- **Required**: `true`
+
+### `onChecked`
+
+- **Type**: `Func(checked: boolean, value?: any) => void`
+- **Desrciption**: Callback function for when the user click a treeNode.
