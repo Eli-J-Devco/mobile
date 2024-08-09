@@ -11,6 +11,8 @@
 - [MySpin](#myspin)
 - [MyTree](#mytree)
 - [MyCheckBox](#mycheckbox)
+- [MyCheckBoxText](#mycheckboxtext)
+- [Tabs](#tabs)
 
 # ButtonText
 
@@ -681,3 +683,66 @@ Inherit [`MyCheckBox Props`](#mycheckbox)
 ### `textStyle`
 
 - **Type**: `TextStyle`
+
+# Tabs
+
+Tabs make it easy to explore and switch between different views.
+
+## When to use
+
+`Tabs` for managing too many closable views.
+
+## Usage Pattern
+
+Here is example of how to use `Tabs` in your Reat Native app:
+
+```tsx
+import React from 'react';
+import Tabs from './Tabs'; // Make sure path that is correct
+import Charting from './components/Charting';
+import Components from './components/Components';
+import MapSiteOverview from './components/Map';
+
+const items: ITab[] = [
+  {
+    key: '1',
+    label: 'Charting',
+    children: <Charting />,
+  },
+  {
+    key: '2',
+    label: 'Compoments',
+    children: <Components />,
+  },
+  {
+    key: '3',
+    label: 'Map',
+    children: <MapSiteOverview />,
+  },
+];
+
+const App = () => {
+  return <Tabs items={items} />;
+};
+
+export default App;
+```
+
+## Referent
+
+## Props
+
+### `defaultActiveKey`
+
+- **Type**: `string` or `number`
+- **Description**: Initial active TabPane key
+
+### `items`
+
+- **Type**: `ITab[]`
+- **Description**: Configure tab content
+
+### `extra`
+
+- **Type**: `React.Node`
+- **Description**: Content to render in the top-right corner of the Tabs
