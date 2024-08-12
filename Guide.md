@@ -728,7 +728,7 @@ const App = () => {
 export default App;
 ```
 
-## Referent
+## Reference
 
 ## Props
 
@@ -746,3 +746,39 @@ export default App;
 
 - **Type**: `React.Node`
 - **Description**: Content to render in the top-right corner of the Tabs
+
+# MyTextInput
+
+Through mouse or keyboard input content, it is the most basic form field wrapper.
+
+## When to use
+
+- A user input in a form field is needed.
+- A search input is required.
+
+## Usage Pattern
+
+Here is example of how to use `MyTextInput` in your React Native app:
+
+```tsx
+import React from 'react';
+import MyTextInput from './MyTextInput'; // Make sure path that is correct
+
+const App = () => {
+  return <MyTextInput placeholder="Basic usage" />;
+};
+
+export default App;
+```
+
+## Reference
+
+## Props
+
+Inherits `TextInputProps`
+
+# PrimaryTextInput
+
+A foundational commponent for inputting text into the app via a keyboard.
+
+## When to use
