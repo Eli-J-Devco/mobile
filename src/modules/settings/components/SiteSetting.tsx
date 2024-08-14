@@ -11,14 +11,26 @@ import useThemeContext from '../../../hooks/useThemeContext';
 import {globalStyles} from '../../../styles';
 import SelectLabel from '../../../common/components/select/SelectLabel';
 import PrimaryFooter from '../../../common/components/footer/PrimaryFooter';
+import {useNavigation} from '../../../hooks/useNavigation';
+import {showNoti} from '../../../common/components/notify';
 
 const SiteSetting = () => {
   const theme = useThemeContext();
+  const navigation = useNavigation();
 
   const labelStyle: TextStyle = {
     color: theme.palette.text.primary,
     fontSize: theme.font.size.sm,
     fontWeight: '700',
+  };
+
+  const onApply = () => {
+    showNoti('success', 'Alert Config', 'Alert Config has been updated');
+    navigation.goBack();
+  };
+
+  const onCancel = () => {
+    navigation.goBack();
   };
 
   return (
@@ -44,7 +56,11 @@ const SiteSetting = () => {
         </View>
       </ScrollView>
 
-      <PrimaryFooter cancleText="Reset to default" />
+      <PrimaryFooter
+        cancleText="Reset to default"
+        onOK={onApply}
+        onCancel={onCancel}
+      />
     </>
   );
 };

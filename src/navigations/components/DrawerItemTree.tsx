@@ -13,11 +13,13 @@ import MyTouchableOpacity from '../../common/base/MyTouchableOpacity';
 import IconImage from '../../common/components/icons/IconImage';
 import CustomDrawerItem from './CustomDrawerItem';
 import {PORTFOLIO_DRAWER_NAV} from '../../constants/data/portfolio';
+import {useNavigation} from '../../hooks/useNavigation';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const ChildItem = ({item}: any) => {
   const [expanded, setExpanded] = useState(false);
   const [expandedChildren, setExpandedChildren] = useState(false);
+  const navigation = useNavigation();
 
   return (
     <>
@@ -66,16 +68,52 @@ const ChildItem = ({item}: any) => {
                     <CustomDrawerItem
                       label="IPC Datalogger"
                       iconName="service"
+                      onPress={() => {
+                        navigation.navigate('SiteOverView', {
+                          types: [
+                            'Dashboard',
+                            'Portfolio',
+                            'Alerts',
+                            'Reports',
+                            'Map',
+                          ],
+                        });
+                      }}
                     />
                   </View>
                   <View style={styles.navItem}>
                     <CustomDrawerItem
                       label="KLEA 200P Comsumption Meter"
                       iconName="service"
+                      onPress={() => {
+                        navigation.navigate('SiteOverView', {
+                          types: [
+                            'Dashboard',
+                            'Portfolio',
+                            'Alerts',
+                            'Reports',
+                            'Map',
+                          ],
+                        });
+                      }}
                     />
                   </View>
                   <View style={styles.navItem}>
-                    <CustomDrawerItem label="KLEA 200P" iconName="service" />
+                    <CustomDrawerItem
+                      label="KLEA 200P"
+                      iconName="service"
+                      onPress={() => {
+                        navigation.navigate('SiteOverView', {
+                          types: [
+                            'Dashboard',
+                            'Portfolio',
+                            'Alerts',
+                            'Reports',
+                            'Map',
+                          ],
+                        });
+                      }}
+                    />
                   </View>
                 </View>
               )}

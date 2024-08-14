@@ -5,17 +5,16 @@
  *********************************************************/
 import {createStackNavigator, TransitionSpecs} from '@react-navigation/stack';
 import React from 'react';
-import SettingSreen from '../screens/setting';
-import AlertConfigSreen from '../screens/setting/alert-config';
-import PVModelSettingsSreen from '../screens/setting/pv-model-settings';
-import SiteSettingSreen from '../screens/setting/site-setting';
-import {settingRouteNames} from './router-name';
 import {
   NAVIGATION_CARD_SCALE,
   NAVIGATION_OVERLAY_OPACITY,
 } from '../constants/view/display';
+import SettingSreen from '../screens/setting';
+import AlertConfigSreen from '../screens/setting/alert-config';
+import PVModelSettingsSreen from '../screens/setting/pv-model-settings';
+import SiteSettingSreen from '../screens/setting/site-setting';
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator<SettingStackParamList>();
 
 const SettingNavigation = () => {
   return (
@@ -59,22 +58,22 @@ const SettingNavigation = () => {
         },
       }}>
       <Stack.Screen
-        name={settingRouteNames.Setup}
+        name="Setup"
         component={SettingSreen}
         options={{headerShown: false}}
       />
       <Stack.Screen
-        name={settingRouteNames.AlertConfig}
+        name="AlertConfig"
         component={AlertConfigSreen}
         options={{headerShown: false}}
       />
       <Stack.Screen
-        name={settingRouteNames.SiteSetting}
+        name="SiteSetting"
         component={SiteSettingSreen}
         options={{headerShown: false}}
       />
       <Stack.Screen
-        name={settingRouteNames.PVModelSettings}
+        name="PVModelSettings"
         component={PVModelSettingsSreen}
         options={{headerShown: false}}
       />

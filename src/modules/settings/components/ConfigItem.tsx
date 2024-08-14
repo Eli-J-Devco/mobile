@@ -17,7 +17,6 @@ interface ConfigItemProps {
 
 const ConfigItem = ({iconName, title, onPress}: ConfigItemProps) => {
   const theme = useThemeContext();
-
   const handleOnPress = () => {
     if (onPress) {
       onPress();

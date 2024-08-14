@@ -6,14 +6,26 @@ import SelectLabel from '../../../common/components/select/SelectLabel';
 import PrimaryFooter from '../../../common/components/footer/PrimaryFooter';
 import {globalStyles} from '../../../styles';
 import InputLabel from '../../../common/components/input/InputLabel';
+import {useNavigation} from '@react-navigation/native';
+import {showNoti} from '../../../common/components/notify';
 
 const PVModelSettings = () => {
   const theme = useThemeContext();
+  const navigation = useNavigation();
 
   const labelStyle: TextStyle = {
     color: theme.palette.text.primary,
     fontSize: theme.font.size.sm,
     fontWeight: '700',
+  };
+
+  const onApply = () => {
+    showNoti('success', 'Alert Config', 'Alert Config has been updated');
+    navigation.goBack();
+  };
+
+  const onCancel = () => {
+    navigation.goBack();
   };
 
   return (
@@ -51,7 +63,7 @@ const PVModelSettings = () => {
         </View>
       </ScrollView>
 
-      <PrimaryFooter cancleText="Cancel" />
+      <PrimaryFooter cancleText="Cancel" onOK={onApply} onCancel={onCancel} />
     </>
   );
 };
