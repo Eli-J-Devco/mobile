@@ -19,9 +19,12 @@ import InputLabel from '../../../common/components/input/InputLabel';
 import SelectLabel from '../../../common/components/select/SelectLabel';
 import useThemeContext from '../../../hooks/useThemeContext';
 import {globalStyles} from '../../../styles';
+import {useNavigation} from '../../../hooks/useNavigation';
+import {showNoti} from '../../../common/components/notify';
 
 const AlertConfig = () => {
   const theme = useThemeContext();
+  const navigation = useNavigation();
 
   const [cc, setCC] = useState('');
 
@@ -34,6 +37,15 @@ const AlertConfig = () => {
   const commonStyle: ViewStyle = {
     backgroundColor: theme.palette.background.primary,
     marginTop: 16,
+  };
+
+  const onApply = () => {
+    showNoti('success', 'Alert Config', 'Alert Config has been updated');
+    navigation.goBack();
+  };
+
+  const onCancel = () => {
+    navigation.goBack();
   };
 
   return (
@@ -90,7 +102,11 @@ const AlertConfig = () => {
           <MyCheckBoxText>Series 4000 - Warehouse Right</MyCheckBoxText>
         </View>
       </ScrollView>
-      <PrimaryFooter cancleText="Reset to default" />
+      <PrimaryFooter
+        cancleText="Reset to default"
+        onOK={onApply}
+        onCancel={onCancel}
+      />
     </>
   );
 };

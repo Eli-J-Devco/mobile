@@ -7,13 +7,14 @@
  *
  *********************************************************/
 
-import {useNavigation} from '@react-navigation/native';
-import React, {useRef, useState} from 'react';
+import {useNavigation, useRoute} from '@react-navigation/native';
+import React, {useEffect, useRef, useState} from 'react';
 import {
   Animated,
   Dimensions,
   FlatList,
   ImageBackground,
+  PanResponder,
   RefreshControl,
   ScrollView,
   StatusBar,
@@ -37,7 +38,13 @@ import {
 
 const {width} = Dimensions.get('window');
 
-const DATA = [
+type DataTypes = {
+  icon: string;
+  name: string;
+  sreen: string;
+};
+
+const DATA: DataTypes[] = [
   {
     icon: 'dashboard',
     name: 'Dashboard',
@@ -90,13 +97,21 @@ interface Props {
 const TouchableOpacityAnimated =
   Animated.createAnimatedComponent(TouchableOpacity);
 
+function intersect(arr1: string[], arr2: DataTypes[]) {
+  const set1 = new Set(arr1);
+
+  return arr2.filter(item => set1.has(item.name));
+}
+
 const MainLayout = ({backgroundColor, children}: Props) => {
   // const theme = useThemeContext();
-
+  const router = useRoute<any>();
   const {isAuth} = useAppContext();
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const navigation = useNavigation<any>();
+
+  // const parent = navigation.getParent();
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [refreshing, setRefreshing] = useState(false);
@@ -107,9 +122,18 @@ const MainLayout = ({backgroundColor, children}: Props) => {
   // const lastOffsetY = useRef(0);
   // const scrollDirection = useRef(0);
 
-  // useEffect(() => {
-  //   console.log('----->', isAuth, user);
-  // }, [isAuth, user]);
+  const [params, setParams] = useState<string[]>([]);
+
+  useEffect(() => {
+    // console.log('parent', parent);
+    if (router.params) {
+      const team = router.params?.types;
+
+      setParams(team as string[]);
+    } else {
+      setParams([]);
+    }
+  }, [router.params]);
 
   const searchInputAnimation = {
     transform: [
@@ -203,6 +227,28 @@ const MainLayout = ({backgroundColor, children}: Props) => {
     }),
   };
 
+  const flastListRef = useRef<any>(null);
+  const [scrollOffsetX, setScrollOffsetX] = useState(0);
+
+  const panResponder = useRef(
+    PanResponder.create({
+      onMoveShouldSetPanResponder: () => true,
+      onPanResponderMove: (e: any, gestureState: any) => {
+        const newOffsetX = scrollOffsetX - gestureState.dx;
+
+        if (flastListRef.current) {
+          flastListRef.current?.scrollToOffset({
+            offset: newOffsetX,
+            animated: false,
+          });
+        }
+      },
+      onPanResponderRelease: (e: any, gestureState: any) => {
+        setScrollOffsetX(scrollOffsetX - gestureState.dx);
+      },
+    }),
+  ).current;
+
   if (!isAuth) {
     // console.log('no authen');
     navigation.replace('Login');
@@ -280,16 +326,21 @@ const MainLayout = ({backgroundColor, children}: Props) => {
                 elevation: 20,
                 position: 'absolute',
                 top: ACTION_CONTAINER_MAGIN_TOP,
-                zIndex: 1,
-                height: ACTION_CONTAINER_HEIGHT,
+                zIndex: 10,
                 alignItems: 'center',
                 paddingHorizontal: ACTION_CONTAINER_PADDING_HORIZONTAL / 2,
               },
               actionAnimation,
             ]}>
             <FlatList
+              ref={flastListRef}
+              {...panResponder.panHandlers}
+              onScroll={event => {
+                setScrollOffsetX(event.nativeEvent.contentOffset.x);
+              }}
+              scrollEventThrottle={16}
               showsHorizontalScrollIndicator={false}
-              data={DATA}
+              data={params?.length > 0 ? intersect(params, DATA) : DATA}
               renderItem={({item, index}: {item: any; index: number}) => (
                 <TouchableOpacityAnimated
                   activeOpacity={0.5}
@@ -320,8 +371,38 @@ const MainLayout = ({backgroundColor, children}: Props) => {
         onScroll={e => {
           const offsetY = e.nativeEvent.contentOffset.y;
 
-          // scrollDirection.current = offsetY - lastOffsetY.current > 0 ? 1 : 2;
+          // const dif = offsetY - lastOffsetY.current;
+
+          // if (offsetY === 0) {
+          //   parent?.setOptions({
+          //     tabBarStyle: {
+          //       display: 'flex',
+          //       backgroundColor: '#DCDCDC',
+          //       height: 65,
+          //       animated: true,
+          //       duration: 5000,
+          //     },
+          //   });
+          // }
+          // if (Math.abs(dif) <= 3) {
+          //   return;
+          // } else if (dif <= 0) {
+          //   parent?.setOptions({
+          //     tabBarStyle: {
+          //       display: 'flex',
+          //       height: 65,
+          //       backgroundColor: '#DCDCDC',
+          //       animated: true,
+          //       duration: 5000,
+          //     },
+          //   });
+          // } else {
+          //   parent?.setOptions({
+          //     tabBarStyle: {display: 'none', animated: true},
+          //   });
+          // }
           // lastOffsetY.current = offsetY;
+
           animatedValue.setValue(offsetY);
         }}
         onScrollEndDrag={() => {
@@ -374,7 +455,9 @@ const MainLayout = ({backgroundColor, children}: Props) => {
               // paddingBottom: 16,
             },
             styles.scrollViewContainer,
-            {backgroundColor: backgroundColor ? backgroundColor : '#F5F5F5'},
+            {
+              backgroundColor: backgroundColor ? backgroundColor : '#F5F5F5',
+            },
           ]}>
           {children}
         </View>

@@ -44,10 +44,31 @@ const CustomSidebarMenu = (props: any) => {
         contentContainerStyle={styles.drawerContentScrollViewStyle}
         {...props}>
         <DrawerItemList {...props} />
-        <CustomDrawerItem label="Alerts" iconName="bell" />
+        {/* <CustomDrawerItem
+          label="Alerts"
+          iconName="bell"
+          onPress={() => {
+            props?.navigation?.navigate(dashboardRouteNames.AlertsNavigation);
+            props?.navigation.closeDrawer();
+          }}
+        /> */}
         <DrawerItemTree />
-        <CustomDrawerItem label="Map" iconName="map" />
-        <CustomDrawerItem label="Report" iconName="chart" />
+        <CustomDrawerItem
+          label="Map"
+          iconName="map"
+          onPress={() => {
+            props?.navigation?.navigate('Map');
+            props?.navigation.closeDrawer();
+          }}
+        />
+        <CustomDrawerItem
+          label="Report"
+          iconName="chart"
+          onPress={() => {
+            props?.navigation?.navigate('ReportsNavigation');
+            props?.navigation.closeDrawer();
+          }}
+        />
         <CustomDrawerItem label="Customer/Account" iconName="userBlack" />
         <CustomerOrAccount />
 

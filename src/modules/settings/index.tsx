@@ -8,14 +8,11 @@ import {View, Text, StyleSheet, TextStyle} from 'react-native';
 import React from 'react';
 import useThemeContext from '../../hooks/useThemeContext';
 import ConfigItem from './components/ConfigItem';
-import {useNavigation} from '@react-navigation/native';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {settingRouteNames} from '../../navigations/router-name';
+import {useNavigation} from '../../hooks/useNavigation';
 
 const Settings = () => {
   const theme = useThemeContext();
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const navigation = useNavigation<NativeStackNavigationProp<any>>();
+  const navigation = useNavigation<SettingStackParamList>();
 
   const textStyle: TextStyle = {
     color: theme.palette.text.primary,
@@ -37,7 +34,7 @@ const Settings = () => {
         <ConfigItem
           iconName="bell"
           title="Alert Config"
-          onPress={() => navigation.navigate(settingRouteNames.AlertConfig)}
+          onPress={() => navigation.navigate('AlertConfig')}
         />
         <ConfigItem
           iconName="bag"
@@ -47,12 +44,12 @@ const Settings = () => {
         <ConfigItem
           iconName="bag"
           title="PV Model Settings"
-          onPress={() => navigation.navigate(settingRouteNames.PVModelSettings)}
+          onPress={() => navigation.navigate('PVModelSettings')}
         />
         <ConfigItem
           iconName="setting"
           title="Site Setting"
-          onPress={() => navigation.navigate(settingRouteNames.SiteSetting)}
+          onPress={() => navigation.navigate('SiteSetting')}
         />
         <ConfigItem
           iconName="dashboard"

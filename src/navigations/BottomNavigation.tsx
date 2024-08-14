@@ -1,3 +1,5 @@
+/* eslint-disable react-native/no-inline-styles */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-magic-numbers */
 /********************************************************
  * Copyright 2024 NEXT WAVE ENERGY MONITORING INC.
@@ -81,12 +83,14 @@ const BottomNavigation = (): JSX.Element => {
 
   return (
     <Tab.Navigator
+      // tabBar={props => <MyTabBar {...props} />}
       initialRouteName="Home"
       screenOptions={({route}) => {
         // console.log('----route.name----: ', route);
         return {
           tabBarHideOnKeyboard: true,
           headerShown: false,
+          animation: 'shift',
           // tabBarVisible: hide ? false : true,
           tabBarStyle: {
             display: hide ? 'none' : 'flex',
@@ -100,11 +104,13 @@ const BottomNavigation = (): JSX.Element => {
             // right: 0,
             // bottom: 0,
             elevation: 0,
+            duration: 5000,
+            animate: true,
           },
           tabBarActiveTintColor: '#F0DB2B',
+
           tabBarIcon: ({focused}) => (
             <View
-              // eslint-disable-next-line react-native/no-inline-styles
               style={{
                 padding: 4,
                 borderRadius: 20,
