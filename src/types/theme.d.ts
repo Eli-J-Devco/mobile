@@ -110,8 +110,8 @@ type AppThemeColor = {
     };
     greyScale: Partial<ColorRank>;
     darkColor: Partial<ColorRank>;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    others: any;
+    others: Partial<OtherColorsType>;
+    otherLight: Partial<OtherColorsType>;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     backgrounds: any;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -119,3 +119,28 @@ type AppThemeColor = {
     transparentColor: 'transparent';
   };
 };
+
+type OtherColorsType = {
+  white: string;
+  black: string;
+  red: string;
+  pink: string;
+  purple: string;
+  deepPurple: string;
+  indigo: string;
+  blue: string;
+  darkBlue: string;
+  cyan: string;
+  teal: string;
+  green: string;
+  lightGreen: string;
+  lime: string;
+  yellow: string;
+  amber: string;
+  orange: string;
+  deepOrange: string;
+  brow: string;
+  blueGrey: string;
+};
+
+type OtherColorsKeyType = keyof OtherColorsType;

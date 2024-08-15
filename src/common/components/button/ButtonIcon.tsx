@@ -18,6 +18,7 @@ interface ButtonIconProps {
   textStyles?: TextStyle;
   touchableOpacityStyles?: ViewStyle;
   text: string;
+  onPress?: () => void;
 }
 
 const ButtonIcon = ({
@@ -27,6 +28,7 @@ const ButtonIcon = ({
   textStyles,
   touchableOpacityStyles,
   text,
+  onPress,
 }: ButtonIconProps) => {
   const theme = useThemeContext();
 
@@ -40,6 +42,7 @@ const ButtonIcon = ({
     <TouchableOpacity
       style={[styles.btn, touchableOpacityStyles]}
       activeOpacity={0.5}
+      onPress={() => onPress && onPress()}
       {...touchableOpacityProps}>
       <IconImage size={16} iconName={iconName} />
       <Text style={[btnTextStyle, textStyles]} {...textProps}>

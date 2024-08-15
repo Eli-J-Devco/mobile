@@ -1,14 +1,44 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
-import ButtonIcon from '../../../common/components/button/ButtonIcon';
 import IconImage from '../../../common/components/icons/IconImage';
 import H3 from '../../../common/components/text/H3';
 import PrimaryCardItem from '../../../common/components/view/PrimaryCardItem';
 import TextBetweenView from '../../../common/components/view/TextBetweenView';
-import useThemeContext from '../../../hooks/useThemeContext';
+import MoreTag from './MoreTag';
 
 const DevicesItem = () => {
-  const theme = useThemeContext();
+  const [currentTag, setCUrrentTag] = useState<TagType[]>([
+    {name: 'My Tag', id: '1'},
+    {name: 'My Tag 1', id: '2'},
+    {name: 'My Tag 2', id: '3'},
+    {name: 'My Tag 3', id: '4'},
+  ]);
+  const [listTag, setListTag] = useState<TagType[]>([
+    {name: 'My Tag', id: '1'},
+    {name: 'My Tag 1', id: '2'},
+    {name: 'My Tag 2', id: '3'},
+    {name: 'My Tag 3', id: '4'},
+    {name: 'My Tag 5', id: '5'},
+  ]);
+
+  const handleAddTag = (name: string) => {
+    const newTag = {name: name, id: new Date().getTime() + ''};
+
+    setCUrrentTag(prev => [...prev, newTag]);
+    setListTag(prev => [...prev, newTag]);
+  };
+
+  const handleSelectTag = (id: string) => {
+    const tag = listTag.find(tag => tag.id === id);
+
+    if (tag) {
+      setCUrrentTag(prev => [...prev, tag]);
+    }
+  };
+
+  const hanldeRevomeTag = (id: string) => {
+    setCUrrentTag(prev => prev.filter(tag => tag.id !== id));
+  };
 
   return (
     <PrimaryCardItem>
@@ -33,13 +63,20 @@ const DevicesItem = () => {
           rightText="06/30/2024 08:30 AM"
         />
         <View style={styles.bottom}>
-          <ButtonIcon
+          {/* <ButtonIcon
             touchableOpacityStyles={{
               ...styles.btn,
               backgroundColor: theme.palette.background.yellow,
             }}
             text="Tag"
             iconName="plus"
+          /> */}
+          <MoreTag
+            listTag={listTag}
+            currentTag={currentTag}
+            hanldeAddTag={handleAddTag}
+            hanldeRevomeTag={hanldeRevomeTag}
+            handleSelectTag={handleSelectTag}
           />
         </View>
       </View>
@@ -63,9 +100,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '100%',
     paddingTop: 16,
-  },
-  btn: {
-    borderRadius: 20,
-    paddingHorizontal: 16,
   },
 });
