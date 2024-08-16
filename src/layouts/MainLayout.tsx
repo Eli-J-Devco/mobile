@@ -6,82 +6,25 @@
  * All rights reserved.
  *
  *********************************************************/
-
-import {useNavigation, useRoute} from '@react-navigation/native';
-import React, {useEffect, useMemo, useRef, useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {
   Animated,
   Dimensions,
-  DimensionValue,
-  FlatList,
   ImageBackground,
-  PanResponder,
   RefreshControl,
   ScrollView,
   StatusBar,
   StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
   View,
 } from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {images} from '../assets';
-import IconImage from '../common/components/icons/IconImage';
 import useAppContext from '../hooks/useAppContext';
-import {
-  alertRouteNames,
-  dashboardRouteNames,
-  devicesRouteNames,
-  portfolioRouteName,
-  reportsRouteNames,
-} from '../navigations/router-name';
+import HeaderMainLayout from './components/HeaderMainLayout';
+import Menu from './components/Menu';
+import {useNavigation} from '../hooks/useNavigation';
 
 const {width} = Dimensions.get('window');
-
-type DataTypes = {
-  icon: string;
-  name: string;
-  sreen: string;
-};
-
-const DATA: DataTypes[] = [
-  {
-    icon: 'dashboard',
-    name: 'Dashboard',
-    sreen: dashboardRouteNames.Dashboard,
-  },
-  {
-    icon: 'bag',
-    name: 'Portfolio',
-    sreen: portfolioRouteName.PortfolioNavigation,
-  },
-  {
-    icon: 'bell',
-    name: 'Alerts',
-    sreen: alertRouteNames.AlertsNavigation,
-  },
-  {
-    icon: 'chart',
-    name: 'Reports',
-    sreen: reportsRouteNames.ReportsNavigation,
-  },
-  {
-    icon: 'map',
-    name: 'Map',
-    sreen: 'Map',
-  },
-  {
-    icon: 'overview',
-    name: 'OverView',
-    sreen: dashboardRouteNames.SiteOverView,
-  },
-  {
-    icon: 'devices',
-    name: 'Devices',
-    sreen: devicesRouteNames.Devinavigation,
-  },
-];
 
 const UPPER_HEADER_HEIGHT = 30;
 const UPPER_HEADER_PADDING_TOP = 8;
@@ -89,29 +32,17 @@ const LOWER_HEADER_HEIGHT = 80;
 const ACTION_CONTAINER_HEIGHT = 90;
 const ACTION_CONTAINER_PADDING_HORIZONTAL = 16;
 const ACTION_CONTAINER_MAGIN_TOP = 12;
-const SCROLL_ELEMENT_WIDTH_PERCENT = 50;
 
 interface Props {
   backgroundColor?: string;
   children: React.ReactNode;
 }
 
-const TouchableOpacityAnimated =
-  Animated.createAnimatedComponent(TouchableOpacity);
-
-function intersect(arr1: string[], arr2: DataTypes[]) {
-  const set1 = new Set(arr1);
-
-  return arr2.filter(item => set1.has(item.name));
-}
-
 const MainLayout = ({backgroundColor, children}: Props) => {
   // const theme = useThemeContext();
-  const router = useRoute<any>();
-  const {isAuth} = useAppContext();
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const navigation = useNavigation<any>();
+  const {isAuth} = useAppContext();
+  const navigation = useNavigation();
 
   // const parent = navigation.getParent();
 
@@ -121,49 +52,6 @@ const MainLayout = ({backgroundColor, children}: Props) => {
   const animatedValue = useRef(new Animated.Value(0)).current;
 
   const scrollViewRef = useRef<ScrollView>(null);
-  // const lastOffsetY = useRef(0);
-  // const scrollDirection = useRef(0);
-
-  const [params, setParams] = useState<string[]>([]);
-
-  const [contentOffset, setContentOffset] = useState({x: 0, y: 0});
-
-  const flastListRef = useRef<any>(null);
-  const [scrollOffsetX, setScrollOffsetX] = useState(0);
-
-  useEffect(() => {
-    // console.log('parent', parent);
-    if (router.params) {
-      const team = router.params?.types;
-
-      setParams(team as string[]);
-    } else {
-      setParams([]);
-    }
-  }, [router.params]);
-
-  const scrollPerc = useMemo(() => {
-    return Math.abs(
-      Number((contentOffset.x / (72 - 344.7272644042969)) * 100 || 0),
-    ).toFixed(0);
-  }, [contentOffset]);
-
-  const searchInputAnimation = {
-    transform: [
-      {
-        translateY: animatedValue.interpolate({
-          inputRange: [0, 15, 30, 50, 70, 100],
-          outputRange: [0, -10, -20, -40, -60, -100],
-          extrapolate: 'clamp',
-        }),
-      },
-    ],
-    opacity: animatedValue.interpolate({
-      inputRange: [0, 15, 30, 50, 70, 100],
-      outputRange: [1, 0.8, 0.6, 0.4, 0.2, 0],
-      extrapolate: 'clamp',
-    }),
-  };
 
   const lowerHeaderAnimation = {
     height: animatedValue.interpolate({
@@ -240,43 +128,6 @@ const MainLayout = ({backgroundColor, children}: Props) => {
     }),
   };
 
-  const scrollIndicator = {
-    height: animatedValue.interpolate({
-      inputRange: [0, 80],
-      outputRange: [4, 0],
-      extrapolate: 'clamp',
-    }),
-    marginBottom: animatedValue.interpolate({
-      inputRange: [0, 80],
-      outputRange: [4, 0],
-      extrapolate: 'clamp',
-    }),
-    opacity: animatedValue.interpolate({
-      inputRange: [0, 15, 30, 50, 70, 100],
-      outputRange: [1, 0.8, 0.6, 0.4, 0.2, 0],
-      extrapolate: 'clamp',
-    }),
-  };
-
-  const panResponder = useRef(
-    PanResponder.create({
-      onMoveShouldSetPanResponder: () => true,
-      onPanResponderMove: (e: any, gestureState: any) => {
-        const newOffsetX = scrollOffsetX - gestureState.dx;
-
-        if (flastListRef.current) {
-          flastListRef.current?.scrollToOffset({
-            offset: newOffsetX,
-            animated: false,
-          });
-        }
-      },
-      onPanResponderRelease: (e: any, gestureState: any) => {
-        setScrollOffsetX(scrollOffsetX - gestureState.dx);
-      },
-    }),
-  ).current;
-
   if (!isAuth) {
     // console.log('no authen');
     navigation.replace('Login');
@@ -300,44 +151,7 @@ const MainLayout = ({backgroundColor, children}: Props) => {
           },
         ]}>
         <View style={styles.upperHeader}>
-          <TouchableOpacityAnimated
-            activeOpacity={0.5}
-            onPress={() => {
-              navigation.openDrawer();
-            }}
-            style={[
-              styles.headerBtn,
-              {backgroundColor: 'transparent'},
-              searchInputAnimation,
-            ]}>
-            <IconImage size={28} iconName="navMenuWhite" />
-          </TouchableOpacityAnimated>
-
-          <TouchableOpacityAnimated
-            activeOpacity={0.5}
-            style={[styles.searchInput, searchInputAnimation]}
-            onPress={() =>
-              navigation.navigate(dashboardRouteNames.SearchAndFilter)
-            }>
-            <IconImage size={20} iconName="search" />
-            <TextInput
-              editable={false}
-              style={styles.input}
-              placeholder="Search"
-            />
-          </TouchableOpacityAnimated>
-
-          <TouchableOpacityAnimated
-            onPress={() => {
-              navigation.navigate(dashboardRouteNames.Notify);
-            }}
-            style={[styles.headerBtn, searchInputAnimation]}>
-            <IconImage size={20} iconName="bellWhite" />
-          </TouchableOpacityAnimated>
-          <TouchableOpacityAnimated
-            style={[styles.headerBtn, searchInputAnimation]}>
-            <IconImage size={20} iconName="user" />
-          </TouchableOpacityAnimated>
+          <HeaderMainLayout animatedValue={animatedValue} />
         </View>
 
         <Animated.View style={[styles.lowerHeader, lowerHeaderAnimation]}>
@@ -360,67 +174,7 @@ const MainLayout = ({backgroundColor, children}: Props) => {
               },
               actionAnimation,
             ]}>
-            <FlatList
-              ref={flastListRef}
-              {...panResponder.panHandlers}
-              onScroll={event => {
-                setScrollOffsetX(event.nativeEvent.contentOffset.x);
-                setContentOffset(event.nativeEvent.contentOffset);
-              }}
-              // onContentSizeChange={(_, height) => {
-              //   setContentSize(height);
-              // }}
-              // onLayout={e => {
-              //   setScrollViewWidth(e.nativeEvent.layout.width);
-              // }}
-              scrollEventThrottle={16}
-              showsHorizontalScrollIndicator={false}
-              data={params?.length > 0 ? intersect(params, DATA) : DATA}
-              renderItem={({item, index}: {item: any; index: number}) => (
-                <TouchableOpacityAnimated
-                  activeOpacity={0.5}
-                  style={[
-                    styles.actionItem,
-                    {
-                      marginRight: index === DATA.length - 1 ? 0 : 28,
-                    },
-                  ]}
-                  onPress={() => {
-                    navigation.navigate(item.sreen);
-                  }}>
-                  <View style={styles.actionIcon}>
-                    <IconImage iconName={item.icon} />
-                  </View>
-                  <Text style={styles.actionLable}>{item.name}</Text>
-                </TouchableOpacityAnimated>
-              )}
-              keyExtractor={(item: any) => `id-silder-${item.name}`}
-              horizontal={true}
-            />
-            <Animated.View
-              style={[
-                {
-                  width: 80,
-                  backgroundColor: '#E6EFFC',
-                  display: 'flex',
-                  alignItems: 'center',
-                  flexDirection: 'row',
-                  borderRadius: 2,
-                  position: 'relative',
-                },
-                scrollIndicator,
-              ]}>
-              <View
-                style={{
-                  position: 'absolute',
-                  left: `${scrollPerc}%` as DimensionValue,
-                  width: `${SCROLL_ELEMENT_WIDTH_PERCENT}%`,
-                  backgroundColor: '#373433',
-                  height: 4,
-                  borderRadius: 2,
-                }}
-              />
-            </Animated.View>
+            <Menu animatedValue={animatedValue} />
           </Animated.View>
         </Animated.View>
       </ImageBackground>
@@ -474,11 +228,6 @@ const MainLayout = ({backgroundColor, children}: Props) => {
           // }
         }}
         scrollEventThrottle={16}
-        contentContainerStyle={
-          {
-            // paddingBottom: 16,
-          }
-        }
         refreshControl={
           <RefreshControl
             progressViewOffset={
@@ -531,15 +280,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  headerBtn: {
-    height: 37,
-    width: 37,
-    borderRadius: 20,
-    backgroundColor: 'rgba(0, 0, 0, 0.2)',
-    justifyContent: 'center',
-    alignItems: 'center',
-    display: 'flex',
-  },
   header: {
     position: 'absolute',
     width: '100%',
@@ -564,43 +304,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: ACTION_CONTAINER_PADDING_HORIZONTAL,
     justifyContent: 'space-between',
-  },
-  searchInput: {
-    flex: 1,
-    backgroundColor: '#E8E4E4',
-    color: '#000',
-    borderRadius: 20,
-    paddingLeft: 8,
-    height: 37,
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  input: {
-    backgroundColor: 'transparent',
-    color: '#000',
-    height: 37,
-    textAlignVertical: 'center',
-  },
-  actionItem: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 4,
-    height: '100%',
-  },
-  actionIcon: {
-    backgroundColor: '#E6EFFC',
-    borderRadius: 8,
-    height: 37,
-    width: 37,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  actionLable: {
-    fontSize: 12,
-    color: '#000',
   },
 });
