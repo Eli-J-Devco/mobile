@@ -8,10 +8,11 @@
  *********************************************************/
 
 import {useNavigation, useRoute} from '@react-navigation/native';
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useMemo, useRef, useState} from 'react';
 import {
   Animated,
   Dimensions,
+  DimensionValue,
   FlatList,
   ImageBackground,
   PanResponder,
@@ -88,6 +89,7 @@ const LOWER_HEADER_HEIGHT = 80;
 const ACTION_CONTAINER_HEIGHT = 90;
 const ACTION_CONTAINER_PADDING_HORIZONTAL = 16;
 const ACTION_CONTAINER_MAGIN_TOP = 12;
+const SCROLL_ELEMENT_WIDTH_PERCENT = 50;
 
 interface Props {
   backgroundColor?: string;
@@ -124,6 +126,11 @@ const MainLayout = ({backgroundColor, children}: Props) => {
 
   const [params, setParams] = useState<string[]>([]);
 
+  const [contentOffset, setContentOffset] = useState({x: 0, y: 0});
+
+  const flastListRef = useRef<any>(null);
+  const [scrollOffsetX, setScrollOffsetX] = useState(0);
+
   useEffect(() => {
     // console.log('parent', parent);
     if (router.params) {
@@ -134,6 +141,12 @@ const MainLayout = ({backgroundColor, children}: Props) => {
       setParams([]);
     }
   }, [router.params]);
+
+  const scrollPerc = useMemo(() => {
+    return Math.abs(
+      Number((contentOffset.x / (72 - 344.7272644042969)) * 100 || 0),
+    ).toFixed(0);
+  }, [contentOffset]);
 
   const searchInputAnimation = {
     transform: [
@@ -227,8 +240,23 @@ const MainLayout = ({backgroundColor, children}: Props) => {
     }),
   };
 
-  const flastListRef = useRef<any>(null);
-  const [scrollOffsetX, setScrollOffsetX] = useState(0);
+  const scrollIndicator = {
+    height: animatedValue.interpolate({
+      inputRange: [0, 80],
+      outputRange: [4, 0],
+      extrapolate: 'clamp',
+    }),
+    marginBottom: animatedValue.interpolate({
+      inputRange: [0, 80],
+      outputRange: [4, 0],
+      extrapolate: 'clamp',
+    }),
+    opacity: animatedValue.interpolate({
+      inputRange: [0, 15, 30, 50, 70, 100],
+      outputRange: [1, 0.8, 0.6, 0.4, 0.2, 0],
+      extrapolate: 'clamp',
+    }),
+  };
 
   const panResponder = useRef(
     PanResponder.create({
@@ -317,7 +345,7 @@ const MainLayout = ({backgroundColor, children}: Props) => {
             style={[
               {
                 display: 'flex',
-                flexDirection: 'row',
+                flexDirection: 'column',
                 backgroundColor: '#fff',
                 shadowColor: '#333',
                 shadowOffset: {width: -2, height: 4},
@@ -337,7 +365,14 @@ const MainLayout = ({backgroundColor, children}: Props) => {
               {...panResponder.panHandlers}
               onScroll={event => {
                 setScrollOffsetX(event.nativeEvent.contentOffset.x);
+                setContentOffset(event.nativeEvent.contentOffset);
               }}
+              // onContentSizeChange={(_, height) => {
+              //   setContentSize(height);
+              // }}
+              // onLayout={e => {
+              //   setScrollViewWidth(e.nativeEvent.layout.width);
+              // }}
               scrollEventThrottle={16}
               showsHorizontalScrollIndicator={false}
               data={params?.length > 0 ? intersect(params, DATA) : DATA}
@@ -362,6 +397,30 @@ const MainLayout = ({backgroundColor, children}: Props) => {
               keyExtractor={(item: any) => `id-silder-${item.name}`}
               horizontal={true}
             />
+            <Animated.View
+              style={[
+                {
+                  width: 80,
+                  backgroundColor: '#E6EFFC',
+                  display: 'flex',
+                  alignItems: 'center',
+                  flexDirection: 'row',
+                  borderRadius: 2,
+                  position: 'relative',
+                },
+                scrollIndicator,
+              ]}>
+              <View
+                style={{
+                  position: 'absolute',
+                  left: `${scrollPerc}%` as DimensionValue,
+                  width: `${SCROLL_ELEMENT_WIDTH_PERCENT}%`,
+                  backgroundColor: '#373433',
+                  height: 4,
+                  borderRadius: 2,
+                }}
+              />
+            </Animated.View>
           </Animated.View>
         </Animated.View>
       </ImageBackground>

@@ -35,7 +35,9 @@ const Tag = ({
   hanldeOnPress: (id: string) => void;
 }) => {
   const getColor = useMemo(() => {
-    return OTHER_COLOR_KEY_LIST[getRandomNumber(OTHER_COLOR_KEY_LIST.length)];
+    return OTHER_COLOR_KEY_LIST[
+      getRandomNumber(OTHER_COLOR_KEY_LIST.length - 1)
+    ];
   }, [tag.id]);
 
   return (
