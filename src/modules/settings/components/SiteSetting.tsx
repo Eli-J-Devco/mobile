@@ -25,7 +25,7 @@ const SiteSetting = () => {
   };
 
   const onApply = () => {
-    showNoti('success', 'Alert Config', 'Alert Config has been updated');
+    showNoti('success', 'Site Setting', 'Site Setting has been updated');
     navigation.goBack();
   };
 

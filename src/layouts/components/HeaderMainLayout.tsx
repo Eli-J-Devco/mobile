@@ -44,7 +44,9 @@ const HeaderMainLayout = ({animatedValue}: IHeaderMainLayoutProps) => {
       <TouchableOpacityAnimated
         activeOpacity={0.5}
         onPress={() => {
-          navigation.dispatch(DrawerActions.openDrawer());
+          requestAnimationFrame(() => {
+            navigation.dispatch(DrawerActions.openDrawer());
+          });
         }}
         style={[styles.headerBtn, styles.bgTransparent, animation]}>
         <IconImage size={28} iconName="navMenuWhite" />

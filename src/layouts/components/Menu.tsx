@@ -6,8 +6,9 @@
  *********************************************************/
 import React, {
   Fragment,
+  memo,
   useCallback,
-  useEffect,
+  // useEffect,
   useMemo,
   useRef,
   useState,
@@ -36,7 +37,7 @@ import {
   portfolioRouteName,
   reportsRouteNames,
 } from '../../navigations/router-name';
-import {useRoute} from '../../hooks/useRote';
+// import {useRoute} from '../../hooks/useRote';
 
 type DataTypes = {
   icon: IconNameType;
@@ -92,21 +93,21 @@ interface MenuProps {
   animatedValue: Animated.Value;
 }
 
-const intersect = (arr1: string[], arr2: DataTypes[]) => {
-  const set1 = new Set(arr1);
+// const intersect = (arr1: string[], arr2: DataTypes[]) => {
+//   const set1 = new Set(arr1);
 
-  return arr2.filter(item => set1.has(item.name));
-};
+//   return arr2.filter(item => set1.has(item.name));
+// };
 
 const Menu = ({animatedValue}: MenuProps) => {
   const navigation = useNavigation();
-  const router = useRoute<DashboardStackParamList>();
+  // const router = useRoute<DashboardStackParamList>();
   const flastListRef = useRef<FlatList<DataTypes>>(null);
   const [scrollOffsetX, setScrollOffsetX] = useState(0);
   const [contentSize, setContentSize] = useState(0);
   const [scrollViewWidth, setScrollViewWidth] = useState(0);
   const [contentOffset, setContentOffset] = useState({x: 0, y: 0});
-  const [params, setParams] = useState<string[]>([]);
+  // const [params, setParams] = useState<string[]>([]);
 
   const scrollPerc = useMemo(() => {
     return Math.abs(
@@ -176,15 +177,15 @@ const Menu = ({animatedValue}: MenuProps) => {
     [],
   );
 
-  useEffect(() => {
-    if (router.params) {
-      const team = router.params?.types;
+  // useEffect(() => {
+  //   if (router.params) {
+  //     const team = router.params?.types;
 
-      setParams(team as string[]);
-    } else {
-      setParams([]);
-    }
-  }, [router.params]);
+  //     setParams(team as string[]);
+  //   } else {
+  //     setParams([]);
+  //   }
+  // }, [router.params]);
 
   return (
     <Fragment>
@@ -196,7 +197,7 @@ const Menu = ({animatedValue}: MenuProps) => {
         onLayout={onLayout}
         scrollEventThrottle={16}
         showsHorizontalScrollIndicator={false}
-        data={params.length > 0 ? intersect(params, DATA) : DATA}
+        data={DATA}
         renderItem={({item, index}: {item: DataTypes; index: number}) => (
           <TouchableOpacity
             activeOpacity={0.5}
@@ -246,7 +247,7 @@ const Menu = ({animatedValue}: MenuProps) => {
   );
 };
 
-export default Menu;
+export default memo(Menu);
 
 const styles = StyleSheet.create({
   actionItem: {

@@ -5,8 +5,6 @@
  *********************************************************/
 
 import {yupResolver} from '@hookform/resolvers/yup';
-import {useNavigation} from '@react-navigation/native';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import React, {useState} from 'react';
 import {FormProvider, useForm} from 'react-hook-form';
 import {StyleSheet, Text, TextStyle, View} from 'react-native';
@@ -17,28 +15,34 @@ import {showNoti} from '../../../common/components/notify';
 import RHFTextInput from '../../../common/hook-form/RHFTextInput';
 import useAppContext from '../../../hooks/useAppContext';
 import useThemeContext from '../../../hooks/useThemeContext';
+import {useNavigation} from '../../../hooks/useNavigation';
 
 type LoginValuesFrom = {
   username: string;
   password: string;
 };
 
+const MIN_PASSWORD_LENGTH = 6;
+
 const LoginForm = () => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const navigation = useNavigation<NativeStackNavigationProp<any>>();
+  const navigation = useNavigation();
   const theme = useThemeContext();
   const {loginFnc} = useAppContext();
 
   const [isLoading, setIsLoading] = useState(false);
 
   const defaultValues = {
-    username: __DEV__ ? 'dongnguyen' : '',
-    password: __DEV__ ? 'lmsteam@' : '',
+    username: __DEV__ ? 'quinguyen@gmail.com' : '',
+    password: __DEV__ ? '@trongqui' : '',
   };
 
   const NewBlogSchema = Yup.object().shape({
-    username: Yup.string().required('Vui lòng nhập tài khoản'),
-    password: Yup.string().required('Vui lòng nhập mật khẩu'),
+    username: Yup.string()
+      .email('Username must be a valid email.')
+      .required('Please enter account.'),
+    password: Yup.string()
+      .min(MIN_PASSWORD_LENGTH, 'Password must be at least 6 characters.')
+      .required('Please enter password.'),
   });
 
   const methods = useForm<LoginValuesFrom>({
@@ -48,7 +52,6 @@ const LoginForm = () => {
 
   const {handleSubmit} = methods;
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onSubmit = () => {
     setIsLoading(true);
     // console.log('---onSubmit---: ');
@@ -73,6 +76,7 @@ const LoginForm = () => {
           // style={styles.input}
           placeholder="Email"
           placeholderTextColor={theme.palette.text.primary}
+          inputMode="email"
         />
         <RHFTextInput
           type="passwork"

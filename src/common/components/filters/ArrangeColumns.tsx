@@ -15,6 +15,8 @@ import {
 } from 'react-native';
 import MyCheckBoxText from '../../../common/base/MyCheckBoxText';
 import useThemeContext from '../../../hooks/useThemeContext';
+import {useNavigation} from '../../../hooks/useNavigation';
+import {showNoti} from '../notify';
 
 interface IArrangeColumnsProps {
   data: IArrangeColumns[];
@@ -22,6 +24,7 @@ interface IArrangeColumnsProps {
 
 const ArrangeColumns = ({data}: IArrangeColumnsProps) => {
   const theme = useThemeContext();
+  const navigation = useNavigation();
 
   const titleStyle: TextStyle = {
     color: theme.palette.text.primary,
@@ -33,6 +36,15 @@ const ArrangeColumns = ({data}: IArrangeColumnsProps) => {
     color: theme.palette.text.primary,
     fontSize: theme.font.size.sm,
     fontWeight: '400',
+  };
+
+  const onApply = () => {
+    showNoti('success', 'Column Config', 'Column Config has been updated');
+    navigation.goBack();
+  };
+
+  const onCancel = () => {
+    navigation.goBack();
   };
 
   return (
@@ -55,10 +67,16 @@ const ArrangeColumns = ({data}: IArrangeColumnsProps) => {
         </View>
       </ScrollView>
       <View style={styles.actionWraped}>
-        <TouchableOpacity style={styles.btnReset} activeOpacity={0.5}>
+        <TouchableOpacity
+          onPress={onCancel}
+          style={styles.btnReset}
+          activeOpacity={0.5}>
           <Text style={btnTextStyle}> Reset To default</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.btnApply} activeOpacity={0.5}>
+        <TouchableOpacity
+          onPress={onApply}
+          style={styles.btnApply}
+          activeOpacity={0.5}>
           <Text style={btnTextStyle}>Apply</Text>
         </TouchableOpacity>
       </View>

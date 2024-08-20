@@ -4,20 +4,57 @@
  *
  *********************************************************/
 
-import React from 'react';
+import {NavigationProp, useNavigation} from '@react-navigation/native';
+import React, {useState} from 'react';
 import {ScrollView, StyleSheet, Text, TextStyle, View} from 'react-native';
 import MyDatePicker from '../../../../common/base/MyDatePicker';
 import MySelect from '../../../../common/base/MySelect';
 import ButonText from '../../../../common/components/button/ButonText';
 import PrimaryInput from '../../../../common/components/input/PrimaryInput';
+import RadioButtonGroup from '../../../../common/components/selection-controls/RadioButtonGroup';
 import useThemeContext from '../../../../hooks/useThemeContext';
-import {NavigationProp, useNavigation} from '@react-navigation/native';
 import {dashboardRouteNames} from '../../../../navigations/router-name';
+
+const RadioButtonData: IRadio[] = [
+  {
+    label: 'Site Name',
+    value: 'SiteName',
+  },
+  {
+    label: 'Street',
+    value: 'Street',
+  },
+  {
+    label: 'City',
+    value: 'City',
+  },
+  {
+    label: 'State',
+    value: 'State',
+  },
+  {
+    label: 'Zip Code',
+    value: 'ZipCode',
+  },
+  {
+    label: 'Device Name',
+    value: 'DeviceName',
+  },
+  {
+    label: 'Serial Number',
+    value: 'SerialNumber',
+  },
+  {
+    label: 'Hardware ID',
+    value: 'HardwareID',
+  },
+];
 
 const SearchAndFilter = () => {
   const theme = useThemeContext();
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const navigation = useNavigation<NavigationProp<any>>();
+  const [searchBy, setSearchBy] = useState<string>('SiteName');
 
   const label: TextStyle = {
     color: theme.palette.text.primary,
@@ -30,6 +67,11 @@ const SearchAndFilter = () => {
     color: theme.palette.text.primary,
     fontSize: theme.font.size.sm,
     fontWeight: '700',
+    marginBottom: 16,
+  };
+
+  const handleOnChange = (value: string) => {
+    setSearchBy(value);
   };
 
   return (
@@ -40,14 +82,22 @@ const SearchAndFilter = () => {
           {backgroundColor: theme.palette.background.primary},
         ]}>
         <Text style={textStyle}>Search By</Text>
-        <View style={[styles.content, styles.search]}>
-          <ButonText
-            text="Site Name"
+        <RadioButtonGroup
+          value={searchBy}
+          options={RadioButtonData}
+          onChange={handleOnChange}
+          touchableOpacityStyles={styles.butonText}
+        />
+        {/* <View style={[styles.content, styles.search]}>
+          
+          <RadioButton
+            value="SiteName"
             touchableOpacityStyles={styles.butonText}
             textStyles={{
               fontSize: theme.font.size.s,
-            }}
-          />
+            }}>
+            Site Name
+          </RadioButton>
           <ButonText
             text="Street"
             touchableOpacityStyles={styles.butonText}
@@ -104,7 +154,7 @@ const SearchAndFilter = () => {
               fontSize: theme.font.size.s,
             }}
           />
-        </View>
+        </View> */}
       </View>
       <View
         style={[
@@ -231,10 +281,10 @@ const styles = StyleSheet.create({
     gap: 10,
     paddingTop: 17,
   },
-  search: {
-    flexWrap: 'wrap',
-    flexDirection: 'row',
-  },
+  // search: {
+  //   flexWrap: 'wrap',
+  //   flexDirection: 'row',
+  // },
   filter: {
     flexDirection: 'column',
   },

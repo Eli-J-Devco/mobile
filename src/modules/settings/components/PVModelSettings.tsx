@@ -20,7 +20,11 @@ const PVModelSettings = () => {
   };
 
   const onApply = () => {
-    showNoti('success', 'Alert Config', 'Alert Config has been updated');
+    showNoti(
+      'success',
+      'PV Model Settings',
+      'PV Model Settings has been updated',
+    );
     navigation.goBack();
   };
 

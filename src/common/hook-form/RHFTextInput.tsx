@@ -24,7 +24,7 @@ const RHFTextInput = ({name, type = 'passwork', ...other}: Props) => {
       control={control}
       name={name}
       render={({field, fieldState: {error}}) => (
-        <>
+        <View style={styles.wrapper}>
           <View style={styles.container}>
             <MyTextInput
               {...field}
@@ -42,7 +42,7 @@ const RHFTextInput = ({name, type = 'passwork', ...other}: Props) => {
             )}
           </View>
           {error && <Text style={styles.textColor}>{error.message}</Text>}
-        </>
+        </View>
       )}
     />
   );
@@ -60,5 +60,13 @@ const styles = StyleSheet.create({
   touchableOpacityStyle: {position: 'absolute', top: '35%', right: 10},
   textColor: {
     color: 'red',
+    fontSize: 12,
+  },
+  wrapper: {
+    display: 'flex',
+    width: '100%',
+    height: 'auto',
+    alignItems: 'flex-start',
+    gap: 6,
   },
 });

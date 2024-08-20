@@ -16,14 +16,26 @@ import Card from '../../../../common/components/view/Card';
 import Grid from '../../../../common/components/view/Grid';
 import Item from '../../../../common/components/view/Item';
 import useThemeContext from '../../../../hooks/useThemeContext';
+import {useNavigation} from '../../../../hooks/useNavigation';
+import {showNoti} from '../../../../common/components/notify';
 
 const AlertDetail = () => {
   const theme = useThemeContext();
+  const navigation = useNavigation();
 
   const lableStyle: TextStyle = {
     color: theme.palette.text.primary,
     fontSize: theme.font.size.xs,
     fontWeight: '600',
+  };
+
+  const onApply = () => {
+    showNoti('success', 'Alert', 'Save successfully');
+    navigation.goBack();
+  };
+
+  const onCancel = () => {
+    navigation.goBack();
   };
 
   return (
@@ -80,7 +92,12 @@ const AlertDetail = () => {
           </Card>
         </View>
       </MyScrollView>
-      <PrimaryFooter cancleText="Cancel" okText="Save" />
+      <PrimaryFooter
+        cancleText="Cancel"
+        okText="Save"
+        onCancel={onCancel}
+        onOK={onApply}
+      />
     </>
   );
 };
