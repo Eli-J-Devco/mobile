@@ -4,12 +4,16 @@
  *
  *********************************************************/
 
-import React, {useState} from 'react';
+import React from 'react';
 import {ScrollView, StyleSheet, Text, TextStyle, View} from 'react-native';
 import MyTree from '../../../common/base/MyTree';
 import PrimaryFooter from '../../../common/components/footer/PrimaryFooter';
-import RadioButton from '../../../common/components/selection-controls/RadioButton';
 import useThemeContext from '../../../hooks/useThemeContext';
+import DeviceCategorize from './alertFilter/DeviceCategorize';
+import DevicesCategory from './alertFilter/DevicesCategory';
+import ErrorType from './alertFilter/ErrorType';
+import {useNavigation} from '../../../hooks/useNavigation';
+import {showNoti} from '../../../common/components/notify';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const treeData: any = [
@@ -93,8 +97,7 @@ const treeData: any = [
 
 const AlertFilter = () => {
   const theme = useThemeContext();
-  const [devicsCategoryAll, setDevicesCategoryAll] = useState<boolean>(false);
-  const [devicsCategory, setDevicesCategory] = useState<string[]>(['COMM']);
+  const navigation = useNavigation();
 
   const titleStyle: TextStyle = {
     color: theme.palette.text.primary,
@@ -102,17 +105,13 @@ const AlertFilter = () => {
     fontWeight: '700',
   };
 
-  const handleDevicsCategoryAll = (value: string, isChecked: boolean) => {
-    setDevicesCategoryAll(isChecked);
+  const onApply = () => {
+    showNoti('success', 'Alert Filter', 'Alert filter has been updated');
+    navigation.goBack();
   };
 
-  const handleDevicsCategoryChange = (value: string, isChecked: boolean) => {
-    if (!isChecked) {
-      setDevicesCategoryAll(isChecked);
-      setDevicesCategory(devicsCategory.filter(x => x !== value));
-    } else {
-      setDevicesCategory(prev => [...prev, value]);
-    }
+  const onCancel = () => {
+    navigation.goBack();
   };
 
   return (
@@ -131,196 +130,12 @@ const AlertFilter = () => {
               // }}
             />
           </View>
-          <View style={styles.wraped}>
-            <View style={styles.row}>
-              <Text style={titleStyle}>Device Categorize:</Text>
-              <RadioButton
-                checked={devicsCategoryAll || devicsCategory.includes('ALL')}
-                value="ALL"
-                touchableOpacityStyles={styles.touchableOpacityAll}
-                onChange={handleDevicsCategoryAll}>
-                ALL
-              </RadioButton>
-            </View>
-
-            <View style={styles.row}>
-              <RadioButton
-                checked={devicsCategoryAll || devicsCategory.includes('COMM')}
-                onChange={handleDevicsCategoryChange}
-                value="COMM"
-                touchableOpacityStyles={styles.touchableOpacityStyles}
-                textSize={theme.font.size.s}>
-                COMM
-              </RadioButton>
-              <RadioButton
-                onChange={handleDevicsCategoryChange}
-                checked={devicsCategoryAll || devicsCategory.includes('ERROR')}
-                value="ERROR"
-                touchableOpacityStyles={styles.touchableOpacityStyles}
-                textSize={theme.font.size.s}>
-                ERROR
-              </RadioButton>
-              <RadioButton
-                onChange={handleDevicsCategoryChange}
-                value="INFO"
-                checked={devicsCategoryAll || devicsCategory.includes('INFO')}
-                touchableOpacityStyles={styles.touchableOpacityStyles}
-                textSize={theme.font.size.s}>
-                INFO
-              </RadioButton>
-            </View>
-            <View style={styles.row}>
-              <RadioButton
-                onChange={handleDevicsCategoryChange}
-                value="PRODUCTION"
-                checked={
-                  devicsCategoryAll || devicsCategory.includes('PRODUCTION')
-                }
-                touchableOpacityStyles={styles.touchableOpacityStyles}
-                textSize={theme.font.size.s}>
-                PRODUCTION
-              </RadioButton>
-              <RadioButton
-                onChange={handleDevicsCategoryChange}
-                value="DEBUG"
-                checked={devicsCategoryAll || devicsCategory.includes('DEBUG')}
-                touchableOpacityStyles={styles.touchableOpacityStyles}
-                textSize={theme.font.size.s}>
-                DEBUG
-              </RadioButton>
-              <RadioButton
-                onChange={handleDevicsCategoryChange}
-                value="FATAL"
-                checked={devicsCategoryAll || devicsCategory.includes('FATAL')}
-                touchableOpacityStyles={styles.touchableOpacityStyles}
-                textSize={theme.font.size.s}>
-                FATAL
-              </RadioButton>
-            </View>
-          </View>
-          <View style={styles.wraped}>
-            <View style={styles.row}>
-              <Text style={titleStyle}>Error Type:</Text>
-              <RadioButton
-                value="ALL"
-                touchableOpacityStyles={styles.touchableOpacityAll}>
-                ALL
-              </RadioButton>
-            </View>
-            <View style={styles.row}>
-              <RadioButton
-                value="SystemDisconnect"
-                touchableOpacityStyles={styles.errTypeBtn}>
-                System Disconnect
-              </RadioButton>
-              <RadioButton
-                value="StringPerformance"
-                touchableOpacityStyles={styles.errTypeBtn}>
-                String Performance
-              </RadioButton>
-            </View>
-            <View style={styles.row}>
-              <RadioButton
-                value="PerformanceIndex"
-                touchableOpacityStyles={styles.errTypeBtn}>
-                Performance Index
-              </RadioButton>
-              <RadioButton
-                value="ZeroGeneration"
-                touchableOpacityStyles={styles.errTypeBtn}>
-                Zero Generation
-              </RadioButton>
-            </View>
-            <View style={styles.row}>
-              <RadioButton
-                value="Device Fault"
-                touchableOpacityStyles={styles.errTypeBtn}>
-                Device Fault
-              </RadioButton>
-              <View style={styles.errTypeBtn} />
-            </View>
-          </View>
-          <View style={styles.wraped}>
-            <View style={styles.row}>
-              <Text style={titleStyle}>Device Categorize:</Text>
-              {/* <ButonText
-                text="ALL"
-                touchableOpacityStyles={styles.touchableOpacityAll}
-              /> */}
-              <RadioButton
-                value="ALL"
-                touchableOpacityStyles={styles.touchableOpacityAll}>
-                ALL
-              </RadioButton>
-            </View>
-            <View style={styles.row}>
-              <RadioButton
-                value="PVSystemInverter"
-                touchableOpacityStyles={styles.errTypeBtn}>
-                PV System Inverter
-              </RadioButton>
-              <RadioButton
-                value="ProductionMeter"
-                touchableOpacityStyles={styles.errTypeBtn}>
-                Production Meter
-              </RadioButton>
-            </View>
-            <View style={styles.row}>
-              <RadioButton
-                value="SolarTracker"
-                touchableOpacityStyles={styles.errTypeBtn}>
-                Solar Tracker
-              </RadioButton>
-              <RadioButton
-                value="Datalogger"
-                touchableOpacityStyles={styles.errTypeBtn}>
-                Datalogger
-              </RadioButton>
-            </View>
-            <View style={styles.row}>
-              <RadioButton
-                value="Sensor"
-                touchableOpacityStyles={styles.errTypeBtn}>
-                Sensor
-              </RadioButton>
-              <RadioButton
-                value="WeatherStation"
-                touchableOpacityStyles={styles.errTypeBtn}>
-                Weather Station
-              </RadioButton>
-              {/* <ButonText
-                text="PV System Inverter"
-                touchableOpacityStyles={styles.errTypeBtn}
-              />
-              <ButonText
-                text="Production Meter"
-                touchableOpacityStyles={styles.errTypeBtn}
-              />
-            </View>
-            <View style={styles.row}>
-              <ButonText
-                text="Solar Tracker"
-                touchableOpacityStyles={styles.errTypeBtn}
-              />
-              <ButonText
-                text="Datalogger"
-                touchableOpacityStyles={styles.errTypeBtn}
-              />
-            </View>
-            <View style={styles.row}>
-              <ButonText
-                text="Sensor"
-                touchableOpacityStyles={styles.errTypeBtn}
-              />
-              <ButonText
-                text="Weather Station"
-                touchableOpacityStyles={styles.errTypeBtn}
-              /> */}
-            </View>
-          </View>
+          <DevicesCategory />
+          <ErrorType />
+          <DeviceCategorize />
         </View>
       </ScrollView>
-      <PrimaryFooter />
+      <PrimaryFooter onOK={onApply} onCancel={onCancel} />
     </>
   );
 };
@@ -347,28 +162,7 @@ const styles = StyleSheet.create({
     gap: 16,
     borderRadius: 8,
   },
-  row: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    gap: 16,
-    width: '100%',
-  },
   srcollViewContentContainerStyle: {
     paddingBottom: 16,
-  },
-  touchableOpacityAll: {
-    borderRadius: 20,
-    width: 'auto',
-    paddingHorizontal: 16,
-    paddingVertical: 4,
-  },
-  touchableOpacityStyles: {
-    flex: 1,
-    borderRadius: 20,
-  },
-  errTypeBtn: {
-    flex: 1,
   },
 });
