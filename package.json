@@ -11,7 +11,8 @@
     "eject": "react-native eject",
     "export": "cd ./android && ./gradlew assembleRelease",
     "installApp": "cd ./android && ./gradlew installRelease",
-    "build": "react-native build-android --mode=release"
+    "build": "react-native build-android --mode=release",
+    "syncNow": "cd ./android && ./gradlew clean build"
   },
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^6.5.2",

@@ -1,20 +1,95 @@
+/* eslint-disable no-magic-numbers */
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import React from 'react';
-import {StyleSheet, View, ViewStyle} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {Dimensions, StyleSheet, View, ViewStyle} from 'react-native';
 import MyDateRangePicker from '../../common/base/MyDateRangePicker';
 import MySelect from '../../common/base/MySelect';
 import ButtonIcon from '../../common/components/button/ButtonIcon';
 import IconButton from '../../common/components/button/IconButton';
-import BarChartKit from '../../common/components/chart/BarChartKit';
+// import BarChartKit from '../../common/components/chart/BarChartKit';
 import H3 from '../../common/components/text/H3';
 import TimeAxis from '../../common/components/times/TimeAxis';
 import PrimaryCardItem from '../../common/components/view/PrimaryCardItem';
 import {reportsRouteNames} from '../../navigations/router-name';
+import RCTMosaicChart from '../../nativeModules/RCTMosaicChart';
+// import RCTMutiLineChart from '../../nativeModules/RCTMutiLineChart';
+
+const {width} = Dimensions.get('window');
+
+// const data = {
+//   datasets: [
+//     {
+//       label: 'Line 1',
+//       values: [30, 40, 30, 60, 70],
+//     },
+//     {
+//       label: 'Line 2',
+//       values: [50, 60, 70, 10, 90],
+//     },
+//   ],
+//   colors: ['#FF0000', '#0000FF'],
+// };
+
+type Value = {
+  x: string;
+  y: number;
+};
 
 const Reports = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
+
+  // const [data, setData] = useState<Value[]>([
+  //   {x: 'Category A', y: 10},
+  //   {x: 'Category B', y: 20},
+  //   {x: 'Category C', y: 30},
+  // ]);
+
+  // const [data, setData] = useState<number[]>([
+  //   50, 70, 90, 30, 80, 60, 100, 20, 40, 60,
+  // ]);
+  // const labels: string[] = [
+  //   '05/01',
+  //   '05/02',
+  //   '05/03',
+  //   '05/04',
+  //   '05/05',
+  //   '05/06',
+  //   '05/07',
+  //   '05/08',
+  //   '05/09',
+  //   '05/10',
+  // ];
+
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     const randomData = Array.from({length: 10}, () =>
+  //       Math.floor(Math.random() * 100),
+  //     );
+
+  //     setData(randomData);
+  //   }, 1000);
+
+  //   return () => clearInterval(interval); // Cleanup interval on component unmount
+  // }, []);
+
+  // useEffect(() => {
+  //   const updateData = () => {
+  //     setData(prevData =>
+  //       prevData.map(item => ({
+  //         ...item,
+  //         y: Math.floor(Math.random() * 100), // Tạo số ngẫu nhiên từ 0 đến 99
+  //       })),
+  //     );
+  //   };
+
+  //   // Cập nhật dữ liệu mỗi 1 giây
+  //   const intervalId = setInterval(updateData, 1000);
+
+  //   // Dọn dẹp khi component bị unmount
+  //   return () => clearInterval(intervalId);
+  // }, []);
 
   const gap: ViewStyle = {gap: 8};
 
@@ -51,7 +126,14 @@ const Reports = () => {
       <View style={styles.timeAxis}>
         <TimeAxis />
       </View>
-      <BarChartKit />
+      {/* <BarChartKit /> */}
+      {/* <RCTMutiLineChart style={styles.chart} data={data} /> */}
+      {/* <RCTBarChart style={styles.chart} data={{values: data, labels}} /> */}
+      {/* <RCTMosaicChart
+        style={styles.chart}
+        data={data}
+        title="Mosaic Chart Example"
+      /> */}
       <View style={styles.description}>
         <View style={styles.dot} />
         <H3>Energy Output</H3>
@@ -140,5 +222,9 @@ const styles = StyleSheet.create({
   },
   touchableOpacityStyles: {
     backgroundColor: 'transparent',
+  },
+  chart: {
+    width: width * 0.9,
+    height: 300,
   },
 });

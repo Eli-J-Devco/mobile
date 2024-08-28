@@ -1,10 +1,11 @@
+/* eslint-disable no-magic-numbers */
 /********************************************************
  * Copyright 2024 NEXT WAVE ENERGY MONITORING INC.
  * All rights reserved.
  *
  *********************************************************/
 
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet, View, Text, TextStyle} from 'react-native';
 import MyScrollView from '../../../../common/base/MyScrollView';
 import MySwicthText from '../../../../common/base/MySwicthText';
@@ -18,10 +19,41 @@ import Item from '../../../../common/components/view/Item';
 import useThemeContext from '../../../../hooks/useThemeContext';
 import {useNavigation} from '../../../../hooks/useNavigation';
 import {showNoti} from '../../../../common/components/notify';
+import RCTLineChart from '../../../../nativeModules/RCTLineChart';
 
 const AlertDetail = () => {
   const theme = useThemeContext();
   const navigation = useNavigation();
+
+  const [data, setData] = useState<number[]>([
+    50, 70, 90, 30, 80, 60, 100, 20, 0, -60,
+  ]);
+  const labels: string[] = [
+    '05/01',
+    '05/02',
+    '05/03',
+    '05/04',
+    '05/05',
+    '05/06',
+    '05/07',
+    '05/08',
+    '05/09',
+    '05/10',
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const randomData = Array.from({length: 10}, () =>
+        Math.abs(Math.floor(Math.random() * 100)),
+      );
+
+      // console.log('randomData', randomData);
+
+      setData(randomData);
+    }, 1000);
+
+    return () => clearInterval(interval); // Cleanup interval on component unmount
+  }, []);
 
   const lableStyle: TextStyle = {
     color: theme.palette.text.primary,
@@ -42,7 +74,7 @@ const AlertDetail = () => {
     <>
       <MyScrollView>
         <View style={styles.container}>
-          <Card tiltle="Component: Elkor WattsOn Mk. II">
+          <Card tiltle="Component: Elkor WattsOn Mk. II">
             <View style={styles.infoContainer}>
               <Item lable="Opened" value="06/20/2024 10:00 AM" />
               <Item lable="Alert ID" value="124323112" mode="dark" />
@@ -57,7 +89,11 @@ const AlertDetail = () => {
           </Card>
           <Card tiltle="Charting">
             <View style={styles.chart}>
-              <LineChartKit />
+              {/* <LineChartKit /> */}
+              <RCTLineChart
+                style={styles.chartLine}
+                data={{values: data, labels}}
+              />
               <View style={styles.descriptionContent}>
                 <View style={styles.iconContainer}>
                   <View style={styles.dot} />
@@ -153,5 +189,10 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: -4.5,
     left: 5,
+  },
+  chartLine: {
+    width: 350,
+    height: 210,
+    marginBottom: 16,
   },
 });

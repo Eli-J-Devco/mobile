@@ -23,6 +23,13 @@ buildscript {
 
 allprojects {
     repositories {
+         maven { url 'https://jitpack.io' }
+         maven{
+            url "https://maven.pkg.jetbrains.space/data2viz/p/maven/dev"
+        }
+        maven{
+            url "https://maven.pkg.jetbrains.space/data2viz/p/maven/public"
+        }
         maven {
             url 'https://api.mapbox.com/downloads/v2/releases/maven'
             authentication {

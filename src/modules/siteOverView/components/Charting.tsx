@@ -1,10 +1,11 @@
+/* eslint-disable no-magic-numbers */
 /********************************************************
  * Copyright 2024 NEXT WAVE ENERGY MONITORING INC.
  * All rights reserved.
  *
  *********************************************************/
 
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   StyleSheet,
   Switch,
@@ -15,14 +16,72 @@ import {
 } from 'react-native';
 import MyDateRangePicker from '../../../common/base/MyDateRangePicker';
 import MySelect from '../../../common/base/MySelect';
-import BarChartKit from '../../../common/components/chart/BarChartKit';
+// import BarChartKit from '../../../common/components/chart/BarChartKit';
 import SvgIcon from '../../../common/components/SvgIcon';
 import H3 from '../../../common/components/text/H3';
 import TimeAxis from '../../../common/components/times/TimeAxis';
 import useThemeContext from '../../../hooks/useThemeContext';
+// import RCTBarChart from '../../../nativeModules/RCTBarChart';
+import RCTMosaicChart from '../../../nativeModules/RCTMosaicChart';
 
 const Charting = () => {
   const theme = useThemeContext();
+
+  const [data, setData] = useState([
+    {x: 'Q2 2014', y: [17.982, 10.941, 9.835, 4.047, 2.841]},
+    {x: 'Q3 2014', y: [17.574, 8.659, 6.23, 2.627, 2.242]},
+    {x: 'Q1 2015', y: [19.75, 10.35, 6.292, 3.595, 2.136]},
+    {x: 'Q2 2015', y: [30.6, 17.2, 16.1, 5.4, 5.2]},
+    {x: 'Q3 2015', y: [21.316, 12.204, 16.823, 3.457, 4.21]},
+    {x: 'Q4 2015', y: [20.209, 10.342, 13.23, 2.872, 2.959]},
+    {x: 'Q1 2016', y: [21.773, 10.577, 12.518, 3.929, 2.704]},
+    {x: 'Q2 2016', y: [21.773, 10.577, 12.518, 3.929, 2.704]},
+  ]);
+
+  // useEffect(() => {
+  //   const updateData = () => {
+  //     setData(prevData =>
+  //       prevData.map(item => ({
+  //         ...item,
+  //         y: Math.floor(Math.random() * 100), // Tạo số ngẫu nhiên từ 0 đến 99
+  //       })),
+  //     );
+  //   };
+
+  //   // Cập nhật dữ liệu mỗi 1 giây
+  //   const intervalId = setInterval(updateData, 1000);
+
+  //   // Dọn dẹp khi component bị unmount
+  //   return () => clearInterval(intervalId);
+  // }, []);
+
+  // const [data, setData] = useState<number[]>([
+  //   50, 70, 90, 30, 80, 60, 100, 20, 40, 60,
+  // ]);
+  // const labels: string[] = [
+  //   '05/01',
+  //   '05/02',
+  //   '05/03',
+  //   '05/04',
+  //   '05/05',
+  //   '05/06',
+  //   '05/07',
+  //   '05/08',
+  //   '05/09',
+  //   '05/10',
+  // ];
+
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     const randomData = Array.from({length: 10}, () =>
+  //       Math.floor(Math.random() * 100),
+  //     );
+
+  //     setData(randomData);
+  //   }, 1000);
+
+  //   return () => clearInterval(interval); // Cleanup interval on component unmount
+  // }, []);
 
   const textStyles: TextStyle = {
     color: theme.palette.text.primary,
@@ -69,7 +128,13 @@ const Charting = () => {
         <View style={styles.chartContainer}>
           {/* <ChartBar /> */}
 
-          <BarChartKit />
+          {/* <BarChartKit /> */}
+          {/* <RCTBarChart style={styles.chart} data={{values: data, labels}} /> */}
+          <RCTMosaicChart
+            style={styles.chart}
+            data={data}
+            title="Mosaic Chart Example"
+          />
         </View>
       </View>
       <View style={styles.description}>
@@ -166,5 +231,9 @@ const styles = StyleSheet.create({
     width: 100,
     height: 30,
     borderRadius: 30,
+  },
+  chart: {
+    width: 350,
+    height: 300,
   },
 });
