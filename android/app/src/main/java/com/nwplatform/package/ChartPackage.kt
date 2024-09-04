@@ -12,6 +12,6 @@ class ChartPackage : ReactPackage {
     }
 
     override fun createViewManagers(reactContext: ReactApplicationContext): List<ViewManager<*, *>> {
-        return listOf(BarChartManager(), LineChartManager(), MutiLineChartManager(), MosaicChartManager())
+        return listOf(BarChartManager(), LineChartManager(), MutiLineChartManager(), MosaicChartManager(), GroupedBarChartManager(), PieChartManager())
     }
 }

@@ -7,6 +7,7 @@
 
 import React, {useEffect, useState} from 'react';
 import {
+  Dimensions,
   StyleSheet,
   Switch,
   Text,
@@ -22,21 +23,43 @@ import H3 from '../../../common/components/text/H3';
 import TimeAxis from '../../../common/components/times/TimeAxis';
 import useThemeContext from '../../../hooks/useThemeContext';
 // import RCTBarChart from '../../../nativeModules/RCTBarChart';
-import RCTMosaicChart from '../../../nativeModules/RCTMosaicChart';
+// import RCTMosaicChart from '../../../nativeModules/RCTMosaicChart';
+// import RCTGroupedBarChart from '../../../nativeModules/RCTGroupedBarChart';
+import RCTPieChart from '../../../nativeModules/RCTPieChart';
+
+const {width} = Dimensions.get('window');
+
+const data = [
+  {
+    label: 'Group 1',
+    value: 30,
+    color: '#FF0000',
+  },
+  {
+    label: 'Group 2',
+    value: 20,
+    color: '#00FF00',
+  },
+  {
+    label: 'Group 3',
+    value: 10,
+    color: '#0000FF',
+  },
+];
 
 const Charting = () => {
   const theme = useThemeContext();
 
-  const [data, setData] = useState([
-    {x: 'Q2 2014', y: [17.982, 10.941, 9.835, 4.047, 2.841]},
-    {x: 'Q3 2014', y: [17.574, 8.659, 6.23, 2.627, 2.242]},
-    {x: 'Q1 2015', y: [19.75, 10.35, 6.292, 3.595, 2.136]},
-    {x: 'Q2 2015', y: [30.6, 17.2, 16.1, 5.4, 5.2]},
-    {x: 'Q3 2015', y: [21.316, 12.204, 16.823, 3.457, 4.21]},
-    {x: 'Q4 2015', y: [20.209, 10.342, 13.23, 2.872, 2.959]},
-    {x: 'Q1 2016', y: [21.773, 10.577, 12.518, 3.929, 2.704]},
-    {x: 'Q2 2016', y: [21.773, 10.577, 12.518, 3.929, 2.704]},
-  ]);
+  // const [data, setData] = useState([
+  //   {x: 'Q2 2014', y: [17.982, 10.941, 9.835, 4.047, 2.841]},
+  //   {x: 'Q3 2014', y: [17.574, 8.659, 6.23, 2.627, 2.242]},
+  //   {x: 'Q1 2015', y: [19.75, 10.35, 6.292, 3.595, 2.136]},
+  //   {x: 'Q2 2015', y: [30.6, 17.2, 16.1, 5.4, 5.2]},
+  //   {x: 'Q3 2015', y: [21.316, 12.204, 16.823, 3.457, 4.21]},
+  //   {x: 'Q4 2015', y: [20.209, 10.342, 13.23, 2.872, 2.959]},
+  //   {x: 'Q1 2016', y: [21.773, 10.577, 12.518, 3.929, 2.704]},
+  //   {x: 'Q2 2016', y: [21.773, 10.577, 12.518, 3.929, 2.704]},
+  // ]);
 
   // useEffect(() => {
   //   const updateData = () => {
@@ -130,11 +153,12 @@ const Charting = () => {
 
           {/* <BarChartKit /> */}
           {/* <RCTBarChart style={styles.chart} data={{values: data, labels}} /> */}
-          <RCTMosaicChart
+          {/* <RCTMosaicChart
             style={styles.chart}
             data={data}
             title="Mosaic Chart Example"
-          />
+          /> */}
+          <RCTPieChart style={styles.chart} data={data} />
         </View>
       </View>
       <View style={styles.description}>
@@ -233,7 +257,7 @@ const styles = StyleSheet.create({
     borderRadius: 30,
   },
   chart: {
-    width: 350,
+    width: width * 0.9,
     height: 300,
   },
 });

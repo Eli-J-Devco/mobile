@@ -80,7 +80,6 @@ class MosaicChartManager : SimpleViewManager<MosaicChartView>() {
     public fun setData(view: MosaicChartView, data: ReadableArray) {
         val dataEntry = mutableListOf<DataEntry>()
       
-
         for (i in 0 until data.size()) {
             val entry = data.getMap(i)
 
@@ -95,7 +94,6 @@ class MosaicChartManager : SimpleViewManager<MosaicChartView>() {
         }
 
         view.setData(dataEntry)
-
    
     }
 
