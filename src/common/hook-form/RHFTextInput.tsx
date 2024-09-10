@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     width: '100%',
     height: 'auto',
-    position: 'relative',
+    position: 'relative'
   },
   touchableOpacityStyle: {position: 'absolute', top: '35%', right: 10},
   textColor: {

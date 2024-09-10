@@ -4,21 +4,20 @@
  *
  *********************************************************/
 
-import {useNavigation} from '@react-navigation/native';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React from 'react';
 import {
   ImageBackground,
-  SafeAreaView,
   StatusBar,
   StyleSheet,
   Text,
   TextStyle,
   TouchableOpacity,
   View,
-  ViewStyle,
+  ViewStyle
 } from 'react-native';
-import {images} from '../assets';
+import { images } from '../assets';
 import IconImage from '../common/components/icons/IconImage';
 import useThemeContext from '../hooks/useThemeContext';
 interface Props {
@@ -46,7 +45,7 @@ const PrimaryLayoutDetailItem = ({
   };
 
   return (
-    <SafeAreaView style={[styles.container, contentStyle]}>
+    <View style={[styles.container, contentStyle]}>
       <StatusBar
         translucent={true}
         barStyle="dark-content"
@@ -77,7 +76,7 @@ const PrimaryLayoutDetailItem = ({
         ]}>
         {children}
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 

@@ -18,6 +18,7 @@ const CustomerOrAccount = () => {
         />
 
         <MyTouchableOpacity
+          onPress={() => setExpanded(!expanded)}
           touchableOpacityStyle={{
             ...styles.arrowIcon,
             right: expanded ? 13 : 16,

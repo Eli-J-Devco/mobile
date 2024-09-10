@@ -4,20 +4,19 @@
  *
  *********************************************************/
 
-import {useNavigation} from '@react-navigation/native';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import React from 'react';
 import {
   ImageBackground,
-  SafeAreaView,
   StatusBar,
   StyleSheet,
   TextInput,
   TouchableOpacity,
-  View,
+  View
 } from 'react-native';
-import {images} from '../assets';
+import { images } from '../assets';
 import IconImage from '../common/components/icons/IconImage';
+import { useNavigation } from '../hooks/useNavigation';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 interface Props {
   filter?: boolean;
@@ -25,11 +24,11 @@ interface Props {
 }
 
 const PrimaryLayoutDetail = ({children}: Props) => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const navigation = useNavigation<NativeStackNavigationProp<any>>();
+  const navigation = useNavigation();
+  const insets = useSafeAreaInsets();
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <StatusBar
         translucent={true}
         barStyle="dark-content"
@@ -40,7 +39,7 @@ const PrimaryLayoutDetail = ({children}: Props) => {
         source={images.bgHeader}
         style={[styles.image, styles.header]}>
         <View
-          style={[styles.headerContent, {marginTop: StatusBar.currentHeight}]}>
+          style={[styles.headerContent, {marginTop: insets.top}]}>
           <TouchableOpacity
             activeOpacity={0.5}
             onPress={() => navigation.goBack()}>
@@ -62,7 +61,7 @@ const PrimaryLayoutDetail = ({children}: Props) => {
         </View>
       </ImageBackground>
       <View style={styles.content}>{children}</View>
-    </SafeAreaView>
+    </View>
   );
 };
 
@@ -91,7 +90,6 @@ const styles = StyleSheet.create({
     height: '100%',
     flexDirection: 'column',
     alignItems: 'center',
-    // paddingVertical: 'auto',
     justifyContent: 'center',
   },
   headerContent: {

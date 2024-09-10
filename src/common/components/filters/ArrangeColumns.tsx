@@ -10,13 +10,13 @@ import {
   StyleSheet,
   Text,
   TextStyle,
-  TouchableOpacity,
-  View,
+  View
 } from 'react-native';
 import MyCheckBoxText from '../../../common/base/MyCheckBoxText';
+import { useNavigation } from '../../../hooks/useNavigation';
 import useThemeContext from '../../../hooks/useThemeContext';
-import {useNavigation} from '../../../hooks/useNavigation';
-import {showNoti} from '../notify';
+import PrimaryFooter from '../footer/PrimaryFooter';
+import { showNoti } from '../notify';
 
 interface IArrangeColumnsProps {
   data: IArrangeColumns[];
@@ -31,13 +31,7 @@ const ArrangeColumns = ({data}: IArrangeColumnsProps) => {
     fontSize: theme.font.size.sm,
     fontWeight: '700',
   };
-
-  const btnTextStyle: TextStyle = {
-    color: theme.palette.text.primary,
-    fontSize: theme.font.size.sm,
-    fontWeight: '400',
-  };
-
+  
   const onApply = () => {
     showNoti('success', 'Column Config', 'Column Config has been updated');
     navigation.goBack();
@@ -66,20 +60,7 @@ const ArrangeColumns = ({data}: IArrangeColumnsProps) => {
           ))}
         </View>
       </ScrollView>
-      <View style={styles.actionWraped}>
-        <TouchableOpacity
-          onPress={onCancel}
-          style={styles.btnReset}
-          activeOpacity={0.5}>
-          <Text style={btnTextStyle}> Reset To default</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={onApply}
-          style={styles.btnApply}
-          activeOpacity={0.5}>
-          <Text style={btnTextStyle}>Apply</Text>
-        </TouchableOpacity>
-      </View>
+      <PrimaryFooter onOK={onApply} onCancel={onCancel} cancleText='Reset To default'/>
     </>
   );
 };
@@ -95,34 +76,6 @@ const styles = StyleSheet.create({
     position: 'relative',
     flex: 1,
     padding: 16,
-  },
-  actionWraped: {
-    display: 'flex',
-    flexDirection: 'row',
-    gap: 16,
-    alignItems: 'center',
-    padding: 16,
-    backgroundColor: '#DCDCDC',
-    // position: 'absolute',
-    // bottom: 0,
-  },
-  btnReset: {
-    flex: 5,
-    paddingVertical: 8,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#B8B8B8',
-    borderRadius: 8,
-  },
-  btnApply: {
-    flex: 5,
-    paddingVertical: 8,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#FEDA00',
-    borderRadius: 8,
   },
   srcollViewContentContainerStyle: {
     paddingBottom: 16,

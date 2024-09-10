@@ -5,8 +5,7 @@
  *********************************************************/
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, {useState} from 'react';
-import {Image, SafeAreaView, StyleSheet, Text, View} from 'react-native';
-
+import {Image, StyleSheet, Text, View} from 'react-native';
 import {
   DrawerContentScrollView,
   DrawerItemList,
@@ -17,24 +16,33 @@ import useAppContext from '../../hooks/useAppContext';
 import CustomDrawerItem from './CustomDrawerItem';
 import CustomerOrAccount from './CustomerOrAccount';
 import DrawerItemTree from './DrawerItemTree';
+import {CommonActions} from '@react-navigation/native';
 
 const CustomSidebarMenu = (props: any) => {
   const [modalVisible, setModalVisible] = useState(false);
   const {logoutFnc} = useAppContext();
 
+  const handleLogout = () => {
+    props?.navigation?.dispatch(
+      CommonActions.reset({
+        index: 0,
+        routes: [{name: 'Login'}],
+      }),
+    );
+    setModalVisible(false);
+
+    logoutFnc();
+  };
+
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <ModalConfirm
         title="Do you want to log out?"
         visible={modalVisible}
         onCancel={() => {
           setModalVisible(false);
         }}
-        onOk={() => {
-          setModalVisible(false);
-          props?.navigation?.replace('Login');
-          logoutFnc();
-        }}
+        onOk={handleLogout}
       />
       <View style={styles.imageContainer}>
         <Image source={images.drawerHearBg} style={styles.headerImage} />
@@ -44,14 +52,6 @@ const CustomSidebarMenu = (props: any) => {
         contentContainerStyle={styles.drawerContentScrollViewStyle}
         {...props}>
         <DrawerItemList {...props} />
-        {/* <CustomDrawerItem
-          label="Alerts"
-          iconName="bell"
-          onPress={() => {
-            props?.navigation?.navigate(dashboardRouteNames.AlertsNavigation);
-            props?.navigation.closeDrawer();
-          }}
-        /> */}
         <DrawerItemTree />
         <CustomDrawerItem
           label="Map"
@@ -90,7 +90,7 @@ const CustomSidebarMenu = (props: any) => {
           Powered by Next Wave Energy Monitoring, Inc.
         </Text>
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 

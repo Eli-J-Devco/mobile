@@ -4,18 +4,18 @@
  *
  *********************************************************/
 
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import {
   Modal,
-  SafeAreaView,
   StatusBar,
   StyleSheet,
   Text,
   TextStyle,
-  View,
+  View
 } from 'react-native';
 import useThemeContext from '../../../hooks/useThemeContext';
 import MyTouchableOpacity from '../../base/MyTouchableOpacity';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 interface IModalConfirmProps {
   visible: boolean;
@@ -26,6 +26,7 @@ interface IModalConfirmProps {
 
 const ModalConfirm = ({visible, onCancel, title, onOk}: IModalConfirmProps) => {
   const theme = useThemeContext();
+  const insets = useSafeAreaInsets()
 
   const [modalVisible, setModalVisible] = React.useState(false);
 
@@ -49,7 +50,7 @@ const ModalConfirm = ({visible, onCancel, title, onOk}: IModalConfirmProps) => {
     color: theme.palette.text.primary,
     fontSize: theme.font.size.xl,
     fontWeight: '400',
-    marginTop: 10,
+    marginVertical: 10,
   };
 
   const cancelTextStyle: TextStyle = {
@@ -65,7 +66,7 @@ const ModalConfirm = ({visible, onCancel, title, onOk}: IModalConfirmProps) => {
 
   return (
     <Modal transparent visible={modalVisible}>
-      <SafeAreaView style={styles.modal}>
+      <View style={styles.modal}>
         <StatusBar
           translucent={true}
           barStyle="dark-content"
@@ -82,7 +83,7 @@ const ModalConfirm = ({visible, onCancel, title, onOk}: IModalConfirmProps) => {
             </Text>
           </View>
           <Text style={titleStyle}>{title}</Text>
-          <View style={styles.actionWraped}>
+          <View style={[styles.actionWraped, { paddingBottom: insets.bottom }]}>
             <MyTouchableOpacity
               onPress={handleCancel}
               touchableOpacityStyle={{
@@ -101,7 +102,7 @@ const ModalConfirm = ({visible, onCancel, title, onOk}: IModalConfirmProps) => {
             </MyTouchableOpacity>
           </View>
         </View>
-      </SafeAreaView>
+      </View>
     </Modal>
   );
 };
@@ -119,11 +120,11 @@ const styles = StyleSheet.create({
   },
   content: {
     display: 'flex',
-    height: 150,
+    height: 'auto',
     width: '100%',
     borderTopRightRadius: 16,
     borderTopLeftRadius: 16,
-    paddingTop: 16,
+    paddingVertical: 16,
     alignItems: 'center',
   },
   title: {
