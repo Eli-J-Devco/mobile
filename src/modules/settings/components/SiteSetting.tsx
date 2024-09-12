@@ -50,7 +50,7 @@ const SiteSetting = () => {
           <SelectLabel label="Date format" />
           <SelectLabel label="Time format" />
           <View style={styles.switchContainer}>
-            <Switch />
+            <Switch style={styles.switch} />
             <Text>Apply for all sites</Text>
           </View>
         </View>
@@ -80,5 +80,8 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
+  },
+  switch: {
+    transform: [{scaleX: 0.6}, {scaleY: 0.6}],
   },
 });

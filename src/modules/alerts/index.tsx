@@ -5,8 +5,9 @@
  *
  *********************************************************/
 
-import React, {useState} from 'react';
+import React, {Fragment, useState} from 'react';
 import {
+  Platform,
   StyleSheet,
   Switch,
   Text,
@@ -58,7 +59,7 @@ const Alerts = () => {
   };
 
   return (
-    <View>
+    <>
       <View style={styles.overViewBtnWraped}>
         <View
           style={[
@@ -149,7 +150,6 @@ const Alerts = () => {
               onValueChange={toggleSwitch}
               value={isEnabled}
               style={styles.switch}
-              
             />
             <Text style={switchTextStyles}>Group by site</Text>
           </View>
@@ -160,7 +160,7 @@ const Alerts = () => {
           <AlertItem key={index} bgColor={index % 2 === 0 ? '#F2F2F2' : ''} />
         ))}
       </View>
-    </View>
+    </>
   );
 };
 
@@ -217,10 +217,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
   },
   switch: {
-    transform: [
-      {
-        scaleX: 1
-      }
-    ]
+    transform: Platform.OS === "ios" ? [{ scaleX: 0.7 }, { scaleY: 0.6 }] : [{ scaleX: 1 }, { scaleY: 1 }]
   }
 });

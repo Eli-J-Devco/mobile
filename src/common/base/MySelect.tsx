@@ -5,18 +5,17 @@
  *
  *********************************************************/
 
-import React, {useEffect} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   FlatList,
   Modal,
-  SafeAreaView,
   StatusBar,
   StyleSheet,
   Text,
   TextStyle,
   TouchableOpacity,
   View,
-  ViewStyle,
+  ViewStyle
 } from 'react-native';
 import useThemeContext from '../../hooks/useThemeContext';
 import SvgIcon from '../components/SvgIcon';
@@ -41,11 +40,11 @@ const MySelect = ({
 }: MySelectProps) => {
   const theme = useThemeContext();
 
-  const [currentValue, setCurrentValue] = React.useState<
+  const [currentValue, setCurrentValue] = useState<
     number | string | null
   >(null);
 
-  const [modalVisible, setModalVisible] = React.useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
 
   const onChangeValue = (value: string | number) => {
     if (onChange) {
@@ -96,7 +95,7 @@ const MySelect = ({
         </View>
       </TouchableOpacity>
       <Modal transparent visible={modalVisible}>
-        <SafeAreaView style={styles.modal}>
+        <View style={styles.modal}>
           <StatusBar
             translucent={true}
             barStyle="dark-content"
@@ -147,7 +146,7 @@ const MySelect = ({
               />
             )}
           </View>
-        </SafeAreaView>
+        </View>
       </Modal>
     </>
   );

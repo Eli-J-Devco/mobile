@@ -4,14 +4,13 @@
  *
  *********************************************************/
 
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import {
-  SafeAreaView,
   StatusBar,
   StyleSheet,
   Text,
   TextStyle,
-  View,
+  View
 } from 'react-native';
 import useThemeContext from '../../../hooks/useThemeContext';
 import MyModal from '../../base/MyModal';
@@ -68,7 +67,7 @@ const PrimaryModal = ({
 
   return (
     <MyModal visible={modalVisible}>
-      <SafeAreaView style={[styles.modal, positionStyles[position]]}>
+      <View style={[styles.modal, positionStyles[position]]}>
         <StatusBar
           translucent={true}
           barStyle="dark-content"
@@ -108,7 +107,7 @@ const PrimaryModal = ({
             </View>
           )}
         </View>
-      </SafeAreaView>
+      </View>
     </MyModal>
   );
 };
