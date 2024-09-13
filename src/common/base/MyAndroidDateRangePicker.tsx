@@ -18,18 +18,18 @@ import {
 import useThemeContext from '../../hooks/useThemeContext';
 import IconImage from '../components/icons/IconImage';
 
-interface IMyDateRangePicker {
+interface IMyAndroidDateRangePicker {
   value?: [any, any];
   placeholder?: string;
   onChange?: (value: any) => void;
   containerStyle?: ViewStyle;
 }
 
-const MyDateRangePicker = ({
+const MyAndroidDateRangePicker = ({
   placeholder,
 
   containerStyle,
-}: IMyDateRangePicker) => {
+}: IMyAndroidDateRangePicker) => {
   const theme = useThemeContext();
   const [fromdate, setFromDate] = useState<any>(new Date());
   const [todate, setToDate] = useState<any>(new Date());
@@ -50,6 +50,11 @@ const MyDateRangePicker = ({
     setToOpen(false);
     // if (onChange) onChange(currentDate);
   };
+
+  const onCancel = () => {
+    setToOpen(false)
+    setFormOpen(false)
+  }
 
   //   useEffect(() => {
   //     if (!!value) {
@@ -93,6 +98,7 @@ const MyDateRangePicker = ({
           mode="date"
           is24Hour={true}
           onChange={onChangeFromDateValue}
+          onTouchCancel={onCancel}
         />
       )}
 
@@ -104,13 +110,14 @@ const MyDateRangePicker = ({
           mode="date"
           is24Hour={true}
           onChange={onChangeToDateValue}
+          onTouchCancel={onCancel}
         />
       )}
     </>
   );
 };
 
-export default MyDateRangePicker;
+export default MyAndroidDateRangePicker;
 
 const styles = StyleSheet.create({
   container: {

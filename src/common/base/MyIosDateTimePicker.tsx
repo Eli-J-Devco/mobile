@@ -35,15 +35,27 @@ const MyIosDateTimePicker = ({
 }: MyIosDateTimePickerProps) => {
   const theme = useThemeContext();
   const [date, setDate] = useState<any>(new Date());
+  const [dateTeam, setDateTeam] = useState<any>(new Date());
   const [show, setShow] = useState(false);
 
   const onChangeValue = (event: any, selectedDate: any) => {
     const currentDate = selectedDate;
 
-    setShow(false);
-    setDate(currentDate);
+    setDateTeam(currentDate);
     if (onChange) onChange(currentDate);
   };
+  
+  const onConfirm = () => {
+
+    setShow(false);
+    setDate(dateTeam);
+    if (onChange) onChange(dateTeam);
+  };
+
+  const onCancel = () => {
+    setDateTeam(date)
+    setShow(false)
+  }
 
   useEffect(() => {
     if (value) {
@@ -85,8 +97,11 @@ const MyIosDateTimePicker = ({
                 onChange={onChangeValue}
                 style={styles.picker}
               />
+              <TouchableOpacity activeOpacity={0.5}  style={styles.btnCancel} onPress={onConfirm}>
+                <Text style={styles.btntext}>Confirm</Text>
+              </TouchableOpacity>
             </View>
-            <TouchableOpacity activeOpacity={0.8} style={styles.btnCancel} onPress={() => setShow(false)}>
+            <TouchableOpacity activeOpacity={0.8} style={styles.btnCancel} onPress={onCancel}>
               <Text style={styles.btntext}>Cancel</Text>
             </TouchableOpacity>
           </SafeAreaView>
@@ -160,6 +175,6 @@ const styles = StyleSheet.create({
   },
   picker:{
     height: 'auto',
-    paddingBottom: 8
+    paddingBottom: 8,
   }
 });

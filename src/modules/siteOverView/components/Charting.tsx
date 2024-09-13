@@ -13,11 +13,11 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import MyDateRangePicker from '../../../common/base/MyDateRangePicker';
 import MySelect from '../../../common/base/MySelect';
 import BarChartKit from '../../../common/components/chart/BarChartKit';
 import SvgIcon from '../../../common/components/SvgIcon';
 import H3 from '../../../common/components/text/H3';
+import DateRangePicker from '../../../common/components/times/DateRangePicker';
 import TimeAxis from '../../../common/components/times/TimeAxis';
 import useThemeContext from '../../../hooks/useThemeContext';
 
@@ -78,7 +78,7 @@ const Charting = () => {
       </View>
       <View style={styles.date}>
         <View style={styles.datePicker}>
-          <MyDateRangePicker />
+          <DateRangePicker />
         </View>
       </View>
     </View>
