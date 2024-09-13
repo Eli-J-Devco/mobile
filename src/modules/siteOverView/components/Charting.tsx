@@ -4,7 +4,7 @@
  *
  *********************************************************/
 
-import React from 'react';
+import React, { useState } from 'react';
 import {
   StyleSheet,
   Switch,
@@ -21,8 +21,20 @@ import DateRangePicker from '../../../common/components/times/DateRangePicker';
 import TimeAxis from '../../../common/components/times/TimeAxis';
 import useThemeContext from '../../../hooks/useThemeContext';
 
+const options : Array<ISelectOption<number>> = [
+  {
+    value: 1,
+    label: '3 Day'
+  },
+  {
+    value:2,
+    label: '3 Month'
+  }
+]
+
 const Charting = () => {
   const theme = useThemeContext();
+  const [selected, setselected] = useState(1)
 
   const textStyles: TextStyle = {
     color: theme.palette.text.primary,
@@ -37,6 +49,11 @@ const Charting = () => {
     color: theme.palette.text.secondary,
     fontSize: theme.font.size.s,
   };
+
+  const onSelected = (vl: number) => {
+    setselected(vl)
+    
+  }
 
   return (
     <View style={styles.container}>
@@ -56,7 +73,7 @@ const Charting = () => {
             <SvgIcon iconName="download" />
           </TouchableOpacity>
           <View style={styles.flex}>
-            <MySelect containerStyle={styles.selectContainer} />
+            <MySelect value={selected} containerStyle={styles.selectContainer} options={options} onChange={onSelected}/>
           </View>
         </View>
       </View>

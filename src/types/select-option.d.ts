@@ -4,7 +4,7 @@
  *
  *********************************************************/
 
-interface ISelectOption {
-  value: string | number;
+interface ISelectOption<T> {
+  value: T;
   label: string | number;
 }
