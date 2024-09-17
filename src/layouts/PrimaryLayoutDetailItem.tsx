@@ -29,7 +29,7 @@ interface Props {
 
 const PrimaryLayoutDetailItem = ({
   title,
-  background,
+  background = '#F5F5F5',
   contentStyle,
   children,
 }: Props) => {
@@ -69,9 +69,8 @@ const PrimaryLayoutDetailItem = ({
       <View
         style={[
           styles.content,
-          // eslint-disable-next-line react-native/no-inline-styles
           {
-            backgroundColor: background ? background : '#F5F5F5',
+            backgroundColor: background
           },
         ]}>
         {children}

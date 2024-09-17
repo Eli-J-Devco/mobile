@@ -1,6 +1,7 @@
 import {View, Text, StyleSheet, TextStyle} from 'react-native';
 import React from 'react';
 import useThemeContext from '../../../../hooks/useThemeContext';
+import MyProcess from '../../../../common/base/MyProcess';
 
 interface IDetailItemProps {
   item: IDetailItem;
@@ -20,11 +21,6 @@ const DetailItem = ({item}: IDetailItemProps) => {
     fontSize: theme.font.size.s,
     fontWeight: '400',
   };
-  const percentageTextStyle: TextStyle = {
-    color: theme.palette.text.white,
-    fontSize: theme.font.size.s,
-    fontWeight: '700',
-  };
 
   return (
     <View
@@ -38,11 +34,7 @@ const DetailItem = ({item}: IDetailItemProps) => {
       {item.despription && (
         <Text style={despriptionStyle}>{item.despription}</Text>
       )}
-      <View style={styles.percentageWraped}>
-        <View style={[styles.percentage, {width: `${item.percentage}%`}]}>
-          <Text style={percentageTextStyle}>{item.percentage}%</Text>
-        </View>
-      </View>
+     <MyProcess percentage={item.percentage} />
     </View>
   );
 };
@@ -63,20 +55,5 @@ const styles = StyleSheet.create({
     elevation: 20,
     padding: 16,
     width: '100%',
-  },
-  percentageWraped: {
-    borderColor: '#7F7F7F',
-    backgroundColor: '#fff',
-    borderWidth: 1,
-    width: '100%',
-    borderRadius: 4,
-  },
-  percentage: {
-    borderColor: 'transparent',
-    backgroundColor: '#25D922',
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
   },
 });
