@@ -59,7 +59,6 @@ const styles = StyleSheet.create({
   container: {
     display: 'flex',
     width: '100%',
-
     shadowColor: 'rgba(16, 24, 40, 0.3)',
     shadowOffset: {width: 2, height: 4},
     shadowOpacity: 0.5,
