@@ -7,6 +7,7 @@
 import React from 'react';
 import {
   ImageBackground,
+  Platform,
   StatusBar,
   StyleSheet,
   TextInput,
@@ -17,6 +18,7 @@ import { images } from '../assets';
 import IconImage from '../common/components/icons/IconImage';
 import { useNavigation } from '../hooks/useNavigation';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { FLEX_CONTENT } from '../constants/view/flex';
 
 interface Props {
   filter?: boolean;
@@ -80,7 +82,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     backgroundColor: '#F5F5F5',
-    flex: 14,
+    flex: Platform.OS === 'android' ? FLEX_CONTENT.flex14 : FLEX_CONTENT.flex12,
   },
   header: {
     flex: 2,

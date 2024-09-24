@@ -7,6 +7,7 @@
 import React from 'react';
 import {
   ImageBackground,
+  Platform,
   StatusBar,
   StyleSheet,
   TextInput,
@@ -17,6 +18,7 @@ import MyTouchableOpacity from '../common/base/MyTouchableOpacity';
 import IconImage from '../common/components/icons/IconImage';
 import { useNavigation } from '../hooks/useNavigation';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { FLEX_CONTENT } from '../constants/view/flex';
 
 interface Props {
   filter?: boolean;
@@ -82,7 +84,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     width: '100%',
     height: '100%',
-    flex: 14,
+    flex: Platform.OS === 'android' ? FLEX_CONTENT.flex14 : FLEX_CONTENT.flex12,
   },
   header: {
     flex: 2,

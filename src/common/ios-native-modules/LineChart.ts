@@ -1,9 +1,13 @@
 import { requireNativeComponent, ViewStyle } from 'react-native';
 
+type DataChart = {
+    labels: string[]
+    values: number[]
+}
+
 interface Props {
     style: ViewStyle
-    chartData: number[]
-    labels: string[]
+    chartData: DataChart
 }
 
 const LineChart = requireNativeComponent<Props>('RCTLineChart');

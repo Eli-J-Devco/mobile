@@ -10,10 +10,9 @@
 #import <React/RCTViewManager.h>
 
 @interface RCT_EXTERN_MODULE(RCTBarChart, RCTViewManager)
-RCT_EXPORT_VIEW_PROPERTY(chartData, NSArray)
+RCT_EXPORT_VIEW_PROPERTY(chartData, NSDictionary)
 @end
 
 @interface RCT_EXTERN_MODULE(RCTLineChart, RCTViewManager)
-RCT_EXPORT_VIEW_PROPERTY(chartData, NSArray)
-RCT_EXPORT_VIEW_PROPERTY(labels, NSArray)
+RCT_EXPORT_VIEW_PROPERTY(chartData, NSDictionary)
 @end
