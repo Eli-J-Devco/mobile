@@ -4,11 +4,10 @@
  *
  *********************************************************/
 
-import React from 'react';
-import {StyleSheet, View, Text, TextStyle} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {StyleSheet, View, Text, TextStyle, Dimensions} from 'react-native';
 import MyScrollView from '../../../../common/base/MyScrollView';
 import MySwicthText from '../../../../common/base/MySwicthText';
-import LineChartKit from '../../../../common/components/chart/LineChartKit';
 import PrimaryFooter from '../../../../common/components/footer/PrimaryFooter';
 import InputLabel from '../../../../common/components/input/InputLabel';
 import SelectLabel from '../../../../common/components/select/SelectLabel';
@@ -18,10 +17,33 @@ import Item from '../../../../common/components/view/Item';
 import useThemeContext from '../../../../hooks/useThemeContext';
 import {useNavigation} from '../../../../hooks/useNavigation';
 import {showNoti} from '../../../../common/components/notify';
+import BarChart from '../../../../common/ios-native-modules/BarChart';
+import LineChartKit from '../../../../common/components/chart/LineChartKit';
+import LineChart from '../../../../common/ios-native-modules/LineChart';
+
+const {width} = Dimensions.get('window');
+
+const getRandomData = length => {
+  return Array.from({length}, () => Math.floor(Math.random() * 100));
+};
 
 const AlertDetail = () => {
   const theme = useThemeContext();
   const navigation = useNavigation();
+  const [chartData, setChartData] = useState({
+    labels: ['01-05', '02-05', '03-05', '04-05', '06-05', '07-05', '08-05', '09-05', '10-05', '11-05'],
+    values: [20, 10, 15, 20, 25, 5, 10, 40, 10, 100],
+  });
+
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     const newData = getRandomData(5);
+
+  //     setChartData(newData);
+  //   }, 1000);
+
+  //   return () => clearInterval(interval);
+  // }, []);
 
   const lableStyle: TextStyle = {
     color: theme.palette.text.primary,
@@ -42,7 +64,7 @@ const AlertDetail = () => {
     <>
       <MyScrollView>
         <View style={styles.container}>
-          <Card tiltle="Component: Elkor WattsOn Mk. II">
+          <Card tiltle="Component: Elkor WattsOn Mk. II">
             <View style={styles.infoContainer}>
               <Item lable="Opened" value="06/20/2024 10:00 AM" />
               <Item lable="Alert ID" value="124323112" mode="dark" />
@@ -57,7 +79,9 @@ const AlertDetail = () => {
           </Card>
           <Card tiltle="Charting">
             <View style={styles.chart}>
-              <LineChartKit />
+              {/* <LineChartKit /> */}
+              {/* <BarChart style={styles.barChart} chartData={chartData} /> */}
+              <LineChart style={styles.barChart} chartData={chartData} />
               <View style={styles.descriptionContent}>
                 <View style={styles.iconContainer}>
                   <View style={styles.dot} />
@@ -154,4 +178,5 @@ const styles = StyleSheet.create({
     top: -4.5,
     left: 5,
   },
+  barChart: {width: width * 0.9, height: 300, marginBottom: 16},
 });

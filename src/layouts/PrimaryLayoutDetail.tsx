@@ -13,10 +13,14 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { images } from '../assets';
 import IconImage from '../common/components/icons/IconImage';
+import { FLEX_CONTENT } from '../constants/view/flex';
 import { useNavigation } from '../hooks/useNavigation';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { flexV } from '../utils/responsive';
+
+const { top, bottom } = flexV(FLEX_CONTENT.flex2, FLEX_CONTENT.flex14)
 
 interface Props {
   filter?: boolean;
@@ -80,10 +84,10 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     backgroundColor: '#F5F5F5',
-    flex: 14,
+    flex: bottom
   },
   header: {
-    flex: 2,
+    flex: top,
     backgroundColor: 'tranperant',
     width: '100%',
     display: 'flex',
