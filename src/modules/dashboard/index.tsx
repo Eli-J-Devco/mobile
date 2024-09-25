@@ -4,24 +4,32 @@
  *
  *********************************************************/
 
-import React from 'react';
+import React, {lazy, Suspense} from 'react';
 import {ScrollView, StyleSheet} from 'react-native';
-import Alerts from './components/alerts';
-import Portfolio from './components/portfolio';
+import MySpin from '../../common/base/MySpin';
+// import Alerts from './components/alerts';
+// import Portfolio from './components/portfolio';
+
+const PortfolioComponent = lazy(() => import('./components/portfolio'));
+const AlertsComponent = lazy(() => import('./components/alerts'));
 
 const Dashboard = () => {
   return (
     <ScrollView
       showsVerticalScrollIndicator={false}
       contentContainerStyle={styles.container}>
-      <Portfolio />
-      <Alerts />
+      <Suspense fallback={<MySpin/>}>
+        <PortfolioComponent />
+      </Suspense>
+      <Suspense fallback={<MySpin/>}>
+        <AlertsComponent />
+      </Suspense>
     </ScrollView>
   );
 };
 
 export default Dashboard;
-const styles = StyleSheet.create({  
+const styles = StyleSheet.create({
   container: {
     display: 'flex',
     flexDirection: 'column',
