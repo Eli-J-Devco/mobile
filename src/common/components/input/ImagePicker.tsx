@@ -22,6 +22,7 @@ const ImagePicker = () => {
       fontSize: theme.font.size.xl,
       color: theme.palette.text.primary,
       fontWeight: '500',
+      marginTop: 16
     }),
     [],
   );
@@ -44,7 +45,7 @@ const ImagePicker = () => {
       overflow: 'hidden',
     }),
     [],
-  );
+  ); 
 
   return (
     <View style={styles.container}>
@@ -54,6 +55,7 @@ const ImagePicker = () => {
         touchableOpacityStyle={styles.containerInput}>
         {!data && (
           <>
+            <IconImage iconName='image' size={50} />
             <Text style={tilteStyle}>Preess to this area to upload</Text>
             <Text style={desStyle}>
               Support for a single upload image from photos library.

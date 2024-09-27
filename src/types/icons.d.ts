@@ -58,7 +58,8 @@ interface IIcons {
   userBlack: any;
   arrowIndicateDirectionLeft: any;
   arrowIndicateDirectionRight: any;
-  attachFile: any
+  attachFile: any;
+  image: any;
 }
 
 type IconNameType = keyof IIcons;

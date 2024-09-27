@@ -92,4 +92,5 @@ export const iconsImage: Partial<IIcons> = {
   arrowIndicateDirectionLeft: require('./icons-image/arrow-indicate-direction-left.png'),
   arrowIndicateDirectionRight: require('./icons-image/arrow-indicate-direction-right.png'),
   attachFile: require('./icons-image/attach-file.png'),
+  image: require('./icons-image/image.png'),
 };

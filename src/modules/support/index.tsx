@@ -15,6 +15,7 @@ import ImagePicker from '../../common/components/input/ImagePicker';
 import RHFInputLabel from '../../common/hook-form/RHFInputLabel';
 import RHFSelect from '../../common/hook-form/RHFSelect';
 import RHFTextAre from '../../common/hook-form/RHFTextAre';
+import { useNavigation } from '../../hooks/useNavigation';
 
 const Whys: Array<ISelectOption<string>> = [
   {
@@ -49,6 +50,8 @@ const formValueDefault = {
 };
 
 const Support = () => {
+  const navigation = useNavigation()
+
   const supportSchema = Yup.object().shape({
     why: Yup.string().required('Field is required.'),
     localtion: Yup.string().required('Field is requied.'),
@@ -69,6 +72,7 @@ const Support = () => {
 
   const summit = () => {
     // console.log('---> data: ', data);
+    navigation.goBack()
   };
 
   return (
