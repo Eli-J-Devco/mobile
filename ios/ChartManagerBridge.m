@@ -16,3 +16,9 @@ RCT_EXPORT_VIEW_PROPERTY(chartData, NSDictionary)
 @interface RCT_EXTERN_MODULE(RCTLineChart, RCTViewManager)
 RCT_EXPORT_VIEW_PROPERTY(chartData, NSDictionary)
 @end
+
+@interface RCT_EXTERN_MODULE(PhotoPicker, RCTBridge)
+RCT_EXTERN_METHOD(selectPhoto:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject)
+@end
+
+
