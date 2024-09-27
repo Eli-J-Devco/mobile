@@ -1,5 +1,5 @@
-import React from 'react';
-import {StyleSheet, TextStyle} from 'react-native';
+import React, { forwardRef } from 'react';
+import { StyleSheet, TextInput, TextStyle } from 'react-native';
 import useThemeContext from '../../../hooks/useThemeContext';
 import MyTextInput from '../../base/MyTextInput';
 
@@ -13,16 +13,17 @@ export interface PrimaryInputProps {
   multiline?: boolean;
 }
 
-const PrimaryInput = ({
-  value,
-  onChange,
-  placeholder,
-  containerStyle,
-  placeholderTextColor,
-  numberOfLines,
-  multiline,
-}: PrimaryInputProps) => {
+const PrimaryInput = forwardRef<TextInput, PrimaryInputProps>((props, ref) => {
   const theme = useThemeContext();
+  const {
+    value,
+    onChange,
+    placeholder,
+    containerStyle,
+    placeholderTextColor,
+    numberOfLines,
+    multiline,
+  } = props;
 
   const onChangeText = (text: string) => {
     if (onChange) onChange(text);
@@ -30,6 +31,7 @@ const PrimaryInput = ({
 
   return (
     <MyTextInput
+      ref={ref}
       multiline={multiline}
       value={value}
       style={[
@@ -48,7 +50,7 @@ const PrimaryInput = ({
       numberOfLines={numberOfLines}
     />
   );
-};
+});
 
 export default PrimaryInput;
 

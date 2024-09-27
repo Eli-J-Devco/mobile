@@ -18,6 +18,7 @@
 		BB1E425E2C9AB76000C11714 /* LineChartModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1E425D2C9AB76000C11714 /* LineChartModule.swift */; };
 		BBB5977D2C9963E80022F9E6 /* ChartManagerBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB5977C2C9963E80022F9E6 /* ChartManagerBridge.m */; };
 		BBDCDE1F2C995CF600B82779 /* BarChartModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDCDE1E2C995CF600B82779 /* BarChartModule.swift */; };
+		BBE2C4662CA64CA6006945E4 /* PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE2C4652CA64CA6006945E4 /* PhotoPicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		BBB5977C2C9963E80022F9E6 /* ChartManagerBridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChartManagerBridge.m; sourceTree = "<group>"; };
 		BBDCDE1D2C995CF600B82779 /* NWPlatform-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NWPlatform-Bridging-Header.h"; sourceTree = "<group>"; };
 		BBDCDE1E2C995CF600B82779 /* BarChartModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartModule.swift; sourceTree = "<group>"; };
+		BBE2C4652CA64CA6006945E4 /* PhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPicker.swift; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -131,6 +133,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				BBE2C4652CA64CA6006945E4 /* PhotoPicker.swift */,
 				BBB5977C2C9963E80022F9E6 /* ChartManagerBridge.m */,
 				13B07FAE1A68108700A75B9A /* NWPlatform */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -411,6 +414,7 @@
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
 				BB1E425E2C9AB76000C11714 /* LineChartModule.swift in Sources */,
+				BBE2C4662CA64CA6006945E4 /* PhotoPicker.swift in Sources */,
 				BBB5977D2C9963E80022F9E6 /* ChartManagerBridge.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 				BBDCDE1F2C995CF600B82779 /* BarChartModule.swift in Sources */,
@@ -608,7 +612,10 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = "$(inherited)  ";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					" ",
+				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;
@@ -680,7 +687,10 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = "$(inherited)  ";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					" ",
+				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;

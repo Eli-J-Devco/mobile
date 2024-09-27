@@ -4,7 +4,7 @@ import Support from '../../modules/support'
 
 const SupportScreen = () => {
   return (
-    <PrimaryLayoutDetailItem title='Open A Support Ticket!!!!!!' >
+    <PrimaryLayoutDetailItem title='Open A Support Ticket' >
       <Support />
     </PrimaryLayoutDetailItem>
   )
