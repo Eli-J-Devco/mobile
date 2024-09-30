@@ -4,7 +4,7 @@
  *
  *********************************************************/
 
-import React, {useMemo} from 'react';
+import React, {useEffect, useMemo} from 'react';
 import {Image, StyleSheet, Text, TextStyle, View} from 'react-native';
 import {useImagePicker} from '../../../hooks/useImagePicker';
 import MyTouchableOpacity from '../../base/MyTouchableOpacity';
@@ -12,17 +12,28 @@ import useThemeContext from '../../../hooks/useThemeContext';
 import IconImage from '../icons/IconImage';
 import IconButton from '../button/IconButton';
 
-const ImagePicker = () => {
+interface IImagePickerProps {
+  defaultsUrl?: string;
+  onChange?: (data: IIamge | null) => void;
+}
+
+const ImagePicker = ({onChange}: IImagePickerProps) => {
   const theme = useThemeContext();
 
   const {data, selectPhoto, clearPhoto} = useImagePicker();
+
+  useEffect(() => {
+    if (onChange) {
+      onChange(data);
+    }
+  }, [data]);
 
   const tilteStyle: TextStyle = useMemo(
     () => ({
       fontSize: theme.font.size.xl,
       color: theme.palette.text.primary,
       fontWeight: '500',
-      marginTop: 16
+      marginTop: 16,
     }),
     [],
   );
@@ -45,7 +56,7 @@ const ImagePicker = () => {
       overflow: 'hidden',
     }),
     [],
-  ); 
+  );
 
   return (
     <View style={styles.container}>
@@ -55,7 +66,7 @@ const ImagePicker = () => {
         touchableOpacityStyle={styles.containerInput}>
         {!data && (
           <>
-            <IconImage iconName='image' size={50} />
+            <IconImage iconName="image" size={50} />
             <Text style={tilteStyle}>Preess to this area to upload</Text>
             <Text style={desStyle}>
               Support for a single upload image from photos library.
@@ -69,7 +80,7 @@ const ImagePicker = () => {
       {data && (
         <View style={styles.imageNameWrapped}>
           <View style={styles.name}>
-            <IconImage iconName="attachFile" size={16}/>
+            <IconImage iconName="attachFile" size={16} />
             <Text numberOfLines={1} ellipsizeMode="middle" style={nameStyle}>
               {data.name}
             </Text>
@@ -113,11 +124,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
-  name:{
+  name: {
     display: 'flex',
     flexDirection: 'row',
     gap: 4,
     alignItems: 'center',
     justifyContent: 'flex-start',
-  }
+  },
 });

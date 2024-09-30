@@ -75,6 +75,11 @@ const Support = () => {
     navigation.goBack()
   };
 
+  const handleImageChange = (data: IIamge) => {
+    console.log("---> data ", data)
+  }
+
+
   return (
     <MyScrollView>
       <FormProvider {...methods}>
@@ -90,7 +95,7 @@ const Support = () => {
           <RHFInputLabel label="Phone Number" name="phone" />
           <RHFInputLabel label="Email Address" name="email" />
           <RHFTextAre label="Notes" name="notes" />
-          <ImagePicker />
+          <ImagePicker onChange={handleImageChange} />
         </View>
       </FormProvider>
       <ButonText
