@@ -81,7 +81,7 @@ const RadioButton = ({
 
   return (
     <TouchableOpacity
-      style={[styles.btn, colorActive, touchableOpacityStyles]}
+      style={[styles.btn, touchableOpacityStyles, colorActive]}
       activeOpacity={0.5}
       onPress={() => {
         requestAnimationFrame(() => {
@@ -89,7 +89,7 @@ const RadioButton = ({
         });
       }}
       {...touchableOpacityProps}>
-      <Text style={[btnTextStyle, textStyles]} {...textProps}>
+      <Text style={[textStyles, btnTextStyle]} {...textProps}>
         {children}
       </Text>
     </TouchableOpacity>

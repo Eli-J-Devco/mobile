@@ -41,6 +41,7 @@ module.exports = {
         ignoreDefaultValues: true,
       },
     ],
+    "react/display-name": "off"
   },
   overrides: [
     {

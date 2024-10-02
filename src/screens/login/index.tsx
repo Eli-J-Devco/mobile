@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {
   ImageBackground,
-  SafeAreaView,
+  // SafeAreaView,
   StatusBar,
   StyleSheet,
   Text,
@@ -24,7 +24,7 @@ const Login = () => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <>
       <StatusBar
         translucent={true}
         barStyle="dark-content"
@@ -34,6 +34,7 @@ const Login = () => {
         resizeMode="cover"
         source={images.bgLogin}
         style={styles.image}>
+          {/* <SafeAreaView style={styles.container}> */}
         <Text style={styles.lable}>
           {isLogin ? 'Log In' : 'Forgot Your Password'}
         </Text>
@@ -45,8 +46,10 @@ const Login = () => {
             {isLogin ? 'Forgot your password?' : 'Back to Login'}
           </Text>
         </MyTouchableOpacity>
+        {/* </SafeAreaView> */}
       </ImageBackground>
-    </SafeAreaView>
+      </>
+   
   );
 };
 
@@ -59,10 +62,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: '100%',
   },
-  container: {
-    flex: 1,
-  },
-
+  // container: {
+  //   flex: 1,
+  // },
   image: {
     flex: 1,
     justifyContent: 'center',

@@ -4,20 +4,23 @@
  *
  *********************************************************/
 
-import {useNavigation} from '@react-navigation/native';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import React from 'react';
 import {
   ImageBackground,
-  SafeAreaView,
   StatusBar,
   StyleSheet,
   TextInput,
   TouchableOpacity,
-  View,
+  View
 } from 'react-native';
-import {images} from '../assets';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { images } from '../assets';
 import IconImage from '../common/components/icons/IconImage';
+import { FLEX_CONTENT } from '../constants/view/flex';
+import { useNavigation } from '../hooks/useNavigation';
+import { flexV } from '../utils/responsive';
+
+const { top, bottom } = flexV(FLEX_CONTENT.flex2, FLEX_CONTENT.flex14)
 
 interface Props {
   filter?: boolean;
@@ -25,11 +28,11 @@ interface Props {
 }
 
 const PrimaryLayoutDetail = ({children}: Props) => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const navigation = useNavigation<NativeStackNavigationProp<any>>();
+  const navigation = useNavigation();
+  const insets = useSafeAreaInsets();
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <StatusBar
         translucent={true}
         barStyle="dark-content"
@@ -40,7 +43,7 @@ const PrimaryLayoutDetail = ({children}: Props) => {
         source={images.bgHeader}
         style={[styles.image, styles.header]}>
         <View
-          style={[styles.headerContent, {marginTop: StatusBar.currentHeight}]}>
+          style={[styles.headerContent, {marginTop: insets.top}]}>
           <TouchableOpacity
             activeOpacity={0.5}
             onPress={() => navigation.goBack()}>
@@ -62,7 +65,7 @@ const PrimaryLayoutDetail = ({children}: Props) => {
         </View>
       </ImageBackground>
       <View style={styles.content}>{children}</View>
-    </SafeAreaView>
+    </View>
   );
 };
 
@@ -81,17 +84,16 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     backgroundColor: '#F5F5F5',
-    flex: 14,
+    flex: bottom
   },
   header: {
-    flex: 2,
+    flex: top,
     backgroundColor: 'tranperant',
     width: '100%',
     display: 'flex',
     height: '100%',
     flexDirection: 'column',
     alignItems: 'center',
-    // paddingVertical: 'auto',
     justifyContent: 'center',
   },
   headerContent: {

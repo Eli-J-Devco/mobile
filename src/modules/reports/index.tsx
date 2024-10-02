@@ -9,32 +9,10 @@ import ButtonIcon from '../../common/components/button/ButtonIcon';
 import IconButton from '../../common/components/button/IconButton';
 // import BarChartKit from '../../common/components/chart/BarChartKit';
 import H3 from '../../common/components/text/H3';
+import DateRangePicker from '../../common/components/times/DateRangePicker';
 import TimeAxis from '../../common/components/times/TimeAxis';
 import PrimaryCardItem from '../../common/components/view/PrimaryCardItem';
 import {reportsRouteNames} from '../../navigations/router-name';
-import RCTMosaicChart from '../../nativeModules/RCTMosaicChart';
-// import RCTMutiLineChart from '../../nativeModules/RCTMutiLineChart';
-
-const {width} = Dimensions.get('window');
-
-// const data = {
-//   datasets: [
-//     {
-//       label: 'Line 1',
-//       values: [30, 40, 30, 60, 70],
-//     },
-//     {
-//       label: 'Line 2',
-//       values: [50, 60, 70, 10, 90],
-//     },
-//   ],
-//   colors: ['#FF0000', '#0000FF'],
-// };
-
-type Value = {
-  x: string;
-  y: number;
-};
 
 const Reports = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -162,7 +140,7 @@ const Reports = () => {
           containerStyle={styles.selectContainerStyle}
         />
         <View style={styles.datePicker}>
-          <MyDateRangePicker />
+          <DateRangePicker />
         </View>
       </View>
     </PrimaryCardItem>

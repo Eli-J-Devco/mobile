@@ -1,15 +1,10 @@
 import React from 'react';
-import {StyleSheet, TextStyle, View, ViewStyle} from 'react-native';
+import { StyleSheet, View, ViewStyle } from 'react-native';
 import useThemeContext from '../../../hooks/useThemeContext';
-import ButonText from '../button/ButonText';
+import RadioButton from '../selection-controls/RadioButton';
 
 const TimeAxis = () => {
   const theme = useThemeContext();
-
-  const textStyles: TextStyle = {
-    color: theme.palette.text.primary,
-    fontSize: theme.font.size.s,
-  };
 
   const touchableOpacityStyles: ViewStyle = {
     backgroundColor: 'trasparent',
@@ -22,8 +17,20 @@ const TimeAxis = () => {
   const touchableOpacityEndStyles: ViewStyle = {
     backgroundColor: 'trasparent',
     borderRadius: 0,
+    borderTopRightRadius: 4,
+    borderBottomRightRadius: 4,
     padding: 0,
     paddingHorizontal: 4,
+  };
+  const touchableOpacityStartStyles: ViewStyle = {
+    backgroundColor: 'trasparent',
+    borderRadius: 0,
+    borderTopLeftRadius: 4,
+    borderBottomLeftRadius: 4,
+    padding: 0,
+    paddingHorizontal: 4,
+    borderRightColor: theme.palette.text.secondary,
+    borderRightWidth: 0.5,
   };
 
   return (
@@ -32,41 +39,55 @@ const TimeAxis = () => {
         styles.timeContainer,
         {backgroundColor: theme.palette.background.disable},
       ]}>
-      <ButonText
-        text="1 Minute"
+      <RadioButton
+        checked={false}
+        value="1"
+        touchableOpacityStyles={touchableOpacityStartStyles}
+        textSize={theme.font.size.s}>
+        1 Minute
+      </RadioButton>
+      <RadioButton
+        checked={false}
+        value="5"
         touchableOpacityStyles={touchableOpacityStyles}
-        textStyles={textStyles}
-      />
-      <ButonText
-        text="5 Minute"
+        textSize={theme.font.size.s}>
+        5 Minute
+      </RadioButton>
+      <RadioButton
+        checked={false}
+        value="1h"
         touchableOpacityStyles={touchableOpacityStyles}
-        textStyles={textStyles}
-      />
-      <ButonText
-        text="1 Hour"
+        textSize={theme.font.size.s}>
+        1 Hour
+      </RadioButton>
+      <RadioButton
+        checked={true}
+        value="1d"
         touchableOpacityStyles={touchableOpacityStyles}
-        textStyles={textStyles}
-      />
-      <ButonText
-        text="1 Day"
+        textSize={theme.font.size.s}>
+        1 Day
+      </RadioButton>
+      <RadioButton
+        checked={false}
+        value="1d"
         touchableOpacityStyles={touchableOpacityStyles}
-        textStyles={textStyles}
-      />
-      <ButonText
-        text="7 Day"
+        textSize={theme.font.size.s}>
+        7 Day
+      </RadioButton>
+      <RadioButton
+        checked={false}
+        value="1d"
         touchableOpacityStyles={touchableOpacityStyles}
-        textStyles={textStyles}
-      />
-      <ButonText
-        text="1 Month"
-        touchableOpacityStyles={touchableOpacityStyles}
-        textStyles={textStyles}
-      />
-      <ButonText
-        text="1 Year"
+        textSize={theme.font.size.s}>
+        1 Month
+      </RadioButton>
+      <RadioButton
+        checked={false}
+        value="1d"
         touchableOpacityStyles={touchableOpacityEndStyles}
-        textStyles={textStyles}
-      />
+        textSize={theme.font.size.s}>
+        1 Year
+      </RadioButton>
     </View>
   );
 };

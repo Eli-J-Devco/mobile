@@ -5,10 +5,10 @@
  *
  *********************************************************/
 
-import {View, Text, TextStyle} from 'react-native';
-import React from 'react';
-import PrimaryInput, {PrimaryInputProps} from './PrimaryInput';
+import React, {forwardRef} from 'react';
+import {Text, TextInput, TextStyle, View} from 'react-native';
 import useThemeContext from '../../../hooks/useThemeContext';
+import PrimaryInput, {PrimaryInputProps} from './PrimaryInput';
 
 interface InputLabelProps extends PrimaryInputProps {
   label: string;
@@ -17,19 +17,20 @@ interface InputLabelProps extends PrimaryInputProps {
   height?: number;
 }
 
-const InputLabel = ({
-  layout = 'vertical',
-  labelStyle,
-  label,
-  value,
-  onChange,
-  placeholder,
-  containerStyle,
-  placeholderTextColor,
-  numberOfLines,
-  multiline,
-}: InputLabelProps) => {
+const InputLabel = forwardRef<TextInput, InputLabelProps>((props, ref) => {
   const theme = useThemeContext();
+  const {
+    layout = 'vertical',
+    labelStyle,
+    label,
+    value,
+    onChange,
+    placeholder,
+    containerStyle,
+    placeholderTextColor,
+    numberOfLines,
+    multiline,
+  } = props;
 
   const labelTextStyle: TextStyle = {
     color: theme.palette.text.primary,
@@ -48,6 +49,7 @@ const InputLabel = ({
       <Text style={[labelTextStyle, labelStyle]}>{label}</Text>
       <View style={[containerStyle, {width: '100%', height: 'auto'}]}>
         <PrimaryInput
+          ref={ref}
           multiline={multiline}
           value={value}
           containerStyle={containerStyle}
@@ -55,10 +57,11 @@ const InputLabel = ({
           placeholder={placeholder}
           placeholderTextColor={placeholderTextColor}
           numberOfLines={numberOfLines}
+          {...props}
         />
       </View>
     </View>
   );
-};
+});
 
 export default InputLabel;

@@ -4,32 +4,31 @@
  *
  *********************************************************/
 
-import {useNavigation} from '@react-navigation/native';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import React from 'react';
 import {
   ImageBackground,
   KeyboardAvoidingView,
   Platform,
-  SafeAreaView,
   StatusBar,
   StyleSheet,
   Text,
   TextInput,
   TextStyle,
-  View,
+  View
 } from 'react-native';
-import {images} from '../../../assets';
+import { images } from '../../../assets';
 import MyScrollView from '../../../common/base/MyScrollView';
 import MyTouchableOpacity from '../../../common/base/MyTouchableOpacity';
 import IconImage from '../../../common/components/icons/IconImage';
 import useThemeContext from '../../../hooks/useThemeContext';
 import SearchAndFilter from '../../../modules/dashboard/components/searchAndFilter';
+import { useNavigation } from '../../../hooks/useNavigation';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const SearchAndFilterSreen = () => {
-  /* eslint-disable @typescript-eslint/no-explicit-any */
-  const navigation = useNavigation<NativeStackNavigationProp<any>>();
+  const navigation = useNavigation();
   const theme = useThemeContext();
+  const insets = useSafeAreaInsets()
 
   const textStyles: TextStyle = {
     fontSize: theme.font.size.sm,
@@ -38,7 +37,7 @@ const SearchAndFilterSreen = () => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <KeyboardAvoidingView
         style={styles.container}
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
@@ -54,7 +53,7 @@ const SearchAndFilterSreen = () => {
           <View
             style={[
               styles.headerContent,
-              {marginTop: StatusBar.currentHeight},
+              {marginTop: insets.top },
             ]}>
             <View style={styles.searchInput}>
               <IconImage iconName="search" />
@@ -74,7 +73,7 @@ const SearchAndFilterSreen = () => {
           </MyScrollView>
         </View>
       </KeyboardAvoidingView>
-    </SafeAreaView>
+    </View>
   );
 };
 

@@ -1,7 +1,10 @@
 import React from 'react';
-import {StyleSheet, Text, TextStyle, View} from 'react-native';
+import {Platform, StyleSheet, Text, TextStyle, View} from 'react-native';
 import useThemeContext from '../../../hooks/useThemeContext';
 import MyTouchableOpacity from '../../base/MyTouchableOpacity';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
+const PADDING_ANDROID_BOTTOM = 16
 
 interface PrimaryFooterProps {
   okText?: string;
@@ -17,6 +20,7 @@ const PrimaryFooter = ({
   onOK,
 }: PrimaryFooterProps) => {
   const theme = useThemeContext();
+  const insets = useSafeAreaInsets()
 
   const btnTextStyle: TextStyle = {
     color: theme.palette.text.primary,
@@ -25,7 +29,9 @@ const PrimaryFooter = ({
   };
 
   return (
-    <View style={styles.actionWraped}>
+    <View style={[styles.actionWraped, {
+      paddingBottom: Platform.OS === "ios" ? insets.bottom : PADDING_ANDROID_BOTTOM
+    }]}>
       <MyTouchableOpacity
         touchableOpacityStyle={styles.btnReset}
         onPress={() => {

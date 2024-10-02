@@ -12,10 +12,12 @@ import MySwicthText from '../../../../common/base/MySwicthText';
 import LineChartKit from '../../../../common/components/chart/LineChartKit';
 import PrimaryFooter from '../../../../common/components/footer/PrimaryFooter';
 import InputLabel from '../../../../common/components/input/InputLabel';
+import { showNoti } from '../../../../common/components/notify';
 import SelectLabel from '../../../../common/components/select/SelectLabel';
 import Card from '../../../../common/components/view/Card';
 import Grid from '../../../../common/components/view/Grid';
 import Item from '../../../../common/components/view/Item';
+import { useNavigation } from '../../../../hooks/useNavigation';
 import useThemeContext from '../../../../hooks/useThemeContext';
 import {useNavigation} from '../../../../hooks/useNavigation';
 import {showNoti} from '../../../../common/components/notify';
@@ -74,6 +76,7 @@ const AlertDetail = () => {
     <>
       <MyScrollView>
         <View style={styles.container}>
+          <Card tiltle="Component: Elkor WattsOn Mk. II">
           <Card tiltle="Component: Elkor WattsOn Mk. II">
             <View style={styles.infoContainer}>
               <Item lable="Opened" value="06/20/2024 10:00 AM" />

@@ -31,6 +31,7 @@ const ChildItem = ({item}: any) => {
             onPress={() => setExpanded(!expanded)}
           />
           <MyTouchableOpacity
+            onPress={() => setExpanded(!expanded)}
             touchableOpacityStyle={{
               ...styles.arrowIcon,
               right: expanded ? 13 : 16,
@@ -52,6 +53,7 @@ const ChildItem = ({item}: any) => {
                 />
 
                 <MyTouchableOpacity
+                  onPress={() => setExpandedChildren(!expandedChildren)}
                   touchableOpacityStyle={{
                     ...styles.arrowIcon,
                     right: expandedChildren ? 13 : 16,
@@ -137,6 +139,7 @@ const DrawerItemTree = () => {
           iconName="bag"
         />
         <MyTouchableOpacity
+          onPress={() => setExpanded(!expanded)}
           touchableOpacityStyle={{
             ...styles.arrowIcon,
             right: expanded ? 13 : 16,

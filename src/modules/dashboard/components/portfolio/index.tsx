@@ -6,7 +6,7 @@
 
 import {NavigationProp, useNavigation} from '@react-navigation/native';
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, TextStyle, View} from 'react-native';
 import MyTouchableOpacity from '../../../../common/base/MyTouchableOpacity';
 import IconImage from '../../../../common/components/icons/IconImage';
 import useThemeContext from '../../../../hooks/useThemeContext';
@@ -102,10 +102,13 @@ const Portfolio = () => {
     fontWeight: theme.font.weight.md,
   };
 
-  const textValueStyle = {
+  const textValueStyle: TextStyle = {
     color: theme.palette.text.yellow,
     fontSize: theme.font.size.s,
     fontWeight: theme.font.weight.md,
+  };
+
+  const borderColor = {
     borderBottomColor: theme.palette.text.yellow,
   };
 
@@ -135,19 +138,23 @@ const Portfolio = () => {
           ]}>
           <View style={[styles.contentItem, borderSites]}>
             <Text style={textOverViewStyles}>Sites</Text>
-            <Text style={[styles.textValue, textValueStyle]}>256</Text>
+            <View style={[styles.textValue, borderColor]}>
+              <Text style={textValueStyle}>256</Text>
+            </View>
           </View>
           <View style={[styles.contentItem, borderRight]}>
             <Text style={textOverViewStyles}>Rated DC Capacity</Text>
-            <Text style={[styles.textValue, textValueStyle]}>
-              154,657.66 kW
-            </Text>
+            <View style={[styles.textValue, borderColor]}>
+              <Text style={textValueStyle}>
+                154,657.66 kW
+              </Text>
+            </View>
           </View>
           <View style={[styles.contentItem, styles.flex4]}>
             <Text style={textOverViewStyles}>Generation Now</Text>
-            <Text style={[styles.textValue, textValueStyle]}>
-              1,038.9 kW-AC
-            </Text>
+            <View style={[styles.textValue, borderColor]}>
+              <Text style={textValueStyle}>1,038.9 kW-AC</Text>
+            </View>
           </View>
         </View>
       </View>

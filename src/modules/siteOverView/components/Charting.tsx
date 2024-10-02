@@ -15,11 +15,11 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import MyDateRangePicker from '../../../common/base/MyDateRangePicker';
 import MySelect from '../../../common/base/MySelect';
 // import BarChartKit from '../../../common/components/chart/BarChartKit';
 import SvgIcon from '../../../common/components/SvgIcon';
 import H3 from '../../../common/components/text/H3';
+import DateRangePicker from '../../../common/components/times/DateRangePicker';
 import TimeAxis from '../../../common/components/times/TimeAxis';
 import useThemeContext from '../../../hooks/useThemeContext';
 // import RCTBarChart from '../../../nativeModules/RCTBarChart';
@@ -120,6 +120,11 @@ const Charting = () => {
     fontSize: theme.font.size.s,
   };
 
+  const onSelected = (vl: number) => {
+    setselected(vl)
+    
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.filterContainer}>
@@ -138,7 +143,7 @@ const Charting = () => {
             <SvgIcon iconName="download" />
           </TouchableOpacity>
           <View style={styles.flex}>
-            <MySelect containerStyle={styles.selectContainer} />
+            <MySelect value={selected} containerStyle={styles.selectContainer} options={options} onChange={onSelected}/>
           </View>
         </View>
       </View>
@@ -167,7 +172,7 @@ const Charting = () => {
       </View>
       <View style={styles.date}>
         <View style={styles.datePicker}>
-          <MyDateRangePicker />
+          <DateRangePicker />
         </View>
       </View>
     </View>
