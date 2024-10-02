@@ -1,17 +1,14 @@
 /* eslint-disable no-magic-numbers */
-import React, {useMemo, useRef, useState} from 'react';
+import React, { useRef, useState } from 'react';
 import {
   Animated,
   Dimensions,
   PanResponder,
   StyleSheet,
-  Text,
   TextInput,
-  TextStyle,
   TouchableOpacity,
-  View,
+  View
 } from 'react-native';
-import MyScrollView from '../../common/base/MyScrollView';
 import MyTouchableOpacity from '../../common/base/MyTouchableOpacity';
 import IconImage from '../../common/components/icons/IconImage';
 import useThemeContext from '../../hooks/useThemeContext';
@@ -23,13 +20,13 @@ const {width, height} = Dimensions.get('window');
 const Errors = () => {
   const theme = useThemeContext();
 
-  const widthAnim = useRef(new Animated.Value(80)).current;
+  const widthAnim = useRef(new Animated.Value(100)).current;
 
   const [openModal, setOpenModal] = useState(false);
 
   const handleFocus = () => {
     Animated.timing(widthAnim, {
-      toValue: 200,
+      toValue: 280,
       duration: 3000,
       useNativeDriver: false,
     }).start();
@@ -37,7 +34,7 @@ const Errors = () => {
 
   const handleBlur = () => {
     Animated.timing(widthAnim, {
-      toValue: 80,
+      toValue: 100,
       duration: 3000,
       useNativeDriver: false,
     }).start();
@@ -64,33 +61,32 @@ const Errors = () => {
     }),
   ).current;
 
-  const textStyle: TextStyle = useMemo(
-    () => ({
-      color: theme.palette.text.primary,
-      fontSize: theme.font.size.xs,
-      fontWeight: '400',
-    }),
-    [],
-  );
+  // const textStyle: TextStyle = useMemo(
+  //   () => ({
+  //     color: theme.palette.text.primary,
+  //     fontSize: theme.font.size.xs,
+  //     fontWeight: '400',
+  //   }),
+  //   [],
+  // );
 
   const onCancel = () => {
     setOpenModal(false);
   };
 
   return (
-    <MyScrollView>
+    <>
       <CreateError open={openModal} mode="create" onCancel={onCancel} />
       <View style={styles.container}>
         <View style={[styles.flexRow, styles.fillter]}>
           <View style={[styles.flexRow, styles.gap4]}>
             <MyTouchableOpacity
               touchableOpacityStyle={{
-                ...styles.btnFillter,
+                ...styles.btn,
                 ...styles.flexRow,
                 borderColor: theme.palette.borderColor.base,
               }}>
               <IconImage iconName="filter" size={16} />
-              <Text style={textStyle}>Fillter</Text>
             </MyTouchableOpacity>
             <Animated.View
               style={[
@@ -110,11 +106,10 @@ const Errors = () => {
           <MyTouchableOpacity
             touchableOpacityStyle={{
               ...styles.flexRow,
-              ...styles.btnFillter,
+              ...styles.btn,
               borderColor: theme.palette.borderColor.base,
             }}>
             <IconImage iconName="upload" size={14} />
-            <Text style={textStyle}>Export</Text>
           </MyTouchableOpacity>
         </View>
         <Animated.View
@@ -136,7 +131,7 @@ const Errors = () => {
           <ErrorItem />
         </View>
       </View>
-    </MyScrollView>
+    </>
   );
 };
 
@@ -168,40 +163,51 @@ const styles = StyleSheet.create({
   },
   fillter: {
     justifyContent: 'space-between',
+    backgroundColor: '#fff', 
+    paddingHorizontal: 16,
+    paddingVertical: 8
   },
-  btnFillter: {
+  btn: {
     gap: 4,
     borderWidth: 1,
-    borderRadius: 20,
-    paddingVertical: 4,
-    paddingHorizontal: 8,
+    borderRadius: 8,
+    width: 32, 
+    height:32,
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center', 
+    backgroundColor: '#fff'
   },
   content: {
     marginTop: 16,
+    paddingHorizontal: 16
   },
   searchIcon: {
-    height: 24,
+    height: 32,
     width: 30,
-    borderTopLeftRadius: 24,
+    borderTopLeftRadius: 6,
     // borderTopRightRadius: 8,
-    borderBottomLeftRadius: 24,
+    borderBottomLeftRadius: 6,
     // borderBottomRightRadius: 8,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
   },
   searchContainer: {
-    borderRadius: 26,
+    borderRadius: 8,
     borderWidth: 1,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     gap: 4,
+    backgroundColor: '#fff'
   },
   input: {
     // minWidth: 48,
     height: 24,
     fontSize: 12,
-    width: 'auto'
+    width: 'auto', 
+    backgroundColor: '#fff'
   },
 });
