@@ -5,47 +5,22 @@
  *
  *********************************************************/
 
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {
-  Dimensions,
   StyleSheet,
   Switch,
   Text,
   TextStyle,
   TouchableOpacity,
-  View,
+  View
 } from 'react-native';
-import MySelect from '../../../common/base/MySelect';
-// import BarChartKit from '../../../common/components/chart/BarChartKit';
 import SvgIcon from '../../../common/components/SvgIcon';
 import H3 from '../../../common/components/text/H3';
 import DateRangePicker from '../../../common/components/times/DateRangePicker';
 import TimeAxis from '../../../common/components/times/TimeAxis';
 import useThemeContext from '../../../hooks/useThemeContext';
-// import RCTBarChart from '../../../nativeModules/RCTBarChart';
-// import RCTMosaicChart from '../../../nativeModules/RCTMosaicChart';
-// import RCTGroupedBarChart from '../../../nativeModules/RCTGroupedBarChart';
-import RCTPieChart from '../../../nativeModules/RCTPieChart';
-
-const {width} = Dimensions.get('window');
-
-const data = [
-  {
-    label: 'Group 1',
-    value: 30,
-    color: '#FF0000',
-  },
-  {
-    label: 'Group 2',
-    value: 20,
-    color: '#00FF00',
-  },
-  {
-    label: 'Group 3',
-    value: 10,
-    color: '#0000FF',
-  },
-];
+import MySelect from '../../../common/base/MySelect';
+import BarChartKit from '../../../common/components/chart/BarChartKit';
 
 const Charting = () => {
   const theme = useThemeContext();
@@ -120,10 +95,10 @@ const Charting = () => {
     fontSize: theme.font.size.s,
   };
 
-  const onSelected = (vl: number) => {
-    setselected(vl)
+  // const onSelected = (vl: number) => {
+  //   setselected(vl)
     
-  }
+  // }
 
   return (
     <View style={styles.container}>
@@ -143,7 +118,25 @@ const Charting = () => {
             <SvgIcon iconName="download" />
           </TouchableOpacity>
           <View style={styles.flex}>
-            <MySelect value={selected} containerStyle={styles.selectContainer} options={options} onChange={onSelected}/>
+            <MySelect containerStyle={styles.selectContainer} value={'3day'}
+          options={[
+            {
+              label: '3 Days',
+              value: '3day',
+            },
+            {
+              label: 'Week',
+              value: 'week',
+            },
+            {
+              label: 'Month',
+              value: 'month',
+            },
+            {
+              label: 'Year',
+              value: 'year',
+            },
+          ]}/>
           </View>
         </View>
       </View>
@@ -154,16 +147,7 @@ const Charting = () => {
           Last updated on June 30, 2024 4:02 AM
         </Text>
         <View style={styles.chartContainer}>
-          {/* <ChartBar /> */}
-
-          {/* <BarChartKit /> */}
-          {/* <RCTBarChart style={styles.chart} data={{values: data, labels}} /> */}
-          {/* <RCTMosaicChart
-            style={styles.chart}
-            data={data}
-            title="Mosaic Chart Example"
-          /> */}
-          <RCTPieChart style={styles.chart} data={data} />
+          <BarChartKit />
         </View>
       </View>
       <View style={styles.description}>
@@ -260,9 +244,5 @@ const styles = StyleSheet.create({
     width: 100,
     height: 30,
     borderRadius: 30,
-  },
-  chart: {
-    width: width * 0.9,
-    height: 300,
-  },
+  }
 });

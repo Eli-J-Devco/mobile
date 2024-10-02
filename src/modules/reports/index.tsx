@@ -1,9 +1,6 @@
 /* eslint-disable no-magic-numbers */
-import {useNavigation} from '@react-navigation/native';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import React, {useEffect, useState} from 'react';
-import {Dimensions, StyleSheet, View, ViewStyle} from 'react-native';
-import MyDateRangePicker from '../../common/base/MyDateRangePicker';
+import React from 'react';
+import { StyleSheet, View, ViewStyle } from 'react-native';
 import MySelect from '../../common/base/MySelect';
 import ButtonIcon from '../../common/components/button/ButtonIcon';
 import IconButton from '../../common/components/button/IconButton';
@@ -12,11 +9,12 @@ import H3 from '../../common/components/text/H3';
 import DateRangePicker from '../../common/components/times/DateRangePicker';
 import TimeAxis from '../../common/components/times/TimeAxis';
 import PrimaryCardItem from '../../common/components/view/PrimaryCardItem';
-import {reportsRouteNames} from '../../navigations/router-name';
+import { reportsRouteNames } from '../../navigations/router-name';
+import BarChartKit from '../../common/components/chart/BarChartKit';
+import { useNavigation } from '../../hooks/useNavigation';
 
 const Reports = () => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const navigation = useNavigation<NativeStackNavigationProp<any>>();
+  const navigation = useNavigation();
 
   // const [data, setData] = useState<Value[]>([
   //   {x: 'Category A', y: 10},
@@ -104,7 +102,7 @@ const Reports = () => {
       <View style={styles.timeAxis}>
         <TimeAxis />
       </View>
-      {/* <BarChartKit /> */}
+      <BarChartKit />
       {/* <RCTMutiLineChart style={styles.chart} data={data} /> */}
       {/* <RCTBarChart style={styles.chart} data={{values: data, labels}} /> */}
       {/* <RCTMosaicChart
@@ -200,9 +198,5 @@ const styles = StyleSheet.create({
   },
   touchableOpacityStyles: {
     backgroundColor: 'transparent',
-  },
-  chart: {
-    width: width * 0.9,
-    height: 300,
   },
 });
