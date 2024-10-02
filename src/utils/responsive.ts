@@ -2,7 +2,7 @@
 import {Dimensions} from 'react-native';
 import {SCREEN_HEGHT} from '../constants/view/screen-size';
 
-const {height} = Dimensions.get('window');
+const {height, width} = Dimensions.get('window');
 
 type ResultType = {
   top: number;
@@ -20,3 +20,7 @@ export const flexV = (top: number, bottom: number): ResultType => {
 
   return {top, bottom};
 };
+
+export const vw = (x: number) => {
+  return x / 100 * width 
+}
