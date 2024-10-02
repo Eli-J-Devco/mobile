@@ -1,5 +1,8 @@
 package com.nwplatform
 
+import com.nwplatform.modules.DatePackage
+import com.nwplatform.modules.ChartPackage
+
 import android.app.Application
 import com.facebook.react.PackageList
 import com.facebook.react.ReactApplication
@@ -19,6 +22,8 @@ class MainApplication : Application(), ReactApplication {
             PackageList(this).packages.apply {
               // Packages that cannot be autolinked yet can be added manually here, for example:
               // add(MyReactNativePackage())
+              add(DatePackage())
+              add(ChartPackage())
             }
 
         override fun getJSMainModuleName(): String = "index"
