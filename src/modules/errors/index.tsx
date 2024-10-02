@@ -1,5 +1,5 @@
 /* eslint-disable no-magic-numbers */
-import React, { useMemo, useRef, useState } from 'react';
+import React, {useMemo, useRef, useState} from 'react';
 import {
   Animated,
   Dimensions,
@@ -23,7 +23,25 @@ const {width, height} = Dimensions.get('window');
 const Errors = () => {
   const theme = useThemeContext();
 
+  const widthAnim = useRef(new Animated.Value(80)).current;
+
   const [openModal, setOpenModal] = useState(false);
+
+  const handleFocus = () => {
+    Animated.timing(widthAnim, {
+      toValue: 200,
+      duration: 3000,
+      useNativeDriver: false,
+    }).start();
+  };
+
+  const handleBlur = () => {
+    Animated.timing(widthAnim, {
+      toValue: 80,
+      duration: 3000,
+      useNativeDriver: false,
+    }).start();
+  };
 
   const pan = useRef(
     new Animated.ValueXY({
@@ -74,7 +92,11 @@ const Errors = () => {
               <IconImage iconName="filter" size={16} />
               <Text style={textStyle}>Fillter</Text>
             </MyTouchableOpacity>
-            <MyTouchableOpacity touchableOpacityStyle={{...styles.searchContainer, borderColor: theme.palette.borderColor.base}}>
+            <Animated.View
+              style={[
+                styles.searchContainer,
+                {borderColor: theme.palette.borderColor.base, width: widthAnim},
+              ]}>
               <View
                 style={[
                   styles.searchIcon,
@@ -82,8 +104,8 @@ const Errors = () => {
                 ]}>
                 <IconImage iconName="searchWhite" size={20} />
               </View>
-              <TextInput style={styles.input} placeholder='Search...' />
-            </MyTouchableOpacity>
+              <TextInput style={styles.input} placeholder="Search..." onFocus={handleFocus} onBlur={handleBlur} />
+            </Animated.View>
           </View>
           <MyTouchableOpacity
             touchableOpacityStyle={{
@@ -141,8 +163,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  gap4:{
-    gap: 4
+  gap4: {
+    gap: 4,
   },
   fillter: {
     justifyContent: 'space-between',
@@ -159,14 +181,14 @@ const styles = StyleSheet.create({
   },
   searchIcon: {
     height: 24,
-    width: 36,
+    width: 30,
     borderTopLeftRadius: 24,
     // borderTopRightRadius: 8,
     borderBottomLeftRadius: 24,
     // borderBottomRightRadius: 8,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   searchContainer: {
     borderRadius: 26,
@@ -174,12 +196,12 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 4, 
-    width: 'auto'
-  }, 
+    gap: 4,
+  },
   input: {
-    width: 48, 
-    height: 24, 
-    fontSize: 12
-  }
+    // minWidth: 48,
+    height: 24,
+    fontSize: 12,
+    width: 'auto'
+  },
 });
