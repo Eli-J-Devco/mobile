@@ -1,37 +1,69 @@
-/* eslint-disable no-magic-numbers */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react-native/no-inline-styles */
 /********************************************************
  * Copyright 2024 NEXT WAVE ENERGY MONITORING INC.
  * All rights reserved.
  *
  *********************************************************/
+
 import React, {useRef, useState} from 'react';
 import {
   Animated,
   Dimensions,
   ImageBackground,
+  Platform,
   RefreshControl,
   ScrollView,
   StatusBar,
   StyleSheet,
   View,
 } from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {images} from '../assets';
+import {SCROLL_INPUT} from '../constants/animated/inputRange';
+import {MULTIPLIER, SCROLL_OUTPUT} from '../constants/animated/outputRange';
 import useAppContext from '../hooks/useAppContext';
+import {useNavigation} from '../hooks/useNavigation';
 import HeaderMainLayout from './components/HeaderMainLayout';
 import Menu from './components/Menu';
-import {useNavigation} from '../hooks/useNavigation';
 
 const {width} = Dimensions.get('window');
 
+const UPPER_HEADER_ANDROID_PADDING_TOP = 24;
+  const UPPER_HEADER_IOS_PADDING_TOP = 0;
+
 const UPPER_HEADER_HEIGHT = 30;
-const UPPER_HEADER_PADDING_TOP = 8;
+const UPPER_HEADER_PADDING_TOP =
+  Platform.OS === 'android'
+    ? UPPER_HEADER_ANDROID_PADDING_TOP
+    : UPPER_HEADER_IOS_PADDING_TOP;
 const LOWER_HEADER_HEIGHT = 80;
 const ACTION_CONTAINER_HEIGHT = 90;
 const ACTION_CONTAINER_PADDING_HORIZONTAL = 16;
 const ACTION_CONTAINER_MAGIN_TOP = 12;
+const COMPENSATION_FACTOR = {
+  6: 6,
+  16: 16,
+  32: 32,
+};
+
+const HEIGHT_OUTPUT =
+  Platform.OS === 'android'
+    ? LOWER_HEADER_HEIGHT * MULTIPLIER.OnePointFour + UPPER_HEADER_ANDROID_PADDING_TOP
+    : LOWER_HEADER_HEIGHT * MULTIPLIER.OnePointFour + COMPENSATION_FACTOR[16];
+const PADDING_OUTPUT =
+  Platform.OS === 'android'
+    ? LOWER_HEADER_HEIGHT / MULTIPLIER.TowAndAhrlf + UPPER_HEADER_ANDROID_PADDING_TOP
+    : LOWER_HEADER_HEIGHT / MULTIPLIER.TowAndAhrlf + COMPENSATION_FACTOR[16];
+const HEIGHT_BEHIND =
+  Platform.OS === 'android'
+    ? UPPER_HEADER_HEIGHT +
+      ACTION_CONTAINER_HEIGHT +
+      ACTION_CONTAINER_MAGIN_TOP
+    : UPPER_HEADER_HEIGHT +
+      ACTION_CONTAINER_HEIGHT +
+      ACTION_CONTAINER_MAGIN_TOP +
+      UPPER_HEADER_PADDING_TOP +
+      COMPENSATION_FACTOR[16];
 
 interface Props {
   backgroundColor?: string;
@@ -40,6 +72,7 @@ interface Props {
 
 const MainLayout = ({backgroundColor, children}: Props) => {
   // const theme = useThemeContext();
+  const insets = useSafeAreaInsets();
 
   const {isAuth} = useAppContext();
   const navigation = useNavigation();
@@ -55,8 +88,11 @@ const MainLayout = ({backgroundColor, children}: Props) => {
 
   const lowerHeaderAnimation = {
     height: animatedValue.interpolate({
-      inputRange: [0, 100],
-      outputRange: [LOWER_HEADER_HEIGHT / 1.5, LOWER_HEADER_HEIGHT / 1.5 - 16],
+      inputRange: [0, SCROLL_INPUT[100]],
+      outputRange: [
+        LOWER_HEADER_HEIGHT / MULTIPLIER.OneAndAhalf,
+        LOWER_HEADER_HEIGHT / MULTIPLIER.OneAndAhalf - COMPENSATION_FACTOR[16],
+      ],
       extrapolate: 'clamp',
     }),
   };
@@ -65,7 +101,12 @@ const MainLayout = ({backgroundColor, children}: Props) => {
     transform: [
       {
         translateY: animatedValue.interpolate({
-          inputRange: [0, 50, 70, 100],
+          inputRange: [
+            0,
+            SCROLL_INPUT[50],
+            SCROLL_INPUT[70],
+            SCROLL_INPUT[100],
+          ],
           outputRange: [
             0,
             -UPPER_HEADER_HEIGHT + ACTION_CONTAINER_MAGIN_TOP,
@@ -76,7 +117,7 @@ const MainLayout = ({backgroundColor, children}: Props) => {
             ),
             -(
               UPPER_HEADER_HEIGHT +
-              (StatusBar.currentHeight ? StatusBar.currentHeight : 0) +
+              insets.top +
               ACTION_CONTAINER_MAGIN_TOP +
               UPPER_HEADER_PADDING_TOP
             ),
@@ -93,37 +134,37 @@ const MainLayout = ({backgroundColor, children}: Props) => {
       // },
     ],
     height: animatedValue.interpolate({
-      inputRange: [0, 100],
-      outputRange: [LOWER_HEADER_HEIGHT, LOWER_HEADER_HEIGHT * 1.4],
+      inputRange: [0, SCROLL_INPUT[100]],
+      outputRange: [LOWER_HEADER_HEIGHT, HEIGHT_OUTPUT],
       extrapolate: 'clamp',
     }),
     width: animatedValue.interpolate({
-      inputRange: [0, 50, 80, 100],
+      inputRange: [0, SCROLL_INPUT[50], SCROLL_INPUT[80], SCROLL_INPUT[100]],
       outputRange: [
-        width - ACTION_CONTAINER_PADDING_HORIZONTAL * 2,
-        width - ACTION_CONTAINER_PADDING_HORIZONTAL - 6,
+        width - ACTION_CONTAINER_PADDING_HORIZONTAL * MULTIPLIER.Two,
+        width - ACTION_CONTAINER_PADDING_HORIZONTAL - COMPENSATION_FACTOR[6],
         width - ACTION_CONTAINER_PADDING_HORIZONTAL,
         width,
       ],
       extrapolate: 'clamp',
     }),
     left: animatedValue.interpolate({
-      inputRange: [0, 80, 100],
+      inputRange: [0, SCROLL_INPUT[80], SCROLL_INPUT[100]],
       outputRange: [
         ACTION_CONTAINER_PADDING_HORIZONTAL,
-        ACTION_CONTAINER_PADDING_HORIZONTAL / 2,
+        ACTION_CONTAINER_PADDING_HORIZONTAL / MULTIPLIER.Two,
         0,
       ],
       extrapolate: 'clamp',
     }),
     paddingTop: animatedValue.interpolate({
-      inputRange: [0, 50, 100],
-      outputRange: [0, LOWER_HEADER_HEIGHT / 3, LOWER_HEADER_HEIGHT / 2.5],
+      inputRange: [0, SCROLL_INPUT[50], SCROLL_INPUT[100]],
+      outputRange: [0, LOWER_HEADER_HEIGHT / MULTIPLIER.Three, PADDING_OUTPUT],
       extrapolate: 'clamp',
     }),
     borderRadius: animatedValue.interpolate({
-      inputRange: [0, 100],
-      outputRange: [8, 0],
+      inputRange: [0, SCROLL_INPUT[100]],
+      outputRange: [SCROLL_OUTPUT[8], 0],
       extrapolate: 'clamp',
     }),
   };
@@ -136,7 +177,7 @@ const MainLayout = ({backgroundColor, children}: Props) => {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <StatusBar
         translucent={true}
         barStyle="dark-content"
@@ -147,7 +188,7 @@ const MainLayout = ({backgroundColor, children}: Props) => {
         style={[
           styles.header,
           {
-            paddingTop: StatusBar.currentHeight,
+            paddingTop: insets.top,
           },
         ]}>
         <View style={styles.upperHeader}>
@@ -170,7 +211,8 @@ const MainLayout = ({backgroundColor, children}: Props) => {
                 top: ACTION_CONTAINER_MAGIN_TOP,
                 zIndex: 10,
                 alignItems: 'center',
-                paddingHorizontal: ACTION_CONTAINER_PADDING_HORIZONTAL / 2,
+                paddingHorizontal:
+                  ACTION_CONTAINER_PADDING_HORIZONTAL / MULTIPLIER.Two,
               },
               actionAnimation,
             ]}>
@@ -231,37 +273,27 @@ const MainLayout = ({backgroundColor, children}: Props) => {
         refreshControl={
           <RefreshControl
             progressViewOffset={
-              StatusBar.currentHeight
+              Platform.OS === 'android'
                 ? ACTION_CONTAINER_HEIGHT +
                   ACTION_CONTAINER_MAGIN_TOP +
                   LOWER_HEADER_HEIGHT -
-                  StatusBar.currentHeight
-                : ACTION_CONTAINER_HEIGHT +
-                  ACTION_CONTAINER_MAGIN_TOP +
-                  LOWER_HEADER_HEIGHT
+                  insets.top
+                : COMPENSATION_FACTOR[32]
             }
             refreshing={refreshing}
             onRefresh={() => {}}
+            tintColor="red"
           />
         }>
         <View
           style={{
-            height:
-              UPPER_HEADER_HEIGHT +
-              ACTION_CONTAINER_HEIGHT +
-              ACTION_CONTAINER_MAGIN_TOP +
-              UPPER_HEADER_PADDING_TOP,
+            height: HEIGHT_BEHIND,
             backgroundColor: backgroundColor ? backgroundColor : '#F5F5F5',
           }}
         />
 
         <View
           style={[
-            {
-              // paddingTop:
-              //   ACTION_CONTAINER_HEIGHT / 2 + ACTION_CONTAINER_MAGIN_TOP + 16,
-              // paddingBottom: 16,
-            },
             styles.scrollViewContainer,
             {
               backgroundColor: backgroundColor ? backgroundColor : '#F5F5F5',
@@ -270,7 +302,7 @@ const MainLayout = ({backgroundColor, children}: Props) => {
           {children}
         </View>
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 };
 
@@ -279,6 +311,7 @@ export default MainLayout;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingTop: ACTION_CONTAINER_HEIGHT / MULTIPLIER.Two,
   },
   header: {
     position: 'absolute',
@@ -295,7 +328,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 8,
     paddingVertical: 8,
-    marginTop: UPPER_HEADER_PADDING_TOP,
+    // marginTop: UPPER_HEADER_PADDING_TOP,
     gap: 8,
   },
   lowerHeader: {

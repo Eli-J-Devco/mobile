@@ -45,17 +45,20 @@ const PortfolioItem = ({item}: PortfolioItemProps) => {
             backgroundColor: theme.palette.background.secondary,
           },
         ]}>
-        <Text
+        <View
           style={[
             styles.percentageText,
-            {
-              color: theme.palette.text.white,
-              backgroundColor: theme.palette.background.dark,
-              fontSize: theme.font.size.xs,
-            },
+            {backgroundColor: theme.palette.background.dark},
           ]}>
-          {item.percentage}%
-        </Text>
+          <Text
+            style={{
+              color: theme.palette.text.white,
+              fontSize: theme.font.size.xs,
+            }}>
+            {item.percentage}%
+          </Text>
+        </View>
+
         <Text style={lableStyle}>A/E</Text>
       </View>
       <View style={styles.content}>

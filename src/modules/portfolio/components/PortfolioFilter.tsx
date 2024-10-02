@@ -22,7 +22,7 @@ import useThemeContext from '../../../hooks/useThemeContext';
 import PrimaryFooter from '../../../common/components/footer/PrimaryFooter';
 import {showNoti} from '../../../common/components/notify';
 
-const options: ISelectOption[] = [
+const options: Array<ISelectOption<string>> = [
   {
     label: 'Column 1',
     value: '1',

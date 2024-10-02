@@ -4,21 +4,20 @@
  *
  *********************************************************/
 
-import {useNavigation} from '@react-navigation/native';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React from 'react';
 import {
   ImageBackground,
-  SafeAreaView,
   StatusBar,
   StyleSheet,
   Text,
   TextStyle,
   TouchableOpacity,
   View,
-  ViewStyle,
+  ViewStyle
 } from 'react-native';
-import {images} from '../assets';
+import { images } from '../assets';
 import IconImage from '../common/components/icons/IconImage';
 import useThemeContext from '../hooks/useThemeContext';
 interface Props {
@@ -30,7 +29,7 @@ interface Props {
 
 const PrimaryLayoutDetailItem = ({
   title,
-  background,
+  background = '#F5F5F5',
   contentStyle,
   children,
 }: Props) => {
@@ -46,7 +45,7 @@ const PrimaryLayoutDetailItem = ({
   };
 
   return (
-    <SafeAreaView style={[styles.container, contentStyle]}>
+    <View style={[styles.container, contentStyle]}>
       <StatusBar
         translucent={true}
         barStyle="dark-content"
@@ -70,14 +69,13 @@ const PrimaryLayoutDetailItem = ({
       <View
         style={[
           styles.content,
-          // eslint-disable-next-line react-native/no-inline-styles
           {
-            backgroundColor: background ? background : '#F5F5F5',
+            backgroundColor: background
           },
         ]}>
         {children}
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 

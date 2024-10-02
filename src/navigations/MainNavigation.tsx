@@ -13,6 +13,8 @@ import {
   NAVIGATION_CARD_SCALE,
   NAVIGATION_OVERLAY_OPACITY,
 } from '../constants/view/display';
+import SupportScreen from '../screens/support';
+import ErrorsScreen from '../screens/errors';
 
 const Stack = createStackNavigator();
 
@@ -66,6 +68,16 @@ const MainNavigation = () => {
       <Stack.Screen
         name={alertRouteNames.AlertDetail}
         component={AlertDetailSreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Support"
+        component={SupportScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Errors"
+        component={ErrorsScreen}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

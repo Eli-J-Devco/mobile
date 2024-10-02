@@ -11,6 +11,7 @@ import React, {useEffect} from 'react';
 import {Image, StyleSheet, Text, TextStyle, View} from 'react-native';
 import {images} from '../../assets';
 import useThemeContext from '../../hooks/useThemeContext';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 Logger.setLogCallback(log => {
   const {message} = log;
@@ -30,6 +31,7 @@ MapboxGL.UserTrackingMode.Follow;
 
 const Map = () => {
   const theme = useThemeContext();
+  const insets = useSafeAreaInsets()
 
   const textNameStyle: TextStyle = {
     color: theme.palette.text.primary,
@@ -134,7 +136,7 @@ const Map = () => {
           // }}
         />
       </MapboxGL.MapView>
-      <View style={styles.logoConteiner}>
+      <View style={[styles.logoConteiner, { paddingBottom: insets.bottom }]}>
         <Image source={images.logo} style={styles.logo} resizeMode="contain" />
       </View>
     </View>

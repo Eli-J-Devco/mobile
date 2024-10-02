@@ -4,9 +4,9 @@
  *
  *********************************************************/
 
-import React, {useState} from 'react';
-import {Controller, useFormContext} from 'react-hook-form';
-import {StyleSheet, Text, TextInputProps, View} from 'react-native';
+import React, { useState } from 'react';
+import { Controller, useFormContext } from 'react-hook-form';
+import { StyleSheet, Text, TextInputProps, View } from 'react-native';
 import MyTextInput from '../base/MyTextInput';
 import MyTouchableOpacity from '../base/MyTouchableOpacity';
 
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     width: '100%',
     height: 'auto',
-    position: 'relative',
+    position: 'relative'
   },
   touchableOpacityStyle: {position: 'absolute', top: '35%', right: 10},
   textColor: {
@@ -68,5 +68,5 @@ const styles = StyleSheet.create({
     height: 'auto',
     alignItems: 'flex-start',
     gap: 6,
-  },
+  }
 });

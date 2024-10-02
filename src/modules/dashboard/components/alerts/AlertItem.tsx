@@ -4,7 +4,6 @@
  *
  *********************************************************/
 
-import {NavigationProp, useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {StyleSheet, Text, TextStyle, View} from 'react-native';
 import MyTouchableOpacity from '../../../../common/base/MyTouchableOpacity';
@@ -12,10 +11,10 @@ import IconImage from '../../../../common/components/icons/IconImage';
 import useThemeContext from '../../../../hooks/useThemeContext';
 import {alertRouteNames} from '../../../../navigations/router-name';
 import TextBetweenView from '../../../../common/components/view/TextBetweenView';
+import { useNavigation } from '../../../../hooks/useNavigation';
 
 const AlertItem = () => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const navigation = useNavigation<NavigationProp<any>>();
+  const navigation = useNavigation();
   const theme = useThemeContext();
 
   const titleStyle: TextStyle = {

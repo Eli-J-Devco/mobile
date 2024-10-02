@@ -15,6 +15,10 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		7699B88040F8A987B510C191 /* libPods-NWPlatform-NWPlatformTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-NWPlatform-NWPlatformTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		BB1E425E2C9AB76000C11714 /* LineChartModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1E425D2C9AB76000C11714 /* LineChartModule.swift */; };
+		BBB5977D2C9963E80022F9E6 /* ChartManagerBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB5977C2C9963E80022F9E6 /* ChartManagerBridge.m */; };
+		BBDCDE1F2C995CF600B82779 /* BarChartModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDCDE1E2C995CF600B82779 /* BarChartModule.swift */; };
+		BBE2C4662CA64CA6006945E4 /* PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE2C4652CA64CA6006945E4 /* PhotoPicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,9 +47,14 @@
 		5709B34CF0A7D63546082F79 /* Pods-NWPlatform.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NWPlatform.release.xcconfig"; path = "Target Support Files/Pods-NWPlatform/Pods-NWPlatform.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-NWPlatform-NWPlatformTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NWPlatform-NWPlatformTests.debug.xcconfig"; path = "Target Support Files/Pods-NWPlatform-NWPlatformTests/Pods-NWPlatform-NWPlatformTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-NWPlatform.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NWPlatform.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		7E2AEF37B24B4BCE3330316C /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = NWPlatform/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		7E2AEF37B24B4BCE3330316C /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = NWPlatform/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = NWPlatform/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-NWPlatform-NWPlatformTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NWPlatform-NWPlatformTests.release.xcconfig"; path = "Target Support Files/Pods-NWPlatform-NWPlatformTests/Pods-NWPlatform-NWPlatformTests.release.xcconfig"; sourceTree = "<group>"; };
+		BB1E425D2C9AB76000C11714 /* LineChartModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartModule.swift; sourceTree = "<group>"; };
+		BBB5977C2C9963E80022F9E6 /* ChartManagerBridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChartManagerBridge.m; sourceTree = "<group>"; };
+		BBDCDE1D2C995CF600B82779 /* NWPlatform-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NWPlatform-Bridging-Header.h"; sourceTree = "<group>"; };
+		BBDCDE1E2C995CF600B82779 /* BarChartModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartModule.swift; sourceTree = "<group>"; };
+		BBE2C4652CA64CA6006945E4 /* PhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPicker.swift; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -97,6 +106,9 @@
 				13B07FB71A68108700A75B9A /* main.m */,
 				13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */,
 				7E2AEF37B24B4BCE3330316C /* PrivacyInfo.xcprivacy */,
+				BBDCDE1E2C995CF600B82779 /* BarChartModule.swift */,
+				BB1E425D2C9AB76000C11714 /* LineChartModule.swift */,
+				BBDCDE1D2C995CF600B82779 /* NWPlatform-Bridging-Header.h */,
 			);
 			name = NWPlatform;
 			sourceTree = "<group>";
@@ -121,6 +133,8 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				BBE2C4652CA64CA6006945E4 /* PhotoPicker.swift */,
+				BBB5977C2C9963E80022F9E6 /* ChartManagerBridge.m */,
 				13B07FAE1A68108700A75B9A /* NWPlatform */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* NWPlatformTests */,
@@ -211,7 +225,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						LastSwiftMigration = 1120;
+						LastSwiftMigration = 1540;
 					};
 				};
 			};
@@ -399,7 +413,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
+				BB1E425E2C9AB76000C11714 /* LineChartModule.swift in Sources */,
+				BBE2C4662CA64CA6006945E4 /* PhotoPicker.swift in Sources */,
+				BBB5977D2C9963E80022F9E6 /* ChartManagerBridge.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				BBDCDE1F2C995CF600B82779 /* BarChartModule.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -418,6 +436,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5B7EB9410499542E8C5724F5 /* Pods-NWPlatform-NWPlatformTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -445,6 +464,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 89C6BE57DB24E9ADA2F236DE /* Pods-NWPlatform-NWPlatformTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = NWPlatformTests/Info.plist;
@@ -486,6 +506,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = NWPlatform;
+				SWIFT_OBJC_BRIDGING_HEADER = "NWPlatform-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -512,6 +533,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = NWPlatform;
+				SWIFT_OBJC_BRIDGING_HEADER = "NWPlatform-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

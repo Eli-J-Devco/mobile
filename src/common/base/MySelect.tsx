@@ -5,11 +5,10 @@
  *
  *********************************************************/
 
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   FlatList,
   Modal,
-  SafeAreaView,
   StatusBar,
   StyleSheet,
   Text,
@@ -22,32 +21,30 @@ import useThemeContext from '../../hooks/useThemeContext';
 import SvgIcon from '../components/SvgIcon';
 import IconImage from '../components/icons/IconImage';
 
-export interface MySelectProps {
-  lable?: string;
-  value?: string | number;
+export interface MySelectProps<T> {
+  label?: string;
+  value?: T;
   placeholder?: string;
-  options?: ISelectOption[];
-  onChange?: (value: string | number) => void;
+  options?: Array<ISelectOption<T>>;
+  onChange?: (value: T) => void;
   containerStyle?: ViewStyle;
 }
 
-const MySelect = ({
-  lable,
+const MySelect = <T extends string | number = number>({
+  label,
   value,
   options,
   placeholder,
   onChange,
   containerStyle,
-}: MySelectProps) => {
+}: MySelectProps<T>) => {
   const theme = useThemeContext();
 
-  const [currentValue, setCurrentValue] = React.useState<
-    number | string | null
-  >(null);
+  const [currentValue, setCurrentValue] = useState<T>();
 
-  const [modalVisible, setModalVisible] = React.useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
 
-  const onChangeValue = (value: string | number) => {
+  const onChangeValue = (value: T) => {
     if (onChange) {
       setCurrentValue(value);
       onChange(value);
@@ -96,7 +93,7 @@ const MySelect = ({
         </View>
       </TouchableOpacity>
       <Modal transparent visible={modalVisible}>
-        <SafeAreaView style={styles.modal}>
+        <View style={styles.modal}>
           <StatusBar
             translucent={true}
             barStyle="dark-content"
@@ -108,7 +105,7 @@ const MySelect = ({
               {backgroundColor: theme.palette.background.primary},
             ]}>
             <View style={styles.header}>
-              <Text style={lableStyle}>{lable}</Text>
+              <Text style={lableStyle}>{label}</Text>
               <TouchableOpacity
                 style={{position: 'absolute', top: 8, right: 8}}
                 onPress={() => setModalVisible(false)}>
@@ -119,7 +116,7 @@ const MySelect = ({
               <FlatList
                 contentContainerStyle={styles.contentContainerStyle}
                 data={options}
-                renderItem={({item}: {item: ISelectOption; index: number}) => (
+                renderItem={({item}: {item: ISelectOption<T>}) => (
                   <TouchableOpacity
                     activeOpacity={0.5}
                     style={styles.option}
@@ -141,13 +138,13 @@ const MySelect = ({
                     </View>
                   </TouchableOpacity>
                 )}
-                keyExtractor={(item: ISelectOption) =>
+                keyExtractor={(item: ISelectOption<T>) =>
                   `id-select-${item.value}`
                 }
               />
             )}
           </View>
-        </SafeAreaView>
+        </View>
       </Modal>
     </>
   );

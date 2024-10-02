@@ -4,16 +4,16 @@
  *
  *********************************************************/
 
-import {NavigationProp, useNavigation} from '@react-navigation/native';
-import React, {useState} from 'react';
-import {ScrollView, StyleSheet, Text, TextStyle, View} from 'react-native';
-import MyDatePicker from '../../../../common/base/MyDatePicker';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
+import React, { useState } from 'react';
+import { ScrollView, StyleSheet, Text, TextStyle, View } from 'react-native';
 import MySelect from '../../../../common/base/MySelect';
 import ButonText from '../../../../common/components/button/ButonText';
 import PrimaryInput from '../../../../common/components/input/PrimaryInput';
 import RadioButtonGroup from '../../../../common/components/selection-controls/RadioButtonGroup';
+import DatePicker from '../../../../common/components/times/DatePicker';
 import useThemeContext from '../../../../hooks/useThemeContext';
-import {dashboardRouteNames} from '../../../../navigations/router-name';
+import { dashboardRouteNames } from '../../../../navigations/router-name';
 
 const RadioButtonData: IRadio[] = [
   {
@@ -88,73 +88,6 @@ const SearchAndFilter = () => {
           onChange={handleOnChange}
           touchableOpacityStyles={styles.butonText}
         />
-        {/* <View style={[styles.content, styles.search]}>
-          
-          <RadioButton
-            value="SiteName"
-            touchableOpacityStyles={styles.butonText}
-            textStyles={{
-              fontSize: theme.font.size.s,
-            }}>
-            Site Name
-          </RadioButton>
-          <ButonText
-            text="Street"
-            touchableOpacityStyles={styles.butonText}
-            textStyles={{
-              fontSize: theme.font.size.s,
-            }}
-          />
-          <ButonText
-            text="City"
-            touchableOpacityStyles={styles.butonText}
-            textStyles={{
-              fontSize: theme.font.size.s,
-            }}
-          />
-          <ButonText
-            text="State"
-            touchableOpacityStyles={styles.butonText}
-            textStyles={{
-              fontSize: theme.font.size.s,
-            }}
-          />
-          <ButonText
-            text="State"
-            touchableOpacityStyles={styles.butonText}
-            textStyles={{
-              fontSize: theme.font.size.s,
-            }}
-          />
-          <ButonText
-            text="Zip Code"
-            touchableOpacityStyles={styles.butonText}
-            textStyles={{
-              fontSize: theme.font.size.s,
-            }}
-          />
-          <ButonText
-            text="Device Name"
-            touchableOpacityStyles={styles.butonText}
-            textStyles={{
-              fontSize: theme.font.size.s,
-            }}
-          />
-          <ButonText
-            text="Serial Number"
-            touchableOpacityStyles={styles.butonText}
-            textStyles={{
-              fontSize: theme.font.size.s,
-            }}
-          />
-          <ButonText
-            text="Hardware ID"
-            touchableOpacityStyles={styles.butonText}
-            textStyles={{
-              fontSize: theme.font.size.s,
-            }}
-          />
-        </View> */}
       </View>
       <View
         style={[
@@ -173,14 +106,14 @@ const SearchAndFilter = () => {
             <Text style={label}>Built Since</Text>
             <View style={styles.filterContent}>
               <MySelect placeholder="- - -" containerStyle={styles.col4} />
-              <MyDatePicker placeholder="- - -" containerStyle={styles.col6} />
+              <DatePicker placeholder="- - -" containerStyle={styles.col6} />
             </View>
           </View>
           <View style={styles.filterItem}>
             <Text style={label}>Commissioning</Text>
             <View style={styles.filterContent}>
               <MySelect placeholder="- - -" containerStyle={styles.col4} />
-              <MyDatePicker placeholder="- - -" containerStyle={styles.col6} />
+              <DatePicker placeholder="- - -" containerStyle={styles.col6} />
             </View>
           </View>
           <View style={styles.filterItem}>

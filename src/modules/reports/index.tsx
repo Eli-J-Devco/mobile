@@ -1,16 +1,17 @@
-import {useNavigation} from '@react-navigation/native';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React from 'react';
-import {StyleSheet, View, ViewStyle} from 'react-native';
-import MyDateRangePicker from '../../common/base/MyDateRangePicker';
+import { StyleSheet, View, ViewStyle } from 'react-native';
 import MySelect from '../../common/base/MySelect';
 import ButtonIcon from '../../common/components/button/ButtonIcon';
 import IconButton from '../../common/components/button/IconButton';
 import BarChartKit from '../../common/components/chart/BarChartKit';
 import H3 from '../../common/components/text/H3';
+import DateRangePicker from '../../common/components/times/DateRangePicker';
 import TimeAxis from '../../common/components/times/TimeAxis';
 import PrimaryCardItem from '../../common/components/view/PrimaryCardItem';
-import {reportsRouteNames} from '../../navigations/router-name';
+import { reportsRouteNames } from '../../navigations/router-name';
+`	`
 
 const Reports = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -80,7 +81,7 @@ const Reports = () => {
           containerStyle={styles.selectContainerStyle}
         />
         <View style={styles.datePicker}>
-          <MyDateRangePicker />
+          <DateRangePicker />
         </View>
       </View>
     </PrimaryCardItem>

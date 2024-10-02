@@ -5,10 +5,9 @@
  *
  *********************************************************/
 
-import {useNavigation} from '@react-navigation/native';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import React, {useState} from 'react';
+import React, {Fragment, useState} from 'react';
 import {
+  Platform,
   StyleSheet,
   Switch,
   Text,
@@ -20,14 +19,14 @@ import IconImage from '../../common/components/icons/IconImage';
 import useThemeContext from '../../hooks/useThemeContext';
 import {alertRouteNames} from '../../navigations/router-name';
 import AlertItem from './components/AlertItem';
+import { useNavigation } from '../../hooks/useNavigation';
 
 const Alerts = () => {
   const theme = useThemeContext();
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const navigation = useNavigation<NativeStackNavigationProp<any>>();
+  const navigation = useNavigation();
 
   const titleOverView: TextStyle = {
     color: theme.palette.text.white,
@@ -60,7 +59,7 @@ const Alerts = () => {
   };
 
   return (
-    <View>
+    <>
       <View style={styles.overViewBtnWraped}>
         <View
           style={[
@@ -150,6 +149,7 @@ const Alerts = () => {
               ios_backgroundColor="#3e3e3e"
               onValueChange={toggleSwitch}
               value={isEnabled}
+              style={styles.switch}
             />
             <Text style={switchTextStyles}>Group by site</Text>
           </View>
@@ -160,7 +160,7 @@ const Alerts = () => {
           <AlertItem key={index} bgColor={index % 2 === 0 ? '#F2F2F2' : ''} />
         ))}
       </View>
-    </View>
+    </>
   );
 };
 
@@ -216,4 +216,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     paddingHorizontal: 16,
   },
+  switch: {
+    transform: Platform.OS === "ios" ? [{ scaleX: 0.7 }, { scaleY: 0.6 }] : [{ scaleX: 1 }, { scaleY: 1 }]
+  }
 });

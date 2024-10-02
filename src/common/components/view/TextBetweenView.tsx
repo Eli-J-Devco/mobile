@@ -38,10 +38,19 @@ const TextBetweenView = ({
     color: theme.palette.text[color],
     fontSize: theme.font.size.s,
     paddingVertical: 4,
-    borderRadius: 4,
-    backgroundColor: theme.palette.background.yellow,
+
     paddingHorizontal: 8,
   };
+
+  const bgStyle: ViewStyle =
+    type === 'primary'
+      ? {
+          backgroundColor: 'transparent'
+        }
+      : {
+          borderRadius: 4,
+          backgroundColor: theme.palette.background.yellow,
+        };
 
   const borderBottomStyle: ViewStyle = borderBottom
     ? {
@@ -58,9 +67,11 @@ const TextBetweenView = ({
         {paddingHorizontal, backgroundColor},
       ]}>
       <Text style={styleText}>{leftText}</Text>
-      <Text style={type === 'primary' ? styleText : styleAlertText}>
-        {rightText}
-      </Text>
+      <View style={bgStyle}>
+        <Text style={type === 'primary' ? styleText : styleAlertText}>
+          {rightText}
+        </Text>
+      </View>
     </View>
   );
 };

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-magic-numbers */
 import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
@@ -5,7 +6,7 @@ import MyTouchableOpacity from '../../common/base/MyTouchableOpacity';
 import IconImage from '../../common/components/icons/IconImage';
 import CustomDrawerItem from './CustomDrawerItem';
 /* eslint-disable react-native/no-inline-styles */
-const CustomerOrAccount = () => {
+const CustomerOrAccount = (props:any) => {
   const [expanded, setExpanded] = useState(false);
 
   return (
@@ -18,6 +19,7 @@ const CustomerOrAccount = () => {
         />
 
         <MyTouchableOpacity
+          onPress={() => setExpanded(!expanded)}
           touchableOpacityStyle={{
             ...styles.arrowIcon,
             right: expanded ? 13 : 16,
@@ -35,7 +37,10 @@ const CustomerOrAccount = () => {
           <CustomDrawerItem label="Site Groups" />
           <CustomDrawerItem label="Icons" />
           <CustomDrawerItem label="Error Level" />
-          <CustomDrawerItem label="Errors" />
+          <CustomDrawerItem label="Errors" onPress={() => {
+              props?.navigation?.navigate('Errors');
+              props?.navigation?.closeDrawer();
+            }} />
           <CustomDrawerItem label="Companies" />
           <CustomDrawerItem label="Import old data" />
           <CustomDrawerItem label="Device Type" />

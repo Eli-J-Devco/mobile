@@ -73,6 +73,7 @@ const MyDatePicker = ({
 
       {show && (
         <DateTimePicker
+          display="calendar"
           testID="dateTimePicker"
           value={date}
           mode="date"

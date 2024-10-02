@@ -4,20 +4,24 @@
  *
  *********************************************************/
 
-import {useNavigation} from '@react-navigation/native';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import React from 'react';
 import {
   ImageBackground,
-  SafeAreaView,
   StatusBar,
   StyleSheet,
   TextInput,
-  View,
+  View
 } from 'react-native';
-import {images} from '../assets';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { images } from '../assets';
 import MyTouchableOpacity from '../common/base/MyTouchableOpacity';
 import IconImage from '../common/components/icons/IconImage';
+import { FLEX_CONTENT } from '../constants/view/flex';
+import { useNavigation } from '../hooks/useNavigation';
+import { flexV } from '../utils/responsive';
+
+const { top, bottom } = flexV(FLEX_CONTENT.flex2, FLEX_CONTENT.flex14)
+
 
 interface Props {
   filter?: boolean;
@@ -30,11 +34,11 @@ const PrimaryLayout = ({
   bgColor = '#F5F5F5',
   children,
 }: Props) => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const navigation = useNavigation<NativeStackNavigationProp<any>>();
+  const navigation = useNavigation();
+  const insets = useSafeAreaInsets()
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <StatusBar
         translucent={true}
         barStyle="dark-content"
@@ -44,7 +48,7 @@ const PrimaryLayout = ({
         resizeMode="cover"
         source={images.bgHeader}
         style={styles.header}>
-        <View style={styles.filterContainer}>
+        <View style={[styles.filterContainer, { paddingTop: insets.top }]}>
           {filter && (
             <View style={styles.headerContent}>
               <MyTouchableOpacity onPress={() => navigation.goBack()}>
@@ -69,7 +73,7 @@ const PrimaryLayout = ({
       <View style={[styles.content, {backgroundColor: bgColor}]}>
         {children}
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 
@@ -83,10 +87,10 @@ const styles = StyleSheet.create({
     display: 'flex',
     width: '100%',
     height: '100%',
-    flex: 12,
+    flex: bottom
   },
   header: {
-    flex: 2,
+    flex: top
   },
   headerContent: {
     display: 'flex',
@@ -96,8 +100,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     width: '100%',
     gap: 8,
-    // backgroundColor: 'blue',
-    marginTop: 50,
   },
   searchInput: {
     flex: 1,
