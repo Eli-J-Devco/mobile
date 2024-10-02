@@ -60,6 +60,9 @@ interface IIcons {
   arrowIndicateDirectionRight: any;
   attachFile: any;
   image: any;
+  edit: any;
+  trash: any;
+  searchWhite: any
 }
 
 type IconNameType = keyof IIcons;

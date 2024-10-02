@@ -14,6 +14,7 @@ import {
   NAVIGATION_OVERLAY_OPACITY,
 } from '../constants/view/display';
 import SupportScreen from '../screens/support';
+import ErrorsScreen from '../screens/errors';
 
 const Stack = createStackNavigator();
 
@@ -72,6 +73,11 @@ const MainNavigation = () => {
       <Stack.Screen
         name="Support"
         component={SupportScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Errors"
+        component={ErrorsScreen}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

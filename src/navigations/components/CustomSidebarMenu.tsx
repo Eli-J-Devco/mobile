@@ -70,7 +70,7 @@ const CustomSidebarMenu = (props: any) => {
           }}
         />
         <CustomDrawerItem label="Customer/Account" iconName="userBlack" />
-        <CustomerOrAccount />
+        <CustomerOrAccount {...props}/>
 
         <View style={styles.bottomNav}>
           <CustomDrawerItem
