@@ -12,7 +12,7 @@ import {
   Text,
   TextStyle,
   TouchableOpacity,
-  View
+  View,
 } from 'react-native';
 import SvgIcon from '../../../common/components/SvgIcon';
 import H3 from '../../../common/components/text/H3';
@@ -97,7 +97,7 @@ const Charting = () => {
 
   // const onSelected = (vl: number) => {
   //   setselected(vl)
-    
+
   // }
 
   return (
@@ -118,25 +118,28 @@ const Charting = () => {
             <SvgIcon iconName="download" />
           </TouchableOpacity>
           <View style={styles.flex}>
-            <MySelect containerStyle={styles.selectContainer} value={'3day'}
-          options={[
-            {
-              label: '3 Days',
-              value: '3day',
-            },
-            {
-              label: 'Week',
-              value: 'week',
-            },
-            {
-              label: 'Month',
-              value: 'month',
-            },
-            {
-              label: 'Year',
-              value: 'year',
-            },
-          ]}/>
+            <MySelect
+              containerStyle={styles.selectContainer}
+              value={'3day'}
+              options={[
+                {
+                  label: '3 Days',
+                  value: '3day',
+                },
+                {
+                  label: 'Week',
+                  value: 'week',
+                },
+                {
+                  label: 'Month',
+                  value: 'month',
+                },
+                {
+                  label: 'Year',
+                  value: 'year',
+                },
+              ]}
+            />
           </View>
         </View>
       </View>
@@ -244,5 +247,5 @@ const styles = StyleSheet.create({
     width: 100,
     height: 30,
     borderRadius: 30,
-  }
+  },
 });

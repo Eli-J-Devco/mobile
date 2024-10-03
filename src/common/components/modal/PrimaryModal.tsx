@@ -4,13 +4,14 @@
  *
  *********************************************************/
 
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 import {
   StatusBar,
   StyleSheet,
   Text,
   TextStyle,
-  View
+  TouchableNativeFeedback,
+  View,
 } from 'react-native';
 import useThemeContext from '../../../hooks/useThemeContext';
 import MyModal from '../../base/MyModal';
@@ -67,47 +68,54 @@ const PrimaryModal = ({
 
   return (
     <MyModal visible={modalVisible}>
-      <View style={[styles.modal, positionStyles[position]]}>
-        <StatusBar
-          translucent={true}
-          barStyle="dark-content"
-          backgroundColor={'rgba(0, 0, 0, 0.5)'}
-        />
-        <View
-          style={[
-            contentStyles[position],
-            {backgroundColor: theme.palette.background.primary},
-          ]}>
-          <MyTouchableOpacity
-            touchableOpacityStyle={styles.closeIcon}
-            onPress={() => {
-              onCancel && onCancel();
-            }}>
-            <IconImage iconName="close" size={20} />
-          </MyTouchableOpacity>
-          <View style={styles.content}>{children}</View>
-          {footer && (
-            <View style={styles.actionWraped}>
+      <TouchableNativeFeedback
+        onPressOut={() => {
+          onCancel && onCancel();
+        }}>
+        <View style={[styles.modal, positionStyles[position]]}>
+          <StatusBar
+            translucent={true}
+            barStyle="dark-content"
+            backgroundColor={'rgba(0, 0, 0, 0.5)'}
+          />
+          <TouchableNativeFeedback>
+            <View
+              style={[
+                contentStyles[position],
+                {backgroundColor: theme.palette.background.primary},
+              ]}>
               <MyTouchableOpacity
-                onPress={handleCancel}
-                touchableOpacityStyle={{
-                  ...styles.actionItem,
-                  backgroundColor: theme.palette.background.disable,
+                touchableOpacityStyle={styles.closeIcon}
+                onPress={() => {
+                  onCancel && onCancel();
                 }}>
-                <Text style={cancelTextStyle}>Cancel</Text>
+                <IconImage iconName="close" size={20} />
               </MyTouchableOpacity>
-              <MyTouchableOpacity
-                onPress={handleOk}
-                touchableOpacityStyle={{
-                  ...styles.actionItem,
-                  backgroundColor: theme.palette.background.dark,
-                }}>
-                <Text style={okTextStyle}>Ok</Text>
-              </MyTouchableOpacity>
+              <View style={styles.content}>{children}</View>
+              {footer && (
+                <View style={styles.actionWraped}>
+                  <MyTouchableOpacity
+                    onPress={handleCancel}
+                    touchableOpacityStyle={{
+                      ...styles.actionItem,
+                      backgroundColor: theme.palette.background.disable,
+                    }}>
+                    <Text style={cancelTextStyle}>Cancel</Text>
+                  </MyTouchableOpacity>
+                  <MyTouchableOpacity
+                    onPress={handleOk}
+                    touchableOpacityStyle={{
+                      ...styles.actionItem,
+                      backgroundColor: theme.palette.background.dark,
+                    }}>
+                    <Text style={okTextStyle}>Ok</Text>
+                  </MyTouchableOpacity>
+                </View>
+              )}
             </View>
-          )}
+          </TouchableNativeFeedback>
         </View>
-      </View>
+      </TouchableNativeFeedback>
     </MyModal>
   );
 };

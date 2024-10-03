@@ -59,8 +59,6 @@ const Reports = () => {
   //       })),
   //     );
   //   };
-
-  //   // Cập nhật dữ liệu mỗi 1 giây
   //   const intervalId = setInterval(updateData, 1000);
 
   //   // Dọn dẹp khi component bị unmount

@@ -13,6 +13,7 @@ import {
   StyleSheet,
   Text,
   TextStyle,
+  TouchableNativeFeedback,
   TouchableOpacity,
   View,
   ViewStyle,
@@ -49,7 +50,7 @@ const MySelect = <T extends string | number = number>({
       setCurrentValue(value);
       onChange(value);
     }
-    setModalVisible(false);
+    // setModalVisible(false);
   };
 
   useEffect(() => {
@@ -93,58 +94,63 @@ const MySelect = <T extends string | number = number>({
         </View>
       </TouchableOpacity>
       <Modal transparent visible={modalVisible}>
-        <View style={styles.modal}>
-          <StatusBar
-            translucent={true}
-            barStyle="dark-content"
-            backgroundColor={'rgba(0, 0, 0, 0.5)'}
-          />
-          <View
-            style={[
-              styles.content,
-              {backgroundColor: theme.palette.background.primary},
-            ]}>
-            <View style={styles.header}>
-              <Text style={lableStyle}>{label}</Text>
-              <TouchableOpacity
-                style={{position: 'absolute', top: 8, right: 8}}
-                onPress={() => setModalVisible(false)}>
-                <IconImage iconName="close" />
-              </TouchableOpacity>
-            </View>
-            {options && (
-              <FlatList
-                contentContainerStyle={styles.contentContainerStyle}
-                data={options}
-                renderItem={({item}: {item: ISelectOption<T>}) => (
+        <TouchableNativeFeedback onPressOut={() => setModalVisible(false)}>
+          <View style={styles.modal}>
+            <StatusBar
+              translucent={true}
+              barStyle="dark-content"
+              backgroundColor={'rgba(0, 0, 0, 0.5)'}
+            />
+            <TouchableNativeFeedback>
+              <View
+                style={[
+                  styles.content,
+                  {backgroundColor: theme.palette.background.primary},
+                ]}>
+                <View style={styles.header}>
+                  <Text style={lableStyle}>{label}</Text>
                   <TouchableOpacity
-                    activeOpacity={0.5}
-                    style={styles.option}
-                    onPress={() => {
-                      onChangeValue(item.value);
-                    }}>
-                    <Text
-                      style={{
-                        color: theme.palette.text.primary,
-                        fontSize: theme.font.size.s,
-                        fontWeight: currentValue === item.value ? '700' : '400',
-                      }}>
-                      {item.label}
-                    </Text>
-                    <View style={styles.checkBoxContainer}>
-                      {currentValue === item.value && (
-                        <SvgIcon w={15} h={15} iconName="checkGreen" />
-                      )}
-                    </View>
+                    style={{position: 'absolute', top: 8, right: 8}}
+                    onPress={() => setModalVisible(false)}>
+                    <IconImage iconName="close" />
                   </TouchableOpacity>
+                </View>
+                {options && (
+                  <FlatList
+                    contentContainerStyle={styles.contentContainerStyle}
+                    data={options}
+                    renderItem={({item}: {item: ISelectOption<T>}) => (
+                      <TouchableOpacity
+                        activeOpacity={0.5}
+                        style={styles.option}
+                        onPress={() => {
+                          onChangeValue(item.value);
+                        }}>
+                        <Text
+                          style={{
+                            color: theme.palette.text.primary,
+                            fontSize: theme.font.size.s,
+                            fontWeight:
+                              currentValue === item.value ? '700' : '400',
+                          }}>
+                          {item.label}
+                        </Text>
+                        <View style={styles.checkBoxContainer}>
+                          {currentValue === item.value && (
+                            <SvgIcon w={15} h={15} iconName="checkGreen" />
+                          )}
+                        </View>
+                      </TouchableOpacity>
+                    )}
+                    keyExtractor={(item: ISelectOption<T>) =>
+                      `id-select-${item.value}`
+                    }
+                  />
                 )}
-                keyExtractor={(item: ISelectOption<T>) =>
-                  `id-select-${item.value}`
-                }
-              />
-            )}
+              </View>
+            </TouchableNativeFeedback>
           </View>
-        </View>
+        </TouchableNativeFeedback>
       </Modal>
     </>
   );
