@@ -9,7 +9,7 @@ import React from 'react';
 import { StyleSheet, Text, TextStyle, View } from 'react-native';
 import MyScrollView from '../../../../common/base/MyScrollView';
 import MySwicthText from '../../../../common/base/MySwicthText';
-import LineChartKit from '../../../../common/components/chart/LineChartKit';
+import LineChart from '../../../../common/components/chart/LineChart';
 import PrimaryFooter from '../../../../common/components/footer/PrimaryFooter';
 import InputLabel from '../../../../common/components/input/InputLabel';
 import { showNoti } from '../../../../common/components/notify';
@@ -88,7 +88,7 @@ const AlertDetail = () => {
           </Card>
           <Card tiltle="Charting">
             <View style={styles.chart}>
-              <LineChartKit />
+              <LineChart />
               <View style={styles.descriptionContent}>
                 <View style={styles.iconContainer}>
                   <View style={styles.dot} />

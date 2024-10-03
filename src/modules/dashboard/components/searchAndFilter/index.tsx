@@ -4,18 +4,53 @@
  *
  *********************************************************/
 
-import { NavigationProp, useNavigation } from '@react-navigation/native';
-import React, { useState } from 'react';
-import { ScrollView, StyleSheet, Text, TextStyle, View } from 'react-native';
+import {NavigationProp, useNavigation} from '@react-navigation/native';
+import React, {useState} from 'react';
+import {ScrollView, StyleSheet, Text, TextStyle, View} from 'react-native';
 import MySelect from '../../../../common/base/MySelect';
 import ButonText from '../../../../common/components/button/ButonText';
 import PrimaryInput from '../../../../common/components/input/PrimaryInput';
 import RadioButtonGroup from '../../../../common/components/selection-controls/RadioButtonGroup';
 import DatePicker from '../../../../common/components/times/DatePicker';
 import useThemeContext from '../../../../hooks/useThemeContext';
-import { dashboardRouteNames } from '../../../../navigations/router-name';
+import {dashboardRouteNames} from '../../../../navigations/router-name';
 
 const RadioButtonData: IRadio[] = [
+  {
+    label: 'Site Name',
+    value: 'SiteName',
+  },
+  {
+    label: 'Street',
+    value: 'Street',
+  },
+  {
+    label: 'City',
+    value: 'City',
+  },
+  {
+    label: 'State',
+    value: 'State',
+  },
+  {
+    label: 'Zip Code',
+    value: 'ZipCode',
+  },
+  {
+    label: 'Device Name',
+    value: 'DeviceName',
+  },
+  {
+    label: 'Serial Number',
+    value: 'SerialNumber',
+  },
+  {
+    label: 'Hardware ID',
+    value: 'HardwareID',
+  },
+];
+
+const options: Array<ISelectOption<string>> = [
   {
     label: 'Site Name',
     value: 'SiteName',
@@ -152,7 +187,7 @@ const SearchAndFilter = () => {
           <View style={styles.filterItem}>
             <Text style={label}>Tag Device</Text>
             <View style={styles.filterContent}>
-              <MySelect placeholder="- - -" />
+              <MySelect placeholder="- - -" options={options} />
             </View>
           </View>
         </View>

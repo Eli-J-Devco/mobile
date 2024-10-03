@@ -10,6 +10,9 @@ import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.utils.ColorTemplate
+import com.facebook.react.uimanager.annotations.ReactProp
+import com.facebook.react.bridge.ReadableArray
+import com.facebook.react.uimanager.ThemedReactContext
 
 import android.content.Context
 import com.facebook.react.uimanager.SimpleViewManager
@@ -50,8 +53,8 @@ class LineAndBarChartManager: SimpleViewManager<LineAndBarChartView>() {
         return "RCTLineAndBarChart"
     }
 
-    override fun createViewInstance(context: Context): LineAndBarChartView {
-        return LineAndBarChartView(context)
+    override fun createViewInstance(reactContext: ThemedReactContext): LineAndBarChartView {
+        return LineAndBarChartView(reactContext)
     }
 
     @ReactProp(name = "barData")

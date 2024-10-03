@@ -29,9 +29,6 @@ class MosaicChartView(context: Context) : FrameLayout(context){
     }
 
     fun setData(data: List<DataEntry>) {
-
-       
-
         set.data(data);
         val series1Data : Mapping = set.mapAs("{ x: 'x', value: 'value' }");
 

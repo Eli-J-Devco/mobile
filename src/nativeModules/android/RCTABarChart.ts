@@ -1,6 +1,6 @@
 import {requireNativeComponent, ViewStyle} from 'react-native';
 
-interface RCTBarChartProps {
+interface RCTABarChartProps {
   style?: ViewStyle;
   data: {
     values: number[];
@@ -8,6 +8,6 @@ interface RCTBarChartProps {
   };
 }
 
-const RCTBarChart = requireNativeComponent<RCTBarChartProps>('RCTBarChart');
+const RCTABarChart = requireNativeComponent<RCTABarChartProps>('RCTABarChart');
 
-export default RCTBarChart;
+export default RCTABarChart;

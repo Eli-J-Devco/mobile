@@ -14,7 +14,7 @@ import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 
 class LineChartManager : SimpleViewManager<LineChart>() {
     override fun getName(): String {
-        return "RCTLineChart"
+        return "RCTALineChart"
     }
 
     override fun createViewInstance(reactContext: ThemedReactContext) : LineChart {

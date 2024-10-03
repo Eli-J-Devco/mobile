@@ -9,6 +9,6 @@ interface Props {
     chartData: DataChart
 }
 
-const BarChart = requireNativeComponent<Props>('RCTBarChart');
+const RCTIBarChart = requireNativeComponent<Props>('RCTBarChart');
 
-export default BarChart;
+export default RCTIBarChart;

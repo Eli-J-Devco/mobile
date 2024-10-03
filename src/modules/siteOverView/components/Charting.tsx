@@ -14,13 +14,13 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import MySelect from '../../../common/base/MySelect';
+import BarChart from '../../../common/components/chart/BarChart';
 import SvgIcon from '../../../common/components/SvgIcon';
 import H3 from '../../../common/components/text/H3';
 import DateRangePicker from '../../../common/components/times/DateRangePicker';
 import TimeAxis from '../../../common/components/times/TimeAxis';
 import useThemeContext from '../../../hooks/useThemeContext';
-import MySelect from '../../../common/base/MySelect';
-import BarChartKit from '../../../common/components/chart/BarChartKit';
 
 const Charting = () => {
   const theme = useThemeContext();
@@ -41,15 +41,13 @@ const Charting = () => {
   //     setData(prevData =>
   //       prevData.map(item => ({
   //         ...item,
-  //         y: Math.floor(Math.random() * 100), // Tạo số ngẫu nhiên từ 0 đến 99
+  //         y: Math.floor(Math.random() * 100), 
   //       })),
   //     );
   //   };
 
-  //   // Cập nhật dữ liệu mỗi 1 giây
   //   const intervalId = setInterval(updateData, 1000);
 
-  //   // Dọn dẹp khi component bị unmount
   //   return () => clearInterval(intervalId);
   // }, []);
 
@@ -150,7 +148,7 @@ const Charting = () => {
           Last updated on June 30, 2024 4:02 AM
         </Text>
         <View style={styles.chartContainer}>
-          <BarChartKit />
+          <BarChart />
         </View>
       </View>
       <View style={styles.description}>

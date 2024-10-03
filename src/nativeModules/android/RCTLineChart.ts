@@ -1,6 +1,6 @@
 import {requireNativeComponent, ViewStyle} from 'react-native';
 
-interface RCTLineChartProps {
+interface RCTALineChartProps {
   style?: ViewStyle;
   data: {
     values: number[];
@@ -8,6 +8,6 @@ interface RCTLineChartProps {
   };
 }
 
-const RCTLineChart = requireNativeComponent<RCTLineChartProps>('RCTLineChart');
+const RCTALineChart = requireNativeComponent<RCTALineChartProps>('RCTALineChart');
 
-export default RCTLineChart;
+export default RCTALineChart;

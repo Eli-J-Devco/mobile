@@ -10,6 +10,6 @@ interface Props {
     chartData: DataChart
 }
 
-const LineChart = requireNativeComponent<Props>('RCTLineChart');
+const RCTILineChart = requireNativeComponent<Props>('RCTLineChart');
 
-export default LineChart;
+export default RCTILineChart;

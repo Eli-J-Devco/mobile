@@ -10,7 +10,7 @@ import DateRangePicker from '../../common/components/times/DateRangePicker';
 import TimeAxis from '../../common/components/times/TimeAxis';
 import PrimaryCardItem from '../../common/components/view/PrimaryCardItem';
 import { reportsRouteNames } from '../../navigations/router-name';
-import BarChartKit from '../../common/components/chart/BarChartKit';
+import BarChartKit from '../../common/components/chart/BarChart';
 import { useNavigation } from '../../hooks/useNavigation';
 
 const Reports = () => {

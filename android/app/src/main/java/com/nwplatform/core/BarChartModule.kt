@@ -15,7 +15,7 @@ import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 
 class BarChartManager : SimpleViewManager<BarChart>() {
     override fun getName(): String {
-        return "RCTBarChart"
+        return "RCTABarChart"
     }
 
     override fun createViewInstance(reactContext: ThemedReactContext): BarChart {
