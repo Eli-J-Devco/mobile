@@ -5,7 +5,7 @@
  *
  *********************************************************/
 
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   FlatList,
   Modal,
@@ -22,40 +22,66 @@ import useThemeContext from '../../hooks/useThemeContext';
 import SvgIcon from '../components/SvgIcon';
 import IconImage from '../components/icons/IconImage';
 
-export interface MySelectProps<T> {
+type ValueType<T, Multi extends boolean> = Multi extends true ? T[] : T;
+
+export interface MySelectProps<T, Multi extends boolean> {
+  multi?: Multi;
   label?: string;
-  value?: T;
+  value?: ValueType<T, Multi>;
   placeholder?: string;
   options?: Array<ISelectOption<T>>;
-  onChange?: (value: T) => void;
+  onChange?: (value: ValueType<T, Multi>) => void;
   containerStyle?: ViewStyle;
+  maxTagCount?: number;
 }
 
-const MySelect = <T extends string | number = number>({
+const MySelect = <
+  T extends string | number = number,
+  Multi extends boolean = false,
+>({
+  multi,
   label,
   value,
   options,
   placeholder,
   onChange,
   containerStyle,
-}: MySelectProps<T>) => {
+  maxTagCount = 2,
+}: MySelectProps<T, Multi>) => {
   const theme = useThemeContext();
 
-  const [currentValue, setCurrentValue] = useState<T>();
+  const [currentValue, setCurrentValue] = useState<T[]>();
 
   const [modalVisible, setModalVisible] = useState(false);
 
   const onChangeValue = (value: T) => {
     if (onChange) {
-      setCurrentValue(value);
-      onChange(value);
+      if (multi) {
+        let team = Array.isArray(currentValue) ? [...currentValue] : [];
+
+        if (team.includes(value)) {
+          team = team.filter(e => e !== value);
+        } else {
+          team = [...team, value];
+        }
+
+        setCurrentValue(team);
+        onChange(team as ValueType<T, Multi>);
+      } else {
+        setCurrentValue([value]);
+        onChange(value as ValueType<T, Multi>);
+      }
     }
     // setModalVisible(false);
   };
 
   useEffect(() => {
     if (value) {
-      setCurrentValue(value);
+      if (multi) {
+        setCurrentValue(value as T[]);
+      } else {
+        setCurrentValue([value] as T[]);
+      }
     }
   }, [value]);
 
@@ -83,11 +109,31 @@ const MySelect = <T extends string | number = number>({
           // openBottomSheet();
         }}>
         <View style={styles.contentWraped}>
-          <Text style={valueStyle}>
-            {options && options?.find(e => e.value === currentValue)?.label
-              ? options?.find(e => e.value === currentValue)?.label
-              : placeholder}
-          </Text>
+          {options && currentValue && currentValue?.length > 0 ? (
+            multi ? (
+              <View style={styles.selectedWraped}>
+                {options
+                  .filter(e => currentValue.includes(e.value))
+                  .splice(0, maxTagCount)
+                  .map(e => (
+                    <View key={e.value} style={styles.selectedItem}>
+                      <Text>{e.label}</Text>
+                    </View>
+                  ))}
+                {currentValue?.length > maxTagCount && (
+                  <View style={styles.selectedItem}>
+                    <Text>+{currentValue?.length - maxTagCount}</Text>
+                  </View>
+                )}
+              </View> 
+            ) : (
+              <Text style={valueStyle}>
+                {options.find(e => e.value === currentValue[0])?.label}
+              </Text>
+            )
+          ) : (
+            <Text style={valueStyle}>{placeholder}</Text>
+          )}
         </View>
         <View style={styles.icon}>
           <IconImage iconName="arrowDown" size={14} />
@@ -130,13 +176,14 @@ const MySelect = <T extends string | number = number>({
                           style={{
                             color: theme.palette.text.primary,
                             fontSize: theme.font.size.s,
-                            fontWeight:
-                              currentValue === item.value ? '700' : '400',
+                            fontWeight: currentValue?.includes(item.value)
+                              ? '700'
+                              : '400',
                           }}>
                           {item.label}
                         </Text>
                         <View style={styles.checkBoxContainer}>
-                          {currentValue === item.value && (
+                          {currentValue?.includes(item.value) && (
                             <SvgIcon w={15} h={15} iconName="checkGreen" />
                           )}
                         </View>
@@ -238,5 +285,17 @@ const styles = StyleSheet.create({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  selectedWraped: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: 4,
+    flexDirection: 'row',
+  },
+  selectedItem: {
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    backgroundColor: '#cdcdcd',
+    borderRadius: 4,
   },
 });

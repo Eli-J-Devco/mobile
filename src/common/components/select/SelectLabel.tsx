@@ -10,14 +10,14 @@ import {Text, TextStyle, View} from 'react-native';
 import useThemeContext from '../../../hooks/useThemeContext';
 import MySelect, {MySelectProps} from '../../base/MySelect';
 
-interface SelectLabelProps<T> extends MySelectProps<T> {
+interface SelectLabelProps<T, M extends boolean> extends MySelectProps<T, M> {
   label: string;
   layout?: 'vertical' | 'horizontal';
   labelStyle?: TextStyle;
   span?: number;
 }
 
-const SelectLabel = <T extends number | string = number>({
+const SelectLabel = <T extends number | string = number, M extends boolean = false>({
   layout = 'vertical',
   labelStyle,
   label,
@@ -27,7 +27,7 @@ const SelectLabel = <T extends number | string = number>({
   onChange,
   containerStyle,
   span,
-}: SelectLabelProps<T>) => {
+}: SelectLabelProps<T, M>) => {
   const theme = useThemeContext();
 
   const labelTextStyle: TextStyle = {

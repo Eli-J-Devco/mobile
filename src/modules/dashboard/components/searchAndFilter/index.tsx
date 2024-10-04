@@ -90,6 +90,16 @@ const SearchAndFilter = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const navigation = useNavigation<NavigationProp<any>>();
   const [searchBy, setSearchBy] = useState<string>('SiteName');
+  const [tagType, setTagType] = useState<string[]>(['SiteName']);
+  const [tagSite, setTagSite] = useState<string>('SiteName');
+
+  const onChangeTagType = (value: string[]) => {
+    setTagType(value)
+  }
+  const onChangeTagSite = (value: string) => {
+    setTagSite(value)
+  }
+
 
   const label: TextStyle = {
     color: theme.palette.text.primary,
@@ -181,17 +191,17 @@ const SearchAndFilter = () => {
           <View style={styles.filterItem}>
             <Text style={label}>Tag Site</Text>
             <View style={styles.filterContent}>
-              <MySelect placeholder="- - -" />
+              <MySelect multi={false} value={tagSite} placeholder="- - -" options={options} onChange={onChangeTagSite} />
             </View>
           </View>
           <View style={styles.filterItem}>
             <Text style={label}>Tag Device</Text>
             <View style={styles.filterContent}>
-              <MySelect placeholder="- - -" options={options} />
+              <MySelect multi maxTagCount={3} value={tagType} placeholder="- - -" options={options} onChange={onChangeTagType} />
             </View>
           </View>
         </View>
-        <View style={styles.action}>
+        <View style={styles.action}>  
           <ButonText
             text="Apply"
             touchableOpacityStyles={{
