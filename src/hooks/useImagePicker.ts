@@ -5,15 +5,15 @@
  *********************************************************/
 
 import {useCallback, useMemo, useState} from 'react';
-import {NativeModules} from 'react-native';
-const {PhotoPicker} = NativeModules;
+import {NativeModules, Platform} from 'react-native';
+const {PhotoPicker, AndroidPhotoPicker} = NativeModules;
 
 export const useImagePicker = () => {
   const [data, setData] = useState<IIamge | null>(null);
 
   const selectPhoto = useCallback(async () => {
     try {
-      const photo = await PhotoPicker.selectPhoto();
+      const photo = Platform.OS === "ios" ? await PhotoPicker.selectPhoto() : await AndroidPhotoPicker.selectPhoto();
 
       setData(photo);
     } catch (error) {
