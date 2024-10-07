@@ -29,8 +29,34 @@ class AndroidPhotoPicker(reactContext: ReactApplicationContext) : ReactContextBa
                 val selectedImageUri: Uri? = data.data
                 val imageUrl = selectedImageUri.toString()
 
+                var projection = arrayOf(MediaStore.Images.Media.DISPLAY_NAME, MediaStore.Images.Media.MIME_TYPE, MediaStore.Images.Media.WIDTH, MediaStore.Images.Media.HEIGHT)
+                var cursor = currentActivity?.contentResolver?.query(selectedImageUri!!, projection, null, null, null)
+
+                if(cursor != null && cursor.moveToFirst()) {
+                    var nameIndex = cursor.getColumnIndex(MediaStore.Images.Media.DISPLAY_NAME)
+                    var typeIndex = cursor.getColumnIndex(MediaStore.Images.Media.MIME_TYPE)
+                    var widthIndex = cursor.getColumnIndex(MediaStore.Images.Media.WIDTH)
+                    var heightIndex = cursor.getColumnIndex(MediaStore.Images.Media.HEIGHT)
+
+                    var name = cursor.getString(nameIndex) ?: "unknown"
+                    var type = cursor.getString(typeIndex) ?: "unknown"
+                    var width = cursor.getString(widthIndex) ?: "0"
+                    var height = cursor.getString(heightIndex) ?: "0"
+
+                    cursor.close()
+
+                    var response = Arguments.createMap()
+
+                    response.putString("name", name)
+                    response.putString("type", type)
+                    response.putString("width", width)
+                    response.putString("height", height)
+                    response.putString("url", imageUrl)
+
+                    promise?.resolve(response)
+                }
                 // Send the image URL back to JavaScript
-                promise?.resolve(imageUrl)
+                
             } else {
                 promise?.reject("E_PICKER_ERROR", "Image not selected")
             }

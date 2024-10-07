@@ -1,6 +1,6 @@
 package com.nwplatform
 
-import com.nwplatform.modules.DatePackage
+import com.nwplatform.modules.OhterPackage
 import com.nwplatform.modules.ChartPackage
 
 import android.app.Application
@@ -22,7 +22,7 @@ class MainApplication : Application(), ReactApplication {
             PackageList(this).packages.apply {
               // Packages that cannot be autolinked yet can be added manually here, for example:
               // add(MyReactNativePackage())
-              add(DatePackage())
+              add(OhterPackage())
               add(ChartPackage())
             }
 
