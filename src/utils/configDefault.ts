@@ -37,11 +37,11 @@ export const appThemeColor: AppThemeColor = {
       50: '#F7FCFF',
     },
     alert: {
-      Success: '#0ABE75',
-      Info: '#246BFD',
-      Warning: '#FACC15',
-      Error: '#F75555',
-      Disabled: '#D8D8D8',
+      Success: '#22bb33',
+      Info: '#5bc0de',
+      Warning: '#f0ad4e',
+      Error: '#bb2124',
+      Disabled: '#aaaaaa',
       DisabledButton: '#0E9E42',
     },
     greyScale: {

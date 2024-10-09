@@ -45,6 +45,7 @@ interface IIcons {
   devices: any;
   overview: any;
   plus: any;
+  plusWhite: any;
   checkRounded: any;
   more: any;
   search: any;
@@ -62,7 +63,13 @@ interface IIcons {
   image: any;
   edit: any;
   trash: any;
+  editWhite: any;
+  trashWhite: any;
+  eyeWhite: any;
   searchWhite: any
+  chartWhite: any
+  emailWhite: any
+  customer: any
 }
 
 type IconNameType = keyof IIcons;

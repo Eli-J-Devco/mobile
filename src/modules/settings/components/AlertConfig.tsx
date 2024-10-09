@@ -18,7 +18,7 @@ import PrimaryFooter from '../../../common/components/footer/PrimaryFooter';
 import InputLabel from '../../../common/components/input/InputLabel';
 import SelectLabel from '../../../common/components/select/SelectLabel';
 import useThemeContext from '../../../hooks/useThemeContext';
-import {globalStyles} from '../../../styles';
+import globalStyles from '../../../styles/global.style';
 import {useNavigation} from '../../../hooks/useNavigation';
 import {showNoti} from '../../../common/components/notify';
 

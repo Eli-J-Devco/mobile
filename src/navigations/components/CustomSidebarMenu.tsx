@@ -69,7 +69,10 @@ const CustomSidebarMenu = (props: any) => {
             props?.navigation.closeDrawer();
           }}
         />
-        <CustomDrawerItem label="Customer/Account" iconName="userBlack" />
+        <CustomDrawerItem label="Customer/Account" iconName="userBlack" onPress={() => {
+            props?.navigation?.navigate('CustomerOrAccount');
+            props?.navigation.closeDrawer();
+          }}/>
         <CustomerOrAccount {...props}/>
 
         <View style={styles.bottomNav}>

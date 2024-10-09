@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import React from 'react';
 import useThemeContext from '../../../hooks/useThemeContext';
-import {globalStyles} from '../../../styles';
+import globalStyles from '../../../styles/global.style';
 import SelectLabel from '../../../common/components/select/SelectLabel';
 import PrimaryFooter from '../../../common/components/footer/PrimaryFooter';
 import {useNavigation} from '../../../hooks/useNavigation';

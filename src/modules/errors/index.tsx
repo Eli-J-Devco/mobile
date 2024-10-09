@@ -5,7 +5,6 @@ import {
   Dimensions,
   PanResponder,
   StyleSheet,
-  TextInput,
   TouchableOpacity,
   View
 } from 'react-native';
@@ -14,31 +13,14 @@ import IconImage from '../../common/components/icons/IconImage';
 import useThemeContext from '../../hooks/useThemeContext';
 import CreateError from './components/CreateError';
 import ErrorItem from './components/ErrorItem';
+import SearchInput from '../../common/components/input/SearchInput';
 
 const {width, height} = Dimensions.get('window');
 
 const Errors = () => {
   const theme = useThemeContext();
 
-  const widthAnim = useRef(new Animated.Value(100)).current;
-
   const [openModal, setOpenModal] = useState(false);
-
-  const handleFocus = () => {
-    Animated.timing(widthAnim, {
-      toValue: 280,
-      duration: 3000,
-      useNativeDriver: false,
-    }).start();
-  };
-
-  const handleBlur = () => {
-    Animated.timing(widthAnim, {
-      toValue: 100,
-      duration: 3000,
-      useNativeDriver: false,
-    }).start();
-  };
 
   const pan = useRef(
     new Animated.ValueXY({
@@ -88,20 +70,7 @@ const Errors = () => {
               }}>
               <IconImage iconName="filter" size={16} />
             </MyTouchableOpacity>
-            <Animated.View
-              style={[
-                styles.searchContainer,
-                {borderColor: theme.palette.borderColor.base, width: widthAnim},
-              ]}>
-              <View
-                style={[
-                  styles.searchIcon,
-                  {backgroundColor: theme.palette.background.dark},
-                ]}>
-                <IconImage iconName="searchWhite" size={20} />
-              </View>
-              <TextInput style={styles.input} placeholder="Search..." onFocus={handleFocus} onBlur={handleBlur} />
-            </Animated.View>
+            <SearchInput />
           </View>
           <MyTouchableOpacity
             touchableOpacityStyle={{
@@ -182,32 +151,5 @@ const styles = StyleSheet.create({
   content: {
     marginTop: 16,
     paddingHorizontal: 16
-  },
-  searchIcon: {
-    height: 32,
-    width: 30,
-    borderTopLeftRadius: 6,
-    // borderTopRightRadius: 8,
-    borderBottomLeftRadius: 6,
-    // borderBottomRightRadius: 8,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  searchContainer: {
-    borderRadius: 8,
-    borderWidth: 1,
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 4,
-    backgroundColor: '#fff'
-  },
-  input: {
-    // minWidth: 48,
-    height: 24,
-    fontSize: 12,
-    width: 'auto', 
-    backgroundColor: '#fff'
   },
 });

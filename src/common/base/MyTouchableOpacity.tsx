@@ -5,11 +5,11 @@
  *********************************************************/
 
 import React from 'react';
-import {TouchableOpacity, TouchableOpacityProps, ViewStyle} from 'react-native';
+import {StyleProp, TouchableOpacity, TouchableOpacityProps, ViewStyle} from 'react-native';
 
 interface IMyTouchableOpacityProps {
   touchableOpacityProps?: TouchableOpacityProps;
-  touchableOpacityStyle?: ViewStyle;
+  touchableOpacityStyle?: StyleProp<ViewStyle>;
   onPress?: () => void;
   children: React.ReactNode;
 }

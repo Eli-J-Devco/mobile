@@ -4,7 +4,7 @@ import React from 'react';
 import useThemeContext from '../../../hooks/useThemeContext';
 import SelectLabel from '../../../common/components/select/SelectLabel';
 import PrimaryFooter from '../../../common/components/footer/PrimaryFooter';
-import {globalStyles} from '../../../styles';
+import globalStyles from '../../../styles/global.style';
 import InputLabel from '../../../common/components/input/InputLabel';
 import {useNavigation} from '@react-navigation/native';
 import {showNoti} from '../../../common/components/notify';

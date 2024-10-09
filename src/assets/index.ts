@@ -94,6 +94,13 @@ export const iconsImage: Partial<IIcons> = {
   attachFile: require('./icons-image/attach-file.png'),
   image: require('./icons-image/image.png'),
   edit: require('./icons-image/edit.png'),
+  editWhite: require('./icons-image/edit-white.png'),
+  trashWhite: require('./icons-image/trash-white.png'),
   trash: require('./icons-image/trash.png'),
+  eyeWhite: require('./icons-image/eye-white.png'),
   searchWhite: require('./icons-image/search-white.png'),
+  chartWhite: require('./icons-image/chart-white.png'),
+  emailWhite: require('./icons-image/email-white.png'),
+  plusWhite: require('./icons-image/plus-white.png'),
+  customer: require('./icons-image/customer.png'),
 };

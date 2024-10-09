@@ -15,6 +15,8 @@ import {
 } from '../constants/view/display';
 import SupportScreen from '../screens/support';
 import ErrorsScreen from '../screens/errors';
+import CustomerOrAccountDetailSreen from '../screens/customer-or-account/customer-or-account-detail';
+import CustomerOrAccountSreen from '../screens/customer-or-account';
 
 const Stack = createStackNavigator();
 
@@ -78,6 +80,16 @@ const MainNavigation = () => {
       <Stack.Screen
         name="Errors"
         component={ErrorsScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="CustomerOrAccount"
+        component={CustomerOrAccountSreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="CustomerOrAccountDetail"
+        component={CustomerOrAccountDetailSreen}
         options={{headerShown: false}}
       />
     </Stack.Navigator>
