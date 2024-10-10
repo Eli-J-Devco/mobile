@@ -20,6 +20,7 @@ type CloseActionType =
 
 type MyTagPropsType = CloseActionType & {
   color?: OtherColorsKeyType;
+  disabled?: boolean
   children: React.ReactNode;
 };
 
@@ -28,12 +29,16 @@ const MyTag = ({
   icon = false,
   iconName = 'close',
   onPress,
+  disabled = false,
   children,
 }: MyTagPropsType) => {
   const theme = useThemeContext();
 
   return (
     <MyTouchableOpacity
+      touchableOpacityProps={{
+        disabled
+      }}
       onPress={() => {
         if (icon && onPress) onPress();
       }}

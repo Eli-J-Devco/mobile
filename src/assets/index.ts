@@ -103,4 +103,6 @@ export const iconsImage: Partial<IIcons> = {
   emailWhite: require('./icons-image/email-white.png'),
   plusWhite: require('./icons-image/plus-white.png'),
   customer: require('./icons-image/customer.png'),
+  arrowsRight: require('./icons-image/arrows-right.png'),
+  arrowsRightWhite: require('./icons-image/arrows-right-white.png'),
 };

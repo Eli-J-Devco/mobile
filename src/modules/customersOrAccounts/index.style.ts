@@ -49,17 +49,56 @@ export default StyleSheet.create({
     overflow: 'hidden'
   },
   customerNameContainer: {
-    gap: 4,
+    gap: 8,
     padding: 8, 
     flexDirection: 'row', 
     flexWrap: 'wrap', 
     maxWidth: '100%'
-  },
-  customerName: {
-    padding: 4,
-    borderRadius: 4, 
+  }, 
+  modified: {
     flexDirection: 'row', 
     alignItems: 'center',
+    justifyContent: 'space-between',
+    borderRadius: 4,
+    paddingHorizontal: 4,
+    height: 36
+  },
+  modifiedTime: {
+    display: 'flex',
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    height: 36, 
     gap: 4
+  },
+  icon: {
+    marginTop: -6
+  },
+  modifiedItemTilte: {
+    gap: 4
+  },
+  modifyContent: {
+    overflow: 'hidden',
+    gap: 4,
+    flex: 7,
+    padding: 4
+  }, 
+  description: {
+    // maxWidth: '90%'
+  },
+  time: {
+    justifyContent: 'space-between',
+    marginTop: 6,
+    borderTopColor: '#cdcdcd',
+    borderTopWidth: 1, 
+    padding: 4,
+  },
+  image: {
+    flex: 3
+  },
+  lastModifiedContainer: {
+    padding: 16, 
+    display: 'flex', 
+    gap: 8
   }
 });

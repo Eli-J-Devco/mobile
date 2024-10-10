@@ -70,6 +70,8 @@ interface IIcons {
   chartWhite: any
   emailWhite: any
   customer: any
+  arrowsRight: any
+  arrowsRightWhite: any
 }
 
 type IconNameType = keyof IIcons;

@@ -17,6 +17,7 @@ import SupportScreen from '../screens/support';
 import ErrorsScreen from '../screens/errors';
 import CustomerOrAccountDetailSreen from '../screens/customer-or-account/customer-or-account-detail';
 import CustomerOrAccountSreen from '../screens/customer-or-account';
+import LastModifiedSreen from '../screens/customer-or-account/last-modified';
 
 const Stack = createStackNavigator();
 
@@ -90,6 +91,11 @@ const MainNavigation = () => {
       <Stack.Screen
         name="CustomerOrAccountDetail"
         component={CustomerOrAccountDetailSreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="LastModified"
+        component={LastModifiedSreen}
         options={{headerShown: false}}
       />
     </Stack.Navigator>
